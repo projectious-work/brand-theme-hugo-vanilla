@@ -1,0 +1,44 @@
+[minRead]
+other = "{{ .Count }} Min. Lesezeit"
+
+[words]
+other = "Wörter"
+
+[copyCode]
+other = "Code kopieren"
+
+[searchPlaceholder]
+other = "Suchen..."
+
+[closeSearch]
+other = "Suche schließen"
+
+[toggleTheme]
+other = "Hell-/Dunkelmodus umschalten"
+
+[menu]
+other = "Menü"
+
+[onThisPage]
+other = "Auf dieser Seite"
+
+[previous]
+other = "Zurück"
+
+[next]
+other = "Weiter"
+
+[notFoundTitle]
+other = "Seite nicht gefunden"
+
+[notFoundBody]
+other = "Die gesuchte Seite existiert nicht oder wurde verschoben."
+
+[backHome]
+other = "Zur Startseite"
+
+[docsNav]
+other = "Dokumentationsnavigation"
+
+[noResults]
+other = "Keine Ergebnisse"

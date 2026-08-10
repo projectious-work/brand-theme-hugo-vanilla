@@ -1,0 +1,2 @@
+{{ $variant := .Get "variant" | default "info" }}
+<span class="badge badge--{{ $variant }}">{{ .Inner }}</span>

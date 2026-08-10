@@ -1,0 +1,11 @@
+<ul class="sidebar__list">
+{{ range .pages.ByWeight }}
+  {{ $isCurrent := eq .RelPermalink $.current.RelPermalink }}
+  <li class="sidebar__item">
+    <a href="{{ .RelPermalink }}" class="sidebar__link{{ if $isCurrent }} is-current{{ end }}">{{ .LinkTitle }}</a>
+    {{ if .Pages }}
+      {{ partial "sidebar-tree.html" (dict "pages" .Pages "current" $.current) }}
+    {{ end }}
+  </li>
+{{ end }}
+</ul>

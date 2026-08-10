@@ -1,0 +1,20 @@
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="{{ "/" | relLangURL }}">
+      <img class="brand__mark brand__mark--light" src="{{ "logo/icon-light.svg" | relURL }}" alt="" width="22" height="22">
+      <img class="brand__mark brand__mark--dark" src="{{ "logo/icon-dark.svg" | relURL }}" alt="" width="22" height="22">
+      <span class="brand__word">projectious<span class="brand__dot">·</span>work</span>
+    </a>
+    <button class="nav-toggle" data-nav-toggle aria-label="{{ i18n "menu" }}" aria-expanded="false">{{ partial "icon.html" (dict "name" "menu" "size" 22) }}</button>
+    <div class="site-header__right" data-nav>
+      {{ partial "menu.html" . }}
+      {{ $searchPlacement := "header" }}
+      {{ with site.Params.search }}{{ with .placement }}{{ $searchPlacement = . }}{{ end }}{{ end }}
+      {{ if eq $searchPlacement "header" }}{{ partial "search-box.html" . }}{{ end }}
+      <button class="theme-toggle" data-theme-toggle aria-label="{{ i18n "toggleTheme" }}" type="button">
+        {{ partial "icon.html" (dict "name" "sun" "size" 18 "class" "theme-toggle__sun") }}
+        {{ partial "icon.html" (dict "name" "moon" "size" 18 "class" "theme-toggle__moon") }}
+      </button>
+    </div>
+  </div>
+</header>

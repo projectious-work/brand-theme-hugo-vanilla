@@ -1,0 +1,2 @@
+{{ $variant := .Get "variant" | default "primary" }}
+<a class="btn btn--{{ $variant }}" href="{{ .Get "href" }}"{{ if .Get "external" }} target="_blank" rel="noopener"{{ end }}>{{ .Inner }}</a>

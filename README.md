@@ -1,0 +1,70 @@
+# hugo-theme-projectious
+
+A lean, idiomatic Hugo theme implementing the projectious.work brand system. No npm, no build step beyond `hugo`/`hugo server` — styling and scripting run entirely through Hugo Pipes (`resources.Get` → `minify` → `fingerprint`).
+
+## Install
+
+Git submodule:
+
+```
+git submodule add https://github.com/projectious-work/hugo-theme-projectious.git themes/hugo-theme-projectious
+```
+
+or as a Hugo Module in your `hugo.toml`:
+
+```toml
+[module]
+  [[module.imports]]
+    path = "github.com/projectious-work/hugo-theme-projectious"
+```
+
+Then set `theme = "hugo-theme-projectious"` (submodule) — Hugo Modules need no `theme` key.
+
+Copy the settings from `exampleSite/hugo.toml` into your own site config: the `[outputs]`/`[outputFormats.SearchIndex]` block (powers search) and the `[markup]` block (syntax highlighting + table of contents). `exampleSite` consumes the theme as a Hugo Module with a `replace` directive back to `..` (see its `go.mod`); run `scripts/serve.sh` from the theme root to preview it.
+
+## Content types
+
+- **Docs** (`content/docs/`) — sidebar tree (by `weight`), breadcrumbs, table of contents, prev/next.
+- **Blog** (`content/blog/`) — tags, RSS (built in), pagination, reading time.
+- **Changelog** (`content/changelog/`) — timeline list; give each entry a `version` param.
+- **Everything else** — plain pages via `_default/single.html` and `_default/list.html`.
+
+Section templates are picked automatically from a page's section name — no front matter switch needed.
+
+## Shortcodes
+
+`callout`, `card`/`cards`, `button`, `terminal`, `stat`/`stats`, `quote`, `tag`, `badge`, `steps`/`step`. See `content/docs/shortcodes.md` in the example site for live usage of each. Code fences get syntax highlighting, a copy button, and an optional filename automatically — no shortcode needed:
+
+````
+```go {filename="main.go"}
+...
+```
+````
+
+## Search
+
+A ~100-line hand-rolled inverted-index search in `assets/js/search.js` reads a generated `/index.json`. No Lunr/Algolia/Pagefind — kept dependency-free and auditable. Trigger it from the header search box, `Cmd/Ctrl+K`, or `/`. Swap in a different engine by replacing `search.js` and the `SearchIndex` output format if your content library outgrows this.
+
+## Light/dark mode
+
+Driven by `[data-theme="dark"]` on `<html>`, matching the brand system's own token overrides in `colors_and_type.css`. Defaults to `prefers-color-scheme`; the header toggle persists an explicit choice to `localStorage`.
+
+## Comments
+
+Set `params.giscus.repo` (+ `repoId`, `categoryId`) in `hugo.toml` to enable giscus on docs/blog pages. Leave `repo` empty to omit comments entirely. Disable per-page with `comments: false` in front matter.
+
+## i18n
+
+`i18n/en.toml` and `i18n/de.toml` ship as a working example — add more languages the normal Hugo way (`languages.xx` in config + `i18n/xx.toml`).
+
+## Building & deploying the demo site
+
+All local, no GitHub Actions:
+
+- `scripts/serve.sh` — watch/serve `exampleSite` at `http://0.0.0.0:1313` (override with `PORT`/`BASE_URL`). Forward the port from the dev container to your host to preview.
+- `scripts/build.sh [dest]` — production build of `exampleSite` into `public/` (or `dest`).
+- `scripts/deploy.sh` — builds, then force-pushes the output to the `gh-pages` branch via a local git worktree and enables GitHub Pages on that branch if it isn't already (needs `gh` auth with repo admin access).
+
+## What's deliberately not included
+
+No JS framework, no CSS preprocessor, no icon font/CDN dependency (a small hand-drawn SVG icon set lives in `layouts/partials/icon.html`), no analytics. Add these yourself if you need them — kept out to keep the theme lean.

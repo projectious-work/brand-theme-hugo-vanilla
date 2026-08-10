@@ -1,0 +1,20 @@
+{{ define "main" }}
+<div class="container">
+  <header class="section-header"><h1>{{ .Title }}</h1></header>
+  <div class="changelog">
+  {{ range .Pages.ByDate.Reverse }}
+    <section class="changelog__entry" id="{{ .Params.version | default (.Date.Format "2006-01-02") }}">
+      <div class="changelog__marker"></div>
+      <div class="changelog__body">
+        <div class="changelog__head">
+          {{ with .Params.version }}<span class="badge">{{ . }}</span>{{ end }}
+          <time class="caption">{{ .Date.Format "Jan 2, 2006" }}</time>
+        </div>
+        <h2 class="changelog__title">{{ .Title }}</h2>
+        <div class="content">{{ .Content }}</div>
+      </div>
+    </section>
+  {{ end }}
+  </div>
+</div>
+{{ end }}

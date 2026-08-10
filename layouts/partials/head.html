@@ -1,0 +1,8 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+{{ partial "seo.html" . }}
+{{ partial "styles.html" . }}
+<link rel="icon" href="{{ "logo/favicon-32.png" | relURL }}" sizes="32x32">
+<link rel="apple-touch-icon" href="{{ "logo/apple-touch-icon-180.png" | relURL }}">
+{{ with site.Params.rss }}{{ else }}<link rel="alternate" type="application/rss+xml" href="{{ "index.xml" | relURL }}" title="{{ site.Title }}">{{ end }}

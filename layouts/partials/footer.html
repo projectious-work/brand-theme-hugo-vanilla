@@ -1,0 +1,9 @@
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <a class="brand brand--sm" href="{{ "/" | relLangURL }}">projectious<span class="brand__dot">·</span>work</a>
+    <div class="site-footer__meta caption">
+      <span>© {{ now.Year }} {{ site.Title }}</span>
+      {{ range site.Params.social }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>{{ end }}
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,2 @@
+{{ $variant := .Get "variant" | default "neutral" }}
+<span class="tag tag--{{ $variant }}">{{ .Inner }}</span>
