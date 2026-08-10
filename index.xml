@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Redesigning work on projectious.work</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/</link><description>Recent content in Redesigning work on projectious.work</description><generator>Hugo</generator><language>en</language><lastBuildDate>Sat, 01 Aug 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://projectious-work.github.io/brand-theme-hugo-vanilla/index.xml" rel="self" type="application/rss+xml"/><item><title>Getting started</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/getting-started/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/getting-started/</guid><description>&lt;p&gt;Install the theme as a Hugo module or git submodule, then run the dev server.&lt;/p&gt;
+
+&lt;div class="terminal"&gt;
+
+ 
+ 
+ &lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;git submodule add https://github.com/projectious-work/hugo-theme-projectious.git themes/hugo-theme-projectious&lt;/span&gt;&lt;/div&gt;
+ 
+
+ 
+ 
+ &lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;hugo server&lt;/span&gt;&lt;/div&gt;
+ 
+
+ 
+ 
+ &lt;div&gt;&lt;span class="terminal__ok"&gt;✓&lt;/span&gt; Watching for changes&lt;/div&gt;
+ 
+
+ 
+ 
+ &lt;div&gt;&lt;span class="terminal__pending"&gt;●&lt;/span&gt; Web Server is available at http://localhost:1313/&lt;/div&gt;
+ 
+
+&lt;/div&gt;
+
+
+
+&lt;div class="callout callout--info"&gt;
+ &lt;strong class="callout__label"&gt;Info&lt;/strong&gt;
+ &lt;div class="callout__body"&gt;Set &lt;code&gt;theme = &amp;quot;hugo-theme-projectious&amp;quot;&lt;/code&gt; in your &lt;code&gt;hugo.toml&lt;/code&gt;.&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id="configuration" class="h-anchor"&gt;Configuration &lt;a href="#configuration" class="h-anchor__link" data-copy-link aria-label="Configuration"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Copy the &lt;code&gt;[outputs]&lt;/code&gt;, &lt;code&gt;[outputFormats.SearchIndex]&lt;/code&gt;, and &lt;code&gt;[markup]&lt;/code&gt; blocks from &lt;code&gt;exampleSite/hugo.toml&lt;/code&gt; into your own site config — they power search and syntax highlighting.&lt;/p&gt;
+&lt;h2 id="writing-content" class="h-anchor"&gt;Writing content &lt;a href="#writing-content" class="h-anchor__link" data-copy-link aria-label="Writing content"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Sections named &lt;code&gt;docs&lt;/code&gt;, &lt;code&gt;blog&lt;/code&gt;, and &lt;code&gt;changelog&lt;/code&gt; pick up their dedicated layouts automatically. Everything else falls back to a plain page. Front matter stays minimal — &lt;code&gt;weight&lt;/code&gt; orders docs pages, &lt;code&gt;date&lt;/code&gt;/&lt;code&gt;tags&lt;/code&gt; drive the blog, &lt;code&gt;version&lt;/code&gt; labels a changelog entry.&lt;/p&gt;</description></item><item><title>Configuration</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/configuration/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/configuration/</guid><description>&lt;p&gt;Theme behavior is controlled through &lt;code&gt;hugo.toml&lt;/code&gt; params — no theme fork required.&lt;/p&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Param&lt;/th&gt;
+					&lt;th&gt;Purpose&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;params.description&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;Default meta description, used when a page has none.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;params.search.placement&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;&amp;quot;header&amp;quot;&lt;/code&gt; (default) or &lt;code&gt;&amp;quot;none&amp;quot;&lt;/code&gt; to hide the search box.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;params.giscus.repo&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;GitHub repo for comments. Leave empty to disable comments site-wide.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;params.social&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;List of &lt;code&gt;{name, url}&lt;/code&gt; links rendered in the footer.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;comments&lt;/code&gt; (page front matter)&lt;/td&gt;
+					&lt;td&gt;Set to &lt;code&gt;false&lt;/code&gt; on a docs or blog page to hide comments there.&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+&lt;div class="callout callout--info"&gt;
+ &lt;strong class="callout__label"&gt;Info&lt;/strong&gt;
+ &lt;div class="callout__body"&gt;Menus come from &lt;code&gt;[[menus.main]]&lt;/code&gt; in &lt;code&gt;hugo.toml&lt;/code&gt;, using &lt;code&gt;pageRef&lt;/code&gt; for internal links so they stay valid across languages.&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>Shortcodes</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/shortcodes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/shortcodes/</guid><description>&lt;p&gt;Use these to reach further into the brand system without writing HTML.&lt;/p&gt;
+&lt;h2 id="callouts" class="h-anchor"&gt;Callouts &lt;a href="#callouts" class="h-anchor__link" data-copy-link aria-label="Callouts"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;
+
+&lt;div class="callout callout--info"&gt;
+ &lt;strong class="callout__label"&gt;Info&lt;/strong&gt;
+ &lt;div class="callout__body"&gt;Pipeline validation passed all 12 checks.&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;div class="callout callout--success"&gt;
+ &lt;strong class="callout__label"&gt;Success&lt;/strong&gt;
+ &lt;div class="callout__body"&gt;Deployment complete. All agents healthy.&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;div class="callout callout--warning"&gt;
+ &lt;strong class="callout__label"&gt;Warning&lt;/strong&gt;
+ &lt;div class="callout__body"&gt;Agent &amp;ldquo;monitor&amp;rdquo; idle for 2 hours.&lt;/div&gt;
+&lt;/div&gt;
+
+
+
+&lt;div class="callout callout--danger"&gt;
+ &lt;strong class="callout__label"&gt;Danger&lt;/strong&gt;
+ &lt;div class="callout__body"&gt;Policy violation — deployment blocked.&lt;/div&gt;
+&lt;/div&gt;
+&lt;/p&gt;
+&lt;h2 id="buttons" class="h-anchor"&gt;Buttons &lt;a href="#buttons" class="h-anchor__link" data-copy-link aria-label="Buttons"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;
+&lt;a class="btn btn--primary" href="#"&gt;Primary&lt;/a&gt;
+
+
+&lt;a class="btn btn--accent" href="#"&gt;Accent&lt;/a&gt;
+
+
+&lt;a class="btn btn--outline" href="#"&gt;Outline&lt;/a&gt;
+
+
+&lt;a class="btn btn--ghost" href="#"&gt;Ghost&lt;/a&gt;
+&lt;/p&gt;
+&lt;h2 id="cards" class="h-anchor"&gt;Cards &lt;a href="#cards" class="h-anchor__link" data-copy-link aria-label="Cards"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="card-grid"&gt;
+
+&lt;div class="card"&gt;
+ 
+ &lt;div class="card__body"&gt;
+ &lt;div class="card__title"&gt;Pipeline config&lt;/div&gt;
+ &lt;div class="card__meta caption"&gt;3 stages · Last run 2h ago&lt;/div&gt;
+ 
+ &lt;/div&gt;
+ 
+&lt;/div&gt;
+
+
+&lt;div class="card card--link"&gt;
+ &lt;a class="card__link" href="#"&gt;
+ &lt;div class="card__body"&gt;
+ &lt;div class="card__title"&gt;Deployment report&lt;/div&gt;
+ &lt;div class="card__meta caption"&gt;All 12 checks passed&lt;/div&gt;
+ &lt;div class="card__desc"&gt;View the latest run.&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;/a&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id="stats" class="h-anchor"&gt;Stats &lt;a href="#stats" class="h-anchor__link" data-copy-link aria-label="Stats"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="stats-grid"&gt;
+&lt;div class="stat"&gt;
+ &lt;div class="stat__value"&gt;99.98%&lt;/div&gt;
+ &lt;div class="stat__label"&gt;uptime&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="stat"&gt;
+ &lt;div class="stat__value"&gt;12ms&lt;/div&gt;
+ &lt;div class="stat__label"&gt;p50 latency&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="stat"&gt;
+ &lt;div class="stat__value"&gt;3&lt;/div&gt;
+ &lt;div class="stat__label"&gt;practice areas&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id="terminal" class="h-anchor"&gt;Terminal &lt;a href="#terminal" class="h-anchor__link" data-copy-link aria-label="Terminal"&gt;#&lt;/a&gt;&lt;/h2&gt;
+
+&lt;div class="terminal"&gt;
+
+ 
+ 
+ &lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;projectious deploy --env staging&lt;/span&gt;&lt;/div&gt;
+ 
+
+ 
+ 
+ &lt;div&gt;&lt;span class="terminal__ok"&gt;✓&lt;/span&gt; Policy check passed&lt;/div&gt;
+ 
+
+ 
+ 
+ &lt;div&gt;&lt;span class="terminal__pending"&gt;●&lt;/span&gt; Deploying to staging...&lt;/div&gt;
+ 
+
+ 
+ 
+ &lt;div&gt;&lt;span class="terminal__ok"&gt;✓&lt;/span&gt; Deploy complete (1.2s)&lt;/div&gt;
+ 
+
+&lt;/div&gt;
+
+&lt;h2 id="tags--badges" class="h-anchor"&gt;Tags &amp;amp; badges &lt;a href="#tags--badges" class="h-anchor__link" data-copy-link aria-label="Tags &amp;amp; badges"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;
+&lt;span class="tag tag--neutral"&gt;Cloud&lt;/span&gt;
+ 
+&lt;span class="tag tag--neutral"&gt;Agile&lt;/span&gt;
+ 
+&lt;span class="tag tag--accent"&gt;Agentic AI&lt;/span&gt;
+&lt;/p&gt;</description></item><item><title>Client-side search</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/changelog/2026-08-01-search/</link><pubDate>Sat, 01 Aug 2026 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/changelog/2026-08-01-search/</guid><description>&lt;p&gt;Added a header search box backed by a small client-side index. No external service, no npm.&lt;/p&gt;</description></item><item><title>Specialized beats generic now</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/blog/specialized-beats-generic/</link><pubDate>Wed, 15 Jul 2026 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/blog/specialized-beats-generic/</guid><description>&lt;p&gt;Agents collapse the cost of bespoke software. A lot-of-one system, built for one team&amp;rsquo;s exact workflow, is now economically rational.&lt;/p&gt;
+&lt;p&gt;Underserved teams no longer have to bend themselves to fit generic SaaS or a spreadsheet. The software can fit the team instead.&lt;/p&gt;</description></item><item><title>Initial theme release</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/changelog/2026-06-15-launch/</link><pubDate>Mon, 15 Jun 2026 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/changelog/2026-06-15-launch/</guid><description>&lt;p&gt;First public version of the theme: docs, blog, changelog, and the full brand component set as shortcodes.&lt;/p&gt;</description></item><item><title>Why agent-first?</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/blog/why-agent-first/</link><pubDate>Mon, 01 Jun 2026 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/blog/why-agent-first/</guid><description>&lt;p&gt;Do more with more: augment people&amp;rsquo;s strengths so the same or more people produce more, at higher quality, for broader markets.&lt;/p&gt;
+&lt;p&gt;Quality stays non-negotiable, because agents audit continuously — you ship the same software with continuous review instead of a periodic one.&lt;/p&gt;
+&lt;p&gt;Provider independence matters too. Agnostic, self-hosted where it counts, so no single AI vendor becomes a single point of failure.&lt;/p&gt;</description></item><item><title>About</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/about/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/about/</guid><description>&lt;p&gt;projectious.work augments people&amp;rsquo;s strengths so the same or more people can produce more, at higher quality, for broader markets.&lt;/p&gt;
+&lt;div class="card-grid"&gt;
+
+&lt;div class="card"&gt;
+ 
+ &lt;div class="card__body"&gt;
+ &lt;div class="card__title"&gt;Cloud&lt;/div&gt;
+ 
+ &lt;div class="card__desc"&gt;Infrastructure that scales without a dedicated platform team.&lt;/div&gt;
+ &lt;/div&gt;
+ 
+&lt;/div&gt;
+
+
+&lt;div class="card"&gt;
+ 
+ &lt;div class="card__body"&gt;
+ &lt;div class="card__title"&gt;Agile&lt;/div&gt;
+ 
+ &lt;div class="card__desc"&gt;Delivery rhythms suited to small, fast teams.&lt;/div&gt;
+ &lt;/div&gt;
+ 
+&lt;/div&gt;
+
+
+&lt;div class="card"&gt;
+ 
+ &lt;div class="card__body"&gt;
+ &lt;div class="card__title"&gt;Agentic AI&lt;/div&gt;
+ 
+ &lt;div class="card__desc"&gt;Agents as a normal part of how good work happens.&lt;/div&gt;
+ &lt;/div&gt;
+ 
+&lt;/div&gt;
+
+&lt;/div&gt;</description></item></channel></rss>
