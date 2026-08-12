@@ -29,7 +29,8 @@ echo "==> Preparing worktree for '$BRANCH'"
 mkdir -p "$ROOT_DIR/.deploy"
 git fetch "$REMOTE" "$BRANCH" 2>/dev/null || true
 
-if [[ ! -d "$WORKTREE_DIR/.git" ]]; then
+if [[ ! -e "$WORKTREE_DIR/.git" ]]; then
+  git worktree remove --force "$WORKTREE_DIR" 2>/dev/null || true
   rm -rf "$WORKTREE_DIR"
   if git show-ref --verify --quiet "refs/remotes/$REMOTE/$BRANCH"; then
     git worktree add -B "$BRANCH" "$WORKTREE_DIR" "$REMOTE/$BRANCH"
