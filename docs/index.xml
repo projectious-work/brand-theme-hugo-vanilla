@@ -1,4 +1,51 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Documentation on projectious.work</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/</link><description>Recent content in Documentation on projectious.work</description><generator>Hugo</generator><language>en</language><atom:link href="https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Getting started</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/getting-started/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/getting-started/</guid><description>&lt;p&gt;Install the theme as a Hugo module or git submodule, then run the dev server.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Theme documentation on projectious.work</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/</link><description>Recent content in Theme documentation on projectious.work</description><generator>Hugo</generator><language>en-US</language><atom:link href="https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>Getting started</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/getting-started/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/getting-started/</guid><description>&lt;h2 id="requirements" class="h-anchor"&gt;Requirements &lt;a href="#requirements" class="h-anchor__link" data-copy-link aria-label="Requirements"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Hugo Extended, recent enough to support CSS processing and render hooks.&lt;/li&gt;
+&lt;li&gt;Git when installing as a module or submodule.&lt;/li&gt;
+&lt;li&gt;Go only when using Hugo Modules.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="install-as-a-hugo-module" class="h-anchor"&gt;Install as a Hugo Module &lt;a href="#install-as-a-hugo-module" class="h-anchor__link" data-copy-link aria-label="Install as a Hugo Module"&gt;#&lt;/a&gt;&lt;/h2&gt;
+
+&lt;div class="terminal"&gt;
+
+ 
+ 
+ &lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;hugo mod init example.com/my-site&lt;/span&gt;&lt;/div&gt;
+ 
+
+ 
+ 
+ &lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;hugo mod get github.com/projectious-work/hugo-theme-projectious&lt;/span&gt;&lt;/div&gt;
+ 
+
+ 
+ 
+ &lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;hugo server&lt;/span&gt;&lt;/div&gt;
+ 
+
+ 
+ 
+ &lt;div&gt;&lt;span class="terminal__ok"&gt;✓&lt;/span&gt; Web server available at http://localhost:1313/&lt;/div&gt;
+ 
+
+&lt;/div&gt;
+
+&lt;p&gt;Add the import to &lt;code&gt;hugo.toml&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__lang"&gt;toml&lt;/span&gt;
+ &lt;span class="code-block__filename"&gt;hugo.toml&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code"&gt;
+
+
+
+&lt;svg class="icon " width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;rect x="9" y="9" width="11" height="11" rx="2"/&gt;&lt;path d="M5 15V5a2 2 0 0 1 2-2h10"/&gt;&lt;/svg&gt;
+&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight" filename="hugo.toml"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;module&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;imports&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;path&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;github.com/projectious-work/hugo-theme-projectious&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;h2 id="install-as-a-submodule" class="h-anchor"&gt;Install as a submodule &lt;a href="#install-as-a-submodule" class="h-anchor__link" data-copy-link aria-label="Install as a submodule"&gt;#&lt;/a&gt;&lt;/h2&gt;
 
 &lt;div class="terminal"&gt;
 
@@ -12,183 +59,197 @@
  &lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;hugo server&lt;/span&gt;&lt;/div&gt;
  
 
- 
- 
- &lt;div&gt;&lt;span class="terminal__ok"&gt;✓&lt;/span&gt; Watching for changes&lt;/div&gt;
- 
-
- 
- 
- &lt;div&gt;&lt;span class="terminal__pending"&gt;●&lt;/span&gt; Web Server is available at http://localhost:1313/&lt;/div&gt;
- 
-
 &lt;/div&gt;
 
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__lang"&gt;toml&lt;/span&gt;
+ &lt;span class="code-block__filename"&gt;hugo.toml&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code"&gt;
+
+
+
+&lt;svg class="icon " width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;rect x="9" y="9" width="11" height="11" rx="2"/&gt;&lt;path d="M5 15V5a2 2 0 0 1 2-2h10"/&gt;&lt;/svg&gt;
+&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight" filename="hugo.toml"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;theme&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;hugo-theme-projectious&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 
 
 &lt;div class="callout callout--info"&gt;
  &lt;strong class="callout__label"&gt;Info&lt;/strong&gt;
- &lt;div class="callout__body"&gt;Set &lt;code&gt;theme = &amp;quot;hugo-theme-projectious&amp;quot;&lt;/code&gt; in your &lt;code&gt;hugo.toml&lt;/code&gt;.&lt;/div&gt;
+ &lt;div class="callout__body"&gt;Copy the search output and markup configuration from the bundled
+&lt;code&gt;exampleSite/hugo.toml&lt;/code&gt;; those settings enable the search index, heading
+anchors, code labels, and syntax highlighting.&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;h2 id="configuration" class="h-anchor"&gt;Configuration &lt;a href="#configuration" class="h-anchor__link" data-copy-link aria-label="Configuration"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Copy the &lt;code&gt;[outputs]&lt;/code&gt;, &lt;code&gt;[outputFormats.SearchIndex]&lt;/code&gt;, and &lt;code&gt;[markup]&lt;/code&gt; blocks from &lt;code&gt;exampleSite/hugo.toml&lt;/code&gt; into your own site config — they power search and syntax highlighting.&lt;/p&gt;
-&lt;h2 id="writing-content" class="h-anchor"&gt;Writing content &lt;a href="#writing-content" class="h-anchor__link" data-copy-link aria-label="Writing content"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Sections named &lt;code&gt;docs&lt;/code&gt;, &lt;code&gt;blog&lt;/code&gt;, and &lt;code&gt;changelog&lt;/code&gt; pick up their dedicated layouts automatically. Everything else falls back to a plain page. Front matter stays minimal — &lt;code&gt;weight&lt;/code&gt; orders docs pages, &lt;code&gt;date&lt;/code&gt;/&lt;code&gt;tags&lt;/code&gt; drive the blog, &lt;code&gt;version&lt;/code&gt; labels a changelog entry.&lt;/p&gt;</description></item><item><title>Configuration</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/configuration/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/configuration/</guid><description>&lt;p&gt;Theme behavior is controlled through &lt;code&gt;hugo.toml&lt;/code&gt; params — no theme fork required.&lt;/p&gt;
+&lt;h2 id="create-content" class="h-anchor"&gt;Create content &lt;a href="#create-content" class="h-anchor__link" data-copy-link aria-label="Create content"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__lang"&gt;text&lt;/span&gt;
+ 
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code"&gt;
+
+
+
+&lt;svg class="icon " width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;rect x="9" y="9" width="11" height="11" rx="2"/&gt;&lt;path d="M5 15V5a2 2 0 0 1 2-2h10"/&gt;&lt;/svg&gt;
+&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;content/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── _index.md
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── docs/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;├── blog/
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└── changelog/&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Use &lt;code&gt;hugo new docs/first-guide.md&lt;/code&gt;, add &lt;code&gt;title&lt;/code&gt;, &lt;code&gt;description&lt;/code&gt;, and &lt;code&gt;weight&lt;/code&gt;,
+then write normal Markdown. Section names select their specialized layouts.&lt;/p&gt;</description></item><item><title>Content model</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/content-model/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/content-model/</guid><description>&lt;h2 id="sections-and-layouts" class="h-anchor"&gt;Sections and layouts &lt;a href="#sections-and-layouts" class="h-anchor__link" data-copy-link aria-label="Sections and layouts"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;table&gt;
 	&lt;thead&gt;
 			&lt;tr&gt;
-					&lt;th&gt;Param&lt;/th&gt;
+					&lt;th&gt;Content path&lt;/th&gt;
+					&lt;th&gt;Theme layout&lt;/th&gt;
+					&lt;th&gt;Use it for&lt;/th&gt;
+			&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;content/_index.md&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;Landing&lt;/td&gt;
+					&lt;td&gt;Hero, calls to action, overview content&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;content/docs/&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;Documentation&lt;/td&gt;
+					&lt;td&gt;Ordered guides with sidebar and table of contents&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;content/blog/&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;Blog&lt;/td&gt;
+					&lt;td&gt;Dated article index and long-form posts&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;content/changelog/&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;Changelog&lt;/td&gt;
+					&lt;td&gt;Versioned release timeline&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+					&lt;td&gt;Any other section&lt;/td&gt;
+					&lt;td&gt;Default&lt;/td&gt;
+					&lt;td&gt;Pages and card-based section indexes&lt;/td&gt;
+			&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id="front-matter" class="h-anchor"&gt;Front matter &lt;a href="#front-matter" class="h-anchor__link" data-copy-link aria-label="Front matter"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__lang"&gt;yaml&lt;/span&gt;
+ &lt;span class="code-block__filename"&gt;content/docs/example.md&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code"&gt;
+
+
+
+&lt;svg class="icon " width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;rect x="9" y="9" width="11" height="11" rx="2"/&gt;&lt;path d="M5 15V5a2 2 0 0 1 2-2h10"/&gt;&lt;/svg&gt;
+&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight" filename="content/docs/example.md"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nn"&gt;---&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;title&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;Example guide&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;description&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;A one-sentence summary used in navigation and metadata.&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;weight&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;20&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;comments&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nn"&gt;---&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Blog posts also use &lt;code&gt;date&lt;/code&gt; and &lt;code&gt;tags&lt;/code&gt;. Changelog entries use &lt;code&gt;date&lt;/code&gt; and
+&lt;code&gt;version&lt;/code&gt;. The landing page accepts &lt;code&gt;eyebrow&lt;/code&gt;, &lt;code&gt;tagline&lt;/code&gt;, and a &lt;code&gt;cta&lt;/code&gt; list.&lt;/p&gt;</description></item><item><title>Configuration</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/configuration/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/configuration/</guid><description>&lt;h2 id="site-parameters" class="h-anchor"&gt;Site parameters &lt;a href="#site-parameters" class="h-anchor__link" data-copy-link aria-label="Site parameters"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;table&gt;
+	&lt;thead&gt;
+			&lt;tr&gt;
+					&lt;th&gt;Parameter&lt;/th&gt;
 					&lt;th&gt;Purpose&lt;/th&gt;
 			&lt;/tr&gt;
 	&lt;/thead&gt;
 	&lt;tbody&gt;
 			&lt;tr&gt;
 					&lt;td&gt;&lt;code&gt;params.description&lt;/code&gt;&lt;/td&gt;
-					&lt;td&gt;Default meta description, used when a page has none.&lt;/td&gt;
+					&lt;td&gt;Default description for metadata and search results.&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
 					&lt;td&gt;&lt;code&gt;params.search.placement&lt;/code&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;code&gt;&amp;quot;header&amp;quot;&lt;/code&gt; (default) or &lt;code&gt;&amp;quot;none&amp;quot;&lt;/code&gt; to hide the search box.&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;header&lt;/code&gt; or &lt;code&gt;none&lt;/code&gt;.&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
 					&lt;td&gt;&lt;code&gt;params.giscus.repo&lt;/code&gt;&lt;/td&gt;
-					&lt;td&gt;GitHub repo for comments. Leave empty to disable comments site-wide.&lt;/td&gt;
+					&lt;td&gt;Repository used for comments; empty disables comments.&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
 					&lt;td&gt;&lt;code&gt;params.social&lt;/code&gt;&lt;/td&gt;
-					&lt;td&gt;List of &lt;code&gt;{name, url}&lt;/code&gt; links rendered in the footer.&lt;/td&gt;
+					&lt;td&gt;Footer links with &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;url&lt;/code&gt;.&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
-					&lt;td&gt;&lt;code&gt;comments&lt;/code&gt; (page front matter)&lt;/td&gt;
-					&lt;td&gt;Set to &lt;code&gt;false&lt;/code&gt; on a docs or blog page to hide comments there.&lt;/td&gt;
+					&lt;td&gt;Page &lt;code&gt;comments&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;Set &lt;code&gt;false&lt;/code&gt; to suppress comments on one page.&lt;/td&gt;
 			&lt;/tr&gt;
 	&lt;/tbody&gt;
 &lt;/table&gt;
+&lt;h2 id="main-navigation" class="h-anchor"&gt;Main navigation &lt;a href="#main-navigation" class="h-anchor__link" data-copy-link aria-label="Main navigation"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__lang"&gt;toml&lt;/span&gt;
+ &lt;span class="code-block__filename"&gt;hugo.toml&lt;/span&gt;
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code"&gt;
 
 
-&lt;div class="callout callout--info"&gt;
- &lt;strong class="callout__label"&gt;Info&lt;/strong&gt;
- &lt;div class="callout__body"&gt;Menus come from &lt;code&gt;[[menus.main]]&lt;/code&gt; in &lt;code&gt;hugo.toml&lt;/code&gt;, using &lt;code&gt;pageRef&lt;/code&gt; for internal links so they stay valid across languages.&lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>Shortcodes</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/shortcodes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/shortcodes/</guid><description>&lt;p&gt;Use these to reach further into the brand system without writing HTML.&lt;/p&gt;
-&lt;h2 id="callouts" class="h-anchor"&gt;Callouts &lt;a href="#callouts" class="h-anchor__link" data-copy-link aria-label="Callouts"&gt;#&lt;/a&gt;&lt;/h2&gt;
+
+&lt;svg class="icon " width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;rect x="9" y="9" width="11" height="11" rx="2"/&gt;&lt;path d="M5 15V5a2 2 0 0 1 2-2h10"/&gt;&lt;/svg&gt;
+&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight" filename="hugo.toml"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;menus&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;main&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Docs&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;pageRef&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;/docs&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;weight&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Use &lt;code&gt;pageRef&lt;/code&gt; for internal destinations so Hugo resolves language and base URL
+correctly. Keep labels in sentence case.&lt;/p&gt;</description></item><item><title>Shortcode reference</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/shortcodes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/shortcodes/</guid><description>&lt;p&gt;Shortcodes are semantic additions to Markdown. Prefer Markdown for ordinary
+prose, lists, tables, links, quotes, and code.&lt;/p&gt;
+&lt;h2 id="callout" class="h-anchor"&gt;Callout &lt;a href="#callout" class="h-anchor__link" data-copy-link aria-label="Callout"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Parameters: &lt;code&gt;type&lt;/code&gt; is &lt;code&gt;info&lt;/code&gt;, &lt;code&gt;success&lt;/code&gt;, &lt;code&gt;warning&lt;/code&gt;, or &lt;code&gt;danger&lt;/code&gt;.&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__lang"&gt;go-html-template&lt;/span&gt;
+ 
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code"&gt;
+
+
+
+&lt;svg class="icon " width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;rect x="9" y="9" width="11" height="11" rx="2"/&gt;&lt;path d="M5 15V5a2 2 0 0 1 2-2h10"/&gt;&lt;/svg&gt;
+&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-go-html-template" data-lang="go-html-template"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;{{&lt;/span&gt;&lt;span class="err"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;callout&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#34;warning&amp;#34;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;}}&lt;/span&gt;Back up the configuration first.&lt;span class="cp"&gt;{{&lt;/span&gt;&lt;span class="err"&gt;&amp;lt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;/&lt;/span&gt;&lt;span class="nx"&gt;callout&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="err"&gt;&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;}}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
 &lt;p&gt;
 
 &lt;div class="callout callout--info"&gt;
  &lt;strong class="callout__label"&gt;Info&lt;/strong&gt;
- &lt;div class="callout__body"&gt;Pipeline validation passed all 12 checks.&lt;/div&gt;
+ &lt;div class="callout__body"&gt;Use information for relevant context.&lt;/div&gt;
 &lt;/div&gt;
 
 
 
 &lt;div class="callout callout--success"&gt;
  &lt;strong class="callout__label"&gt;Success&lt;/strong&gt;
- &lt;div class="callout__body"&gt;Deployment complete. All agents healthy.&lt;/div&gt;
+ &lt;div class="callout__body"&gt;The build completed.&lt;/div&gt;
 &lt;/div&gt;
 
 
 
 &lt;div class="callout callout--warning"&gt;
  &lt;strong class="callout__label"&gt;Warning&lt;/strong&gt;
- &lt;div class="callout__body"&gt;Agent &amp;ldquo;monitor&amp;rdquo; idle for 2 hours.&lt;/div&gt;
+ &lt;div class="callout__body"&gt;Review the migration before applying it.&lt;/div&gt;
 &lt;/div&gt;
 
 
 
 &lt;div class="callout callout--danger"&gt;
  &lt;strong class="callout__label"&gt;Danger&lt;/strong&gt;
- &lt;div class="callout__body"&gt;Policy violation — deployment blocked.&lt;/div&gt;
+ &lt;div class="callout__body"&gt;Deployment is blocked.&lt;/div&gt;
 &lt;/div&gt;
-&lt;/p&gt;
-&lt;h2 id="buttons" class="h-anchor"&gt;Buttons &lt;a href="#buttons" class="h-anchor__link" data-copy-link aria-label="Buttons"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;
-&lt;a class="btn btn--primary" href="#"&gt;Primary&lt;/a&gt;
-
-
-&lt;a class="btn btn--accent" href="#"&gt;Accent&lt;/a&gt;
-
-
-&lt;a class="btn btn--outline" href="#"&gt;Outline&lt;/a&gt;
-
-
-&lt;a class="btn btn--ghost" href="#"&gt;Ghost&lt;/a&gt;
-&lt;/p&gt;
-&lt;h2 id="cards" class="h-anchor"&gt;Cards &lt;a href="#cards" class="h-anchor__link" data-copy-link aria-label="Cards"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="card-grid"&gt;
-
-&lt;div class="card"&gt;
- 
- &lt;div class="card__body"&gt;
- &lt;div class="card__title"&gt;Pipeline config&lt;/div&gt;
- &lt;div class="card__meta caption"&gt;3 stages · Last run 2h ago&lt;/div&gt;
- 
- &lt;/div&gt;
- 
-&lt;/div&gt;
-
-
-&lt;div class="card card--link"&gt;
- &lt;a class="card__link" href="#"&gt;
- &lt;div class="card__body"&gt;
- &lt;div class="card__title"&gt;Deployment report&lt;/div&gt;
- &lt;div class="card__meta caption"&gt;All 12 checks passed&lt;/div&gt;
- &lt;div class="card__desc"&gt;View the latest run.&lt;/div&gt;
- &lt;/div&gt;
- &lt;/a&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;h2 id="stats" class="h-anchor"&gt;Stats &lt;a href="#stats" class="h-anchor__link" data-copy-link aria-label="Stats"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="stats-grid"&gt;
-&lt;div class="stat"&gt;
- &lt;div class="stat__value"&gt;99.98%&lt;/div&gt;
- &lt;div class="stat__label"&gt;uptime&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="stat"&gt;
- &lt;div class="stat__value"&gt;12ms&lt;/div&gt;
- &lt;div class="stat__label"&gt;p50 latency&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="stat"&gt;
- &lt;div class="stat__value"&gt;3&lt;/div&gt;
- &lt;div class="stat__label"&gt;practice areas&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;h2 id="terminal" class="h-anchor"&gt;Terminal &lt;a href="#terminal" class="h-anchor__link" data-copy-link aria-label="Terminal"&gt;#&lt;/a&gt;&lt;/h2&gt;
-
-&lt;div class="terminal"&gt;
-
- 
- 
- &lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;projectious deploy --env staging&lt;/span&gt;&lt;/div&gt;
- 
-
- 
- 
- &lt;div&gt;&lt;span class="terminal__ok"&gt;✓&lt;/span&gt; Policy check passed&lt;/div&gt;
- 
-
- 
- 
- &lt;div&gt;&lt;span class="terminal__pending"&gt;●&lt;/span&gt; Deploying to staging...&lt;/div&gt;
- 
-
- 
- 
- &lt;div&gt;&lt;span class="terminal__ok"&gt;✓&lt;/span&gt; Deploy complete (1.2s)&lt;/div&gt;
- 
-
-&lt;/div&gt;
-
-&lt;h2 id="tags--badges" class="h-anchor"&gt;Tags &amp;amp; badges &lt;a href="#tags--badges" class="h-anchor__link" data-copy-link aria-label="Tags &amp;amp; badges"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;
-&lt;span class="tag tag--neutral"&gt;Cloud&lt;/span&gt;
- 
-&lt;span class="tag tag--neutral"&gt;Agile&lt;/span&gt;
- 
-&lt;span class="tag tag--accent"&gt;Agentic AI&lt;/span&gt;
 &lt;/p&gt;</description></item></channel></rss>
