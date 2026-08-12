@@ -1,79 +1,145 @@
 ---
-title: "Shortcodes"
-description: "The brand system's components, as shortcodes."
-weight: 3
+title: "Shortcode reference"
+description: "Every shortcode shipped by the theme, with syntax and rendered examples."
+weight: 4
 ---
 
-Use these to reach further into the brand system without writing HTML.
+Shortcodes are semantic additions to Markdown. Prefer Markdown for ordinary
+prose, lists, tables, links, quotes, and code.
 
-## Callouts
+## Callout
 
-{{< callout type="info" >}}Pipeline validation passed all 12 checks.{{< /callout >}}
-{{< callout type="success" >}}Deployment complete. All agents healthy.{{< /callout >}}
-{{< callout type="warning" >}}Agent "monitor" idle for 2 hours.{{< /callout >}}
-{{< callout type="danger" >}}Policy violation — deployment blocked.{{< /callout >}}
+Parameters: `type` is `info`, `success`, `warning`, or `danger`.
 
-## Buttons
+```go-html-template
+{{</* callout type="warning" */>}}Back up the configuration first.{{</* /callout */>}}
+```
+
+{{< callout type="info" >}}Use information for relevant context.{{< /callout >}}
+{{< callout type="success" >}}The build completed.{{< /callout >}}
+{{< callout type="warning" >}}Review the migration before applying it.{{< /callout >}}
+{{< callout type="danger" >}}Deployment is blocked.{{< /callout >}}
+
+## Button
+
+Parameters: `href`, `variant` (`primary`, `accent`, `outline`, `ghost`, or
+`danger`), and optional `external`.
+
+```go-html-template
+{{</* button href="/docs/" variant="accent" */>}}Read the docs{{</* /button */>}}
+```
 
 {{< button href="#" variant="primary" >}}Primary{{< /button >}}
 {{< button href="#" variant="accent" >}}Accent{{< /button >}}
 {{< button href="#" variant="outline" >}}Outline{{< /button >}}
 {{< button href="#" variant="ghost" >}}Ghost{{< /button >}}
 
-## Cards
+## Cards and grid
 
-{{< cards >}}
-{{< card title="Pipeline config" meta="3 stages · Last run 2h ago" >}}{{< /card >}}
-{{< card title="Deployment report" meta="All 12 checks passed" href="#" >}}View the latest run.{{< /card >}}
-{{< /cards >}}
+`cards` is the automatic card collection. `grid columns="2|3|4"` is the more
+general responsive grid used with cards, panels, or metrics.
 
-## Stats
+```go-html-template
+{{</* grid columns="2" */>}}
+{{</* card title="Configuration" meta="Guide" href="/docs/configuration/" */>}}
+Control theme behavior without a fork.
+{{</* /card */>}}
+{{</* /grid */>}}
+```
 
-{{< stats >}}
-{{< stat value="99.98%" label="uptime" >}}
-{{< stat value="12ms" label="p50 latency" >}}
-{{< stat value="3" label="practice areas" >}}
-{{< /stats >}}
+{{< grid columns="2" >}}
+{{< card title="Flat card" meta="Brand recipe" >}}Raised white surface, visible border, no default shadow.{{< /card >}}
+{{< panel variant="accent" title="Accent panel" >}}Use the accent for decisions, not decoration.{{< /panel >}}
+{{< /grid >}}
+
+## Panel
+
+Parameters: optional `title`; `variant` is `default`, `accent`, or `dark`.
+
+```go-html-template
+{{</* panel variant="dark" title="System output" */>}}Content{{</* /panel */>}}
+```
+
+## Metrics and stats
+
+Use `metric` in a `grid` for dashboard summaries. Use `stats` with nested
+`stat` for centered editorial statistics.
+
+{{< grid columns="3" >}}
+{{< metric value="12" label="active agents" >}}
+{{< metric value="99.8%" label="success rate" >}}
+{{< metric value="42s" label="average audit" >}}
+{{< /grid >}}
+
+## Status
+
+Variants: `healthy`, `success`, `running`, `info`, `warning`, `pending`,
+`failed`, `danger`, and `idle`.
+
+```go-html-template
+{{</* status variant="running" */>}}Running{{</* /status */>}}
+```
+
+{{< status variant="healthy" >}}Healthy{{< /status >}}
+{{< status variant="running" >}}Running{{< /status >}}
+{{< status variant="warning" >}}Warning{{< /status >}}
+{{< status variant="failed" >}}Failed{{< /status >}}
+{{< status variant="idle" >}}Idle{{< /status >}}
+
+## Field
+
+Parameters: `label`, optional `type`, `value`, `placeholder`, and `hint`.
+This is appropriate for demonstrations and simple forms; production forms
+still need a real submission endpoint and validation.
+
+{{< field label="Project name" value="Documentation site" hint="Shown in page metadata." >}}
 
 ## Terminal
 
+Lines beginning with `$`, `✓`, `✗`, or `●` receive prompt/status treatment.
+
 {{< terminal >}}
-$ projectious deploy --env staging
-✓ Policy check passed
-● Deploying to staging...
-✓ Deploy complete (1.2s)
+$ hugo --minify
+✓ Built 18 pages
+● Watching for changes
 {{< /terminal >}}
-
-## Tags & badges
-
-{{< tag >}}Cloud{{< /tag >}} {{< tag >}}Agile{{< /tag >}} {{< tag variant="accent" >}}Agentic AI{{< /tag >}}
-
-{{< badge >}}Info{{< /badge >}} {{< badge variant="success" >}}Passed{{< /badge >}} {{< badge variant="warning" >}}Warning{{< /badge >}} {{< badge variant="danger" >}}Failed{{< /badge >}}
 
 ## Steps
 
+`steps` contains nested `step` shortcodes. Each step accepts `title`.
+
 {{< steps >}}
-{{% step title="Install the CLI" %}}Run `go install projectious.work/cli@latest`.{{% /step %}}
-{{% step title="Authenticate" %}}Run `projectious login` and follow the prompt.{{% /step %}}
-{{% step title="Deploy" %}}Run `projectious deploy --env staging`.{{% /step %}}
+{{% step title="Configure" %}}Set site parameters.{{% /step %}}
+{{% step title="Write" %}}Create content in Markdown.{{% /step %}}
+{{% step title="Ship" %}}Run the production build.{{% /step %}}
 {{< /steps >}}
 
-## Pull quote
+## Tags and badges
 
-{{% quote author="Jane Doe" role="CTO, Acme" %}}Specialized beats generic now — this is the first platform that actually fit how we work.{{% /quote %}}
+`tag` accepts `neutral` or `accent`. `badge` accepts `info`, `success`,
+`warning`, or `danger`.
 
-## Code blocks
+{{< tag >}}Cloud{{< /tag >}} {{< tag >}}Agile{{< /tag >}}
+{{< tag variant="accent" >}}Agentic AI{{< /tag >}}
+{{< badge variant="success" >}}Passed{{< /badge >}}
+{{< badge variant="warning" >}}Review{{< /badge >}}
 
-Fenced code gets syntax highlighting, a filename label, and a copy button automatically:
+## Quote
 
-```python {filename="policy_check.py"}
-from dataclasses import dataclass
+Parameters: optional `author` and `role`.
 
-@dataclass
-class Policy:
-    name: str
-    max_cost_usd: float = 250.0
+{{% quote author="Theme maintainer" role="projectious.work" %}}
+Content stays portable when presentation stays in the theme.
+{{% /quote %}}
 
-def enforce(policies):
-    return all(p.max_cost_usd <= 500 for p in policies)
+## App shell
+
+`app` wraps product-surface examples in a responsive console shell. It is
+intended for demos and documentation, not as an application framework.
+
+```go-html-template
+{{</* app */>}}
+## Pipelines
+{{</* grid columns="2" */>}}...{{</* /grid */>}}
+{{</* /app */>}}
 ```

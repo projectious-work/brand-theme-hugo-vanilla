@@ -1,0 +1,2 @@
+{{ $variant := .Get "variant" | default "idle" }}
+<span class="status status--{{ $variant }}">{{ .Inner }}</span>

@@ -1,19 +1,44 @@
 ---
 title: "Configuration"
-description: "Theme behavior, controlled from hugo.toml."
-weight: 2
+description: "Menus, search, comments, social links, code highlighting, and site metadata."
+weight: 3
 ---
 
-Theme behavior is controlled through `hugo.toml` params — no theme fork required.
+## Site parameters
 
-| Param | Purpose |
+| Parameter | Purpose |
 |---|---|
-| `params.description` | Default meta description, used when a page has none. |
-| `params.search.placement` | `"header"` (default) or `"none"` to hide the search box. |
-| `params.giscus.repo` | GitHub repo for comments. Leave empty to disable comments site-wide. |
-| `params.social` | List of `{name, url}` links rendered in the footer. |
-| `comments` (page front matter) | Set to `false` on a docs or blog page to hide comments there. |
+| `params.description` | Default description for metadata and search results. |
+| `params.search.placement` | `header` or `none`. |
+| `params.giscus.repo` | Repository used for comments; empty disables comments. |
+| `params.social` | Footer links with `name` and `url`. |
+| Page `comments` | Set `false` to suppress comments on one page. |
 
-{{< callout type="info" >}}
-Menus come from `[[menus.main]]` in `hugo.toml`, using `pageRef` for internal links so they stay valid across languages.
-{{< /callout >}}
+## Main navigation
+
+```toml {filename="hugo.toml"}
+[[menus.main]]
+name = "Docs"
+pageRef = "/docs"
+weight = 10
+```
+
+Use `pageRef` for internal destinations so Hugo resolves language and base URL
+correctly. Keep labels in sentence case.
+
+## Search output
+
+```toml {filename="hugo.toml"}
+[outputs]
+home = ["HTML", "SearchIndex"]
+
+[outputFormats.SearchIndex]
+mediaType = "application/json"
+baseName = "search-index"
+isPlainText = true
+```
+
+## Syntax highlighting
+
+Set `markup.highlight.noClasses = false`. The theme's Chroma role mapping then
+applies the brand syntax palette to fenced code blocks.

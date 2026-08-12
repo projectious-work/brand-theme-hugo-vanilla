@@ -1,7 +1,12 @@
 ---
-title: "Documentation"
-description: "Everything you need to write content in this theme."
+title: "Theme documentation"
+description: "Install, configure, write, extend, and ship the projectious.work Hugo theme."
 weight: 1
 ---
 
-Start with getting started, then browse the shortcode reference to see the full brand component set.
+This documentation is both a guide and a working example of the dedicated
+documentation layout: section navigation on the left, readable content in the
+middle, and an in-page table of contents on wide screens.
+
+Start with **Getting started**, then read **Content model** before using the
+complete **Shortcode reference**.

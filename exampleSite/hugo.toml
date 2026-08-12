@@ -1,5 +1,5 @@
 baseURL = "https://projectious-work.github.io/brand-theme-hugo-vanilla/"
-languageCode = "en"
+locale = "en-US"
 defaultContentLanguage = "en"
 title = "projectious.work"
 enableRobotsTXT = true
@@ -40,18 +40,18 @@ enableRobotsTXT = true
   weight = 10
 
 [[menus.main]]
+  name = "Examples"
+  pageRef = "/examples"
+  weight = 20
+
+[[menus.main]]
   name = "Blog"
   pageRef = "/blog"
-  weight = 20
+  weight = 30
 
 [[menus.main]]
   name = "Changelog"
   pageRef = "/changelog"
-  weight = 30
-
-[[menus.main]]
-  name = "About"
-  pageRef = "/about"
   weight = 40
 
 [[menus.main]]
@@ -62,7 +62,7 @@ enableRobotsTXT = true
     external = true
 
 [params]
-  description = "Cloud · Agile · Agentic AI. Agent-first consulting. We run what we recommend."
+  description = "Documentation and examples for the projectious.work Hugo theme."
 
   [params.search]
     placement = "header"
@@ -78,8 +78,8 @@ enableRobotsTXT = true
 
 [languages]
   [languages.en]
-    languageName = "English"
+    label = "English"
     weight = 1
   [languages.de]
-    languageName = "Deutsch"
+    label = "Deutsch"
     weight = 2

@@ -1,0 +1,42 @@
+---
+title: "Content model"
+description: "How sections, front matter, menus, Markdown, and render hooks fit together."
+weight: 2
+---
+
+## Sections and layouts
+
+| Content path | Theme layout | Use it for |
+|---|---|---|
+| `content/_index.md` | Landing | Hero, calls to action, overview content |
+| `content/docs/` | Documentation | Ordered guides with sidebar and table of contents |
+| `content/blog/` | Blog | Dated article index and long-form posts |
+| `content/changelog/` | Changelog | Versioned release timeline |
+| Any other section | Default | Pages and card-based section indexes |
+
+## Front matter
+
+```yaml {filename="content/docs/example.md"}
+---
+title: "Example guide"
+description: "A one-sentence summary used in navigation and metadata."
+weight: 20
+comments: false
+---
+```
+
+Blog posts also use `date` and `tags`. Changelog entries use `date` and
+`version`. The landing page accepts `eyebrow`, `tagline`, and a `cta` list.
+
+## Markdown first
+
+Headings, lists, links, tables, quotes, and fenced code remain ordinary
+Markdown. Theme render hooks add stable heading links, external-link treatment,
+code-block headers, filenames, and copy controls. Use a shortcode only when the
+content has component semantics that Markdown cannot express.
+
+## Assets and overrides
+
+Put project assets in your site's `assets/` or `static/` directory. Hugo's
+lookup order lets a site override any theme template by creating the same path
+locally. Prefer a partial override over copying the entire theme.
