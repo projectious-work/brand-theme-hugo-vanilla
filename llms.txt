@@ -2,7 +2,7 @@
 
 > Documentation and examples for the projectious.work Hugo theme.
 
-Product: brand-theme-hugo-vanilla 0.2.2
+Product: brand-theme-hugo-vanilla 0.2.3
 Module: github.com/projectious-work/brand-theme-hugo-vanilla
 
 ## Canonical references

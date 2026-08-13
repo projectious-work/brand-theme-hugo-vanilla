@@ -1,6 +1,6 @@
 # projectious.work — full product guide
 
-Product: brand-theme-hugo-vanilla 0.2.2
+Product: brand-theme-hugo-vanilla 0.2.3
 Module: github.com/projectious-work/brand-theme-hugo-vanilla
 Minimum Hugo: 0.121.0 Extended
 
@@ -54,7 +54,7 @@ URL: https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/ai-and-mcp
 Section: docs
 Description: Consume the released theme contract as Markdown, LLM discovery files, or read-only MCP resources.
 
-AI-readable outputs # The example site publishes a Markdown alternative for each page, a compact /llms.txt index, and a bounded /llms-full.txt guide. These outputs use the same normalized page identity, URL, language, section, and description fields as the client-side search index and structured metadata.
+AI-readable outputs # The example site publishes a Markdown alternative for each page, a compact /llms.txt index, and a bounded /llms-full.txt guide. These outputs use the same normalized page identity, URL, language, section, and description fields as the FlexSearch-powered client-side search index and structured metadata.
 Markdown output preserves the page&amp;rsquo;s source Markdown and Hugo shortcode calls. The full guide instead uses rendered plain text so agents can consume shortcode results without HTML navigation, scripts, or comments. Drafts and pages with aiExclude: true are omitted from the full guide.
 Read-only product MCP # Build and install the dependency-free stdio server:
 sh scripts/build.sh public python3 -m pip install ./mcp/product-mcp brand-theme-mcp --artifacts public/.product-mcp The server exposes only generated release artifacts. It has no write, shell, arbitrary-path, repository, processkit, credential, or maintainer capability. Resources cover the contract, documentation, pages, brand provenance, and tokens. Read-only tools support page search, shortcode discovery, token lookup, configuration validation, and Hugo compatibility checks.
@@ -79,11 +79,12 @@ Section: docs
 Description: Menus, search, comments, social links, code highlighting, and site metadata.
 
 Site parameters # Parameter Purpose params.description Default description for metadata and search results. params.github Repository URL for the header&amp;rsquo;s GitHub icon. params.search.placement header or none. params.giscus.repo Repository used for comments; empty disables comments. params.social Footer links with name and url. params.fonts bundled (default) or network-free system. params.accessibility.* Opt-in accessibility attributes — see below. Page comments Set false to suppress comments on one page. Accessibility attributes # The brand system ships its accessibility layer as opt-in attributes on &amp;lt;html&amp;gt;. The theme enables the three that new work is expected to set, and each one is configurable.
-toml hugo.toml [params.accessibility] auto = true # data-a11y=&amp;#34;auto&amp;#34; — follow OS motion, contrast, transparency focus = &amp;#34;strong&amp;#34; # data-focus=&amp;#34;strong&amp;#34; — the WCAG 1.4.11 conforming ring linkUnderline = true # underline prose links, not navigation chrome Set focus = &amp;quot;&amp;quot; to fall back to the brand system&amp;rsquo;s documented default ring. That ring measures ~1.2:1 and does not meet WCAG 1.4.11, so leave strong in place unless you have a reason not to.
+toml hugo.toml [params.accessibility] auto = true # data-a11y=&amp;#34;auto&amp;#34; — follow OS motion, contrast, transparency focus = &amp;#34;strong&amp;#34; # data-focus=&amp;#34;strong&amp;#34; — the WCAG 1.4.11 conforming ring linkUnderline = false # opt in to underlined prose links when desired Set focus = &amp;quot;&amp;quot; to fall back to the brand system&amp;rsquo;s documented default ring. That ring measures ~1.2:1 and does not meet WCAG 1.4.11, so leave strong in place unless you have a reason not to.
 Readers can layer the remaining attributes themselves — data-font-size, data-contrast, data-text-spacing and data-theme all work against the theme because the token sheet is mirrored verbatim from the brand system.
 Fonts # The default params.fonts = &amp;quot;bundled&amp;quot; profile serves the pinned brand WOFF2 files locally. Set params.fonts = &amp;quot;system&amp;quot; to select platform sans-serif and monospace stacks without requesting the bundled files. Components always use the semantic --font-heading, --font-body, and --font-code tokens.
 Main navigation # toml hugo.toml [[menus.main]] name = &amp;#34;Docs&amp;#34; pageRef = &amp;#34;/docs&amp;#34; weight = 10 Use pageRef for internal destinations so Hugo resolves language and base URL correctly. Keep labels in sentence case.
-Search output # toml hugo.toml [outputs] home = [&amp;#34;HTML&amp;#34;, &amp;#34;SearchIndex&amp;#34;] [outputFormats.SearchIndex] mediaType = &amp;#34;application/json&amp;#34; baseName = &amp;#34;search-index&amp;#34; isPlainText = true Syntax highlighting # Set markup.highlight.noClasses = false. The theme&amp;rsquo;s Chroma role mapping then applies the brand syntax palette to fenced code blocks.
+Search output # The theme bundles FlexSearch 0.8.143 locally and builds its document index from Hugo&amp;rsquo;s generated JSON. Theme consumers do not need Node.js and the browser does not contact a search service or CDN. Partial terms and multi-word queries are supported automatically.
+toml hugo.toml [outputs] home = [&amp;#34;HTML&amp;#34;, &amp;#34;SearchIndex&amp;#34;] [outputFormats.SearchIndex] mediaType = &amp;#34;application/json&amp;#34; baseName = &amp;#34;search-index&amp;#34; isPlainText = true Syntax highlighting # Set markup.highlight.noClasses = false. The theme&amp;rsquo;s Chroma role mapping then applies the brand syntax palette to fenced code blocks.
 
 ## Content model
 

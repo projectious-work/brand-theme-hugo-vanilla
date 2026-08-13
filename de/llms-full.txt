@@ -1,5 +1,5 @@
 # projectious.work — full product guide
 
-Product: brand-theme-hugo-vanilla 0.2.2
+Product: brand-theme-hugo-vanilla 0.2.3
 Module: github.com/projectious-work/brand-theme-hugo-vanilla
 Minimum Hugo: 0.121.0 Extended

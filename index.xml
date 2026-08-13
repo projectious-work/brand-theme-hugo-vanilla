@@ -601,7 +601,7 @@ explain techniques; this page defines the supported public interface.&lt;/p&gt;<
 &lt;p&gt;The example site publishes a Markdown alternative for each page, a compact
 &lt;code&gt;/llms.txt&lt;/code&gt; index, and a bounded &lt;code&gt;/llms-full.txt&lt;/code&gt; guide. These outputs use the
 same normalized page identity, URL, language, section, and description fields
-as the client-side search index and structured metadata.&lt;/p&gt;
+as the FlexSearch-powered client-side search index and structured metadata.&lt;/p&gt;
 &lt;p&gt;Markdown output preserves the page&amp;rsquo;s source Markdown and Hugo shortcode calls.
 The full guide instead uses rendered plain text so agents can consume shortcode
 results without HTML navigation, scripts, or comments. Drafts and pages with
