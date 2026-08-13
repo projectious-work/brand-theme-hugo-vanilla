@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented in this file.
 
-## Unreleased
+## [v0.2.0] — 2026-08-13
 
 ### Changed
 
@@ -41,3 +41,4 @@ All notable changes to this project are documented in this file.
 - Corrected the `projectious.work` lockup and added a keyboard skip link.
 
 [v0.1.0]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.1.0
+[v0.2.0]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.0
