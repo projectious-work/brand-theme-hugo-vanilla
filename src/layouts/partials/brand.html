@@ -2,7 +2,7 @@
      The separator is midnight-8 and "work" carries the identity accent —
      this is the brand system's logotype, one of its two declared WCAG
      1.4.3 exemptions. Params: class (extra classes on the anchor). */}}
-<a class="brand {{ .class }}" href="{{ "/" | relLangURL }}">
+<a class="brand {{ .class }}" href="{{ site.Home.RelPermalink }}">
   <img class="brand__mark brand__mark--light" src="{{ "logo/icon-light.svg" | relURL }}" alt="" width="28" height="28">
   <img class="brand__mark brand__mark--dark" src="{{ "logo/icon-dark.svg" | relURL }}" alt="" width="28" height="28">
   <span class="brand__word">projectious<span class="brand__sep">·</span><span class="brand__accent">work</span></span>

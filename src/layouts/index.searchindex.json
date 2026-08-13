@@ -11,7 +11,7 @@
     "description": {{ $record.description | jsonify }},
     "language": {{ $record.language | jsonify }},
     "tags": {{ $record.tags | jsonify }},
-    "content": {{ $record.content | truncate 400 | jsonify }}
+    "content": {{ $record.content | jsonify }}
   }
 {{- end -}}
 ]

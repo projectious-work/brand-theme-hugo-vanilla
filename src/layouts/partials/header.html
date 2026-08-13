@@ -7,6 +7,11 @@
       {{ $searchPlacement := "header" }}
       {{ with site.Params.search }}{{ with .placement }}{{ $searchPlacement = . }}{{ end }}{{ end }}
       {{ if eq $searchPlacement "header" }}{{ partial "search-box.html" . }}{{ end }}
+      {{ with site.Params.github }}
+      <a class="github-link" href="{{ . }}" target="_blank" rel="noopener" aria-label="GitHub">
+        {{ partial "icon.html" (dict "name" "github" "size" 22) }}
+      </a>
+      {{ end }}
       <button class="theme-toggle" data-theme-toggle aria-label="{{ i18n "toggleTheme" }}" type="button">
         {{ partial "icon.html" (dict "name" "sun" "size" 20 "class" "theme-toggle__sun") }}
         {{ partial "icon.html" (dict "name" "moon" "size" 20 "class" "theme-toggle__moon") }}
