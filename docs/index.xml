@@ -15,7 +15,7 @@
 
  
  
- &lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;hugo mod get github.com/projectious-work/hugo-theme-projectious&lt;/span&gt;&lt;/div&gt;
+ &lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;hugo mod get github.com/projectious-work/brand-theme-hugo-vanilla&lt;/span&gt;&lt;/div&gt;
  
 
  
@@ -43,7 +43,7 @@
 &lt;/button&gt;
  &lt;/div&gt;
  &lt;div class="highlight" filename="hugo.toml"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;module&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;imports&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;path&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;github.com/projectious-work/hugo-theme-projectious&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;path&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;github.com/projectious-work/brand-theme-hugo-vanilla&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id="install-as-a-submodule" class="h-anchor"&gt;Install as a submodule &lt;a href="#install-as-a-submodule" class="h-anchor__link" data-copy-link aria-label="Install as a submodule"&gt;#&lt;/a&gt;&lt;/h2&gt;
 
@@ -51,7 +51,7 @@
 
  
  
- &lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;git submodule add https://github.com/projectious-work/hugo-theme-projectious.git themes/hugo-theme-projectious&lt;/span&gt;&lt;/div&gt;
+ &lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;git submodule add https://github.com/projectious-work/brand-theme-hugo-vanilla.git themes/brand-theme-hugo-vanilla&lt;/span&gt;&lt;/div&gt;
  
 
  
@@ -72,14 +72,14 @@
 &lt;svg class="icon " width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;rect x="9" y="9" width="11" height="11" rx="2"/&gt;&lt;path d="M5 15V5a2 2 0 0 1 2-2h10"/&gt;&lt;/svg&gt;
 &lt;/button&gt;
  &lt;/div&gt;
- &lt;div class="highlight" filename="hugo.toml"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;theme&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;hugo-theme-projectious&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight" filename="hugo.toml"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;theme&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;brand-theme-hugo-vanilla&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 
 
 &lt;div class="callout callout--info"&gt;
  &lt;strong class="callout__label"&gt;Info&lt;/strong&gt;
  &lt;div class="callout__body"&gt;Copy the search output and markup configuration from the bundled
-&lt;code&gt;src/exampleSite/hugo.toml&lt;/code&gt;; those settings enable the search index, heading
+&lt;code&gt;src/content/hugo.toml&lt;/code&gt;; those settings enable the search index, heading
 anchors, code labels, and syntax highlighting.&lt;/div&gt;
 &lt;/div&gt;
 
@@ -185,6 +185,10 @@ then write normal Markdown. Section names select their specialized layouts.&lt;/
 					&lt;td&gt;Footer links with &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;url&lt;/code&gt;.&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;params.fonts&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;&lt;code&gt;bundled&lt;/code&gt; (default) or network-free &lt;code&gt;system&lt;/code&gt;.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
 					&lt;td&gt;&lt;code&gt;params.accessibility.*&lt;/code&gt;&lt;/td&gt;
 					&lt;td&gt;Opt-in accessibility attributes — see below.&lt;/td&gt;
 			&lt;/tr&gt;
@@ -241,4 +245,44 @@ prose, lists, tables, links, quotes, and code.&lt;/p&gt;
  &lt;strong class="callout__label"&gt;Danger&lt;/strong&gt;
  &lt;div class="callout__body"&gt;Deployment is blocked.&lt;/div&gt;
 &lt;/div&gt;
-&lt;/p&gt;</description></item></channel></rss>
+&lt;/p&gt;</description></item><item><title>Brand provenance and fonts</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/brand-and-fonts/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/brand-and-fonts/</guid><description>&lt;h2 id="design-authority" class="h-anchor"&gt;Design authority &lt;a href="#design-authority" class="h-anchor__link" data-copy-link aria-label="Design authority"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The authoritative design source is
+&lt;a href="https://github.com/projectious-work/brand" target="_blank" rel="noopener noreferrer" class="link-external"&gt;&lt;code&gt;projectious-work/brand&lt;/code&gt; &lt;span class="link-external__icon"&gt;
+
+
+
+&lt;svg class="icon " width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;path d="M14 4h6v6M20 4L10 14M6 8v10h10v-4"/&gt;&lt;/svg&gt;
+&lt;/span&gt;&lt;/a&gt;
+. This
+theme currently targets brand release &lt;code&gt;v2.1.1&lt;/code&gt; at commit
+&lt;code&gt;fc8a5b5c9a063fae583b086e22a2642dd95ba284&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;src/data/brand-provenance.json&lt;/code&gt; records the source path, immutable source
+revision, licence, transformation, and SHA-256 hash of every derived token,
+logo, font, and font licence. Run these commands after changing brand inputs:&lt;/p&gt;
+&lt;div class="code-block"&gt;
+ &lt;div class="code-block__header"&gt;
+ &lt;span class="code-block__lang"&gt;sh&lt;/span&gt;
+ 
+ &lt;button class="code-block__copy" type="button" aria-label="Copy code"&gt;
+
+
+
+&lt;svg class="icon " width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;rect x="9" y="9" width="11" height="11" rx="2"/&gt;&lt;path d="M5 15V5a2 2 0 0 1 2-2h10"/&gt;&lt;/svg&gt;
+&lt;/button&gt;
+ &lt;/div&gt;
+ &lt;div class="highlight"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sh" data-lang="sh"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;scripts/sync-brand-assets.py --write
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;scripts/check-brand-provenance.py&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Updating the pinned brand release requires visual, accessibility, and Hugo
+compatibility review. The checker rejects altered and unlisted brand artifacts;
+intentional deviations belong in &lt;code&gt;semanticOverrides&lt;/code&gt; with their rationale.&lt;/p&gt;</description></item><item><title>Theme contract reference</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/reference/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/reference/</guid><description>&lt;p&gt;This reference is rendered from &lt;code&gt;src/data/product_contract.json&lt;/code&gt;, the normative
+machine-readable contract released with the theme. Tutorials and examples
+explain techniques; this page defines the supported public interface.&lt;/p&gt;</description></item><item><title>AI discovery and product MCP</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/ai-and-mcp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/ai-and-mcp/</guid><description>&lt;h2 id="ai-readable-outputs" class="h-anchor"&gt;AI-readable outputs &lt;a href="#ai-readable-outputs" class="h-anchor__link" data-copy-link aria-label="AI-readable outputs"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The example site publishes a Markdown alternative for each page, a compact
+&lt;code&gt;/llms.txt&lt;/code&gt; index, and a bounded &lt;code&gt;/llms-full.txt&lt;/code&gt; guide. These outputs use the
+same normalized page identity, URL, language, section, and description fields
+as the client-side search index and structured metadata.&lt;/p&gt;
+&lt;p&gt;Markdown output preserves the page&amp;rsquo;s source Markdown and Hugo shortcode calls.
+The full guide instead uses rendered plain text so agents can consume shortcode
+results without HTML navigation, scripts, or comments. Drafts and pages with
+&lt;code&gt;aiExclude: true&lt;/code&gt; are omitted from the full guide.&lt;/p&gt;</description></item></channel></rss>

@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "1.0",
+  "product": {
+    "name": "brand-theme-hugo-vanilla",
+    "version": "0.2.0",
+    "module": "github.com/projectious-work/brand-theme-hugo-vanilla",
+    "repository": "https://github.com/projectious-work/brand-theme-hugo-vanilla",
+    "license": "MIT",
+    "semver": {
+      "additive": "minor",
+      "deprecated": "minor",
+      "removed": "major",
+      "breaking": "major"
+    }
+  },
+  "compatibility": {
+    "hugoMinimum": "0.121.0",
+    "hugoTested": "0.164.0",
+    "extendedRequired": true,
+    "goRequiredForModules": true
+  },
+  "unknownConfiguration": "Ignored by Hugo but unsupported by this theme contract.",
+  "configuration": [
+    {"path": "params.description", "type": "string", "default": "site title", "required": false, "effect": "Fallback SEO and search description."},
+    {"path": "params.fonts", "type": "enum", "default": "bundled", "allowed": ["bundled", "system"], "required": false, "effect": "Selects pinned local WOFF2 or platform font stacks."},
+    {"path": "params.search.placement", "type": "enum", "default": "header", "allowed": ["header", "none"], "required": false, "effect": "Controls header search visibility."},
+    {"path": "params.giscus.repo", "type": "string", "default": "", "required": false, "effect": "Enables giscus when repo IDs are also supplied."},
+    {"path": "params.giscus.repoId", "type": "string", "default": "", "required": false, "effect": "Giscus repository identifier."},
+    {"path": "params.giscus.categoryId", "type": "string", "default": "", "required": false, "effect": "Giscus category identifier."},
+    {"path": "params.social", "type": "array", "default": [], "required": false, "effect": "Footer links with name and URL."},
+    {"path": "params.accessibility.auto", "type": "boolean", "default": true, "required": false, "effect": "Follows operating-system accessibility preferences."},
+    {"path": "params.accessibility.focus", "type": "string", "default": "strong", "required": false, "effect": "Selects the conforming focus-ring profile."},
+    {"path": "params.accessibility.linkUnderline", "type": "boolean", "default": true, "required": false, "effect": "Keeps link identity independent of colour."}
+  ],
+  "contentTypes": [
+    {"section": "docs", "frontMatter": ["title", "description", "weight", "comments"], "layout": "docs/single.html"},
+    {"section": "blog", "frontMatter": ["title", "description", "date", "tags", "comments"], "layout": "blog/single.html"},
+    {"section": "changelog", "frontMatter": ["title", "description", "date", "version"], "layout": "changelog/list.html"},
+    {"section": "default", "frontMatter": ["title", "description", "date", "comments"], "layout": "_default/single.html"}
+  ],
+  "outputs": [
+    {"name": "HTML", "required": true, "scope": "all", "effect": "Rendered public pages."},
+    {"name": "RSS", "required": false, "scope": "home and sections", "effect": "Feed discovery."},
+    {"name": "SearchIndex", "required": true, "scope": "home", "effect": "Client-side search data."},
+    {"name": "Markdown", "required": false, "scope": "pages", "effect": "AI-readable page alternative."},
+    {"name": "LLMIndex", "required": false, "scope": "home", "effect": "Bounded discovery index at llms.txt."},
+    {"name": "LLMFull", "required": false, "scope": "home", "effect": "Bounded product guide at llms-full.txt."}
+  ],
+  "extensionPoints": [
+    "layouts/_default/baseof.html",
+    "layouts/partials/head.html",
+    "layouts/partials/header.html",
+    "layouts/partials/footer.html",
+    "layouts/partials/seo.html",
+    "layouts/partials/styles.html",
+    "assets/css/main.css",
+    "assets/js/search.js",
+    "static/logo/"
+  ],
+  "shortcodes": [
+    {"name": "app", "container": true, "parameters": [], "example": "{{< app >}}Content{{< /app >}}"},
+    {"name": "badge", "container": true, "parameters": [{"name": "variant", "type": "enum", "default": "info", "allowed": ["info", "success", "warning", "danger"]}], "example": "{{< badge variant=\"success\" >}}Ready{{< /badge >}}"},
+    {"name": "button", "container": true, "parameters": [{"name": "href", "type": "string", "required": true}, {"name": "variant", "type": "string", "default": "primary"}, {"name": "external", "type": "boolean", "default": false}], "example": "{{< button href=\"/docs/\" >}}Read docs{{< /button >}}"},
+    {"name": "callout", "container": true, "parameters": [{"name": "type", "type": "enum", "default": "info", "allowed": ["info", "success", "warning", "danger"]}], "example": "{{< callout type=\"info\" >}}Note{{< /callout >}}"},
+    {"name": "card", "container": true, "parameters": [{"name": "title", "type": "string"}, {"name": "meta", "type": "string"}, {"name": "href", "type": "string"}], "example": "{{< card title=\"Guide\" href=\"/docs/\" >}}Summary{{< /card >}}"},
+    {"name": "cards", "container": true, "parameters": [], "example": "{{< cards >}}{{< card title=\"One\" >}}Text{{< /card >}}{{< /cards >}}"},
+    {"name": "field", "container": false, "parameters": [{"name": "label", "type": "string", "required": true}, {"name": "type", "type": "string", "default": "text"}, {"name": "value", "type": "string"}, {"name": "placeholder", "type": "string"}, {"name": "hint", "type": "string"}], "example": "{{< field label=\"Email\" type=\"email\" hint=\"Required\" >}}"},
+    {"name": "grid", "container": true, "parameters": [{"name": "columns", "type": "integer", "default": 2}], "example": "{{< grid columns=\"2\" >}}Content{{< /grid >}}"},
+    {"name": "metric", "container": false, "parameters": [{"name": "value", "type": "string", "required": true}, {"name": "label", "type": "string", "required": true}], "example": "{{< metric value=\"99%\" label=\"Uptime\" >}}"},
+    {"name": "panel", "container": true, "parameters": [{"name": "title", "type": "string"}, {"name": "variant", "type": "string", "default": "default"}], "example": "{{< panel title=\"Details\" >}}Content{{< /panel >}}"},
+    {"name": "quote", "container": true, "parameters": [{"name": "author", "type": "string"}, {"name": "role", "type": "string"}], "example": "{{< quote author=\"Ada\" >}}Clarity matters.{{< /quote >}}"},
+    {"name": "stat", "container": false, "parameters": [{"name": "value", "type": "string", "required": true}, {"name": "label", "type": "string", "required": true}], "example": "{{< stat value=\"42\" label=\"Runs\" >}}"},
+    {"name": "stats", "container": true, "parameters": [], "example": "{{< stats >}}{{< stat value=\"42\" label=\"Runs\" >}}{{< /stats >}}"},
+    {"name": "status", "container": true, "parameters": [{"name": "variant", "type": "string", "default": "idle"}], "example": "{{< status variant=\"healthy\" >}}Healthy{{< /status >}}"},
+    {"name": "step", "container": true, "parameters": [{"name": "title", "type": "string"}], "example": "{{< step title=\"Build\" >}}Run Hugo.{{< /step >}}"},
+    {"name": "steps", "container": true, "parameters": [], "example": "{{< steps >}}{{< step title=\"Build\" >}}Run Hugo.{{< /step >}}{{< /steps >}}"},
+    {"name": "tag", "container": true, "parameters": [{"name": "variant", "type": "string", "default": "neutral"}], "example": "{{< tag >}}Hugo{{< /tag >}}"},
+    {"name": "terminal", "container": true, "parameters": [], "example": "{{< terminal >}}$ hugo server{{< /terminal >}}"}
+  ]
+}

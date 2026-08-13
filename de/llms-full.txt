@@ -1,0 +1,5 @@
+# projectious.work — full product guide
+
+Product: brand-theme-hugo-vanilla <no value>
+Module: <no value>
+Minimum Hugo: <no value> Extended
