@@ -9,7 +9,7 @@ weight: 7
 The example site publishes a Markdown alternative for each page, a compact
 `/llms.txt` index, and a bounded `/llms-full.txt` guide. These outputs use the
 same normalized page identity, URL, language, section, and description fields
-as the client-side search index and structured metadata.
+as the FlexSearch-powered client-side search index and structured metadata.
 
 Markdown output preserves the page's source Markdown and Hugo shortcode calls.
 The full guide instead uses rendered plain text so agents can consume shortcode

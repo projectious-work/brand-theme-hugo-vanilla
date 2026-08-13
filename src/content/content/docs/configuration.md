@@ -27,7 +27,7 @@ each one is configurable.
 [params.accessibility]
 auto = true             # data-a11y="auto" — follow OS motion, contrast, transparency
 focus = "strong"        # data-focus="strong" — the WCAG 1.4.11 conforming ring
-linkUnderline = true    # underline prose links, not navigation chrome
+linkUnderline = false   # opt in to underlined prose links when desired
 ```
 
 Set `focus = ""` to fall back to the brand system's documented default ring.
@@ -59,6 +59,11 @@ Use `pageRef` for internal destinations so Hugo resolves language and base URL
 correctly. Keep labels in sentence case.
 
 ## Search output
+
+The theme bundles FlexSearch `0.8.143` locally and builds its document index
+from Hugo's generated JSON. Theme consumers do not need Node.js and the browser
+does not contact a search service or CDN. Partial terms and multi-word queries
+are supported automatically.
 
 ```toml {filename="hugo.toml"}
 [outputs]
