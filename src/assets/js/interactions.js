@@ -28,6 +28,25 @@ document.addEventListener('DOMContentLoaded', function(){
   }
 });
 
+/* A region that scrolls must be reachable by keyboard (WCAG 2.1.1). Only
+   blocks that actually overflow become tab stops, so a short snippet never
+   adds a pointless stop. Re-measured on resize. */
+function markScrollableRegions(){
+  var blocks = document.querySelectorAll('pre, .terminal, .demo-table');
+  Array.prototype.forEach.call(blocks, function(el){
+    var scrolls = el.scrollWidth > el.clientWidth + 1;
+    if(scrolls){
+      el.setAttribute('tabindex', '0');
+      if(!el.hasAttribute('role')) el.setAttribute('role', 'region');
+      if(!el.hasAttribute('aria-label')) el.setAttribute('aria-label', el.getAttribute('data-scroll-label') || 'Scrollable content');
+    } else {
+      el.removeAttribute('tabindex');
+    }
+  });
+}
+document.addEventListener('DOMContentLoaded', markScrollableRegions);
+window.addEventListener('resize', markScrollableRegions);
+
 document.addEventListener('click', function(e){
   var copyBtn = e.target.closest('.code-block__copy');
   if(copyBtn){

@@ -1,2 +1,5 @@
-{{ $variant := .Get "variant" | default "idle" }}
+{{- /* Inline shortcode: emits exactly one line with no surrounding
+     whitespace. A leading or trailing newline would terminate the row when
+     this is used inside a Markdown table cell. */ -}}
+{{- $variant := .Get "variant" | default "idle" -}}
 <span class="status status--{{ $variant }}">{{ .Inner }}</span>

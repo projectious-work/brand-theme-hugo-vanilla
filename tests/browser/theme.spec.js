@@ -14,7 +14,12 @@ for (const route of routes) {
     const results = await new AxeBuilder({ page })
       // The brand's standard link treatment uses colour plus a hover underline.
       // Persistent prose underlines are an explicit accessibility option.
-      .disableRules(['color-contrast', 'link-in-text-block'])
+      .disableRules(['link-in-text-block'])
+      // color-contrast stays ON. The only sanctioned exception is the
+      // logotype, which the brand system declares as a deliberate WCAG
+      // 1.4.3 exemption ("the wordmark sets 'work' in the identity accent").
+      // Excluding just that node keeps real contrast regressions failing.
+      .exclude('.brand__accent')
       .analyze();
     const serious = results.violations.filter(
       (violation) => ['serious', 'critical'].includes(violation.impact)
@@ -95,6 +100,72 @@ test('reduced motion disables nonessential animation', async ({ page }) => {
     (element) => getComputedStyle(element).transitionDuration
   );
   expect(Number.parseFloat(duration)).toBeLessThanOrEqual(0.000001);
+});
+
+/* Shortcodes nested inside {{< app >}} / {{< panel >}} are re-parsed by
+   Goldmark, so their own whitespace decides whether they survive. These two
+   regressions were invisible to contrast, overflow and axe checks — the page
+   was "accessible", just wrong. */
+test('terminal shortcode renders markup rather than escaped source', async ({ page }) => {
+  await page.goto('examples/dashboard/');
+  const terminal = page.locator('.terminal');
+  await expect(terminal).toBeVisible();
+  await expect(terminal.locator('.terminal__prompt')).toHaveCount(1);
+  await expect(terminal.locator('.terminal__ok')).toHaveCount(1);
+  // Escaped output would surface its own tags as visible text.
+  await expect(terminal).not.toContainText('<span');
+  await expect(terminal.locator('pre')).toHaveCount(0);
+});
+
+test('inline shortcodes stay inside their table cell', async ({ page }) => {
+  await page.goto('examples/dashboard/');
+  const rows = page.locator('.panel table tbody tr');
+  await expect(rows).toHaveCount(3);
+  for (const [index, label] of [[0, 'Healthy'], [1, 'Running'], [2, 'Pending']]) {
+    const stateCell = rows.nth(index).locator('td').nth(2);
+    await expect(stateCell.locator('.status')).toHaveText(label);
+  }
+});
+
+test('grid shortcode collapses to one column on mobile', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto('./');
+  // The shortcode writes --columns inline, which a media query cannot outrank;
+  // the responsive rule has to target grid-template-columns itself.
+  const columns = await page.locator('.demo-grid').first().evaluate(
+    (element) => getComputedStyle(element).gridTemplateColumns.split(' ').length
+  );
+  expect(columns).toBe(1);
+});
+
+test('mode-fixed dark surfaces rescope their foreground tokens', async ({ page }) => {
+  await page.goto('examples/mobile/');
+  const color = await page.locator('.panel--dark .step__desc').first().evaluate(
+    (element) => getComputedStyle(element).color
+  );
+  // Light-mode secondary text (#546a82) on the pinned dark panel measures 3.01:1.
+  expect(color).not.toBe('rgb(84, 106, 130)');
+});
+
+test('scrolling code blocks are reachable by keyboard', async ({ page }) => {
+  await page.goto('examples/dashboard/');
+  const scrollers = page.locator('pre, .terminal, .demo-table');
+  const count = await scrollers.count();
+  for (let index = 0; index < count; index += 1) {
+    const state = await scrollers.nth(index).evaluate((element) => ({
+      scrolls: element.scrollWidth > element.clientWidth + 1,
+      tabindex: element.getAttribute('tabindex'),
+    }));
+    if (state.scrolls) expect(state.tabindex).toBe('0');
+  }
+});
+
+test('closed mobile drawer leaves the tab order', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto('./');
+  await expect(page.locator('[data-nav]')).toBeHidden();
+  await page.locator('[data-nav-toggle]').click();
+  await expect(page.locator('[data-nav]')).toBeVisible();
 });
 
 for (const width of [375, 640, 768, 1024, 1280]) {

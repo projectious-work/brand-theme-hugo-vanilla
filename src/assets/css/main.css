@@ -42,6 +42,27 @@ th { font-family: var(--font-heading); font-weight: 600; background: var(--surfa
   width: var(--touch-target); height: var(--touch-target);
 }
 
+/* ── Mode-fixed dark surfaces ─────────────────────────────────────
+   The hero and dark panels stay dark in both colour modes, so the
+   mode-swapping aliases resolve to light-mode values inside them and any
+   nested component inherits the wrong foreground. Rescope the aliases to
+   the pinned dark ramp once, here: custom properties inherit, so every
+   descendant — steps, cards, buttons, captions — follows without each
+   component needing its own dark variant. */
+.hero, .panel--dark {
+  --fg-1: var(--color-text-primary-dark);
+  --fg-2: var(--color-text-secondary-dark);
+  --fg-3: var(--color-text-muted-dark);
+  --color-text-primary: var(--color-text-primary-dark);
+  --color-text-secondary: var(--color-text-secondary-dark);
+  --color-text-muted: var(--color-text-muted-dark);
+  --surface: var(--midnight-dark-2);
+  --surface-2: var(--midnight-dark-3);
+  --color-border: var(--midnight-dark-5);
+  --border-strong: var(--midnight-dark-7);
+  color: var(--fg-1);
+}
+
 /* ── Layout primitives ────────────────────────────────────────────── */
 .container { max-width: var(--container-max); margin: 0 auto; padding: 0 var(--space-5); }
 .site-main { min-height: 60vh; }
@@ -165,7 +186,14 @@ a.card, .card--link { display: block; color: inherit; }
 
 /* ── Tags & badges — solid pale tints, never alpha overlays ───────── */
 .tag { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: var(--radius-full); font-family: var(--font-body); font-size: var(--type-overline-size); font-weight: 500; background: var(--tag-bg); color: var(--tag-text); margin: 0 4px 4px 0; }
-.tag--accent { background: var(--tag-bg-accent); color: var(--tag-text-accent); }
+/* UPSTREAM DEFECT: the brand's own accent-tag pair, --tag-text-accent
+   (orange-11) on --tag-bg-accent (orange-3), measures 4.1:1 in light mode —
+   below WCAG AA for 12px text, and out of step with the neutral tag, whose
+   pair measures 9.75:1. Step 12 is the brand's other declared text role, so
+   composing orange-12 on the same tint stays inside the step-role rules and
+   restores parity: 8.56:1 light, 11.78:1 dark. No token value is redeclared;
+   report the pair upstream so brand.yaml can carry the fix. */
+.tag--accent { background: var(--tag-bg-accent); color: var(--orange-12); }
 .badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: var(--radius-sm); font-family: var(--font-heading); font-size: 11px; font-weight: 600; background: var(--color-info-bg); color: var(--color-info-fg); margin: 0 4px 4px 0; }
 .badge--info { background: var(--color-info-bg); color: var(--color-info-fg); }
 .badge--success { background: var(--color-success-bg); color: var(--color-success-fg); }
@@ -280,8 +308,7 @@ a.card, .card--link { display: block; color: inherit; }
 .panel { background: var(--surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-4) var(--space-5); }
 /* Dark panel on a light page: pinned to the dark ramp so it reads the same
    in both modes. */
-.panel--dark { background: var(--midnight-dark-2); border-color: var(--midnight-dark-5); color: var(--color-text-primary-dark); }
-.panel--dark h2, .panel--dark h3, .panel--dark h4, .panel--dark p { color: var(--color-text-primary-dark); }
+.panel--dark { background: var(--midnight-dark-2); border-color: var(--midnight-dark-5); }
 .panel--dark a { color: var(--midnight-dark-11); }
 .panel--accent { border-top: 3px solid var(--color-accent); }
 .metric { background: var(--surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-4) var(--space-5); }
@@ -315,18 +342,24 @@ a.card, .card--link { display: block; color: inherit; }
 @media (max-width: 1023.98px) {
   .docs-layout { grid-template-columns: 220px minmax(0,1fr); }
   .docs-toc { display: none; }
+  /* The shortcode sets --columns inline, which no stylesheet rule can
+     outrank. Override grid-template-columns itself instead — it is never
+     set inline, so the cascade resolves cleanly without !important. */
+  .demo-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 }
 
 /* Below md: single column, drawer navigation for documentation. */
 @media (max-width: 767.98px) {
-  .demo-grid { --columns: 1; }
+  .demo-grid { grid-template-columns: 1fr; }
   .app-shell { grid-template-columns: 1fr; }
   .app-shell__nav { display: none; }
   .docs-layout { grid-template-columns: 1fr; }
   .sidebar { position: static; max-height: none; overflow: visible; }
   .nav-toggle { display: flex; }
-  .site-header__right { position: fixed; top: 64px; left: 0; right: 0; background: var(--surface); border-bottom: 1px solid var(--color-border); flex-direction: column; align-items: stretch; padding: var(--space-4); gap: var(--space-4); transform: translateY(-8px); opacity: 0; pointer-events: none; transition: transform var(--duration-standard) var(--ease-out), opacity var(--duration-standard) var(--ease-out); }
-  .site-header__right.is-open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+  /* visibility:hidden — not opacity alone — so the closed drawer's controls
+     leave the tab order instead of being focusable while invisible. */
+  .site-header__right { position: fixed; top: 64px; left: 0; right: 0; background: var(--surface); border-bottom: 1px solid var(--color-border); flex-direction: column; align-items: stretch; padding: var(--space-4); gap: var(--space-4); transform: translateY(-8px); opacity: 0; visibility: hidden; pointer-events: none; transition: transform var(--duration-standard) var(--ease-out), opacity var(--duration-standard) var(--ease-out), visibility 0s linear var(--duration-standard); }
+  .site-header__right.is-open { transform: translateY(0); opacity: 1; visibility: visible; pointer-events: auto; transition-delay: 0s; }
   .menu { flex-direction: column; gap: var(--space-3); }
 }
 
@@ -336,4 +369,10 @@ a.card, .card--link { display: block; color: inherit; }
   .docs-layout { padding: var(--space-5) var(--space-4); }
   .site-footer__inner { padding: var(--space-5) var(--space-4); }
   .hero { min-height: 360px; }
+  /* "projectious.work" has no break opportunity, so 48px display type
+     outgrows a 375px viewport and the hero's overflow:hidden silently
+     clips it. Step down to the next size on the ramp and allow the long
+     token to break. */
+  .display { font-size: var(--type-h1-size); }
+  .display, h1, h2, h3 { overflow-wrap: break-word; }
 }

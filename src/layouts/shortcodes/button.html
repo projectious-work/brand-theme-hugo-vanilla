@@ -1,2 +1,3 @@
-{{ $variant := .Get "variant" | default "primary" }}
+{{- /* Inline — see status.html on whitespace. */ -}}
+{{- $variant := .Get "variant" | default "primary" -}}
 <a class="btn btn--{{ $variant }}" href="{{ .Get "href" }}"{{ if .Get "external" }} target="_blank" rel="noopener"{{ end }}>{{ .Inner }}</a>

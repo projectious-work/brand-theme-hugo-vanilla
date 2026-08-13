@@ -1,2 +1,3 @@
-{{ $variant := .Get "variant" | default "neutral" }}
+{{- /* Inline — see status.html on whitespace. */ -}}
+{{- $variant := .Get "variant" | default "neutral" -}}
 <span class="tag tag--{{ $variant }}">{{ .Inner }}</span>
