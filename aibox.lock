@@ -1,0 +1,117 @@
+[aibox]
+cli_version = "0.31.2"
+synced_at = "2026-08-09T17:54:38.857233+00:00"
+
+[processkit]
+source = "https://github.com/projectious-work/processkit.git"
+version = "v0.28.6"
+src_path = "src"
+release_asset_sha256 = "921dc1992fa8255bbb1cf4b0c10ecaa2cbad1216805c8cc1a7063f3385b94856"
+installed_at = "2026-08-09T17:54:38.857233+00:00"
+processkit_install_hash = "v2:dc36b76f27d2958717226bbdf8c51bdb7a9f72057aa34f1be2f5ea38e9cd77c5"
+
+[addons]
+resolved_at = "2026-08-09T18:18:19Z"
+
+[addons.tools]
+
+[addons.previous_selection]
+docs-hugo = ["hugo"]
+git-ui = [
+    "gh",
+    "lazygit",
+]
+go = ["go"]
+go-quality = [
+    "goimports",
+    "golangci-lint",
+    "gosec",
+    "govulncheck",
+    "staticcheck",
+]
+go-release = ["goreleaser"]
+node = [
+    "node",
+    "pnpm",
+]
+preview-archive = [
+    "chafa",
+    "entr",
+    "librsvg",
+    "mupdf",
+    "p7zip",
+    "poppler",
+    "resvg",
+    "timg",
+]
+preview-enhanced = [
+    "ffmpeg",
+    "ghostscript",
+    "rich",
+]
+release = [
+    "hadolint",
+    "shellcheck",
+]
+supply-chain = [
+    "cosign",
+    "gitleaks",
+    "grype",
+    "osv-scanner",
+    "syft",
+]
+
+[runtime_home]
+generated_at = "2026-08-09T18:18:19.474203+00:00"
+
+[runtime_home.files]
+".claude/keybindings.json" = "187a3f75b831cbec4b025eecd23f06e76a77f46d6f47e4e730ef341f0d1db21c"
+".config/aibox/theme-env.sh" = "c2b08fb22df7063a33c8a1e93b4173cb5dbce5f0cd6a7a8d6fa7606079f40dc9"
+".config/cheatsheet.txt" = "8f8cd32d9f0b6e3d92015f440c78b11afd87d20ff2a517e5dea009135dc7e0fa"
+".config/git/aibox-github.inc" = "e60ec3914a092744bdd505724030bb3a3757133df8d90917332a96ad8d05a765"
+".config/git/config" = "e7238afef7b3760e0dd2d5a189b8d59e0638a5e330060610a997bd2c14bbd853"
+".config/lazygit/config.yml" = "0df022268cb1d771a6289f74883a22f8cf8ecb2083642e6239e8e03c8c1aa2c2"
+".config/lnav/config.json" = "5ff30db2fce0d3e56843dd771f1c48ffbbc6a586ea22aa5f97360b59906c10c7"
+".config/lnav/formats/aibox/aibox.json" = "10e1af791380119ecd6860f8d31becb183a26b01868d9b20b2e277177e17c660"
+".config/starship.toml" = "e59637a58c694d9575c211c5205f33d679371ff1897bd0f7903a87d2ba0b0e1d"
+".config/tmux/aibox-powerkit-overrides.tmux" = "9b8ad32662d469e6d5ed9ccf0fd6e0deeb19433db7051dce0c16a88ea7d607cd"
+".config/tmux/aibox-powerkit-theme.sh" = "285363a87842f24ee7282fef8c80e5344009f416ffc6f296c82c1b212b5ae98d"
+".config/tmux/aibox-session.sh" = "13fcca7d89b205689e8030c55cd5a6f8682cb32888bc7a6c2c09fcfb20f4be3b"
+".config/tmux/layouts/ai.sh" = "eaaff8445b5d17770bf33ae4631700e16e24b777b22e52df41da11286e64ca84"
+".config/tmux/layouts/cowork.sh" = "20e97d38f37e28d2f54a56eec2ada7268bdab68abc3b8d9d6341cadd3c2e5ef0"
+".config/tmux/layouts/dev.sh" = "0fe09d178779db986a6396b21fc1680fff5510decf10bdfccd0b6cc633be481f"
+".config/tmux/layouts/focus.sh" = "ff3435d14bde4a6eca212d1c3f0828268e373dd529616490f165ccc9c0dd624e"
+".config/tmux/tmux.conf" = "9c5f585e77a0410492e988e806f48a9346931349f37f94003affb1d233502c92"
+".config/yazi/init.lua" = "eae04462c0b3bcbb486ee59aa9c2c9e9595680a0626997c942e5abb2ae5a48d7"
+".config/yazi/keymap.toml" = "0b20be4e5f58d0af2ba72b8621e288ef2d6a7665a8a73c5fca5a172f83c6ebdd"
+".config/yazi/plugins/dir-preview.yazi/main.lua" = "333a25afe1dc850c344ff8c5844a27a9f16f2091eee0d7d1454b6e5129e1f175"
+".config/yazi/plugins/eps.yazi/init.lua" = "edeaadeff1411fc9749eeae43c77754fd749db74790591ba75e9286ff36e94c5"
+".config/yazi/plugins/git.yazi/main.lua" = "855f6bdf0ee33f503f575c2d75795c98ab1a9893c655940caf333d8fc87dc477"
+".config/yazi/plugins/git.yazi/types.lua" = "16c54022dd327c35f533534f0b6995d800965e96d76f2e610b8b2fca0e5b4549"
+".config/yazi/plugins/rich-preview.yazi/main.lua" = "06ebdf2c2d637c0d5c68c8516c87b376ea29a94756cd91a8ffef6d2819759077"
+".config/yazi/plugins/status-git.yazi/main.lua" = "bedc0ba5bf4ea01605b1b7cb444ee3a09b0a4ba35ce99306d974d5977a4d32d2"
+".config/yazi/plugins/svg.yazi/init.lua" = "ba5e7ebbb9870eda80d7be179010494cac3896b4b29fb8f1011809e217ecc278"
+".config/yazi/plugins/toggle-pane.yazi/main.lua" = "86b2306f6c9d880f0a6f777bdefb451393eb6a0c88718be355ebe31495e59f1c"
+".config/yazi/theme.toml" = "d89d06e370c605455dc93790c88563d9cd5f8c248d293085ebcd75a5fdc0600d"
+".config/yazi/yazi.toml" = "2df8fa293ea293415dc4f3eefd3120f741ddbbcbf4cff4d59353acdbc192ed61"
+".inputrc" = "3763b3a9d37f05ca7c035579bc5419b664c3b33c5ce9a0c4ce5d00fbe75ec237"
+".local/bin/aibox-copy" = "8ad9b94df76a00b938aa933bbda8305d5222bf7f9374a3bd5afef5f0fc361654"
+".local/bin/aibox-powerkit-render-list" = "2fee132c86c69deb2198d2ed32d895d008c77ca7f5c68f910d1793e6edadfdbc"
+".local/bin/aibox-powerkit-render-session" = "3e5ca872bdc0bcec25616f5a2f469d64ec13bb9342415344171b204c42c28b77"
+".local/bin/aibox-preview" = "d0d568ae510a3decb743da7458320755f84b5a3627703e601b82701e0fb4413c"
+".local/bin/aibox-status-toggle" = "026c6a1dc7f1bcf650aa0bd4f587adfb5de6744df66fc138bef9b435bad1049a"
+".local/bin/aibox-tmux-cheatsheet" = "2e3f8745cbb2039c521354f8bf48fa4059600f0c8b7bb462a8a8ed086d0473d9"
+".local/bin/aibox-tmux-confirm-and-switch" = "a8771bb55db28dc35a7c1cfb742ec60299784b96cd8550e45aaac1cae19446f2"
+".local/bin/aibox-tmux-refresh-theme" = "66aa1a9c859790be8664a6bbe94de5f0ebaf6919e3e91e3287ebac8a014aae84"
+".local/bin/aibox-tmux-switch-layout" = "0bd371bed88078b2a0b40ab5a46039c2638ab667b976fe9570074da800364689"
+".local/bin/open-in-editor" = "ec4c0ecf1c4c01582c8b16a1bb2a06f364f3a9a9bab14976c5da17573b047145"
+".local/bin/pdf-watch" = "b6becd1df4a32ff27f5c93e514e6d31e5743f9282f40ce7290b8432207d85934"
+".vim/colors/aibox.vim" = "bf0c9d7df6fd4fb348bfbd84a9b508a36c7365dafeb34f978e2e2ece2e900bde"
+".vim/vimrc" = "bd628ebab7566f53e98a8eabc5c698f8d2c927aa21cd5f0596673cc6b1c572b1"
+
+[harnesses]
+recorded_at = "2026-08-09T18:18:19Z"
+previous_selection = [
+    "claude",
+    "codex",
+]

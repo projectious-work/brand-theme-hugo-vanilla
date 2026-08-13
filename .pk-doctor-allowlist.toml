@@ -1,0 +1,14 @@
+[sensitive_data.email_allowlist]
+addresses = [
+  "amelie.dubois@projectious.work",
+  "deploy@example.local",
+  "eng@projectious.work",
+  "hello@projectious.work",
+  "info@projectious.work",
+  "jonas.berg@projectious.work",
+  "lena.almeida@projectious.work",
+  "marius.keller@projectious.work",
+  "priya.kapoor@projectious.work",
+  "sofia.novak@projectious.work",
+  "tobias.reinhardt@projectious.work",
+]
