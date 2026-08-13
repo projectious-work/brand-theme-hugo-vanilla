@@ -1,17 +1,22 @@
-{{ $lines := split (trim .Inner "\n") "\n" }}
-<div class="terminal">
-{{ range $lines }}
-  {{ $line := . }}
-  {{ if hasPrefix $line "$ " }}
-    <div><span class="terminal__prompt">$</span> <span class="terminal__cmd">{{ substr $line 2 }}</span></div>
-  {{ else if hasPrefix $line "✓ " }}
-    <div><span class="terminal__ok">✓</span> {{ substr $line 2 }}</div>
-  {{ else if hasPrefix $line "✗ " }}
-    <div><span class="terminal__err">✗</span> {{ substr $line 2 }}</div>
-  {{ else if hasPrefix $line "● " }}
-    <div><span class="terminal__pending">●</span> {{ substr $line 2 }}</div>
-  {{ else }}
-    <div>{{ $line }}</div>
-  {{ end }}
-{{ end }}
+{{- /* Every emitted line must start at column 0. This shortcode is often
+       nested inside {{< app >}} / {{< panel >}}, which run markdownify over
+       their inner content — four spaces of indentation there would make
+       Goldmark parse this block's own markup as an indented code block and
+       escape it. Hence the aggressive {{- -}} trimming. */ -}}
+{{- $lines := split (trim .Inner "\n") "\n" -}}
+<div class="terminal" data-scroll-label="{{ i18n "terminalOutput" }}">
+{{- range $lines }}
+{{- $line := . }}
+{{- if hasPrefix $line "$ " }}
+<div><span class="terminal__prompt">$</span> <span class="terminal__cmd">{{ substr $line 2 }}</span></div>
+{{- else if hasPrefix $line "✓ " }}
+<div><span class="terminal__ok">✓</span> {{ substr $line 2 }}</div>
+{{- else if hasPrefix $line "✗ " }}
+<div><span class="terminal__err">✗</span> {{ substr $line 2 }}</div>
+{{- else if hasPrefix $line "● " }}
+<div><span class="terminal__pending">●</span> {{ substr $line 2 }}</div>
+{{- else }}
+<div>{{ $line }}</div>
+{{- end }}
+{{- end }}
 </div>

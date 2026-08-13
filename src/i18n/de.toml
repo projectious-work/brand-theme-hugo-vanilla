@@ -48,3 +48,6 @@ other = "Zum Inhalt springen"
 
 [search]
 other = "Suche"
+
+[terminalOutput]
+other = "Terminal-Ausgabe"
