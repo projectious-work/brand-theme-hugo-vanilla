@@ -3,7 +3,12 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 VERIFY_DIR="$(mktemp -d /tmp/brand-theme-verify.XXXXXX)"
-trap 'rm -rf "$VERIFY_DIR"' EXIT
+SERVER_PID=""
+cleanup() {
+  if [[ -n "$SERVER_PID" ]]; then kill "$SERVER_PID" 2>/dev/null || true; fi
+  rm -rf "$VERIFY_DIR"
+}
+trap cleanup EXIT
 
 cd "$ROOT_DIR"
 
@@ -30,6 +35,19 @@ test -s "$VERIFY_DIR/minimal/index.html"
 test -s "$VERIFY_DIR/minimal/index.json"
 
 python3 -m unittest tests/test_product_mcp.py
+
+if [[ ! -x node_modules/.bin/playwright ]]; then
+  echo "error: browser dependencies missing; run npm ci and npx playwright install chromium" >&2
+  exit 1
+fi
+mkdir -p "$VERIFY_DIR/webroot"
+ln -s "$VERIFY_DIR/example-a" "$VERIFY_DIR/webroot/brand-theme-hugo-vanilla"
+python3 -m http.server 4187 --bind 127.0.0.1 \
+  --directory "$VERIFY_DIR/webroot" >/dev/null 2>&1 &
+SERVER_PID=$!
+PLAYWRIGHT_BASE_URL="http://127.0.0.1:4187/brand-theme-hugo-vanilla/" \
+  npm run test:browser
+
 git diff --check
 
 echo "Local verification passed"

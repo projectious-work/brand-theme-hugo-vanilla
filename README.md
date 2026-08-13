@@ -21,7 +21,7 @@ or as a Hugo Module in your `hugo.toml`:
 Then set `theme = "brand-theme-hugo-vanilla"` (submodule). Hugo Modules need
 no `theme` key.
 
-Copy the settings from `src/exampleSite/hugo.toml` into your own site config:
+Copy the settings from `src/content/hugo.toml` into your own site config:
 the `[outputs]`/`[outputFormats.SearchIndex]` block (powers search) and the
 `[markup]` block (syntax highlighting + table of contents). The example site
 consumes the theme as a Hugo Module with a `replace` directive back to the
@@ -40,7 +40,7 @@ Section templates are picked automatically from a page's section name — no fro
 ## Shortcodes
 
 `callout`, `card`/`cards`, `button`, `terminal`, `stat`/`stats`, `quote`, `tag`,
-`badge`, `steps`/`step`. See `src/exampleSite/content/docs/shortcodes.md` for
+`badge`, `steps`/`step`. See `src/content/content/docs/shortcodes.md` for
 live usage of each. Code fences get syntax highlighting, a copy button, and
 an optional filename automatically — no shortcode needed:
 
@@ -98,11 +98,11 @@ All local, no GitHub Actions:
 
 - `scripts/verify.sh` — canonical local verification: identity, provenance,
   contract, deterministic outputs, full example, minimal consumer, local links,
-  semantics, and product MCP tests.
-- `scripts/serve.sh` — watch/serve `src/exampleSite` at
+  semantics, browser accessibility/visual baselines, and product MCP tests.
+- `scripts/serve.sh` — watch/serve the site in `src/content` at
   `http://0.0.0.0:1313` (override with `PORT`/`BASE_URL`). Forward the port
   from the dev container to your host to preview.
-- `scripts/build.sh [dest]` — production build of `src/exampleSite` into
+- `scripts/build.sh [dest]` — production build of `src/content` into
   `public/` (or `dest`).
 - `scripts/deploy.sh` — builds, then force-pushes the output to the `gh-pages` branch via a local git worktree and enables GitHub Pages on that branch if it isn't already (needs `gh` auth with repo admin access).
 

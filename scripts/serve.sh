@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Local watch/serve loop for the exampleSite demo, bound to 0.0.0.0 so the
+# Local watch/serve loop for the src/content demo, bound to 0.0.0.0 so the
 # port can be forwarded from the dev container to the host.
 #
 # Env overrides: PORT (default 1313), BASE_URL (default http://localhost:$PORT/)
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SITE_DIR="$ROOT_DIR/src/exampleSite"
+SITE_DIR="$ROOT_DIR/src/content"
 PORT="${PORT:-1313}"
 BASE_URL="${BASE_URL:-http://localhost:${PORT}/}"
 

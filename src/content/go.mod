@@ -1,4 +1,4 @@
-module github.com/projectious-work/brand-theme-hugo-vanilla/exampleSite
+module github.com/projectious-work/brand-theme-hugo-vanilla/content
 
 go 1.21
 

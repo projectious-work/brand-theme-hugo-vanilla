@@ -17,9 +17,9 @@ if rg -n "$OBSOLETE" \
 fi
 
 rg -q "^module $CANONICAL$" go.mod
-rg -q "^module ${CANONICAL}/exampleSite$" src/exampleSite/go.mod
-rg -q "path = \"$CANONICAL\"" src/exampleSite/hugo.toml
+rg -q "^module ${CANONICAL}/content$" src/content/go.mod
+rg -q "path = \"$CANONICAL\"" src/content/hugo.toml
 rg -q "$CANONICAL" README.md
-rg -q "$CANONICAL" src/exampleSite/content/docs/getting-started.md
+rg -q "$CANONICAL" src/content/content/docs/getting-started.md
 
 echo "Product identity is consistent: $CANONICAL"
