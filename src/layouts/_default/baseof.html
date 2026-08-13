@@ -11,6 +11,7 @@
   {{- if $a11y.auto }} data-a11y="auto"{{ end }}
   {{- with $a11y.focus }} data-focus="{{ . }}"{{ end }}
   {{- if $a11y.linkUnderline }} data-link-underline="on"{{ end }}
+  data-fonts="{{ site.Params.fonts | default "bundled" }}"
   data-search-index="{{ "index.json" | relURL }}">
 <head>
 {{ partial "head.html" . }}

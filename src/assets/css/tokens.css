@@ -2,9 +2,19 @@
  * Synced from projectious-work/brand @ v2.1.1 — brand/tokens/variables.css
  * Upstream is GENERATED from src/data/brand.yaml. Treat this file as a mirror:
  * change values upstream, then re-sync. Base element styles below are local.
- * Self-contained: includes Google Font @import for the three brand families. */
+ * Font delivery is a documented theme transformation: bundled, pinned WOFF2
+ * files replace the upstream Google Fonts import. */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/plus-jakarta-sans/plus-jakarta-sans-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 500; font-display: swap; src: url('../fonts/plus-jakarta-sans/plus-jakarta-sans-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 600; font-display: swap; src: url('../fonts/plus-jakarta-sans/plus-jakarta-sans-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 700; font-display: swap; src: url('../fonts/plus-jakarta-sans/plus-jakarta-sans-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Plus Jakarta Sans'; font-style: normal; font-weight: 800; font-display: swap; src: url('../fonts/plus-jakarta-sans/plus-jakarta-sans-latin-800-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Source Sans 3'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/source-sans-3/source-sans-3-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Source Sans 3'; font-style: normal; font-weight: 500; font-display: swap; src: url('../fonts/source-sans-3/source-sans-3-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Source Sans 3'; font-style: normal; font-weight: 600; font-display: swap; src: url('../fonts/source-sans-3/source-sans-3-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap; src: url('../fonts/ibm-plex-mono/ibm-plex-mono-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap; src: url('../fonts/ibm-plex-mono/ibm-plex-mono-latin-500-normal.woff2') format('woff2'); }
 
 :root {
   /* ── Named brand colors — shortcuts into the scales, not a separate palette ── */
@@ -596,3 +606,11 @@ html[data-text-spacing="loose"] p { margin-bottom: 2em !important; }
 
 /* Comfortable measure — caps line length for running text. */
 .measure { max-width: var(--measure); }
+
+/* Network-free fallback profile. Bundled font faces remain declared but are
+   never selected, so browsers do not request their files. */
+[data-fonts="system"] {
+  --font-heading: system-ui, sans-serif;
+  --font-body: system-ui, sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+}

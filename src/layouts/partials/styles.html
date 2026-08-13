@@ -1,7 +1,7 @@
-{{/* tokens.css is a verbatim mirror of the brand system's colors_and_type.css
-     and must come first: it carries the font @import, every token, the base
-     element styles and the opt-in accessibility layer. main.css composes
-     those tokens into theme components. */}}
+{{/* tokens.css is derived from the brand system's colors_and_type.css and
+     must come first. Its documented theme transformation replaces the remote
+     font import with bundled WOFF2 faces. main.css composes the tokens into
+     theme components. */}}
 {{ $tokens := resources.Get "css/tokens.css" }}
 {{ $theme := resources.Get "css/main.css" }}
 {{ $css := slice $tokens $theme | resources.Concat "css/projectious.css" }}

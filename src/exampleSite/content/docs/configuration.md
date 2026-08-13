@@ -12,6 +12,7 @@ weight: 3
 | `params.search.placement` | `header` or `none`. |
 | `params.giscus.repo` | Repository used for comments; empty disables comments. |
 | `params.social` | Footer links with `name` and `url`. |
+| `params.fonts` | `bundled` (default) or network-free `system`. |
 | `params.accessibility.*` | Opt-in accessibility attributes — see below. |
 | Page `comments` | Set `false` to suppress comments on one page. |
 
@@ -36,6 +37,13 @@ Readers can layer the remaining attributes themselves —
 `data-font-size`, `data-contrast`, `data-text-spacing` and `data-theme` all
 work against the theme because the token sheet is mirrored verbatim from the
 brand system.
+
+## Fonts
+
+The default `params.fonts = "bundled"` profile serves the pinned brand WOFF2
+files locally. Set `params.fonts = "system"` to select platform sans-serif and
+monospace stacks without requesting the bundled files. Components always use
+the semantic `--font-heading`, `--font-body`, and `--font-code` tokens.
 
 ## Main navigation
 
