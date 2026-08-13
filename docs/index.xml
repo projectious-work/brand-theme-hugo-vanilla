@@ -79,7 +79,7 @@
 &lt;div class="callout callout--info"&gt;
  &lt;strong class="callout__label"&gt;Info&lt;/strong&gt;
  &lt;div class="callout__body"&gt;Copy the search output and markup configuration from the bundled
-&lt;code&gt;exampleSite/hugo.toml&lt;/code&gt;; those settings enable the search index, heading
+&lt;code&gt;src/exampleSite/hugo.toml&lt;/code&gt;; those settings enable the search index, heading
 anchors, code labels, and syntax highlighting.&lt;/div&gt;
 &lt;/div&gt;
 
