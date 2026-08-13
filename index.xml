@@ -379,30 +379,19 @@ then write normal Markdown. Section names select their specialized layouts.&lt;/
 					&lt;td&gt;Footer links with &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;url&lt;/code&gt;.&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;params.accessibility.*&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;Opt-in accessibility attributes — see below.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
 					&lt;td&gt;Page &lt;code&gt;comments&lt;/code&gt;&lt;/td&gt;
 					&lt;td&gt;Set &lt;code&gt;false&lt;/code&gt; to suppress comments on one page.&lt;/td&gt;
 			&lt;/tr&gt;
 	&lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h2 id="main-navigation" class="h-anchor"&gt;Main navigation &lt;a href="#main-navigation" class="h-anchor__link" data-copy-link aria-label="Main navigation"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__lang"&gt;toml&lt;/span&gt;
- &lt;span class="code-block__filename"&gt;hugo.toml&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code"&gt;
-
-
-
-&lt;svg class="icon " width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;rect x="9" y="9" width="11" height="11" rx="2"/&gt;&lt;path d="M5 15V5a2 2 0 0 1 2-2h10"/&gt;&lt;/svg&gt;
-&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight" filename="hugo.toml"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;menus&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;main&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Docs&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;pageRef&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;/docs&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;weight&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Use &lt;code&gt;pageRef&lt;/code&gt; for internal destinations so Hugo resolves language and base URL
-correctly. Keep labels in sentence case.&lt;/p&gt;</description></item><item><title>Settings</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/settings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/settings/</guid><description>&lt;div class="app-shell"&gt;
+&lt;h2 id="accessibility-attributes" class="h-anchor"&gt;Accessibility attributes &lt;a href="#accessibility-attributes" class="h-anchor__link" data-copy-link aria-label="Accessibility attributes"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The brand system ships its accessibility layer as opt-in attributes on
+&lt;code&gt;&amp;lt;html&amp;gt;&lt;/code&gt;. The theme enables the three that new work is expected to set, and
+each one is configurable.&lt;/p&gt;</description></item><item><title>Settings</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/settings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/settings/</guid><description>&lt;div class="app-shell"&gt;
  &lt;aside class="app-shell__nav"&gt;
  &lt;strong&gt;projectious&lt;span class="brand__dot"&gt;.work&lt;/span&gt;&lt;/strong&gt;
  &lt;ul&gt;&lt;li&gt;Overview&lt;/li&gt;&lt;li&gt;Pipelines&lt;/li&gt;&lt;li&gt;Agents&lt;/li&gt;&lt;li&gt;Settings&lt;/li&gt;&lt;/ul&gt;
@@ -412,7 +401,7 @@ correctly. Keep labels in sentence case.&lt;/p&gt;</description></item><item><ti
  &lt;h3&gt;General&lt;/h3&gt;
  &lt;label class="field" for="workspace-name"&gt;
  &lt;span class="field__label"&gt;Workspace name&lt;/span&gt;
- &lt;input class="field__control" id="workspace-name" type="text" value="Projectious operations" placeholder=""&gt;
+ &lt;input class="field__control" id="workspace-name" type="text" value="projectious.work operations" placeholder=""&gt;
  &lt;span class="field__hint"&gt;Used in navigation and notifications.&lt;/span&gt;
 &lt;/label&gt;
 &lt;label class="field" for="default-region"&gt;
@@ -533,9 +522,10 @@ prose, lists, tables, links, quotes, and code.&lt;/p&gt;
 &lt;/section&gt;
 
 &lt;/div&gt;</description></item><item><title>Accessibility</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/accessibility/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/accessibility/</guid><description>&lt;h2 id="built-into-the-shell" class="h-anchor"&gt;Built into the shell &lt;a href="#built-into-the-shell" class="h-anchor__link" data-copy-link aria-label="Built into the shell"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The theme includes a skip link, semantic landmarks, visible keyboard focus,
-ordered heading anchors, and responsive navigation. Text and semantic colors
-follow the measured token roles from the brand system.&lt;/p&gt;
+&lt;p&gt;The theme mirrors the brand system&amp;rsquo;s token sheet verbatim, so every text role,
+tint and focus treatment is the measured one. On top of that it opts into the
+three accessibility attributes new work is expected to set:
+&lt;code&gt;data-a11y=&amp;quot;auto&amp;quot;&lt;/code&gt;, &lt;code&gt;data-focus=&amp;quot;strong&amp;quot;&lt;/code&gt; and &lt;code&gt;data-link-underline=&amp;quot;on&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class="demo-grid" style="--columns: 2"&gt;
 
@@ -543,9 +533,9 @@ follow the measured token roles from the brand system.&lt;/p&gt;
  &lt;h3&gt;Keyboard&lt;/h3&gt;
  &lt;ul&gt;
 &lt;li&gt;Logical reading and focus order&lt;/li&gt;
-&lt;li&gt;Visible &lt;code&gt;:focus-visible&lt;/code&gt; ring&lt;/li&gt;
+&lt;li&gt;Conforming &lt;code&gt;:focus-visible&lt;/code&gt; ring at midnight-9&lt;/li&gt;
 &lt;li&gt;44 px minimum control target&lt;/li&gt;
-&lt;li&gt;Escape closes modal surfaces&lt;/li&gt;
+&lt;li&gt;Escape closes the search dialog and returns focus&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;/section&gt;
@@ -554,9 +544,9 @@ follow the measured token roles from the brand system.&lt;/p&gt;
 &lt;section class="panel"&gt;
  &lt;h3&gt;Perception&lt;/h3&gt;
  &lt;ul&gt;
-&lt;li&gt;Text uses step 11 or 12 roles&lt;/li&gt;
-&lt;li&gt;Status never relies on color alone&lt;/li&gt;
-&lt;li&gt;Reduced motion is respected&lt;/li&gt;
+&lt;li&gt;Text uses step 11 or 12 roles only&lt;/li&gt;
+&lt;li&gt;Status pairs its dot with a written label&lt;/li&gt;
+&lt;li&gt;Reduced motion and transparency follow the OS&lt;/li&gt;
 &lt;li&gt;Errors stay next to the failed region&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -564,12 +554,10 @@ follow the measured token roles from the brand system.&lt;/p&gt;
 
 &lt;/div&gt;
 
-
-
-&lt;div class="callout callout--info"&gt;
- &lt;strong class="callout__label"&gt;Info&lt;/strong&gt;
- &lt;div class="callout__body"&gt;The accent identity color is not body text. Solid accent buttons use the AA-compliant accent-solid token.&lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>Mobile workflow</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/mobile/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/mobile/</guid><description>&lt;section class="panel panel--dark"&gt;
+&lt;h2 id="reader-controlled-settings" class="h-anchor"&gt;Reader-controlled settings &lt;a href="#reader-controlled-settings" class="h-anchor__link" data-copy-link aria-label="Reader-controlled settings"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The remaining attributes from the brand system work against this theme
+unchanged, because nothing here redeclares a token. Set them on &lt;code&gt;&amp;lt;html&amp;gt;&lt;/code&gt; to
+verify a page holds up.&lt;/p&gt;</description></item><item><title>Mobile workflow</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/mobile/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/mobile/</guid><description>&lt;section class="panel panel--dark"&gt;
  &lt;h3&gt;Deploy staging&lt;/h3&gt;
  &lt;p&gt;&lt;span class="status status--running"&gt;Running&lt;/span&gt;&lt;/p&gt;
 &lt;div class="steps"&gt;

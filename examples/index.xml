@@ -202,7 +202,7 @@
  &lt;h3&gt;General&lt;/h3&gt;
  &lt;label class="field" for="workspace-name"&gt;
  &lt;span class="field__label"&gt;Workspace name&lt;/span&gt;
- &lt;input class="field__control" id="workspace-name" type="text" value="Projectious operations" placeholder=""&gt;
+ &lt;input class="field__control" id="workspace-name" type="text" value="projectious.work operations" placeholder=""&gt;
  &lt;span class="field__hint"&gt;Used in navigation and notifications.&lt;/span&gt;
 &lt;/label&gt;
 &lt;label class="field" for="default-region"&gt;
@@ -279,9 +279,10 @@ limits. Start small and retain provider independence.&lt;/p&gt;
 &lt;/section&gt;
 
 &lt;/div&gt;</description></item><item><title>Accessibility</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/accessibility/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/accessibility/</guid><description>&lt;h2 id="built-into-the-shell" class="h-anchor"&gt;Built into the shell &lt;a href="#built-into-the-shell" class="h-anchor__link" data-copy-link aria-label="Built into the shell"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;The theme includes a skip link, semantic landmarks, visible keyboard focus,
-ordered heading anchors, and responsive navigation. Text and semantic colors
-follow the measured token roles from the brand system.&lt;/p&gt;
+&lt;p&gt;The theme mirrors the brand system&amp;rsquo;s token sheet verbatim, so every text role,
+tint and focus treatment is the measured one. On top of that it opts into the
+three accessibility attributes new work is expected to set:
+&lt;code&gt;data-a11y=&amp;quot;auto&amp;quot;&lt;/code&gt;, &lt;code&gt;data-focus=&amp;quot;strong&amp;quot;&lt;/code&gt; and &lt;code&gt;data-link-underline=&amp;quot;on&amp;quot;&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class="demo-grid" style="--columns: 2"&gt;
 
@@ -289,9 +290,9 @@ follow the measured token roles from the brand system.&lt;/p&gt;
  &lt;h3&gt;Keyboard&lt;/h3&gt;
  &lt;ul&gt;
 &lt;li&gt;Logical reading and focus order&lt;/li&gt;
-&lt;li&gt;Visible &lt;code&gt;:focus-visible&lt;/code&gt; ring&lt;/li&gt;
+&lt;li&gt;Conforming &lt;code&gt;:focus-visible&lt;/code&gt; ring at midnight-9&lt;/li&gt;
 &lt;li&gt;44 px minimum control target&lt;/li&gt;
-&lt;li&gt;Escape closes modal surfaces&lt;/li&gt;
+&lt;li&gt;Escape closes the search dialog and returns focus&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;/section&gt;
@@ -300,9 +301,9 @@ follow the measured token roles from the brand system.&lt;/p&gt;
 &lt;section class="panel"&gt;
  &lt;h3&gt;Perception&lt;/h3&gt;
  &lt;ul&gt;
-&lt;li&gt;Text uses step 11 or 12 roles&lt;/li&gt;
-&lt;li&gt;Status never relies on color alone&lt;/li&gt;
-&lt;li&gt;Reduced motion is respected&lt;/li&gt;
+&lt;li&gt;Text uses step 11 or 12 roles only&lt;/li&gt;
+&lt;li&gt;Status pairs its dot with a written label&lt;/li&gt;
+&lt;li&gt;Reduced motion and transparency follow the OS&lt;/li&gt;
 &lt;li&gt;Errors stay next to the failed region&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -310,12 +311,10 @@ follow the measured token roles from the brand system.&lt;/p&gt;
 
 &lt;/div&gt;
 
-
-
-&lt;div class="callout callout--info"&gt;
- &lt;strong class="callout__label"&gt;Info&lt;/strong&gt;
- &lt;div class="callout__body"&gt;The accent identity color is not body text. Solid accent buttons use the AA-compliant accent-solid token.&lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>Mobile workflow</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/mobile/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/mobile/</guid><description>&lt;section class="panel panel--dark"&gt;
+&lt;h2 id="reader-controlled-settings" class="h-anchor"&gt;Reader-controlled settings &lt;a href="#reader-controlled-settings" class="h-anchor__link" data-copy-link aria-label="Reader-controlled settings"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The remaining attributes from the brand system work against this theme
+unchanged, because nothing here redeclares a token. Set them on &lt;code&gt;&amp;lt;html&amp;gt;&lt;/code&gt; to
+verify a page holds up.&lt;/p&gt;</description></item><item><title>Mobile workflow</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/mobile/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/mobile/</guid><description>&lt;section class="panel panel--dark"&gt;
  &lt;h3&gt;Deploy staging&lt;/h3&gt;
  &lt;p&gt;&lt;span class="status status--running"&gt;Running&lt;/span&gt;&lt;/p&gt;
 &lt;div class="steps"&gt;

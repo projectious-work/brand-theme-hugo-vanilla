@@ -185,30 +185,19 @@ then write normal Markdown. Section names select their specialized layouts.&lt;/
 					&lt;td&gt;Footer links with &lt;code&gt;name&lt;/code&gt; and &lt;code&gt;url&lt;/code&gt;.&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;params.accessibility.*&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;Opt-in accessibility attributes — see below.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
 					&lt;td&gt;Page &lt;code&gt;comments&lt;/code&gt;&lt;/td&gt;
 					&lt;td&gt;Set &lt;code&gt;false&lt;/code&gt; to suppress comments on one page.&lt;/td&gt;
 			&lt;/tr&gt;
 	&lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h2 id="main-navigation" class="h-anchor"&gt;Main navigation &lt;a href="#main-navigation" class="h-anchor__link" data-copy-link aria-label="Main navigation"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;div class="code-block"&gt;
- &lt;div class="code-block__header"&gt;
- &lt;span class="code-block__lang"&gt;toml&lt;/span&gt;
- &lt;span class="code-block__filename"&gt;hugo.toml&lt;/span&gt;
- &lt;button class="code-block__copy" type="button" aria-label="Copy code"&gt;
-
-
-
-&lt;svg class="icon " width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"&gt;&lt;rect x="9" y="9" width="11" height="11" rx="2"/&gt;&lt;path d="M5 15V5a2 2 0 0 1 2-2h10"/&gt;&lt;/svg&gt;
-&lt;/button&gt;
- &lt;/div&gt;
- &lt;div class="highlight" filename="hugo.toml"&gt;&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-toml" data-lang="toml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="nx"&gt;menus&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;main&lt;/span&gt;&lt;span class="p"&gt;]]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;name&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Docs&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;pageRef&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;/docs&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;weight&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Use &lt;code&gt;pageRef&lt;/code&gt; for internal destinations so Hugo resolves language and base URL
-correctly. Keep labels in sentence case.&lt;/p&gt;</description></item><item><title>Shortcode reference</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/shortcodes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/shortcodes/</guid><description>&lt;p&gt;Shortcodes are semantic additions to Markdown. Prefer Markdown for ordinary
+&lt;h2 id="accessibility-attributes" class="h-anchor"&gt;Accessibility attributes &lt;a href="#accessibility-attributes" class="h-anchor__link" data-copy-link aria-label="Accessibility attributes"&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The brand system ships its accessibility layer as opt-in attributes on
+&lt;code&gt;&amp;lt;html&amp;gt;&lt;/code&gt;. The theme enables the three that new work is expected to set, and
+each one is configurable.&lt;/p&gt;</description></item><item><title>Shortcode reference</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/shortcodes/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/shortcodes/</guid><description>&lt;p&gt;Shortcodes are semantic additions to Markdown. Prefer Markdown for ordinary
 prose, lists, tables, links, quotes, and code.&lt;/p&gt;
 &lt;h2 id="callout" class="h-anchor"&gt;Callout &lt;a href="#callout" class="h-anchor__link" data-copy-link aria-label="Callout"&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Parameters: &lt;code&gt;type&lt;/code&gt; is &lt;code&gt;info&lt;/code&gt;, &lt;code&gt;success&lt;/code&gt;, &lt;code&gt;warning&lt;/code&gt;, or &lt;code&gt;danger&lt;/code&gt;.&lt;/p&gt;
