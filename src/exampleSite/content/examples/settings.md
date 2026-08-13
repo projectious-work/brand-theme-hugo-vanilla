@@ -8,7 +8,7 @@ weight: 3
 ## Workspace settings
 
 {{< panel title="General" >}}
-{{< field label="Workspace name" value="Projectious operations" hint="Used in navigation and notifications." >}}
+{{< field label="Workspace name" value="projectious.work operations" hint="Used in navigation and notifications." >}}
 {{< field label="Default region" value="eu-central" hint="New pipelines inherit this region." >}}
 {{< field label="Audit email" type="email" value="audit@example.com" >}}
 

@@ -56,11 +56,38 @@
     var openers = document.querySelectorAll('[data-search-open]');
     var closers = document.querySelectorAll('[data-search-close]');
     if(!modal || !input || !results) return;
-    function open(){ modal.classList.add('is-open'); load().then(function(){ input.focus(); }); }
-    function close(){ modal.classList.remove('is-open'); input.value = ''; results.innerHTML = ''; }
+    var lastFocused = null;
+    function isOpen(){ return modal.classList.contains('is-open'); }
+    /* Focus moves deliberately on open and close: into the field, then back
+       to whatever opened the dialog. */
+    function open(){
+      if(isOpen()) return;
+      lastFocused = document.activeElement;
+      modal.hidden = false;
+      modal.classList.add('is-open');
+      load().then(function(){ input.focus(); });
+    }
+    function close(){
+      if(!isOpen()) return;
+      modal.classList.remove('is-open');
+      modal.hidden = true;
+      input.value = '';
+      results.innerHTML = '';
+      if(lastFocused && lastFocused.focus) lastFocused.focus();
+      lastFocused = null;
+    }
     openers.forEach(function(o){ o.addEventListener('click', open); });
     closers.forEach(function(c){ c.addEventListener('click', close); });
     modal.addEventListener('click', function(e){ if(e.target === modal) close(); });
+    /* Tab stays inside the dialog while it is open. */
+    modal.addEventListener('keydown', function(e){
+      if(e.key !== 'Tab') return;
+      var focusable = modal.querySelectorAll('input, button, a[href]');
+      if(!focusable.length) return;
+      var first = focusable[0], last = focusable[focusable.length - 1];
+      if(e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    });
     document.addEventListener('keydown', function(e){
       var tag = document.activeElement && document.activeElement.tagName;
       if((e.key === 'k' && (e.metaKey || e.ctrlKey)) || (e.key === '/' && tag !== 'INPUT' && tag !== 'TEXTAREA')){

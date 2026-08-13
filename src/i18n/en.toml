@@ -42,3 +42,9 @@ other = "Documentation navigation"
 
 [noResults]
 other = "No results"
+
+[skipToContent]
+other = "Skip to content"
+
+[search]
+other = "Search"

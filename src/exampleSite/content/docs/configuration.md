@@ -12,7 +12,30 @@ weight: 3
 | `params.search.placement` | `header` or `none`. |
 | `params.giscus.repo` | Repository used for comments; empty disables comments. |
 | `params.social` | Footer links with `name` and `url`. |
+| `params.accessibility.*` | Opt-in accessibility attributes — see below. |
 | Page `comments` | Set `false` to suppress comments on one page. |
+
+## Accessibility attributes
+
+The brand system ships its accessibility layer as opt-in attributes on
+`<html>`. The theme enables the three that new work is expected to set, and
+each one is configurable.
+
+```toml {filename="hugo.toml"}
+[params.accessibility]
+auto = true             # data-a11y="auto" — follow OS motion, contrast, transparency
+focus = "strong"        # data-focus="strong" — the WCAG 1.4.11 conforming ring
+linkUnderline = true    # data-link-underline="on" — link identity is not colour alone
+```
+
+Set `focus = ""` to fall back to the brand system's documented default ring.
+That ring measures ~1.2:1 and does not meet WCAG 1.4.11, so leave `strong`
+in place unless you have a reason not to.
+
+Readers can layer the remaining attributes themselves —
+`data-font-size`, `data-contrast`, `data-text-spacing` and `data-theme` all
+work against the theme because the token sheet is mirrored verbatim from the
+brand system.
 
 ## Main navigation
 

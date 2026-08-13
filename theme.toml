@@ -1,4 +1,4 @@
-name = "Projectious"
+name = "projectious.work"
 license = "MIT"
 licenselink = "https://github.com/projectious-work/hugo-theme-projectious/blob/main/LICENSE"
 description = "Idiomatic Hugo theme implementing the projectious.work brand system: docs, blog, changelog, marketing pages, light/dark mode, client-side search, zero npm dependencies."

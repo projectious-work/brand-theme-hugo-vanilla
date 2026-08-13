@@ -73,3 +73,6 @@ coverage/
 
 
 # aibox generated
+
+# Brand system source material — reference input, not part of the theme
+input/

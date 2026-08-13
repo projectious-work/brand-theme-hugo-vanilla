@@ -14,13 +14,21 @@
     if(!frame) return;
     frame.contentWindow.postMessage({ giscus: { setConfig: { theme: theme } } }, 'https://giscus.app');
   }
+  /* giscus renders with preferred_color_scheme; if the page pins a mode,
+     tell the frame about it once it exists. */
+  window.addEventListener('message', function(e){
+    if(e.origin !== 'https://giscus.app' || !e.data || !e.data.giscus) return;
+    if(document.documentElement.getAttribute('data-theme')) updateGiscus(isDark() ? 'dark' : 'light');
+  });
   document.addEventListener('DOMContentLoaded', function(){
     var btn = document.querySelector('[data-theme-toggle]');
     if(!btn) return;
+    btn.setAttribute('aria-pressed', String(isDark()));
     btn.addEventListener('click', function(){
       var next = isDark() ? 'light' : 'dark';
-      localStorage.setItem(STORAGE_KEY, next);
+      try { localStorage.setItem(STORAGE_KEY, next); } catch(e) {}
       apply(next);
+      btn.setAttribute('aria-pressed', String(next === 'dark'));
       updateGiscus(next);
     });
   });
