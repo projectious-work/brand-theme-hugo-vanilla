@@ -1,4 +1,4 @@
-# hugo-theme-projectious
+# brand-theme-hugo-vanilla
 
 A lean, idiomatic Hugo theme implementing the projectious.work brand system. No npm, no build step beyond `hugo`/`hugo server` — styling and scripting run entirely through Hugo Pipes (`resources.Get` → `minify` → `fingerprint`).
 
@@ -7,7 +7,7 @@ A lean, idiomatic Hugo theme implementing the projectious.work brand system. No 
 Git submodule:
 
 ```
-git submodule add https://github.com/projectious-work/hugo-theme-projectious.git themes/hugo-theme-projectious
+git submodule add https://github.com/projectious-work/brand-theme-hugo-vanilla.git themes/brand-theme-hugo-vanilla
 ```
 
 or as a Hugo Module in your `hugo.toml`:
@@ -15,10 +15,11 @@ or as a Hugo Module in your `hugo.toml`:
 ```toml
 [module]
   [[module.imports]]
-    path = "github.com/projectious-work/hugo-theme-projectious"
+    path = "github.com/projectious-work/brand-theme-hugo-vanilla"
 ```
 
-Then set `theme = "hugo-theme-projectious"` (submodule) — Hugo Modules need no `theme` key.
+Then set `theme = "brand-theme-hugo-vanilla"` (submodule). Hugo Modules need
+no `theme` key.
 
 Copy the settings from `src/exampleSite/hugo.toml` into your own site config:
 the `[outputs]`/`[outputFormats.SearchIndex]` block (powers search) and the
@@ -80,6 +81,9 @@ All local, no GitHub Actions:
 - `scripts/build.sh [dest]` — production build of `src/exampleSite` into
   `public/` (or `dest`).
 - `scripts/deploy.sh` — builds, then force-pushes the output to the `gh-pages` branch via a local git worktree and enables GitHub Pages on that branch if it isn't already (needs `gh` auth with repo admin access).
+
+Contributor workflow, versioning, releases, and hotfixes are documented in
+[`CONTRIBUTING.md`](CONTRIBUTING.md).
 
 ## What's deliberately not included
 

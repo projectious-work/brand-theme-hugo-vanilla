@@ -2,6 +2,17 @@
 
 All notable changes to this project are documented in this file.
 
+## Unreleased
+
+### Changed
+
+- Renamed the public Hugo Module and installation identity from
+  `hugo-theme-projectious` to `brand-theme-hugo-vanilla`. Consumers must update
+  the module path in `go.mod` and `hugo.toml`; the repository and GitHub Pages
+  URLs remain unchanged.
+- Adopted the simple branching and release lifecycle with `main` as the stable
+  integration branch and `gh-pages` reserved for generated output.
+
 ## [v0.1.0] — 2026-08-12
 
 ### Added

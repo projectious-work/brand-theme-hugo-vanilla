@@ -14,6 +14,8 @@ if ! command -v hugo >/dev/null 2>&1; then
   exit 1
 fi
 
+"$ROOT_DIR/scripts/check-identity.sh"
+
 rm -rf "$DEST_DIR"
 
 hugo \

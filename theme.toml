@@ -1,8 +1,8 @@
 name = "projectious.work"
 license = "MIT"
-licenselink = "https://github.com/projectious-work/hugo-theme-projectious/blob/main/LICENSE"
+licenselink = "https://github.com/projectious-work/brand-theme-hugo-vanilla/blob/main/LICENSE"
 description = "Idiomatic Hugo theme implementing the projectious.work brand system: docs, blog, changelog, marketing pages, light/dark mode, client-side search, zero npm dependencies."
-homepage = "https://github.com/projectious-work/hugo-theme-projectious"
+homepage = "https://github.com/projectious-work/brand-theme-hugo-vanilla"
 tags = ["docs", "blog", "documentation", "brand", "dark-mode", "search"]
 features = [
   "light/dark mode",

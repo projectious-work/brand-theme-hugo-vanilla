@@ -6,7 +6,7 @@ enableRobotsTXT = true
 
 [module]
   [[module.imports]]
-    path = "github.com/projectious-work/hugo-theme-projectious"
+    path = "github.com/projectious-work/brand-theme-hugo-vanilla"
 
 [pagination]
   pagerSize = 8

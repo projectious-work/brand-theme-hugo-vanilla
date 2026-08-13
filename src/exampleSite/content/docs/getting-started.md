@@ -14,7 +14,7 @@ weight: 1
 
 {{< terminal >}}
 $ hugo mod init example.com/my-site
-$ hugo mod get github.com/projectious-work/hugo-theme-projectious
+$ hugo mod get github.com/projectious-work/brand-theme-hugo-vanilla
 $ hugo server
 ✓ Web server available at http://localhost:1313/
 {{< /terminal >}}
@@ -23,18 +23,18 @@ Add the import to `hugo.toml`:
 
 ```toml {filename="hugo.toml"}
 [[module.imports]]
-path = "github.com/projectious-work/hugo-theme-projectious"
+path = "github.com/projectious-work/brand-theme-hugo-vanilla"
 ```
 
 ## Install as a submodule
 
 {{< terminal >}}
-$ git submodule add https://github.com/projectious-work/hugo-theme-projectious.git themes/hugo-theme-projectious
+$ git submodule add https://github.com/projectious-work/brand-theme-hugo-vanilla.git themes/brand-theme-hugo-vanilla
 $ hugo server
 {{< /terminal >}}
 
 ```toml {filename="hugo.toml"}
-theme = "hugo-theme-projectious"
+theme = "brand-theme-hugo-vanilla"
 ```
 
 {{< callout type="info" >}}
