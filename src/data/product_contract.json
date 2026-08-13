@@ -2,7 +2,7 @@
   "schemaVersion": "1.0",
   "product": {
     "name": "brand-theme-hugo-vanilla",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "module": "github.com/projectious-work/brand-theme-hugo-vanilla",
     "repository": "https://github.com/projectious-work/brand-theme-hugo-vanilla",
     "license": "MIT",

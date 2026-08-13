@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "brand-theme-hugo-vanilla-mcp"
-version = "0.2.2"
+version = "0.2.3"
 description = "Read-only MCP projection of the released Hugo theme contract"
 requires-python = ">=3.11"
 dependencies = []
