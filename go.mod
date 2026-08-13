@@ -1,3 +1,3 @@
-module github.com/projectious-work/hugo-theme-projectious
+module github.com/projectious-work/brand-theme-hugo-vanilla
 
 go 1.21

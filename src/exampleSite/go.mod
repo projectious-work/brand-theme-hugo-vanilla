@@ -1,7 +1,7 @@
-module github.com/projectious-work/hugo-theme-projectious/exampleSite
+module github.com/projectious-work/brand-theme-hugo-vanilla/exampleSite
 
 go 1.21
 
-require github.com/projectious-work/hugo-theme-projectious v0.0.0
+require github.com/projectious-work/brand-theme-hugo-vanilla v0.0.0
 
-replace github.com/projectious-work/hugo-theme-projectious => ../..
+replace github.com/projectious-work/brand-theme-hugo-vanilla => ../..
