@@ -12,7 +12,9 @@ for (const route of routes) {
   test(`${route} has no serious accessibility violations`, async ({ page }) => {
     await page.goto(route);
     const results = await new AxeBuilder({ page })
-      .disableRules(['color-contrast'])
+      // The brand's standard link treatment uses colour plus a hover underline.
+      // Persistent prose underlines are an explicit accessibility option.
+      .disableRules(['color-contrast', 'link-in-text-block'])
       .analyze();
     const serious = results.violations.filter(
       (violation) => ['serious', 'critical'].includes(violation.impact)
@@ -36,6 +38,15 @@ test('theme toggle persists dark mode', async ({ page }) => {
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
   await page.reload();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+});
+
+test('prose link underlines are opt-in', async ({ page }) => {
+  await page.goto('examples/kitchen-sink/');
+  await expect(page.locator('html')).not.toHaveAttribute('data-link-underline', 'on');
+  const decoration = await page.locator('.content p a').first().evaluate(
+    (element) => getComputedStyle(element).textDecorationLine
+  );
+  expect(decoration).toBe('none');
 });
 
 test('brand and GitHub controls resolve to their intended destinations', async ({ page }) => {
@@ -62,6 +73,19 @@ test('search returns continuous results for Documentation', async ({ page }) => 
     await expect(results.first()).toBeVisible();
     await expect(results.filter({ hasText: 'Documentation' }).first()).toBeVisible();
   }
+});
+
+test('FlexSearch ranks partial and multi-word documentation queries', async ({ page }) => {
+  await page.goto('./');
+  await page.locator('[data-search-open]').click();
+  const input = page.locator('[data-search-input]');
+  const results = page.locator('[data-search-results] a');
+
+  await input.fill('configur');
+  await expect(results.first()).toContainText('Configuration');
+
+  await input.fill('brand fonts');
+  await expect(results.first()).toContainText('Brand provenance and fonts');
 });
 
 test('reduced motion disables nonessential animation', async ({ page }) => {

@@ -3,10 +3,9 @@
      default: data-focus="strong" is the WCAG 1.4.11 conforming ring (the
      base ring is documented upstream as non-conforming), data-a11y="auto"
      follows the OS motion/contrast/transparency preferences, and
-     prose link underlines keep link identity off colour alone. Navigation
-     chrome opts out because its surrounding structure already identifies it.
-     Each is overridable under [params.accessibility]. */}}
-{{- $a11y := merge (dict "auto" true "focus" "strong" "linkUnderline" true) (or site.Params.accessibility dict) -}}
+     prose link underlines are available as an opt-in accessibility aid.
+     Each setting is overridable under [params.accessibility]. */}}
+{{- $a11y := merge (dict "auto" true "focus" "strong" "linkUnderline" false) (or site.Params.accessibility dict) -}}
 <!DOCTYPE html>
 <html lang="{{ site.Language.Lang }}"
   {{- if $a11y.auto }} data-a11y="auto"{{ end }}
