@@ -2,6 +2,14 @@
 
 All notable changes to this project are documented in this file.
 
+## [v0.2.1] — 2026-08-13
+
+### Fixed
+
+- Corrected module-data access in the generated contract reference,
+  `llms.txt`, and `llms-full.txt`, and added a release check that rejects
+  unresolved template values.
+
 ## [v0.2.0] — 2026-08-13
 
 ### Changed
@@ -42,3 +50,4 @@ All notable changes to this project are documented in this file.
 
 [v0.1.0]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.1.0
 [v0.2.0]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.0
+[v0.2.1]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.1

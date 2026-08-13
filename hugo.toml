@@ -9,6 +9,9 @@
     source = "src/i18n"
     target = "i18n"
   [[module.mounts]]
+    source = "src/data"
+    target = "data"
+  [[module.mounts]]
     source = "src/layouts"
     target = "layouts"
   [[module.mounts]]

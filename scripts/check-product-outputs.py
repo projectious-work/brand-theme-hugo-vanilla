@@ -40,6 +40,22 @@ def main() -> int:
         if forbidden in full:
             errors.append(f"llms-full.txt contains forbidden content: {forbidden}")
 
+    generated_text = "\n".join(
+        (root / relative).read_text(encoding="utf-8", errors="replace")
+        for relative in (
+            "llms.txt", "llms-full.txt", "docs/reference/index.html"
+        )
+    )
+    if "<no value>" in generated_text:
+        errors.append("generated product documentation contains unresolved data")
+    for value in (
+        "brand-theme-hugo-vanilla 0.2.1",
+        "github.com/projectious-work/brand-theme-hugo-vanilla",
+        "0.121.0",
+    ):
+        if value not in generated_text:
+            errors.append(f"generated product documentation lacks: {value}")
+
     if errors:
         for error in errors:
             print(f"error: {error}", file=sys.stderr)
