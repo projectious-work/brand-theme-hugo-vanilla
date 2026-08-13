@@ -39,7 +39,7 @@ theme = "brand-theme-hugo-vanilla"
 
 {{< callout type="info" >}}
 Copy the search output and markup configuration from the bundled
-`src/exampleSite/hugo.toml`; those settings enable the search index, heading
+`src/content/hugo.toml`; those settings enable the search index, heading
 anchors, code labels, and syntax highlighting.
 {{< /callout >}}
 

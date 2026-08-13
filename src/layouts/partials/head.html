@@ -3,6 +3,8 @@
 <meta name="color-scheme" content="light dark">
 <script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
 {{ partial "seo.html" . }}
+{{ partial "structured-data.html" . }}
+{{ partial "ai-links.html" . }}
 {{ partial "styles.html" . }}
 <link rel="icon" href="{{ "logo/favicon-32.png" | relURL }}" sizes="32x32">
 <link rel="apple-touch-icon" href="{{ "logo/apple-touch-icon-180.png" | relURL }}">

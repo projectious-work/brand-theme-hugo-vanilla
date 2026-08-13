@@ -3,9 +3,9 @@
 public/
 resources/_gen/
 .hugo_build.lock
-src/exampleSite/public/
-src/exampleSite/resources/_gen/
-src/exampleSite/.hugo_build.lock
+src/content/public/
+src/content/resources/_gen/
+src/content/.hugo_build.lock
 .deploy/
 
 
@@ -60,8 +60,14 @@ $RECYCLE.BIN/
 *~
 .idea/
 
+# ── Python generated files ───────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+
 # ── Node.js ──────────────────────────────────────────────────────────────────
 node_modules/
+test-results/
+playwright-report/
 .next/
 dist/
 .env.local

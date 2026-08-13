@@ -20,8 +20,28 @@ enableRobotsTXT = true
   isPlainText = true
   notAlternative = true
 
+[outputFormats.Markdown]
+  mediaType = "text/markdown"
+  baseName = "index"
+  isPlainText = true
+  notAlternative = true
+
+[outputFormats.LLMIndex]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  notAlternative = true
+
+[outputFormats.LLMFull]
+  mediaType = "text/plain"
+  baseName = "llms-full"
+  isPlainText = true
+  notAlternative = true
+
 [outputs]
-  home = ["HTML", "RSS", "SearchIndex"]
+  home = ["HTML", "RSS", "SearchIndex", "Markdown", "LLMIndex", "LLMFull"]
+  page = ["HTML", "Markdown"]
+  section = ["HTML", "RSS", "Markdown"]
 
 [markup]
   [markup.goldmark.renderer]
