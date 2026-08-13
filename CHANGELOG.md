@@ -2,6 +2,40 @@
 
 All notable changes to this project are documented in this file.
 
+## [v0.2.4] — 2026-08-13
+
+### Fixed
+
+- Stopped the `terminal` shortcode escaping its own markup when nested inside
+  `app` or `panel`, which rendered raw `<div><span>` source on the dashboard
+  example.
+- Kept inline shortcodes (`status`, `badge`, `tag`, `button`) inside their
+  Markdown table cell; stray newlines were splitting a three-row table into
+  nine rows with every status pill orphaned.
+- Rescoped foreground tokens on mode-fixed dark surfaces, so components
+  nested in the hero or a dark panel no longer inherit light-mode text
+  colours (the hero's ghost button measured 2.28:1, dark-panel step text
+  3.01:1).
+- Collapsed the `grid` shortcode to a single column on mobile. It writes
+  `--columns` inline, which no stylesheet rule can outrank, so the landing
+  page rendered three ~54px cards at 375px with every title clipped.
+- Prevented 48px display type from being silently clipped at 375px, where
+  "projectious.work" has no break opportunity.
+- Removed the closed mobile navigation drawer from the tab order; seven
+  controls were focusable while invisible.
+- Made horizontally scrolling code blocks reachable by keyboard (WCAG 2.1.1).
+- Restored AA contrast on accent tags, which measured 4.10:1 in light mode
+  against the neutral tag's 9.75:1. Tracked upstream as
+  [projectious-work/brand#15](https://github.com/projectious-work/brand/issues/15).
+
+### Changed
+
+- Re-enabled the `color-contrast` rule in the browser accessibility suite.
+  Only the logotype is excluded, which the brand system declares as a
+  deliberate WCAG 1.4.3 exemption; it was previously disabled wholesale.
+- Added six browser regression tests covering the shortcode, dark-surface,
+  responsive-grid, scroll-region, and drawer defects above.
+
 ## [v0.2.3] — 2026-08-13
 
 ### Changed
@@ -80,3 +114,4 @@ All notable changes to this project are documented in this file.
 [v0.2.1]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.1
 [v0.2.2]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.2
 [v0.2.3]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.3
+[v0.2.4]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.4
