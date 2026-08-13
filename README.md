@@ -58,6 +58,15 @@ dependency-free and auditable. Trigger it from the header search box,
 `Cmd/Ctrl+K`, or `/`. Swap in a different engine by replacing `search.js` and
 the `SearchIndex` output format if your content library outgrows this.
 
+## AI-readable documentation and MCP
+
+The example site publishes Markdown alternatives, `/llms.txt`, and a bounded
+`/llms-full.txt` from the versioned product contract. A dependency-free,
+read-only stdio MCP server projects the same generated contract, pages, tokens,
+and provenance without exposing repository files. See
+`mcp/product-mcp/README.md` and the example site's **AI discovery and product
+MCP** guide.
+
 ## Light/dark mode
 
 Driven by `[data-theme="dark"]` on `<html>`, matching the brand system's own token overrides in `colors_and_type.css`. Defaults to `prefers-color-scheme`; the header toggle persists an explicit choice to `localStorage`.
@@ -87,6 +96,9 @@ languages the normal Hugo way (`languages.xx` in config + `i18n/xx.toml`).
 
 All local, no GitHub Actions:
 
+- `scripts/verify.sh` — canonical local verification: identity, provenance,
+  contract, deterministic outputs, full example, minimal consumer, local links,
+  semantics, and product MCP tests.
 - `scripts/serve.sh` — watch/serve `src/exampleSite` at
   `http://0.0.0.0:1313` (override with `PORT`/`BASE_URL`). Forward the port
   from the dev container to your host to preview.

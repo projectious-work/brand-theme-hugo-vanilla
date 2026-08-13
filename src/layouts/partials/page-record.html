@@ -1,0 +1,18 @@
+{{- $page := . -}}
+{{- $published := "" -}}
+{{- if not $page.Date.IsZero }}{{ $published = $page.Date.Format "2006-01-02" }}{{ end -}}
+{{- $updated := "" -}}
+{{- if not $page.Lastmod.IsZero }}{{ $updated = $page.Lastmod.Format "2006-01-02" }}{{ end -}}
+{{- return (dict
+  "id" $page.RelPermalink
+  "title" $page.Title
+  "url" $page.Permalink
+  "relativeUrl" $page.RelPermalink
+  "section" $page.Section
+  "description" ($page.Params.description | default "")
+  "content" ($page.Plain | strings.TrimSpace)
+  "published" $published
+  "updated" $updated
+  "tags" ($page.Params.tags | default slice)
+  "language" $page.Language.Lang
+) -}}

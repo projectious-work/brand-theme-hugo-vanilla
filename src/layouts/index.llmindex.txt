@@ -1,0 +1,18 @@
+# {{ site.Title }}
+
+> {{ site.Params.description }}
+
+Product: brand-theme-hugo-vanilla {{ hugo.Data.product_contract.product.version }}
+Module: {{ hugo.Data.product_contract.product.module }}
+
+## Canonical references
+
+- [Getting started]({{ "docs/getting-started/" | absURL }})
+- [Theme contract]({{ "docs/reference/" | absURL }})
+- [Configuration]({{ "docs/configuration/" | absURL }})
+- [Content model]({{ "docs/content-model/" | absURL }})
+- [Shortcodes]({{ "docs/shortcodes/" | absURL }})
+- [Brand provenance and fonts]({{ "docs/brand-and-fonts/" | absURL }})
+- [Changelog]({{ "changelog/" | absURL }})
+- [Full AI-readable guide]({{ "llms-full.txt" | absURL }})
+- [Repository licence]({{ "https://github.com/projectious-work/brand-theme-hugo-vanilla/blob/main/LICENSE" }})

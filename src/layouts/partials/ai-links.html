@@ -1,0 +1,7 @@
+{{ with .OutputFormats.Get "Markdown" }}
+<link rel="alternate" type="text/markdown" href="{{ .Permalink }}" title="Markdown">
+{{ end }}
+{{ if .IsHome }}
+<link rel="alternate" type="text/plain" href="{{ "llms.txt" | absURL }}" title="LLM index">
+<link rel="alternate" type="text/plain" href="{{ "llms-full.txt" | absURL }}" title="Full AI-readable guide">
+{{ end }}

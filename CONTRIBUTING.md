@@ -45,16 +45,11 @@ The version bump, changelog, tag, GitHub release, and Pages publication are one
 release procedure. If Pages publication fails after the GitHub release exists,
 retry publication from the same tagged commit; do not create or move a tag.
 
-Release verification currently starts with:
+Run the release-grade local verification entry point:
 
 ```sh
-scripts/check-identity.sh
-scripts/build.sh /tmp/brand-theme-hugo-vanilla-build
-git diff --check
+scripts/verify.sh
 ```
-
-The unified release-grade verification command will supersede this provisional
-sequence as part of deployment hardening.
 
 ## Hotfixes and rollback
 

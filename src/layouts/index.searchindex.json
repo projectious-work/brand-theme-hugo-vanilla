@@ -1,12 +1,17 @@
 [
-{{- $pages := where site.RegularPages "Type" "not in" (slice "search") -}}
+{{- $pages := sort (where site.RegularPages "Type" "not in" (slice "search")) "RelPermalink" -}}
 {{- range $i, $p := $pages -}}
+  {{- $record := partial "page-record.html" $p -}}
   {{ if $i }},{{ end }}
   {
-    "title": {{ $p.Title | jsonify }},
-    "url": {{ $p.RelPermalink | jsonify }},
-    "section": {{ $p.Section | jsonify }},
-    "content": {{ $p.Plain | truncate 400 | jsonify }}
+    "id": {{ $record.id | jsonify }},
+    "title": {{ $record.title | jsonify }},
+    "url": {{ $record.relativeUrl | jsonify }},
+    "section": {{ $record.section | jsonify }},
+    "description": {{ $record.description | jsonify }},
+    "language": {{ $record.language | jsonify }},
+    "tags": {{ $record.tags | jsonify }},
+    "content": {{ $record.content | truncate 400 | jsonify }}
   }
 {{- end -}}
 ]

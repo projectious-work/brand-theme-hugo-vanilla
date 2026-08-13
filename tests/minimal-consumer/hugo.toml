@@ -1,0 +1,19 @@
+baseURL = "https://example.test/"
+title = "Minimal consumer"
+
+[module]
+  [[module.imports]]
+    path = "github.com/projectious-work/brand-theme-hugo-vanilla"
+
+[outputFormats.SearchIndex]
+  mediaType = "application/json"
+  baseName = "index"
+  isPlainText = true
+  notAlternative = true
+
+[outputs]
+  home = ["HTML", "SearchIndex"]
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
