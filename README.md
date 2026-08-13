@@ -62,6 +62,18 @@ the `SearchIndex` output format if your content library outgrows this.
 
 Driven by `[data-theme="dark"]` on `<html>`, matching the brand system's own token overrides in `colors_and_type.css`. Defaults to `prefers-color-scheme`; the header toggle persists an explicit choice to `localStorage`.
 
+## Brand provenance and fonts
+
+The theme pins `projectious-work/brand` v2.1.1 and records source revisions,
+transformations, licences, and SHA-256 hashes in
+`src/data/brand-provenance.json`. Run `scripts/check-brand-provenance.py` to
+detect unexplained drift.
+
+Brand fonts are bundled as version-pinned WOFF2 files; generated pages make no
+font-CDN requests. Set `params.fonts = "system"` to use the network-free system
+font profile. Full provenance and regeneration instructions are available in
+the example site's **Brand provenance and fonts** guide.
+
 ## Comments
 
 Set `params.giscus.repo` (+ `repoId`, `categoryId`) in `hugo.toml` to enable giscus on docs/blog pages. Leave `repo` empty to omit comments entirely. Disable per-page with `comments: false` in front matter.

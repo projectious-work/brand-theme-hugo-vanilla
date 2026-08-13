@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "product": "brand-theme-hugo-vanilla",
+  "upstream": {
+    "repository": "https://github.com/projectious-work/brand",
+    "ref": "v2.1.1",
+    "commit": "fc8a5b5c9a063fae583b086e22a2642dd95ba284",
+    "syncedAt": "2026-08-10",
+    "tokenSource": "input/projectious.work Design System/colors_and_type.css",
+    "tokenSourceSha256": "ffc2a207b12dd00c23260e689dfd03476910547cf2cef137445c5fb9fad653a7"
+  },
+  "generationCommand": "scripts/sync-brand-assets.py --write",
+  "fontSource": {
+    "provider": "Fontsource",
+    "repository": "https://github.com/fontsource/font-files",
+    "packageVersion": "5.3.0",
+    "subset": "latin",
+    "style": "normal",
+    "transformation": "copied from version-pinned npm package; no further subsetting"
+  },
+  "artifacts": [
+    {
+      "path": "src/assets/css/tokens.css",
+      "sourcePath": "brand/tokens/variables.css",
+      "sourceRef": "v2.1.1",
+      "sha256": "fd6d057a3be56f1e3bc926f76aef47d499eb70cbc8587f56685c1525f40e274b",
+      "license": "MIT",
+      "transformation": "replace remote font import with pinned local faces; append system-font semantic-token profile"
+    },
+    {
+      "path": "src/static/logo/apple-touch-icon-180.png",
+      "sourcePath": "brand/logo/favicon/apple-touch-icon-180.png",
+      "sourceRef": "v2.1.1",
+      "sha256": "2a649fbdfde2c93ccef2ba72d05b8365256a16fe398eac8364c3ff28fdabdd23",
+      "license": "reserved-trademark",
+      "transformation": "copied-byte-for-byte"
+    },
+    {
+      "path": "src/static/logo/favicon-32.png",
+      "sourcePath": "brand/logo/favicon/favicon-32.png",
+      "sourceRef": "v2.1.1",
+      "sha256": "535bddf4b5289bac81a7badae7ea98cc646f6c0cbb0b9f936a3a9d83f8570991",
+      "license": "reserved-trademark",
+      "transformation": "copied-byte-for-byte"
+    },
+    {
+      "path": "src/static/logo/icon-dark.svg",
+      "sourcePath": "brand/logo/svg/icon-dark.svg",
+      "sourceRef": "v2.1.1",
+      "sha256": "1f30a9e8706bc4bf62396e7689ff7ecc74ffc89e8b2fc59bccbe4c6d6d054b41",
+      "license": "reserved-trademark",
+      "transformation": "copied-byte-for-byte"
+    },
+    {
+      "path": "src/static/logo/icon-light.svg",
+      "sourcePath": "brand/logo/svg/icon-light.svg",
+      "sourceRef": "v2.1.1",
+      "sha256": "1b96c29a44da1186186198f8e0b09e8700ab9a868bf45912e560f07814480589",
+      "license": "reserved-trademark",
+      "transformation": "copied-byte-for-byte"
+    },
+    {
+      "path": "src/static/fonts/plus-jakarta-sans/plus-jakarta-sans-latin-400-normal.woff2",
+      "sourcePath": "@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-400-normal.woff2",
+      "sourceRef": "5.3.0",
+      "sha256": "221a4135d06a4b33abbd535e9a0da4e565d19545ddd9267c4e678a916d54d9b6",
+      "license": "SIL-OFL-1.1",
+      "transformation": "copied-byte-for-byte"
+    },
+    {
+      "path": "src/static/fonts/plus-jakarta-sans/plus-jakarta-sans-latin-500-normal.woff2",
+      "sourcePath": "@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-500-normal.woff2",
+      "sourceRef": "5.3.0",
+      "sha256": "bad081c8dbc15aed6c5e4cde5461914f7b3bdc295b7a7aed177e4beddb79bffa",
+      "license": "SIL-OFL-1.1",
+      "transformation": "copied-byte-for-byte"
+    },
+    {
+      "path": "src/static/fonts/plus-jakarta-sans/plus-jakarta-sans-latin-600-normal.woff2",
+      "sourcePath": "@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-600-normal.woff2",
+      "sourceRef": "5.3.0",
+      "sha256": "8872bb5c9111df9bd3162c2394aee6354d782b13408a4dd5bbf65c48207206e6",
+      "license": "SIL-OFL-1.1",
+      "transformation": "copied-byte-for-byte"
+    },
+    {
+      "path": "src/static/fonts/plus-jakarta-sans/plus-jakarta-sans-latin-700-normal.woff2",
+      "sourcePath": "@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-700-normal.woff2",
+      "sourceRef": "5.3.0",
+      "sha256": "2050755bf475817c96ac7d914c7f07cc3c2d11ff4b3fb4747b8d41de584aad17",
+      "license": "SIL-OFL-1.1",
+      "transformation": "copied-byte-for-byte"
+    },
+    {
+      "path": "src/static/fonts/plus-jakarta-sans/plus-jakarta-sans-latin-800-normal.woff2",
+      "sourcePath": "@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-800-normal.woff2",
+      "sourceRef": "5.3.0",
+      "sha256": "5f301a8ef9c266c8b596e6793d3cc826daeff9849c5af035f5386439137955ad",
+      "license": "SIL-OFL-1.1",
+      "transformation": "copied-byte-for-byte"
+    },
+    {
+      "path": "src/static/fonts/source-sans-3/source-sans-3-latin-400-normal.woff2",
+      "sourcePath": "@fontsource/source-sans-3/files/source-sans-3-latin-400-normal.woff2",
+      "sourceRef": "5.3.0",
+      "sha256": "0f73f35e08cde0a2f10c109c6e01d71459d97e4099ecd9a50f1b6c0209e4de2b",
+      "license": "SIL-OFL-1.1",
+      "transformation": "copied-byte-for-byte"
+    },
+    {
+      "path": "src/static/fonts/source-sans-3/source-sans-3-latin-500-normal.woff2",
+      "sourcePath": "@fontsource/source-sans-3/files/source-sans-3-latin-500-normal.woff2",
+      "sourceRef": "5.3.0",
+      "sha256": "3b3a8b8e4a422ff71c9ffb0836a4d48ff337a4419b878214f65d6ebe0f59fa51",
+      "license": "SIL-OFL-1.1",
+      "transformation": "copied-byte-for-byte"
+    },
+    {
+      "path": "src/static/fonts/source-sans-3/source-sans-3-latin-600-normal.woff2",
+      "sourcePath": "@fontsource/source-sans-3/files/source-sans-3-latin-600-normal.woff2",
+      "sourceRef": "5.3.0",
+      "sha256": "14527d193b0e30bc32ef931549a246cdfd286573bb12869b7e052b8101a39d38",
+      "license": "SIL-OFL-1.1",
+      "transformation": "copied-byte-for-byte"
+    },
+    {
+      "path": "src/static/fonts/ibm-plex-mono/ibm-plex-mono-latin-400-normal.woff2",
+      "sourcePath": "@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2",
+      "sourceRef": "5.3.0",
+      "sha256": "08949f728dc52d528e69b1667d15c89a5686a4ee9a296ff90983985f99c380f7",
+      "license": "SIL-OFL-1.1",
+      "transformation": "copied-byte-for-byte"
+    },
+    {
+      "path": "src/static/fonts/ibm-plex-mono/ibm-plex-mono-latin-500-normal.woff2",
+      "sourcePath": "@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2",
+      "sourceRef": "5.3.0",
+      "sha256": "01d285447409c8a588692162439a038b8cbd7871309ee20267b0d2d91c6e8e22",
+      "license": "SIL-OFL-1.1",
+      "transformation": "copied-byte-for-byte"
+    },
+    {
+      "path": "src/static/fonts/licenses/plus-jakarta-sans-OFL-1.1.txt",
+      "sourcePath": "@fontsource/plus-jakarta-sans/LICENSE",
+      "sourceRef": "5.3.0",
+      "sha256": "e07fd1167c2aaaa6fb965dd66e1e73b13c9c95b76b2d648b6e938780f30b37af",
+      "license": "SIL-OFL-1.1",
+      "transformation": "copied-byte-for-byte"
+    },
+    {
+      "path": "src/static/fonts/licenses/source-sans-3-OFL-1.1.txt",
+      "sourcePath": "@fontsource/source-sans-3/LICENSE",
+      "sourceRef": "5.3.0",
+      "sha256": "18aabf190848725e2576eefb5c29ba06aac1029d02132252a7f312eac2e50cf3",
+      "license": "SIL-OFL-1.1",
+      "transformation": "copied-byte-for-byte"
+    },
+    {
+      "path": "src/static/fonts/licenses/ibm-plex-mono-OFL-1.1.txt",
+      "sourcePath": "@fontsource/ibm-plex-mono/LICENSE",
+      "sourceRef": "5.3.0",
+      "sha256": "23b0a9d0c6d3f140a0b77e483c5cfa6bba574325ef5cb189ed9f2fec4884533f",
+      "license": "SIL-OFL-1.1",
+      "transformation": "copied-byte-for-byte"
+    }
+  ],
+  "semanticOverrides": [
+    {
+      "selector": "[data-fonts=system]",
+      "tokens": ["--font-heading", "--font-body", "--font-code"],
+      "reason": "Explicit privacy/offline profile using platform fonts"
+    },
+    {
+      "source": "input/projectious.work Design System/upstream-sync-note.md",
+      "reason": "Accessibility font scale, focus, motion, and text-spacing layer"
+    }
+  ]
+}
