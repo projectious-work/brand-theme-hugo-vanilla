@@ -74,15 +74,9 @@ enableRobotsTXT = true
   pageRef = "/changelog"
   weight = 40
 
-[[menus.main]]
-  name = "GitHub"
-  url = "https://github.com/projectious-work"
-  weight = 50
-  [menus.main.params]
-    external = true
-
 [params]
   description = "Documentation and examples for the projectious.work Hugo theme."
+  github = "https://github.com/projectious-work/brand-theme-hugo-vanilla"
 
   [params.search]
     placement = "header"

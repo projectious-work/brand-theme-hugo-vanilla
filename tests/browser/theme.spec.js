@@ -38,6 +38,32 @@ test('theme toggle persists dark mode', async ({ page }) => {
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
 });
 
+test('brand and GitHub controls resolve to their intended destinations', async ({ page }) => {
+  await page.goto('./');
+  await expect(page.locator('header .brand')).toHaveAttribute(
+    'href',
+    '/brand-theme-hugo-vanilla/'
+  );
+  const github = page.locator('header .github-link');
+  await expect(github).toHaveAttribute(
+    'href',
+    'https://github.com/projectious-work/brand-theme-hugo-vanilla'
+  );
+  await expect(github).toHaveAttribute('aria-label', 'GitHub');
+});
+
+test('search returns continuous results for Documentation', async ({ page }) => {
+  await page.goto('./');
+  await page.locator('[data-search-open]').click();
+  const input = page.locator('[data-search-input]');
+  const results = page.locator('[data-search-results] a');
+  for (const query of ['Doc', 'Document', 'Documentation']) {
+    await input.fill(query);
+    await expect(results.first()).toBeVisible();
+    await expect(results.filter({ hasText: 'Documentation' }).first()).toBeVisible();
+  }
+});
+
 test('reduced motion disables nonessential animation', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('examples/accessibility/');

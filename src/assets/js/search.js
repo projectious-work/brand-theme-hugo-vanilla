@@ -7,12 +7,18 @@
     loading = fetch(indexUrl()).then(function(r){ return r.json(); }).then(function(json){ data = json; return data; });
     return loading;
   }
-  function tokenize(str){ return (str || '').toLowerCase().match(/[a-z0-9]+/g) || []; }
+  function normalize(str){
+    return (str || '').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
+  }
+  function tokenize(str){ return normalize(str).match(/[a-z0-9]+/g) || []; }
   function score(doc, terms){
-    var titleTokens = tokenize(doc.title), bodyTokens = tokenize(doc.content), s = 0;
+    var titleTokens = tokenize(doc.title);
+    var summaryTokens = tokenize((doc.description || '') + ' ' + (doc.section || '') + ' ' + (doc.tags || []).join(' '));
+    var bodyTokens = tokenize(doc.content), s = 0;
     terms.forEach(function(t){
       titleTokens.forEach(function(tt){ if(tt === t) s += 8; else if(tt.indexOf(t) === 0) s += 4; });
-      bodyTokens.forEach(function(bt){ if(bt === t) s += 1; });
+      summaryTokens.forEach(function(st){ if(st === t) s += 5; else if(st.indexOf(t) === 0) s += 3; });
+      bodyTokens.forEach(function(bt){ if(bt === t) s += 2; else if(bt.indexOf(t) === 0) s += 1; });
     });
     return s;
   }
@@ -26,7 +32,7 @@
       .map(function(r){ return r.doc; });
   }
   function snippet(doc, query){
-    var terms = tokenize(query), content = doc.content || '', lower = content.toLowerCase(), idx = -1;
+    var terms = tokenize(query), content = doc.content || '', lower = normalize(content), idx = -1;
     terms.some(function(t){ idx = lower.indexOf(t); return idx > -1; });
     if(idx < 0) return content.slice(0, 140);
     var start = Math.max(0, idx - 60);
