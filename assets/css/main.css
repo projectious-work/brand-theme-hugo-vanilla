@@ -26,14 +26,14 @@
   --type-display-size: 48px; --type-display-weight: 800; --type-display-lh: 1.1;
   --type-h1-size: 36px; --type-h1-weight: 700; --type-h1-lh: 1.15;
   --type-h2-size: 28px; --type-h2-weight: 700; --type-h2-lh: 1.2;
-  --type-h3-size: 22px; --type-h3-weight: 600; --type-h3-lh: 1.25;
-  --type-h4-size: 18px; --type-h4-weight: 600; --type-h4-lh: 1.3;
-  --type-h5-size: 15px; --type-h5-weight: 600; --type-h5-lh: 1.35;
+  --type-h3-size: 24px; --type-h3-weight: 600; --type-h3-lh: 1.25;
+  --type-h4-size: 20px; --type-h4-weight: 600; --type-h4-lh: 1.3;
+  --type-h5-size: 17px; --type-h5-weight: 600; --type-h5-lh: 1.35;
   --type-body-l-size: 18px; --type-body-l-lh: 1.65;
   --type-body-size: 16px; --type-body-lh: 1.6;
-  --type-caption-size: 12px; --type-caption-lh: 1.5;
-  --type-overline-size: 11px; --type-overline-weight: 600; --type-overline-lh: 1.3; --type-overline-tracking: 0.08em;
-  --type-code-size: 13px; --type-code-lh: 1.6;
+  --type-caption-size: 13px; --type-caption-lh: 1.5;
+  --type-overline-size: 12px; --type-overline-weight: 600; --type-overline-lh: 1.3; --type-overline-tracking: 0.08em;
+  --type-code-size: 14px; --type-code-lh: 1.6;
   --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px;
   --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px;
   --radius-sm: 3px; --radius-md: 6px; --radius-lg: 9px; --radius-xl: 13px; --radius-full: 9999px;
@@ -74,7 +74,7 @@ h1, h2, h3 { letter-spacing: -0.3px; }
 .body-l { font-size: var(--type-body-l-size); line-height: var(--type-body-l-lh); }
 .caption { font-size: var(--type-caption-size); line-height: var(--type-caption-lh); color: var(--fg-2); }
 .overline { font-family: var(--font-body); font-size: var(--type-overline-size); font-weight: var(--type-overline-weight); line-height: var(--type-overline-lh); letter-spacing: var(--type-overline-tracking); text-transform: uppercase; color: var(--fg-2); }
-.content { font-size: var(--type-body-l-size); line-height: var(--type-body-l-lh); }
+.content { font-size: var(--type-body-size); line-height: var(--type-body-lh); }
 p { margin: 0 0 var(--space-3); }
 a { color: var(--midnight-11); text-decoration: none; transition: opacity var(--duration-micro) var(--ease-out); }
 a:hover { opacity: 0.78; }
@@ -183,9 +183,9 @@ th { font-family: var(--font-heading); font-weight: 600; background: var(--surfa
 a.card, .card--link { display: block; color: inherit; }
 .card:hover { border-color: var(--midnight-7); box-shadow: var(--shadow-1); opacity: 1; }
 .card__body { padding: var(--space-5); }
-.card__title { font-family: var(--font-heading); font-size: 14px; font-weight: 600; color: var(--fg-1); margin-bottom: 3px; }
-.card__meta { margin-bottom: 4px; }
-.card__desc { font-size: 13px; color: var(--fg-2); line-height: 1.5; }
+.card__title { font-family: var(--font-heading); font-size: 13px; font-weight: 600; color: var(--fg-1); margin-bottom: 3px; }
+.card__meta { margin-bottom: 4px; font-size: 11px; line-height: 1.5; }
+.card__desc { font-size: 11px; color: var(--fg-2); line-height: 1.5; }
 .card__desc p { margin: 0; }
 
 /* ── Tags & badges ────────────────────────────────────────────────── */
@@ -224,7 +224,7 @@ a.card, .card--link { display: block; color: inherit; }
 .step__marker { flex: 0 0 28px; width: 28px; height: 28px; border-radius: 50%; background: var(--color-primary); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-weight: 700; font-size: 13px; }
 .step__marker::before { content: counter(step); }
 .step__title { font-family: var(--font-heading); font-weight: 600; margin-bottom: 4px; }
-.step__desc { color: var(--fg-2); font-size: 14px; }
+.step__desc { color: var(--fg-2); font-size: var(--type-body-size); line-height: var(--type-body-lh); }
 .step__desc p { margin: 0; }
 
 /* ── Code blocks ──────────────────────────────────────────────────── */
