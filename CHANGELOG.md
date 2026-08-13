@@ -2,6 +2,23 @@
 
 All notable changes to this project are documented in this file.
 
+## [v0.2.2] — 2026-08-13
+
+### Changed
+
+- Restored brand-scale typography for navigation, cards, buttons, search,
+  documentation content, and the landing-page hero.
+- Replaced the header's GitHub text item with an icon control in the intended
+  control order.
+- Expanded client-side search to full page content and added prefix matching
+  without introducing another runtime dependency.
+
+### Fixed
+
+- Corrected the project-scoped GitHub Pages destination of the brand lockup.
+- Corrected lockup alignment and removed underlines from navigation chrome
+  while retaining accessible underlines for prose links.
+
 ## [v0.2.1] — 2026-08-13
 
 ### Fixed
@@ -51,3 +68,4 @@ All notable changes to this project are documented in this file.
 [v0.1.0]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.1.0
 [v0.2.0]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.0
 [v0.2.1]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.1
+[v0.2.2]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.2

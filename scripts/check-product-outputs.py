@@ -49,7 +49,7 @@ def main() -> int:
     if "<no value>" in generated_text:
         errors.append("generated product documentation contains unresolved data")
     for value in (
-        "brand-theme-hugo-vanilla 0.2.1",
+        "brand-theme-hugo-vanilla 0.2.2",
         "github.com/projectious-work/brand-theme-hugo-vanilla",
         "0.121.0",
     ):
