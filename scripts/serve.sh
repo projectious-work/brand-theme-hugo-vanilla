@@ -6,7 +6,7 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SITE_DIR="$ROOT_DIR/exampleSite"
+SITE_DIR="$ROOT_DIR/src/exampleSite"
 PORT="${PORT:-1313}"
 BASE_URL="${BASE_URL:-http://localhost:${PORT}/}"
 

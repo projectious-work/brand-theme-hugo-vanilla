@@ -6,7 +6,7 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-SITE_DIR="$ROOT_DIR/exampleSite"
+SITE_DIR="$ROOT_DIR/src/exampleSite"
 DEST_DIR="${1:-$ROOT_DIR/public}"
 
 if ! command -v hugo >/dev/null 2>&1; then

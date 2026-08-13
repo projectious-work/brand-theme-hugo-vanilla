@@ -2,7 +2,7 @@
 # Manual deploy to this repository's GitHub Pages, driven entirely from the
 # dev container — no GitHub Actions / workflows involved.
 #
-# Builds exampleSite and force-pushes the static output to the gh-pages
+# Builds src/exampleSite and force-pushes the static output to the gh-pages
 # branch via a local git worktree, then makes sure GitHub Pages is
 # configured to serve from that branch (requires `gh` auth with repo admin
 # access; skipped automatically if `gh` isn't available or lacks access).

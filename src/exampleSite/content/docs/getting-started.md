@@ -39,7 +39,7 @@ theme = "hugo-theme-projectious"
 
 {{< callout type="info" >}}
 Copy the search output and markup configuration from the bundled
-`exampleSite/hugo.toml`; those settings enable the search index, heading
+`src/exampleSite/hugo.toml`; those settings enable the search index, heading
 anchors, code labels, and syntax highlighting.
 {{< /callout >}}
 

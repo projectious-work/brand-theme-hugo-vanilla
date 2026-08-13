@@ -3,9 +3,9 @@
 public/
 resources/_gen/
 .hugo_build.lock
-exampleSite/public/
-exampleSite/resources/_gen/
-exampleSite/.hugo_build.lock
+src/exampleSite/public/
+src/exampleSite/resources/_gen/
+src/exampleSite/.hugo_build.lock
 .deploy/
 
 
