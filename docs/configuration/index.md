@@ -10,6 +10,7 @@ description: "Menus, search, comments, social links, code highlighting, and site
 | Parameter | Purpose |
 |---|---|
 | `params.description` | Default description for metadata and search results. |
+| `params.github` | Repository URL for the header's GitHub icon. |
 | `params.search.placement` | `header` or `none`. |
 | `params.giscus.repo` | Repository used for comments; empty disables comments. |
 | `params.social` | Footer links with `name` and `url`. |
@@ -27,7 +28,7 @@ each one is configurable.
 [params.accessibility]
 auto = true             # data-a11y="auto" — follow OS motion, contrast, transparency
 focus = "strong"        # data-focus="strong" — the WCAG 1.4.11 conforming ring
-linkUnderline = true    # data-link-underline="on" — link identity is not colour alone
+linkUnderline = true    # underline prose links, not navigation chrome
 ```
 
 Set `focus = ""` to fall back to the brand system's documented default ring.

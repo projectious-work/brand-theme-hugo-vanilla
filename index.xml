@@ -367,6 +367,10 @@ then write normal Markdown. Section names select their specialized layouts.&lt;/
 					&lt;td&gt;Default description for metadata and search results.&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
+					&lt;td&gt;&lt;code&gt;params.github&lt;/code&gt;&lt;/td&gt;
+					&lt;td&gt;Repository URL for the header&amp;rsquo;s GitHub icon.&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
 					&lt;td&gt;&lt;code&gt;params.search.placement&lt;/code&gt;&lt;/td&gt;
 					&lt;td&gt;&lt;code&gt;header&lt;/code&gt; or &lt;code&gt;none&lt;/code&gt;.&lt;/td&gt;
 			&lt;/tr&gt;

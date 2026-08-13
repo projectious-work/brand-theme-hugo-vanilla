@@ -2,7 +2,7 @@
   "schemaVersion": "1.0",
   "product": {
     "name": "brand-theme-hugo-vanilla",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "module": "github.com/projectious-work/brand-theme-hugo-vanilla",
     "repository": "https://github.com/projectious-work/brand-theme-hugo-vanilla",
     "license": "MIT",
@@ -30,7 +30,8 @@
     {"path": "params.social", "type": "array", "default": [], "required": false, "effect": "Footer links with name and URL."},
     {"path": "params.accessibility.auto", "type": "boolean", "default": true, "required": false, "effect": "Follows operating-system accessibility preferences."},
     {"path": "params.accessibility.focus", "type": "string", "default": "strong", "required": false, "effect": "Selects the conforming focus-ring profile."},
-    {"path": "params.accessibility.linkUnderline", "type": "boolean", "default": true, "required": false, "effect": "Keeps link identity independent of colour."}
+    {"path": "params.accessibility.linkUnderline", "type": "boolean", "default": true, "required": false, "effect": "Underlines prose links while navigation chrome remains undecorated."},
+    {"path": "params.github", "type": "string", "default": "", "required": false, "effect": "Adds an icon link to the repository between search and the theme switch."}
   ],
   "contentTypes": [
     {"section": "docs", "frontMatter": ["title", "description", "weight", "comments"], "layout": "docs/single.html"},
