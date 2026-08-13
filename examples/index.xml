@@ -36,64 +36,25 @@
 			&lt;tr&gt;
 					&lt;td&gt;Validate release&lt;/td&gt;
 					&lt;td&gt;Platform&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-			&lt;/tr&gt;
-			&lt;tr&gt;
 					&lt;td&gt;&lt;span class="status status--healthy"&gt;Healthy&lt;/span&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-			&lt;/tr&gt;
-			&lt;tr&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
 					&lt;td&gt;Audit dependencies&lt;/td&gt;
 					&lt;td&gt;Compliance&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-			&lt;/tr&gt;
-			&lt;tr&gt;
 					&lt;td&gt;&lt;span class="status status--running"&gt;Running&lt;/span&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-			&lt;/tr&gt;
-			&lt;tr&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
 					&lt;td&gt;Deploy staging&lt;/td&gt;
 					&lt;td&gt;Delivery&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-			&lt;/tr&gt;
-			&lt;tr&gt;
 					&lt;td&gt;&lt;span class="status status--pending"&gt;Pending&lt;/span&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-			&lt;/tr&gt;
-			&lt;tr&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
 			&lt;/tr&gt;
 	&lt;/tbody&gt;
 &lt;/table&gt;
 &lt;/section&gt;
-&lt;div class="terminal"&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;div&amp;gt;&amp;lt;span class=&amp;quot;terminal__prompt&amp;quot;&amp;gt;$&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;terminal__cmd&amp;quot;&amp;gt;projectious run deploy-staging&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;
-
-
-
-
-&amp;lt;div&amp;gt;&amp;lt;span class=&amp;quot;terminal__ok&amp;quot;&amp;gt;✓&amp;lt;/span&amp;gt; Policy check passed&amp;lt;/div&amp;gt;
-
-
-
-
-&amp;lt;div&amp;gt;&amp;lt;span class=&amp;quot;terminal__pending&amp;quot;&amp;gt;●&amp;lt;/span&amp;gt; Deploying to staging&amp;lt;/div&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class="terminal" data-scroll-label="Terminal output"&gt;
+&lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;projectious run deploy-staging&lt;/span&gt;&lt;/div&gt;
+&lt;div&gt;&lt;span class="terminal__ok"&gt;✓&lt;/span&gt; Policy check passed&lt;/div&gt;
+&lt;div&gt;&lt;span class="terminal__pending"&gt;●&lt;/span&gt; Deploying to staging&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description></item><item><title>Administration</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/admin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/admin/</guid><description>&lt;div class="app-shell"&gt;
@@ -102,9 +63,9 @@
  &lt;ul&gt;&lt;li&gt;Overview&lt;/li&gt;&lt;li&gt;Pipelines&lt;/li&gt;&lt;li&gt;Agents&lt;/li&gt;&lt;li&gt;Settings&lt;/li&gt;&lt;/ul&gt;
  &lt;/aside&gt;
  &lt;div class="app-shell__main"&gt;&lt;h2 id="members" class="h-anchor"&gt;Members &lt;a href="#members" class="h-anchor__link" data-copy-link aria-label="Members"&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;span class="tag tag--accent"&gt;All members&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="tag tag--neutral"&gt;Pending invites&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;&lt;span class="tag tag--neutral"&gt;Roles&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span class="tag tag--accent"&gt;All members&lt;/span&gt;
+&lt;span class="tag tag--neutral"&gt;Pending invites&lt;/span&gt;
+&lt;span class="tag tag--neutral"&gt;Roles&lt;/span&gt;&lt;/p&gt;
 &lt;section class="panel"&gt;
  &lt;table&gt;
 	&lt;thead&gt;
@@ -120,78 +81,29 @@
 					&lt;td&gt;Lena Almeida&lt;/td&gt;
 					&lt;td&gt;Platform&lt;/td&gt;
 					&lt;td&gt;Owner&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-			&lt;/tr&gt;
-			&lt;tr&gt;
 					&lt;td&gt;&lt;span class="status status--healthy"&gt;Active&lt;/span&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-			&lt;/tr&gt;
-			&lt;tr&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
 					&lt;td&gt;Jonas Berg&lt;/td&gt;
 					&lt;td&gt;Platform&lt;/td&gt;
 					&lt;td&gt;Admin&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-			&lt;/tr&gt;
-			&lt;tr&gt;
 					&lt;td&gt;&lt;span class="status status--healthy"&gt;Active&lt;/span&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-			&lt;/tr&gt;
-			&lt;tr&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
 					&lt;td&gt;Amelie Dubois&lt;/td&gt;
 					&lt;td&gt;Support&lt;/td&gt;
 					&lt;td&gt;Viewer&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-			&lt;/tr&gt;
-			&lt;tr&gt;
 					&lt;td&gt;&lt;span class="status status--pending"&gt;Invited&lt;/span&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-			&lt;/tr&gt;
-			&lt;tr&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
 			&lt;/tr&gt;
 			&lt;tr&gt;
 					&lt;td&gt;Priya Kapoor&lt;/td&gt;
 					&lt;td&gt;Compliance&lt;/td&gt;
 					&lt;td&gt;Editor&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-			&lt;/tr&gt;
-			&lt;tr&gt;
 					&lt;td&gt;&lt;span class="status status--failed"&gt;Suspended&lt;/span&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-			&lt;/tr&gt;
-			&lt;tr&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
 			&lt;/tr&gt;
 	&lt;/tbody&gt;
 &lt;/table&gt;
-&lt;/section&gt;
-&lt;/div&gt;
+&lt;/section&gt;&lt;/div&gt;
 &lt;/div&gt;</description></item><item><title>Settings</title><link>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/settings/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/settings/</guid><description>&lt;div class="app-shell"&gt;
  &lt;aside class="app-shell__nav"&gt;
  &lt;strong&gt;projectious&lt;span class="brand__dot"&gt;.work&lt;/span&gt;&lt;/strong&gt;
@@ -340,19 +252,10 @@ verify a page holds up.&lt;/p&gt;</description></item><item><title>Mobile workfl
  &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="terminal"&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;div&amp;gt;&amp;lt;span class=&amp;quot;terminal__ok&amp;quot;&amp;gt;✓&amp;lt;/span&amp;gt; validate_schema 0.4s&amp;lt;/div&amp;gt;
-
-
-
-
-&amp;lt;div&amp;gt;&amp;lt;span class=&amp;quot;terminal__ok&amp;quot;&amp;gt;✓&amp;lt;/span&amp;gt; policy_check 1.8s&amp;lt;/div&amp;gt;
-
-
-
-
-&amp;lt;div&amp;gt;&amp;lt;span class=&amp;quot;terminal__pending&amp;quot;&amp;gt;●&amp;lt;/span&amp;gt; deploy_staging&amp;lt;/div&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class="terminal" data-scroll-label="Terminal output"&gt;
+&lt;div&gt;&lt;span class="terminal__ok"&gt;✓&lt;/span&gt; validate_schema 0.4s&lt;/div&gt;
+&lt;div&gt;&lt;span class="terminal__ok"&gt;✓&lt;/span&gt; policy_check 1.8s&lt;/div&gt;
+&lt;div&gt;&lt;span class="terminal__pending"&gt;●&lt;/span&gt; deploy_staging&lt;/div&gt;
 &lt;/div&gt;
 &lt;/section&gt;
 
@@ -383,15 +286,7 @@ primary task.&lt;/p&gt;</description></item><item><title>Email content</title><l
 			&lt;/tr&gt;
 			&lt;tr&gt;
 					&lt;td&gt;Result&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-			&lt;/tr&gt;
-			&lt;tr&gt;
 					&lt;td&gt;&lt;span class="status status--success"&gt;Passed&lt;/span&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
-			&lt;/tr&gt;
-			&lt;tr&gt;
-					&lt;td&gt;&lt;/td&gt;
-					&lt;td&gt;&lt;/td&gt;
 			&lt;/tr&gt;
 	&lt;/tbody&gt;
 &lt;/table&gt;
@@ -438,21 +333,11 @@ metadata all retain their assigned roles.&lt;/p&gt;
 
 &lt;/div&gt;
 
-&lt;p&gt;
-&lt;span class="status status--healthy"&gt;Healthy&lt;/span&gt;
-
-
+&lt;p&gt;&lt;span class="status status--healthy"&gt;Healthy&lt;/span&gt;
 &lt;span class="status status--running"&gt;Running&lt;/span&gt;
-
-
 &lt;span class="status status--warning"&gt;Warning&lt;/span&gt;
-
-
 &lt;span class="status status--failed"&gt;Failed&lt;/span&gt;
-
-
-&lt;span class="status status--idle"&gt;Idle&lt;/span&gt;
-&lt;/p&gt;
+&lt;span class="status status--idle"&gt;Idle&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;
 
 &lt;div class="callout callout--success"&gt;

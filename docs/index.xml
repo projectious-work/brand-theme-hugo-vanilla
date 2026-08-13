@@ -5,29 +5,11 @@
 &lt;li&gt;Go only when using Hugo Modules.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="install-as-a-hugo-module" class="h-anchor"&gt;Install as a Hugo Module &lt;a href="#install-as-a-hugo-module" class="h-anchor__link" data-copy-link aria-label="Install as a Hugo Module"&gt;#&lt;/a&gt;&lt;/h2&gt;
-
-&lt;div class="terminal"&gt;
-
- 
- 
- &lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;hugo mod init example.com/my-site&lt;/span&gt;&lt;/div&gt;
- 
-
- 
- 
- &lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;hugo mod get github.com/projectious-work/brand-theme-hugo-vanilla&lt;/span&gt;&lt;/div&gt;
- 
-
- 
- 
- &lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;hugo server&lt;/span&gt;&lt;/div&gt;
- 
-
- 
- 
- &lt;div&gt;&lt;span class="terminal__ok"&gt;✓&lt;/span&gt; Web server available at http://localhost:1313/&lt;/div&gt;
- 
-
+&lt;div class="terminal" data-scroll-label="Terminal output"&gt;
+&lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;hugo mod init example.com/my-site&lt;/span&gt;&lt;/div&gt;
+&lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;hugo mod get github.com/projectious-work/brand-theme-hugo-vanilla&lt;/span&gt;&lt;/div&gt;
+&lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;hugo server&lt;/span&gt;&lt;/div&gt;
+&lt;div&gt;&lt;span class="terminal__ok"&gt;✓&lt;/span&gt; Web server available at http://localhost:1313/&lt;/div&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Add the import to &lt;code&gt;hugo.toml&lt;/code&gt;:&lt;/p&gt;
@@ -46,19 +28,9 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nx"&gt;path&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;github.com/projectious-work/brand-theme-hugo-vanilla&amp;#34;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;h2 id="install-as-a-submodule" class="h-anchor"&gt;Install as a submodule &lt;a href="#install-as-a-submodule" class="h-anchor__link" data-copy-link aria-label="Install as a submodule"&gt;#&lt;/a&gt;&lt;/h2&gt;
-
-&lt;div class="terminal"&gt;
-
- 
- 
- &lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;git submodule add https://github.com/projectious-work/brand-theme-hugo-vanilla.git themes/brand-theme-hugo-vanilla&lt;/span&gt;&lt;/div&gt;
- 
-
- 
- 
- &lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;hugo server&lt;/span&gt;&lt;/div&gt;
- 
-
+&lt;div class="terminal" data-scroll-label="Terminal output"&gt;
+&lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;git submodule add https://github.com/projectious-work/brand-theme-hugo-vanilla.git themes/brand-theme-hugo-vanilla&lt;/span&gt;&lt;/div&gt;
+&lt;div&gt;&lt;span class="terminal__prompt"&gt;$&lt;/span&gt; &lt;span class="terminal__cmd"&gt;hugo server&lt;/span&gt;&lt;/div&gt;
 &lt;/div&gt;
 
 &lt;div class="code-block"&gt;

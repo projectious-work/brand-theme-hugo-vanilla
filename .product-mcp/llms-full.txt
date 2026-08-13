@@ -1,6 +1,6 @@
 # projectious.work — full product guide
 
-Product: brand-theme-hugo-vanilla 0.2.3
+Product: brand-theme-hugo-vanilla 0.2.4
 Module: github.com/projectious-work/brand-theme-hugo-vanilla
 Minimum Hugo: 0.121.0 Extended
 
@@ -125,15 +125,18 @@ Description: Every shortcode shipped by the theme, with syntax and rendered exam
 Shortcodes are semantic additions to Markdown. Prefer Markdown for ordinary prose, lists, tables, links, quotes, and code.
 Callout # Parameters: type is info, success, warning, or danger.
 go-html-template {{&amp;lt; callout type=&amp;#34;warning&amp;#34; &amp;gt;}}Back up the configuration first.{{&amp;lt; /callout &amp;gt;}} Info Use information for relevant context. Success The build completed. Warning Review the migration before applying it. Danger Deployment is blocked. Button # Parameters: href, variant (primary, accent, outline, ghost, or danger), and optional external.
-go-html-template {{&amp;lt; button href=&amp;#34;/docs/&amp;#34; variant=&amp;#34;accent&amp;#34; &amp;gt;}}Read the docs{{&amp;lt; /button &amp;gt;}} Primary Accent Outline Ghost Cards and grid # cards is the automatic card collection. grid columns=&amp;quot;2|3|4&amp;quot; is the more general responsive grid used with cards, panels, or metrics.
+go-html-template {{&amp;lt; button href=&amp;#34;/docs/&amp;#34; variant=&amp;#34;accent&amp;#34; &amp;gt;}}Read the docs{{&amp;lt; /button &amp;gt;}} Primary Accent Outline Ghost
+Cards and grid # cards is the automatic card collection. grid columns=&amp;quot;2|3|4&amp;quot; is the more general responsive grid used with cards, panels, or metrics.
 go-html-template {{&amp;lt; cards &amp;gt;}} {{&amp;lt; card title=&amp;#34;Getting started&amp;#34; meta=&amp;#34;Guide&amp;#34; href=&amp;#34;/docs/getting-started/&amp;#34; &amp;gt;}} Install and run the theme. {{&amp;lt; /card &amp;gt;}} {{&amp;lt; /cards &amp;gt;}} {{&amp;lt; grid columns=&amp;#34;2&amp;#34; &amp;gt;}} {{&amp;lt; card title=&amp;#34;Configuration&amp;#34; meta=&amp;#34;Guide&amp;#34; href=&amp;#34;/docs/configuration/&amp;#34; &amp;gt;}} Control theme behavior without a fork. {{&amp;lt; /card &amp;gt;}} {{&amp;lt; /grid &amp;gt;}} Flat card Brand recipe Raised white surface, visible border, no default shadow. Accent panel Use the accent for decisions, not decoration. Panel # Parameters: optional title; variant is default, accent, or dark.
 go-html-template {{&amp;lt; panel variant=&amp;#34;dark&amp;#34; title=&amp;#34;System output&amp;#34; &amp;gt;}}Content{{&amp;lt; /panel &amp;gt;}} System output The audit trail is append-only and the latest run passed. Metrics and stats # Use metric in a grid for dashboard summaries. Use stats with nested stat for centered editorial statistics.
 go-html-template {{&amp;lt; grid columns=&amp;#34;3&amp;#34; &amp;gt;}} {{&amp;lt; metric value=&amp;#34;12&amp;#34; label=&amp;#34;active agents&amp;#34; &amp;gt;}} {{&amp;lt; metric value=&amp;#34;99.8%&amp;#34; label=&amp;#34;success rate&amp;#34; &amp;gt;}} {{&amp;lt; /grid &amp;gt;}} {{&amp;lt; stats &amp;gt;}} {{&amp;lt; stat value=&amp;#34;3&amp;#34; label=&amp;#34;practice areas&amp;#34; &amp;gt;}} {{&amp;lt; stat value=&amp;#34;273&amp;#34; label=&amp;#34;design tokens&amp;#34; &amp;gt;}} {{&amp;lt; /stats &amp;gt;}} 12 active agents 99.8% success rate 42s average audit 3 practice areas 273 design tokens Status # Variants: healthy, success, running, info, warning, pending, failed, danger, and idle.
-go-html-template {{&amp;lt; status variant=&amp;#34;running&amp;#34; &amp;gt;}}Running{{&amp;lt; /status &amp;gt;}} Healthy Running Warning Failed Idle Field # Parameters: label, optional type, value, placeholder, and hint. This is appropriate for demonstrations and simple forms; production forms still need a real submission endpoint and validation.
+go-html-template {{&amp;lt; status variant=&amp;#34;running&amp;#34; &amp;gt;}}Running{{&amp;lt; /status &amp;gt;}} Healthy Running Warning Failed Idle
+Field # Parameters: label, optional type, value, placeholder, and hint. This is appropriate for demonstrations and simple forms; production forms still need a real submission endpoint and validation.
 go-html-template {{&amp;lt; field label=&amp;#34;Project name&amp;#34; value=&amp;#34;Documentation site&amp;#34; hint=&amp;#34;Shown in page metadata.&amp;#34; &amp;gt;}} Project name Shown in page metadata. Terminal # Lines beginning with $, ✓, ✗, or ● receive prompt/status treatment.
 go-html-template {{&amp;lt; terminal &amp;gt;}} $ hugo --minify ✓ Built 18 pages ● Watching for changes {{&amp;lt; /terminal &amp;gt;}} $ hugo --minify ✓ Built 18 pages ● Watching for changes Steps # steps contains nested step shortcodes. Each step accepts title.
 go-html-template {{&amp;lt; steps &amp;gt;}} {{% step title=&amp;#34;Configure&amp;#34; %}}Set site parameters.{{% /step %}} {{% step title=&amp;#34;Write&amp;#34; %}}Create content in Markdown.{{% /step %}} {{&amp;lt; /steps &amp;gt;}} Configure Set site parameters. Write Create content in Markdown. Ship Run the production build. Tags and badges # tag accepts neutral or accent. badge accepts info, success, warning, or danger.
-go-html-template {{&amp;lt; tag &amp;gt;}}Cloud{{&amp;lt; /tag &amp;gt;}} {{&amp;lt; tag variant=&amp;#34;accent&amp;#34; &amp;gt;}}Agentic AI{{&amp;lt; /tag &amp;gt;}} {{&amp;lt; badge variant=&amp;#34;success&amp;#34; &amp;gt;}}Passed{{&amp;lt; /badge &amp;gt;}} Cloud Agile Agentic AI Passed Review Quote # Parameters: optional author and role.
+go-html-template {{&amp;lt; tag &amp;gt;}}Cloud{{&amp;lt; /tag &amp;gt;}} {{&amp;lt; tag variant=&amp;#34;accent&amp;#34; &amp;gt;}}Agentic AI{{&amp;lt; /tag &amp;gt;}} {{&amp;lt; badge variant=&amp;#34;success&amp;#34; &amp;gt;}}Passed{{&amp;lt; /badge &amp;gt;}} Cloud Agile Agentic AI Passed Review
+Quote # Parameters: optional author and role.
 go-html-template {{% quote author=&amp;#34;Theme maintainer&amp;#34; …
 
 ## Accessibility
@@ -152,9 +155,7 @@ URL: https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/admin/
 Section: examples
 Description: Member management with tabs, statuses, roles, and dense data.
 
-projectious.work OverviewPipelinesAgentsSettings Members # All members
-Pending invites
-Roles
+projectious.work OverviewPipelinesAgentsSettings Members # All members Pending invites Roles
 Member Team Role State Lena Almeida Platform Owner Active Jonas Berg Platform Admin Active Amelie Dubois Support Viewer Invited Priya Kapoor Compliance Editor Suspended
 
 ## Dashboard
@@ -163,7 +164,7 @@ URL: https://projectious-work.github.io/brand-theme-hugo-vanilla/examples/dashbo
 Section: examples
 Description: Metrics, pipeline state, and scoped system output.
 
-projectious.work OverviewPipelinesAgentsSettings Operations overview # 12 active agents 184 pipelines today 99.8% success rate 42s average audit Recent pipelines Pipeline Owner State Validate release Platform Healthy Audit dependencies Compliance Running Deploy staging Delivery Pending &amp;lt;div&amp;gt;&amp;lt;span class=&amp;quot;terminal__prompt&amp;quot;&amp;gt;$&amp;lt;/span&amp;gt; &amp;lt;span class=&amp;quot;terminal__cmd&amp;quot;&amp;gt;projectious run deploy-staging&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;&amp;lt;span class=&amp;quot;terminal__ok&amp;quot;&amp;gt;✓&amp;lt;/span&amp;gt; Policy check passed&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;&amp;lt;span class=&amp;quot;terminal__pending&amp;quot;&amp;gt;●&amp;lt;/span&amp;gt; Deploying to staging&amp;lt;/div&amp;gt;
+projectious.work OverviewPipelinesAgentsSettings Operations overview # 12 active agents 184 pipelines today 99.8% success rate 42s average audit Recent pipelines Pipeline Owner State Validate release Platform Healthy Audit dependencies Compliance Running Deploy staging Delivery Pending $ projectious run deploy-staging ✓ Policy check passed ● Deploying to staging
 
 ## Email content
 
@@ -182,7 +183,8 @@ Section: examples
 Description: One page for visual regression and theme-extension checks.
 
 Typography # Heading one # Heading two # Heading three # Body copy uses Source Sans 3. Strong text, links , inline code, and metadata all retain their assigned roles.
-Components # Card Flat by default Cards lift on hover, not at rest. 273 design tokens Panel Accent marks a decision surface. Healthy Running Warning Failed Idle Success Success state Warning Warning state Danger Danger state yaml pipeline.yaml name: deploy-staging policy: continuous-audit provider: independent
+Components # Card Flat by default Cards lift on hover, not at rest. 273 design tokens Panel Accent marks a decision surface. Healthy Running Warning Failed Idle
+Success Success state Warning Warning state Danger Danger state yaml pipeline.yaml name: deploy-staging policy: continuous-audit provider: independent
 
 ## Mobile workflow
 
@@ -191,7 +193,7 @@ Section: examples
 Description: A narrow, task-focused agent run that preserves touch targets.
 
 Deploy staging Running
-validate_schema Configuration accepted. policy_check Policy evaluation passed. deploy_staging Deployment is active. &amp;lt;div&amp;gt;&amp;lt;span class=&amp;quot;terminal__ok&amp;quot;&amp;gt;✓&amp;lt;/span&amp;gt; validate_schema 0.4s&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;&amp;lt;span class=&amp;quot;terminal__ok&amp;quot;&amp;gt;✓&amp;lt;/span&amp;gt; policy_check 1.8s&amp;lt;/div&amp;gt; &amp;lt;div&amp;gt;&amp;lt;span class=&amp;quot;terminal__pending&amp;quot;&amp;gt;●&amp;lt;/span&amp;gt; deploy_staging&amp;lt;/div&amp;gt; At narrow widths grids collapse to one column, documentation sidebars become part of the mobile navigation, and application-shell navigation yields to the primary task.
+validate_schema Configuration accepted. policy_check Policy evaluation passed. deploy_staging Deployment is active. ✓ validate_schema 0.4s ✓ policy_check 1.8s ● deploy_staging At narrow widths grids collapse to one column, documentation sidebars become part of the mobile navigation, and application-shell navigation yields to the primary task.
 
 ## Service plans
 
