@@ -2,6 +2,16 @@
 
 All notable changes to this project are documented in this file.
 
+## [v0.2.3] — 2026-08-13
+
+### Changed
+
+- Replaced the custom client-side search scorer with locally bundled
+  FlexSearch `0.8.143`, including partial and multi-word document ranking,
+  suggestions, normalization, and caching without a CDN dependency.
+- Made persistent prose-link underlines opt-in, matching the brand system's
+  standard presentation while retaining explicit accessibility controls.
+
 ## [v0.2.2] — 2026-08-13
 
 ### Changed
@@ -69,3 +79,4 @@ All notable changes to this project are documented in this file.
 [v0.2.0]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.0
 [v0.2.1]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.1
 [v0.2.2]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.2
+[v0.2.3]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.3
