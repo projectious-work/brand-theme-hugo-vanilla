@@ -1,0 +1,16 @@
+{{ define "main" }}
+{{ .Store.Set "hasSidebar" true }}
+<div class="docs">
+  {{ partial "sidebar.html" . }}
+  <main id="main" class="docs__main">
+    {{ partial "breadcrumbs.html" . }}
+    <article class="prose">
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+      {{ .Content }}
+    </article>
+    {{ partial "page-footer.html" . }}
+  </main>
+  {{ partial "toc.html" . }}
+</div>
+{{ end }}

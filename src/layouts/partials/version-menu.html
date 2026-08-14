@@ -1,0 +1,14 @@
+{{ with site.Params.versions }}
+{{ $current := or site.Params.version (index . 0).label }}
+<div class="menu">
+  <button class="chipbtn target" type="button" data-menu-trigger aria-expanded="false" aria-haspopup="true">
+    {{ partial "icon.html" (dict "name" "versions" "class" "ico--sm") }}<span>{{ $current }}</span>
+  </button>
+  <div class="menu__panel" role="menu">
+    <div class="menu__label">{{ i18n "version" }}</div>
+    {{ range . }}
+      <a href="{{ .url }}" role="menuitemradio" aria-checked="{{ eq .label $current }}">{{ .label }}{{ with .note }} <span class="badge">{{ . }}</span>{{ end }}</a>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}"{{ with site.Params.darkSurface }} data-surface="{{ . }}"{{ end }}>
+<head>{{ partial "head.html" . }}</head>
+<body>
+  <main id="main" class="shell">
+    <div class="prose">
+      <div class="overline">{{ site.Title }}{{ with site.Params.version }} &middot; {{ . }}{{ end }}</div>
+      <h1>{{ .Title }}</h1>
+      <p class="lede">{{ i18n "printedOn" }} {{ time.Format ":date_long" now }} &middot; {{ len .RegularPagesRecursive }} {{ i18n "pagesWord" }}</p>
+      <h2>{{ i18n "contents" }}</h2>
+      <ol>{{ range .RegularPagesRecursive.ByWeight }}<li><a href="#{{ .File.ContentBaseName | urlize }}">{{ .LinkTitle }}</a></li>{{ end }}</ol>
+    </div>
+    {{ range .RegularPagesRecursive.ByWeight }}
+    <article class="prose print-page" id="{{ .File.ContentBaseName | urlize }}">
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+      {{ .Content }}
+    </article>
+    {{ end }}
+  </main>
+</body>
+</html>

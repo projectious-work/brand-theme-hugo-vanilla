@@ -1,0 +1,15 @@
+{{- $out := slice -}}
+{{- $pages := where site.RegularPages "Params.private" "!=" true -}}
+{{- range $i, $p := $pages -}}
+  {{- $crumb := slice -}}
+  {{- range $p.Ancestors.Reverse -}}{{- if not .IsHome -}}{{- $crumb = $crumb | append .LinkTitle -}}{{- end -}}{{- end -}}
+  {{- $out = $out | append (dict
+      "id" $i
+      "title" $p.LinkTitle
+      "href" $p.RelPermalink
+      "crumb" (delimit $crumb " · ")
+      "description" (or $p.Description "")
+      "tags" (or $p.Params.tags slice)
+      "content" ($p.Plain | truncate 2000 "")) -}}
+{{- end -}}
+{{- $out | jsonify -}}

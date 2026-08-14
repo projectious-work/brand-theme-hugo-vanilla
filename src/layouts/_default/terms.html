@@ -1,0 +1,15 @@
+{{ define "main" }}
+<div class="shell">
+  <main id="main">
+    <div class="hero">
+      <div class="overline">{{ i18n "taxonomy" }}</div>
+      <h1>{{ .Title }}</h1>
+    </div>
+    <div class="taglist">
+      {{ range .Data.Terms.Alphabetical }}
+      <a class="badge badge--accent" href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }} <span>{{ .Count }}</span></a>
+      {{ end }}
+    </div>
+  </main>
+</div>
+{{ end }}

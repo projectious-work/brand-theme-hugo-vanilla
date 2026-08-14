@@ -1,0 +1,108 @@
+[skipToContent]
+other = "Zum Inhalt springen"
+[mainNav]
+other = "Hauptnavigation"
+[docsNav]
+other = "Dokumentationsnavigation"
+[breadcrumbs]
+other = "Brotkrumen"
+[home]
+other = "Start"
+[overview]
+other = "Überblick"
+[menu]
+other = "Menü"
+[search]
+other = "Suche"
+[searchPlaceholder]
+other = "Dokumentation durchsuchen"
+[searchShortcut]
+other = "Strg K"
+[noResults]
+other = "Keine Treffer"
+[resultsWord]
+other = "Treffer"
+[onThisPage]
+other = "Auf dieser Seite"
+[previous]
+other = "Zurück"
+[next]
+other = "Weiter"
+[pagination]
+other = "Seitennavigation"
+[permalink]
+other = "Link zu dieser Überschrift"
+[copyCode]
+other = "Kopieren"
+[copied]
+other = "Kopiert"
+[appearance]
+other = "Darstellung"
+[light]
+other = "Hell"
+[dark]
+other = "Dunkel"
+[darkNavy]
+other = "Dunkel navy"
+[darkDeep]
+other = "Dunkel tief"
+[system]
+other = "System"
+[toggleTheme]
+other = "Farbmodus"
+[language]
+other = "Sprache"
+[version]
+other = "Version"
+[a11yOptions]
+other = "Barrierefreiheit"
+[textSize]
+other = "Textgröße"
+[reading]
+other = "Lesen"
+[highContrast]
+other = "Hoher Kontrast"
+[strongFocus]
+other = "Deutlicher Fokusrahmen"
+[underlineLinks]
+other = "Links unterstreichen"
+[reduceMotion]
+other = "Bewegung reduzieren"
+[looseSpacing]
+other = "Weiter Textabstand"
+[tools]
+other = "Werkzeuge"
+[printSection]
+other = "Diesen Abschnitt drucken"
+[printedOn]
+other = "Gedruckt"
+[contents]
+other = "Inhalt"
+[pagesWord]
+other = "Seiten"
+[editThisPage]
+other = "Diese Seite bearbeiten"
+[lastUpdated]
+other = "Aktualisiert"
+[feedbackPrompt]
+other = "War diese Seite hilfreich?"
+[feedbackThanks]
+other = "Danke für die Rückmeldung."
+[yes]
+other = "Ja"
+[no]
+other = "Nein"
+[minRead]
+other = "{{ .Count }} Min. Lesezeit"
+[taxonomy]
+other = "Taxonomie"
+[tagged]
+other = "Verschlagwortet"
+[notFoundTitle]
+other = "Seite nicht gefunden"
+[notFoundBody]
+other = "Diese Seite existiert nicht oder wurde verschoben."
+[backHome]
+other = "Zur Startseite"
+[builtWith]
+other = "Mit Hugo gebaut"

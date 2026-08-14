@@ -1,0 +1,5 @@
+{{ with resources.Get "js/interactions.js" }}{{ with . | js.Build (dict "minify" hugo.IsProduction) }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}{{ end }}
+{{ if not (eq site.Params.search false) }}
+  {{ with resources.Get "js/vendor/flexsearch.bundle.min.js" }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
+  {{ with resources.Get "js/search.js" }}{{ with . | js.Build (dict "minify" hugo.IsProduction) }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}{{ end }}
+{{ end }}

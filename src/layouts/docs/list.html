@@ -1,0 +1,24 @@
+{{ define "main" }}
+{{ .Store.Set "hasSidebar" true }}
+<div class="docs docs--no-toc">
+  {{ partial "sidebar.html" . }}
+  <main id="main" class="docs__main">
+    {{ partial "breadcrumbs.html" . }}
+    <article class="prose">
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+      {{ .Content }}
+    </article>
+    <div class="cards">
+      {{ range .Pages.ByWeight }}
+      <a class="card" href="{{ .RelPermalink }}">
+        {{ with .Params.icon }}<div class="card__icon">{{ partial "icon.html" (dict "name" . "class" "ico--lg") }}</div>{{ end }}
+        <div class="card__title">{{ .LinkTitle }}{{ if .IsSection }} &rarr;{{ end }}</div>
+        <p class="card__text">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 120 }}{{ end }}</p>
+      </a>
+      {{ end }}
+    </div>
+    {{ partial "page-footer.html" . }}
+  </main>
+</div>
+{{ end }}

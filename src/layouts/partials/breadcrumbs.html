@@ -1,0 +1,7 @@
+<nav class="crumbs" aria-label="{{ i18n "breadcrumbs" }}">
+  {{ range .Ancestors.Reverse }}
+    <a href="{{ .RelPermalink }}">{{ if .IsHome }}{{ i18n "home" }}{{ else }}{{ .LinkTitle }}{{ end }}</a>
+    {{ partial "icon.html" (dict "name" "chevron-right" "class" "ico--sm") }}
+  {{ end }}
+  <span aria-current="page">{{ .LinkTitle }}</span>
+</nav>

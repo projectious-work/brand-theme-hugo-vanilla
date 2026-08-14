@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="shell">
+  <main id="main">
+    {{ partial "breadcrumbs.html" . }}
+    <div class="hero">
+      <div class="overline">{{ i18n "tagged" }}</div>
+      <h1>{{ .Title }}</h1>
+      <p>{{ len .Pages }} {{ i18n "pagesWord" }}</p>
+    </div>
+    <div class="postlist">
+      {{ range .Pages }}
+      <article class="postlist__item">
+        <div class="postlist__meta"><span>{{ .Section }}</span>{{ with .Date }}<span>{{ time.Format ":date_medium" . }}</span>{{ end }}</div>
+        <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+        <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 180 }}{{ end }}</p>
+      </article>
+      {{ end }}
+    </div>
+  </main>
+</div>
+{{ end }}

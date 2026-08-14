@@ -1,0 +1,13 @@
+/* Entry point. Hugo pipes this through the Tailwind v4 CLI (css.TailwindCSS).
+   Order matters: Tailwind first, then brand tokens, then the theme layer that
+   re-exports those tokens as Tailwind namespaces, then component CSS. */
+@import "tailwindcss";
+@import "./brand-tokens.css";
+@import "./fonts.css";
+@import "./theme-layer.css";
+@import "./syntax.css";
+@import "./components.css";
+
+/* Tailwind scans Hugo's class inventory instead of the source tree.
+   Requires build.buildStats.enable = true in the site config. */
+@source "hugo_stats.json";

@@ -1,0 +1,11 @@
+<div class="pagefoot">
+  <div class="pagefoot__meta">
+    {{ if and site.Params.editURL .File }}
+    <a href="{{ printf "%s%s" site.Params.editURL .File.Path }}">{{ partial "icon.html" (dict "name" "pencil" "class" "ico--sm") }}{{ i18n "editThisPage" }}</a>
+    {{ end }}
+    {{ with .Lastmod }}<span>{{ i18n "lastUpdated" }} {{ time.Format ":date_medium" . }}</span>{{ end }}
+    {{ with .Params.tags }}<span class="taglist">{{ range . }}<a class="badge" href="{{ printf "/tags/%s/" (urlize .) | relLangURL }}">{{ . }}</a>{{ end }}</span>{{ end }}
+  </div>
+  {{ partial "feedback.html" . }}
+  {{ partial "pager.html" . }}
+</div>

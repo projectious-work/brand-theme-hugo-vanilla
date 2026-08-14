@@ -1,0 +1,20 @@
+{{ define "main" }}
+<div class="shell">
+  <main id="main">
+    {{ partial "breadcrumbs.html" . }}
+    <article class="prose">
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+      {{ .Content }}
+    </article>
+    <div class="cards">
+      {{ range .Pages.ByWeight }}
+      <a class="card" href="{{ .RelPermalink }}">
+        <div class="card__title">{{ .LinkTitle }}</div>
+        <p class="card__text">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 120 }}{{ end }}</p>
+      </a>
+      {{ end }}
+    </div>
+  </main>
+</div>
+{{ end }}

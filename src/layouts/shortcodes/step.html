@@ -1,0 +1,4 @@
+<div class="step">
+  {{ with .Get "title" }}<div class="step__title">{{ . }}</div>{{ end }}
+  {{ .Inner | .Page.RenderString (dict "display" "block") }}
+</div>

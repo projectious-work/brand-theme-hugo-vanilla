@@ -1,0 +1,7 @@
+{{ $prev := .NextInSection }}{{ $next := .PrevInSection }}
+{{ if or $prev $next }}
+<nav class="pager" aria-label="{{ i18n "pagination" }}">
+  {{ with $prev }}<a class="prev" href="{{ .RelPermalink }}"><span class="dir">{{ i18n "previous" }}</span><span class="t">{{ .LinkTitle }}</span></a>{{ end }}
+  {{ with $next }}<a class="next" href="{{ .RelPermalink }}"><span class="dir">{{ i18n "next" }}</span><span class="t">{{ .LinkTitle }}</span></a>{{ end }}
+</nav>
+{{ end }}

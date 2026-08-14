@@ -1,0 +1,27 @@
+{{ define "main" }}
+<div class="shell">
+  <main id="main">
+    <div class="hero">
+      <div class="overline">{{ site.Title }}</div>
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p>{{ . }}</p>{{ end }}
+    </div>
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+    {{ $paginator := .Paginate .Pages }}
+    <div class="postlist">
+      {{ range $paginator.Pages }}
+      <article class="postlist__item">
+        <div class="postlist__meta">
+          <span>{{ time.Format ":date_medium" .Date }}</span>
+          <span>{{ i18n "minRead" (dict "Count" .ReadingTime) }}</span>
+        </div>
+        <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+        <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 200 }}{{ end }}</p>
+        {{ with .Params.tags }}<div class="taglist">{{ range . }}<a class="badge" href="{{ printf "/tags/%s/" (urlize .) | relLangURL }}">{{ . }}</a>{{ end }}</div>{{ end }}
+      </article>
+      {{ end }}
+    </div>
+    {{ template "_internal/pagination.html" . }}
+  </main>
+</div>
+{{ end }}

@@ -1,0 +1,1 @@
+<a class="btn btn--{{ .Get "variant" | default "primary" }}" href="{{ .Get "href" | relLangURL }}">{{ .Get "label" | default (.Get 0) }}{{ with .Get "icon" }}{{ partial "icon.html" (dict "name" . "class" "ico--sm") }}{{ end }}</a>

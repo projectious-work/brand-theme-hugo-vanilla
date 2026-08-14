@@ -1,0 +1,19 @@
+<header class="header">
+  {{ if .Store.Get "hasSidebar" }}
+  <button class="iconbtn target header__burger" type="button" data-sidebar-toggle aria-expanded="false" aria-label="{{ i18n "menu" }}">
+    {{ partial "icon.html" (dict "name" "menu-2" "class" "ico--sm") }}
+  </button>
+  {{ end }}
+  {{ partial "brand.html" . }}
+  {{ partial "menu.html" . }}
+  {{ partial "search-box.html" . }}
+  <div class="header__tools">
+    {{ partial "version-menu.html" . }}
+    {{ partial "lang-menu.html" . }}
+    {{ partial "a11y-menu.html" . }}
+    {{ partial "mode-menu.html" . }}
+    {{ with site.Params.github }}
+    <a class="iconbtn target" href="{{ . }}" aria-label="GitHub">{{ partial "icon.html" (dict "name" "brand-github" "class" "ico--sm") }}</a>
+    {{ end }}
+  </div>
+</header>

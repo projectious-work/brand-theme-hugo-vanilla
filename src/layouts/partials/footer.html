@@ -1,0 +1,4 @@
+<footer class="footer">
+  <span>{{ with site.Copyright }}{{ . | safeHTML }}{{ else }}&copy; {{ now.Year }} projectious.work{{ end }}</span>
+  <span class="footer__meta">{{ with site.Params.version }}{{ . }} &middot; {{ end }}{{ i18n "builtWith" }}</span>
+</footer>

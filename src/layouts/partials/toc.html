@@ -1,0 +1,6 @@
+{{ if and (ne .Params.toc false) (gt (len .TableOfContents) 60) }}
+<aside class="toc">
+  <div class="toc__label">{{ i18n "onThisPage" }}</div>
+  {{ .TableOfContents }}
+</aside>
+{{ end }}

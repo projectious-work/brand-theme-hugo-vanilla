@@ -1,0 +1,28 @@
+name = "projectious.work"
+license = "MIT"
+licenselink = "https://github.com/projectious-work/brand-theme-hugo-vanilla/blob/main/LICENSE"
+description = "Documentation, blog and marketing theme implementing the projectious.work brand system. Tailwind v4 styling base, FlexSearch full-text search, versioned docs, multilingual, offline Tabler-style icon set."
+homepage = "https://github.com/projectious-work/brand-theme-hugo-vanilla"
+demosite = "https://projectious-work.github.io/brand-theme-hugo-vanilla/"
+tags = ["docs", "documentation", "blog", "search", "dark-mode", "multilingual", "tailwind"]
+features = [
+  "light / dark / system colour mode",
+  "auto-generated hierarchical sidebar",
+  "page table of contents with active-heading tracking",
+  "breadcrumbs, prev/next pagination, heading permalinks",
+  "FlexSearch full-text search (offline, no external service)",
+  "multilingual + language selector",
+  "document version selector",
+  "blog, landing pages, Hugo taxonomies",
+  "edit-on-GitHub links and a page feedback widget",
+  "print view for a whole documentation section",
+  "shortcodes: callouts, cards, tabs, steps, details, file tree, icons, badges, terminal, terms, mermaid",
+  "LaTeX math, Mermaid diagrams, Chroma syntax highlighting",
+  "accessibility selectors (text size, contrast, focus ring, motion, link underline)",
+  "Hugo Modules packaging"
+]
+min_version = "0.128.0"
+
+[author]
+  name = "projectious.work"
+  homepage = "https://projectious.work"

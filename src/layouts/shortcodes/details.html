@@ -1,0 +1,4 @@
+<details class="details"{{ if eq (.Get "open") "true" }} open{{ end }}>
+  <summary>{{ partial "icon.html" (dict "name" "chevron-right" "class" "ico--sm") }}{{ .Get "title" | default (.Get 0) }}</summary>
+  <div class="details__body">{{ .Inner | .Page.RenderString (dict "display" "block") }}</div>
+</details>

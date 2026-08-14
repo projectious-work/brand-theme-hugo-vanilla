@@ -1,0 +1,7 @@
+{{ if ne site.Params.feedback false }}
+<div class="feedback"{{ with site.Params.feedbackEndpoint }} data-endpoint="{{ . }}"{{ end }}>
+  <span data-feedback-status data-thanks="{{ i18n "feedbackThanks" }}">{{ i18n "feedbackPrompt" }}</span>
+  <button type="button" data-feedback="up" aria-pressed="false">{{ partial "icon.html" (dict "name" "thumb-up" "class" "ico--sm") }}{{ i18n "yes" }}</button>
+  <button type="button" data-feedback="down" aria-pressed="false">{{ partial "icon.html" (dict "name" "thumb-down" "class" "ico--sm") }}{{ i18n "no" }}</button>
+</div>
+{{ end }}

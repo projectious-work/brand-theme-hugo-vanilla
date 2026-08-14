@@ -1,0 +1,108 @@
+[skipToContent]
+other = "Skip to content"
+[mainNav]
+other = "Main navigation"
+[docsNav]
+other = "Documentation navigation"
+[breadcrumbs]
+other = "Breadcrumbs"
+[home]
+other = "Home"
+[overview]
+other = "Overview"
+[menu]
+other = "Menu"
+[search]
+other = "Search"
+[searchPlaceholder]
+other = "Search documentation"
+[searchShortcut]
+other = "Ctrl K"
+[noResults]
+other = "No results"
+[resultsWord]
+other = "results"
+[onThisPage]
+other = "On this page"
+[previous]
+other = "Previous"
+[next]
+other = "Next"
+[pagination]
+other = "Page navigation"
+[permalink]
+other = "Link to this heading"
+[copyCode]
+other = "Copy"
+[copied]
+other = "Copied"
+[appearance]
+other = "Appearance"
+[light]
+other = "Light"
+[dark]
+other = "Dark"
+[darkNavy]
+other = "Dark navy"
+[darkDeep]
+other = "Dark deep"
+[system]
+other = "System"
+[toggleTheme]
+other = "Colour mode"
+[language]
+other = "Language"
+[version]
+other = "Version"
+[a11yOptions]
+other = "Accessibility options"
+[textSize]
+other = "Text size"
+[reading]
+other = "Reading"
+[highContrast]
+other = "High contrast"
+[strongFocus]
+other = "Strong focus ring"
+[underlineLinks]
+other = "Underline links"
+[reduceMotion]
+other = "Reduce motion"
+[looseSpacing]
+other = "Loose text spacing"
+[tools]
+other = "Tools"
+[printSection]
+other = "Print this section"
+[printedOn]
+other = "Printed"
+[contents]
+other = "Contents"
+[pagesWord]
+other = "pages"
+[editThisPage]
+other = "Edit this page"
+[lastUpdated]
+other = "Updated"
+[feedbackPrompt]
+other = "Was this page useful?"
+[feedbackThanks]
+other = "Thanks for the feedback."
+[yes]
+other = "Yes"
+[no]
+other = "No"
+[minRead]
+other = "{{ .Count }} min read"
+[taxonomy]
+other = "Taxonomy"
+[tagged]
+other = "Tagged"
+[notFoundTitle]
+other = "Page not found"
+[notFoundBody]
+other = "The page you are looking for does not exist or has moved."
+[backHome]
+other = "Back to home"
+[builtWith]
+other = "Built with Hugo"

@@ -1,0 +1,10 @@
+{{ $root := .FirstSection }}
+<nav class="sidebar" aria-label="{{ i18n "docsNav" }}" data-open="false">
+  <div class="sidebar__group">{{ $root.LinkTitle }}</div>
+  <a href="{{ $root.RelPermalink }}"{{ if eq $root . }} aria-current="page"{{ end }}>{{ i18n "overview" }}</a>
+  {{ partial "sidebar-tree.html" (dict "page" $root "current" . "level" 0) }}
+  {{ with $root.OutputFormats.Get "print" }}
+  <div class="sidebar__group">{{ i18n "tools" }}</div>
+  <a href="{{ .RelPermalink }}">{{ i18n "printSection" }}</a>
+  {{ end }}
+</nav>

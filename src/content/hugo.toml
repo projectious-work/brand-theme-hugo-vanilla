@@ -1,0 +1,103 @@
+# Example site. Consumes the theme as a Hugo Module; scripts/serve.sh runs it
+# from the repository root with a replace directive back to ../..
+baseURL = "https://projectious-work.github.io/brand-theme-hugo-vanilla/"
+title = "projectious.work"
+defaultContentLanguage = "en"
+enableRobotsTXT = true
+enableGitInfo = true
+
+[module]
+  [[module.imports]]
+    path = "github.com/projectious-work/brand-theme-hugo-vanilla"
+
+# Tailwind v4 reads this inventory instead of scanning templates.
+[build]
+  [build.buildStats]
+    enable = true
+
+[pagination]
+  pagerSize = 8
+
+[taxonomies]
+  tag = "tags"
+
+[outputFormats.SearchIndex]
+  mediaType = "application/json"
+  baseName = "index"
+  isPlainText = true
+  notAlternative = true
+
+[outputFormats.Print]
+  mediaType = "text/html"
+  baseName = "print"
+  isHTML = true
+  notAlternative = true
+  permalinkable = true
+
+[outputs]
+  home = ["HTML", "RSS", "SearchIndex"]
+  section = ["HTML", "RSS", "Print"]
+  page = ["HTML"]
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.goldmark.extensions.passthrough]
+    enable = true
+    [markup.goldmark.extensions.passthrough.delimiters]
+      block = [["\\[", "\\]"], ["$$", "$$"]]
+      inline = [["\\(", "\\)"]]
+  [markup.highlight]
+    noClasses = false
+    lineNos = false
+    guessSyntax = true
+    tabWidth = 2
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+[[menus.main]]
+  name = "Docs"
+  pageRef = "/docs"
+  weight = 10
+[[menus.main]]
+  name = "Blog"
+  pageRef = "/blog"
+  weight = 20
+[[menus.main]]
+  name = "Tags"
+  pageRef = "/tags"
+  weight = 30
+
+[params]
+  description = "Documentation, blog and marketing pages on the projectious.work brand system."
+  github = "https://github.com/projectious-work/brand-theme-hugo-vanilla"
+  editURL = "https://github.com/projectious-work/brand-theme-hugo-vanilla/edit/main/src/content/content/"
+  version = "v0.3"
+  darkSurface = "navy"   # navy dark mode; remove for the default terminal-surface dark
+  # feedbackEndpoint = "https://example.org/api/feedback"
+  # search = false            # disables the index, the header box and /search
+  # accessibilityMenu = false # hides the accessibility selector
+  # math = true               # loads KaTeX on every page
+
+  [params.build]
+    tailwind = true
+
+  [[params.versions]]
+    label = "v0.3"
+    url = "/"
+    note = "latest"
+  [[params.versions]]
+    label = "v0.2"
+    url = "/v0.2/"
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    weight = 1
+  [languages.de]
+    languageName = "Deutsch"
+    weight = 2
+    title = "projectious.work"
+    [languages.de.params]
+      description = "Dokumentation und Blog auf Basis des projectious.work Markensystems."

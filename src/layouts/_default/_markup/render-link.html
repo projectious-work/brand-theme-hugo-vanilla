@@ -1,0 +1,2 @@
+{{- $external := strings.HasPrefix .Destination "http" -}}
+<a href="{{ .Destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $external }} target="_blank" rel="noopener"{{ end }}>{{ .Text | safeHTML }}{{ if $external }}{{ partial "icon.html" (dict "name" "external-link" "class" "ico--sm") }}{{ end }}</a>

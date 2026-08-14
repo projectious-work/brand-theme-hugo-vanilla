@@ -1,0 +1,21 @@
+# Theme-side module mounts. The theme keeps its source under src/ so the
+# repository root stays readable; Hugo sees a conventional layout.
+[module]
+  [[module.mounts]]
+    source = "src/archetypes"
+    target = "archetypes"
+  [[module.mounts]]
+    source = "src/assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "src/data"
+    target = "data"
+  [[module.mounts]]
+    source = "src/i18n"
+    target = "i18n"
+  [[module.mounts]]
+    source = "src/layouts"
+    target = "layouts"
+  [[module.mounts]]
+    source = "src/static"
+    target = "static"

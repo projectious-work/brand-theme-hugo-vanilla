@@ -1,0 +1,5 @@
+{{- if eq (.Get "display") "block" -}}
+<div class="math">$${{ .Inner }}$$</div>
+{{- else -}}
+<span class="math">${{ .Inner }}$</span>
+{{- end -}}

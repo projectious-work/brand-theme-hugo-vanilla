@@ -1,0 +1,7 @@
+{{- $name := "" }}{{ $class := "" }}{{ $label := "" -}}
+{{- if reflect.IsMap . }}{{ $name = .name }}{{ $class = .class }}{{ $label = .label }}{{ else }}{{ $name = . }}{{ end -}}
+{{- with resources.Get (printf "icons/%s.svg" $name) -}}
+<span class="ico{{ with $class }} {{ . }}{{ end }}"{{ if $label }} role="img" aria-label="{{ $label }}"{{ else }} aria-hidden="true"{{ end }}>{{ .Content | safeHTML }}</span>
+{{- else -}}
+{{- warnf "icon %q not found in assets/icons" $name -}}
+{{- end -}}

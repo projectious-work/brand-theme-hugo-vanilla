@@ -1,0 +1,18 @@
+{{- /* Tailwind v4 CSS-first pipeline. Needs @tailwindcss/cli available to Hugo
+       (npm install in the theme root). Set params.build.tailwind = false to skip
+       the CLI and ship the token + component layers only. */ -}}
+{{- $tailwind := true -}}
+{{- if isset site.Params "build" }}{{ if isset site.Params.build "tailwind" }}{{ $tailwind = site.Params.build.tailwind }}{{ end }}{{ end -}}
+{{- $out := "" -}}
+{{- if $tailwind -}}
+  {{- with resources.Get "css/main.css" -}}
+    {{- $out = . | css.TailwindCSS (dict "minify" hugo.IsProduction "inlineImports" true) -}}
+  {{- end -}}
+{{- else -}}
+  {{- $out = slice (resources.Get "css/brand-tokens.css") (resources.Get "css/fonts.css") (resources.Get "css/components.css") | resources.Concat "css/theme.css" -}}
+  {{- if hugo.IsProduction }}{{ $out = $out | minify }}{{ end -}}
+{{- end -}}
+{{- with $out -}}
+  {{- $f := . | fingerprint -}}
+  <link rel="stylesheet" href="{{ $f.RelPermalink }}" integrity="{{ $f.Data.Integrity }}">
+{{- end -}}

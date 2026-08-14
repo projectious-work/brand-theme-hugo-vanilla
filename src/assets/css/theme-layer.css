@@ -1,0 +1,33 @@
+/* Tailwind v4 theme layer — maps brand tokens onto Tailwind's namespaces so
+   utilities like bg-surface, text-lo, border-default resolve to brand values.
+   Token values are never re-declared here; they are referenced. */
+@theme inline {
+  --font-display: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-page: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-subtle: var(--midnight-2);
+  --color-hi: var(--color-text-primary);
+  --color-lo: var(--color-text-secondary);
+  --color-default: var(--color-border);
+  --color-accent: var(--color-accent);
+  --color-accent-solid: var(--color-accent-solid);
+  --color-terminal: var(--terminal-surface);
+
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 9px;
+  --radius-xl: 13px;
+
+  --spacing: 4px;
+
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+
+  --ease-out: ease-out;
+  --ease-in: ease-in;
+}

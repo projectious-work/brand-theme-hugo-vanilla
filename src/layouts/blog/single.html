@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="shell">
+  <main id="main">
+    {{ partial "breadcrumbs.html" . }}
+    <article class="prose">
+      <div class="postlist__meta">
+        <span>{{ time.Format ":date_long" .Date }}</span>
+        <span>{{ i18n "minRead" (dict "Count" .ReadingTime) }}</span>
+        {{ with .Params.author }}<span>{{ . }}</span>{{ end }}
+      </div>
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+      {{ .Content }}
+    </article>
+    {{ partial "page-footer.html" . }}
+  </main>
+</div>
+{{ end }}
