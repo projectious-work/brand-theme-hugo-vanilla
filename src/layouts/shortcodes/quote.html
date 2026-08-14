@@ -1,9 +1,0 @@
-<blockquote class="pullquote">
-  <p>{{ .Inner | markdownify }}</p>
-  {{ if or (.Get "author") (.Get "role") }}
-  <footer class="pullquote__cite">
-    {{ with .Get "author" }}<span class="pullquote__author">{{ . }}</span>{{ end }}
-    {{ with .Get "role" }}<span class="pullquote__role">{{ . }}</span>{{ end }}
-  </footer>
-  {{ end }}
-</blockquote>

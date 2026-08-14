@@ -188,16 +188,14 @@ session until the gateway lifecycle is proven stable.
 
 ## Setup
 
-```sh
-./scripts/check-docs-local.sh
-uv run scripts/smoke-test-servers.py
-```
+The `release/v0.3.0` branch intentionally has no implementation, build, or
+test command yet. Define these with the new architecture before adding source.
 
 <!-- pk-managed:pk-commands BEGIN -->
 <!-- pk-commands BEGIN -->
 <!--
-build: "./scripts/check-docs-local.sh"
-test: "uv run scripts/smoke-test-servers.py"
+build: ""
+test: ""
 lint: ""
 fmt: ""
 typecheck: ""
@@ -209,9 +207,10 @@ typecheck: ""
 
 Hard-wrap Markdown/Python/YAML at 80 cols (exempt: tables, URLs,
 frontmatter, code fences). Conventional Commits; never `--no-verify`.
-`src/` ships to consumers, `context/` is local — never mix. Preferences
-live in per-skill `context/skills/<name>/config/settings.toml`. PRs:
-link WorkItem ID, squash-merge, green tests before merge.
+`context/` remains local process state and must not become product source.
+Preferences live in per-skill `context/skills/<name>/config/settings.toml`.
+PRs link a WorkItem ID, squash-merge, and require the checks defined by the
+new architecture before merge.
 
 ## Team
 

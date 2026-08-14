@@ -1,5 +1,0 @@
-<ul class="menu" data-nav-list>
-{{ range site.Menus.main }}
-  <li class="menu__item"><a class="menu__link{{ if $.IsMenuCurrent "main" . }} is-active{{ end }}" href="{{ .URL }}"{{ if .Params.external }} target="_blank" rel="noopener"{{ end }}>{{ .Name }}</a></li>
-{{ end }}
-</ul>

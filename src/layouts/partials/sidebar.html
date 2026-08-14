@@ -1,6 +1,0 @@
-{{ $section := site.GetPage "/docs" }}
-{{ if $section }}
-<nav class="sidebar" data-sidebar aria-label="{{ i18n "docsNav" }}">
-  {{ partial "sidebar-tree.html" (dict "pages" $section.Pages "current" .) }}
-</nav>
-{{ end }}

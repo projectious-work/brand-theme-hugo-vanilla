@@ -1,8 +1,0 @@
-{{ $type := .Get "type" | default "text" }}
-{{ $label := .Get "label" }}
-{{ $id := $label | anchorize }}
-<label class="field" for="{{ $id }}">
-  <span class="field__label">{{ $label }}</span>
-  <input class="field__control" id="{{ $id }}" type="{{ $type }}" value="{{ .Get "value" }}" placeholder="{{ .Get "placeholder" }}">
-  {{ with .Get "hint" }}<span class="field__hint">{{ . }}</span>{{ end }}
-</label>

@@ -1,6 +1,0 @@
-{{ if or .PrevInSection .NextInSection }}
-<nav class="pager">
-  {{ with .PrevInSection }}<a class="pager__prev" href="{{ .RelPermalink }}"><span class="pager__label caption">{{ i18n "previous" }}</span><span class="pager__title">{{ .Title }}</span></a>{{ end }}
-  {{ with .NextInSection }}<a class="pager__next" href="{{ .RelPermalink }}"><span class="pager__label caption">{{ i18n "next" }}</span><span class="pager__title">{{ .Title }}</span></a>{{ end }}
-</nav>
-{{ end }}

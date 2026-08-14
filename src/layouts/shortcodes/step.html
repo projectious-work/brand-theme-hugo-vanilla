@@ -1,7 +1,0 @@
-<div class="step">
-  <div class="step__marker"></div>
-  <div class="step__body">
-    {{ with .Get "title" }}<div class="step__title">{{ . }}</div>{{ end }}
-    <div class="step__desc">{{ .Inner | markdownify }}</div>
-  </div>
-</div>

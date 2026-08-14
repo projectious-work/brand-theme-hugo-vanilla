@@ -1,11 +1,7 @@
 # ── Project-specific ─────────────────────────────────────────────────────────
-# Hugo
+# Generated project output
 public/
-resources/_gen/
-.hugo_build.lock
-src/content/public/
-src/content/resources/_gen/
-src/content/.hugo_build.lock
+resources/
 .deploy/
 
 
