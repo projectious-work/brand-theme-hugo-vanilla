@@ -3,6 +3,8 @@
 public/
 resources/
 .deploy/
+src/content/.hugo_build.lock
+src/content/hugo_stats.json
 
 
 # ── aibox generated ────────────────────────────────────────────────────────

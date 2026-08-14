@@ -85,11 +85,11 @@ enableGitInfo = true
 
   [[params.versions]]
     label = "v0.3"
-    url = "/"
+    url = ""
     note = "latest"
   [[params.versions]]
     label = "v0.2"
-    url = "/v0.2/"
+    url = "v0.2/"
 
 [languages]
   [languages.en]

@@ -17,7 +17,7 @@
         </div>
         <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
         <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 200 }}{{ end }}</p>
-        {{ with .Params.tags }}<div class="taglist">{{ range . }}<a class="badge" href="{{ printf "/tags/%s/" (urlize .) | relLangURL }}">{{ . }}</a>{{ end }}</div>{{ end }}
+        {{ with .Params.tags }}<div class="taglist">{{ range . }}<a class="badge" href="{{ printf "tags/%s/" (urlize .) | relLangURL }}">{{ . }}</a>{{ end }}</div>{{ end }}
       </article>
       {{ end }}
     </div>

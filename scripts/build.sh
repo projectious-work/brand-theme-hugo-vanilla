@@ -22,12 +22,20 @@ command -v hugo >/dev/null 2>&1 || {
   exit 1
 }
 
-PATH="$ROOT_DIR/node_modules/.bin:$PATH" hugo \
-  --source "$SITE_DIR" \
-  --destination "$DEST_DIR" \
-  --cacheDir "$ROOT_DIR/.deploy/cache" \
-  --cleanDestinationDir \
-  --gc \
-  --minify
+build_site() {
+  PATH="$ROOT_DIR/node_modules/.bin:$PATH" hugo \
+    --source "$SITE_DIR" \
+    --destination "$DEST_DIR" \
+    --cacheDir "$ROOT_DIR/.deploy/cache" \
+    --cleanDestinationDir \
+    --gc \
+    --minify \
+    "$@"
+}
+
+# The first pass writes Hugo's class inventory for Tailwind. The second pass
+# consumes that inventory and produces the complete, reproducible stylesheet.
+build_site --quiet
+build_site
 
 echo "Built example site into $DEST_DIR"

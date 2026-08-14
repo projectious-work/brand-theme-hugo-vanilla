@@ -7,7 +7,7 @@
   <div class="menu__panel" role="menu">
     <div class="menu__label">{{ i18n "version" }}</div>
     {{ range . }}
-      <a href="{{ .url }}" role="menuitemradio" aria-checked="{{ eq .label $current }}">{{ .label }}{{ with .note }} <span class="badge">{{ . }}</span>{{ end }}</a>
+      <a href="{{ .url | relURL }}" role="menuitemradio" aria-checked="{{ eq .label $current }}">{{ .label }}{{ with .note }} <span class="badge">{{ . }}</span>{{ end }}</a>
     {{ end }}
   </div>
 </div>
