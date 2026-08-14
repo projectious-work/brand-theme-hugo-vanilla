@@ -7,7 +7,7 @@ tags = ["guide"]
 
 ## Before you start
 
-You need a workspace with at least one connected {{< term "agent" >}}, and the
+You need a workspace with at least one connected {{< term "agent" />}}, and the
 `projectious` CLI installed locally.
 
 ## Define the pipeline

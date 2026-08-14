@@ -7,7 +7,6 @@
     <span class="code__name">{{ with .Attributes.filename }}{{ . }}{{ else }}{{ $lang }}{{ end }}</span>
     <button class="code__copy" type="button" data-copied="{{ i18n "copied" }}">{{ partial "icon.html" (dict "name" "copy" "class" "ico--sm") }}<span>{{ i18n "copyCode" }}</span></button>
   </div>
-  {{ highlight (trim .Inner "
-") $lang (.Options.hl_inline | default "") }}
+  {{ highlight (trim .Inner "\n") $lang (.Options.hl_inline | default "") }}
 </div>
 {{- end -}}

@@ -2,6 +2,5 @@
   <div class="code__bar"><span class="code__name">{{ .Get "title" | default "terminal" }}</span>
     <button class="code__copy" type="button" data-copied="{{ i18n "copied" }}">{{ partial "icon.html" (dict "name" "copy" "class" "ico--sm") }}<span>{{ i18n "copyCode" }}</span></button>
   </div>
-  {{ highlight (trim .Inner "
-") "shell-session" "" }}
+  {{ highlight (trim .Inner "\n") "shell-session" "" }}
 </div>

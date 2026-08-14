@@ -12,9 +12,9 @@ tagline = "A Hugo theme for documentation, blog and marketing pages — built on
 +++
 
 {{< cards >}}
-  {{< card title="Documentation" subtitle="Auto-generated sidebar, table of contents with active-heading tracking, breadcrumbs, prev/next, print view." link="/docs/" icon="book" >}}
-  {{< card title="Search" subtitle="FlexSearch over a generated index. Ctrl K from anywhere; no external service." link="/search/" icon="search" >}}
-  {{< card title="Blog" subtitle="Dates, reading time, tags, RSS, pagination." link="/blog/" icon="list" >}}
+  {{< card title="Documentation" subtitle="Auto-generated sidebar, table of contents with active-heading tracking, breadcrumbs, prev/next, print view." link="/docs/" icon="book" />}}
+  {{< card title="Search" subtitle="FlexSearch over a generated index. Ctrl K from anywhere; no external service." link="/search/" icon="search" />}}
+  {{< card title="Blog" subtitle="Dates, reading time, tags, RSS, pagination." link="/blog/" icon="list" />}}
 {{< /cards >}}
 
 ## Written in Markdown, not HTML

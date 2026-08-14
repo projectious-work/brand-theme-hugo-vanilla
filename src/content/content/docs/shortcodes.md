@@ -23,8 +23,8 @@ Attaching a policy version does not affect runs in progress.
 ## Cards
 
 {{< cards >}}
-  {{< card title="Pipelines" subtitle="Declare stages in YAML and run them under audit." link="/docs/" icon="versions" >}}
-  {{< card title="Policies" subtitle="Versioned rules, attached per pipeline." link="/docs/" icon="circle-check" >}}
+  {{< card title="Pipelines" subtitle="Declare stages in YAML and run them under audit." link="/docs/" icon="versions" />}}
+  {{< card title="Policies" subtitle="Versioned rules, attached per pipeline." link="/docs/" icon="circle-check" />}}
 {{< /cards >}}
 
 ## Tabs
@@ -67,8 +67,8 @@ $ projectious run --pipeline onboarding-audit
 
 ## Terminology
 
-A {{< term "pipeline" >}} moves a run through stages; each stage is audited
-against a {{< term "policy" >}}.
+A {{< term "pipeline" />}} moves a run through stages; each stage is audited
+against a {{< term "policy" />}}.
 
 ## Math
 

@@ -22,7 +22,7 @@ command -v hugo >/dev/null 2>&1 || {
   exit 1
 }
 
-hugo \
+PATH="$ROOT_DIR/node_modules/.bin:$PATH" hugo \
   --source "$SITE_DIR" \
   --destination "$DEST_DIR" \
   --cacheDir "$ROOT_DIR/.deploy/cache" \
