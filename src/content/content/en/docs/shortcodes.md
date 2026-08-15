@@ -17,6 +17,26 @@ becomes a captioned, lazy-loaded figure that opens in a lightbox. Reach for a
 shortcode only where a component needs structured children.
 {{< /callout >}}
 
+## Shortcode syntax: paired and unpaired
+
+Hugo decides which form to use from the template. A shortcode whose template
+reads `.Inner` requires a closing tag; one that has no inner content must not have
+one or use an XML-style trailing slash.
+
+**Unpaired:** `card`, `file`, `icon`, `badge`, `button`, `term`, `image`,
+`notebook`, `asciinema`.
+
+**Paired:** `callout`, `cards`, `tabs`, `tab`, `steps`, `step`, `details`,
+`filetree`, `folder`, `terminal`, `mermaid`.
+
+    {{</* badge "v0.3" */>}}              <!-- unpaired -->
+    {{</* details title="Why?" */>}}      <!-- paired -->
+    It wraps content, so it closes.
+    {{</* /details */>}}
+
+Keep shortcode-syntax examples in top-level fenced or indented blocks. Content
+inside a paired shortcode is parsed again, including escaped examples.
+
 ## Callouts
 
 {{< callout type="info" >}}Information a reader needs but did not ask for.{{< /callout >}}
@@ -58,31 +78,6 @@ Write cards by hand only for a set that is not a page list:
 `cols` is `2`, `3` (default) or `4`, so an incomplete last row keeps its width.
 `card` also takes `image` and `alt` for an image card. `subtitle` is rendered as
 Markdown, so links and code spans work inside it.
-
-### Unpaired and paired
-
-Hugo decides which is which from the template: a shortcode whose template reads
-`.Inner` **requires** a closing tag, and one that never touches it must not have
-one.
-
-**Unpaired** — one tag, no closing tag, and no XML-style trailing slash:
-`card` · `file` · `icon` · `badge` · `button` · `term` · `image` · `notebook` ·
-`asciinema`.
-
-**Paired** — these wrap content and take a closing tag:
-`callout` · `cards` · `tabs` · `tab` · `steps` · `step` · `details` · `filetree` ·
-`folder` · `terminal` · `mermaid`.
-
-    {{</* badge "v0.3" */>}}              <!-- unpaired: correct -->
-    {{</* badge "v0.3" /*/>}}             <!-- wrong: no trailing slash -->
-
-    {{</* details title="Why?" */>}}      <!-- paired: correct -->
-    It wraps content, so it closes.
-    {{</* /details */>}}
-
-Writing shortcode-syntax examples **inside** a paired shortcode does not work:
-`.Inner` is re-parsed, so even the escaped form is interpreted and the build fails.
-Keep examples in fenced or indented blocks at the top level, as above.
 
 ## Tabs
 

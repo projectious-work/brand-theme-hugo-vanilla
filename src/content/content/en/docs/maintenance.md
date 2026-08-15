@@ -27,6 +27,30 @@ unchanged.
 6. Commit `go.mod`, `go.sum`, package lockfiles and required configuration changes
    together.
 
+## Check for a new release
+
+Copy `scripts/check-theme-update.sh` from the theme release into the consuming
+site's `scripts/` directory and make it executable. It reads the installed version
+from Hugo's module graph and compares it with upstream SemVer tags:
+
+```sh
+chmod +x scripts/check-theme-update.sh
+./scripts/check-theme-update.sh
+```
+
+It is check-only by default and exits with status 10 when an update is available,
+which makes it suitable for a scheduled local task. After reading the release
+notes and committing or stashing site changes, apply the update explicitly:
+
+```sh
+./scripts/check-theme-update.sh --update
+```
+
+The update mode runs `hugo mod get` and `hugo mod tidy`; it deliberately does not
+rewrite configuration, overwrite local templates or publish. Review the resulting
+`go.mod`/`go.sum`, compare configuration examples, then run the consuming site's
+build, link, accessibility and visual tests.
+
 ## Routine checks
 
 - Run `npm audit` and review direct dependency updates.

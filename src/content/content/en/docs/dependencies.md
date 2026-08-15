@@ -21,6 +21,7 @@ build-time tools, browser-loaded libraries and bundled assets.
 | Mermaid | 11.16.1 | Pinned CDN or self-hosted | Diagram rendering | MIT |
 | asciinema-player | 3.17.0 | Pinned CDN or self-hosted | Terminal recording playback | Apache-2.0 |
 | nbconvert | 7.16.6 | Optional pinned Python tool | Convert Jupyter notebooks to Markdown | BSD-3-Clause |
+| Tabler Icons | selected fallback SVGs; no full-library dependency | Bundled assets / site asset override | Interface and content icons | MIT |
 
 Exact browser-runtime URLs are maintained in `src/data/cdn.yaml`; exact npm
 transitives and integrity values are in `package-lock.json`; Python conversion pins
@@ -31,7 +32,9 @@ are in `scripts/requirements.txt`.
 Plus Jakarta Sans, Source Sans 3 and IBM Plex Mono are bundled as WOFF2 under the
 SIL Open Font License 1.1. Licence texts ship under `src/static/fonts/licenses/`.
 The theme's SVG icon set follows Tabler geometry and is distributed with its source
-notes. FlexSearch's licence ships under `src/static/licenses/flexsearch/`.
+notes. The complete Tabler library is not currently a Hugo Module dependency; see
+[Icons and Tabler](developer-guide.md#icons-and-tabler). FlexSearch's licence ships
+under `src/static/licenses/flexsearch/`.
 
 ## SBOM scope and maintenance
 

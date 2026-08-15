@@ -39,6 +39,8 @@ rg -q 'asciinema-player@3\.17\.0' \
   "$VERIFY_DIR/build-a/docs/guides/index.html"
 rg -q '/brand-theme-hugo-vanilla/casts/theme-tour\.cast' \
   "$VERIFY_DIR/build-a/docs/guides/index.html"
+rg -q 'solarized-light' "$VERIFY_DIR/build-a/docs/guides/index.html"
+bash -n "$ROOT_DIR/scripts/check-theme-update.sh"
 
 hash_tree() {
   find "$1" -type f -print0 \

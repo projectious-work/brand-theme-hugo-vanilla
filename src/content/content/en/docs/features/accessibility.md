@@ -23,6 +23,12 @@ The accessibility menu stores preferences locally:
 These controls supplement operating-system preferences. They do not replace the
 browser's own zoom or accessibility tools.
 
+To see **Strong focus ring**, enable it, then press `Tab` rather than clicking.
+Keyboard focus around the search field, menu buttons, links and form controls
+changes to a three-pixel orange outline with a three-pixel gap. Browsers normally
+hide `:focus-visible` for pointer clicks, so clicking a control is not a reliable
+demonstration. The preference persists in local storage for this site origin.
+
 ## Author responsibilities
 
 Supply meaningful image alternatives, use headings in order, label icon-only

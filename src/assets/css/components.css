@@ -93,6 +93,12 @@ code, kbd, pre, samp { font-family: var(--font-code); }
 .prose h3{font-size:calc(18px * var(--font-scale));margin:28px 0 8px}
 .prose p,.prose li{font-size:var(--type-body-size);line-height:var(--type-body-lh);color:var(--color-text-primary);text-wrap:pretty}
 .prose ul,.prose ol{padding-left:22px}
+.prose ul{list-style:disc outside}
+.prose ol{list-style:decimal outside}
+.prose ul ul{list-style-type:circle}
+.prose ul ul ul{list-style-type:square}
+.prose ol ol{list-style-type:lower-alpha}
+.prose li::marker{color:var(--color-text-secondary);font-weight:600}
 .prose li{margin:4px 0}
 .prose .lede{font-size:calc(17px * var(--font-scale));color:var(--color-text-secondary);margin:0 0 28px}
 .prose :not(pre)>code{font-size:.88em;background:var(--midnight-2);padding:2px 6px;border-radius:4px;color:var(--color-text-primary)}
@@ -145,7 +151,7 @@ html[data-code="adaptive"]:not([data-theme="dark"]) .code__bar{background:rgba(2
 html[data-code="adaptive"]:not([data-theme="dark"]) .code__name{color:var(--color-text-secondary)}
 html[data-code="adaptive"]:not([data-theme="dark"]) .code__copy{color:var(--color-text-secondary);border-color:var(--color-border)}
 html[data-code="adaptive"]:not([data-theme="dark"]) .code pre,
-html[data-code="adaptive"]:not([data-theme="dark"]) .code .chroma{background:transparent;color:var(--syntax-plain-light)}
+html[data-code="adaptive"]:not([data-theme="dark"]) .code .chroma{background:transparent!important;color:var(--syntax-plain-light)}
 html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .hl{background:rgba(20,36,56,.06)}
 html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .n,
 html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .nx,
@@ -292,7 +298,8 @@ html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .gd{color:var(--synt
 .btn--primary:hover{opacity:.88;color:#fff}
 .btn--secondary{border-color:var(--color-border);color:var(--color-text-primary);background:var(--color-surface)}
 .btn--secondary:hover{border-color:var(--midnight-7);color:var(--color-text-primary)}
-.mermaid{margin:24px 0;text-align:center}
+.mermaid{margin:24px 0;padding:16px;text-align:center;background:var(--color-surface)!important;border:1px solid var(--color-border);border-radius:var(--radius-md)}
+.mermaid svg{background:transparent!important}
 
 /* ── Page furniture ─────────────────────────────────────────────────── */
 .crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:calc(12.5px * var(--font-scale));color:var(--color-text-secondary);margin-bottom:10px}

@@ -21,9 +21,9 @@ choices. Do not edit theme templates for settings that already have a parameter.
 | `i18n/*.toml` | Translated interface labels | Theme maintainer or translator |
 | Page front matter | Title, order, description and per-page capabilities | Content author |
 
-The example at `src/content/hugo.toml` is a complete working reference. Copy the
-relevant tables into your site's configuration; do not point Hugo at the example
-site itself.
+The example at `src/content/hugo.toml` is executable test material. The copyable
+equivalent is included below so a site creator does not need to browse the theme
+repository.
 
 ## Minimum site configuration
 
@@ -43,6 +43,87 @@ enableRobotsTXT = true
 
 `baseURL` must include any deployment prefix. The theme resolves internal links
 through Hugo so `/project-name/` deployments work correctly.
+
+## Complete copyable configuration
+
+Paste this into the site-root `hugo.toml` created by `hugo new site`, then replace
+the example identity and repository values. Comments mark optional settings.
+
+```toml {filename="hugo.toml"}
+baseURL = "https://docs.example.com/"
+title = "Example documentation"
+defaultContentLanguage = "en"
+enableRobotsTXT = true
+
+[module]
+  [[module.imports]]
+    path = "github.com/projectious-work/brand-theme-hugo-vanilla"
+
+[build.buildStats]
+  enable = true # lets Tailwind discover classes emitted by Hugo
+
+[outputFormats.SearchIndex]
+  mediaType = "application/json"
+  baseName = "index"
+  isPlainText = true
+  notAlternative = true
+
+[outputFormats.Print]
+  mediaType = "text/html"
+  baseName = "print"
+  isHTML = true
+  notAlternative = true
+  permalinkable = true
+
+[outputFormats.LLMS]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  notAlternative = true
+
+[outputFormats.Markdown]
+  mediaType = "text/markdown"
+  isPlainText = true
+  permalinkable = true
+
+[outputs]
+  home = ["HTML", "RSS", "SearchIndex", "LLMS"]
+  section = ["HTML", "RSS", "Print", "Markdown"]
+  page = ["HTML", "Markdown"]
+
+[markup.goldmark.renderer]
+  unsafe = false
+[markup.goldmark.extensions.passthrough]
+  enable = true
+[markup.goldmark.extensions.passthrough.delimiters]
+  block = [["\\[", "\\]"], ["$$", "$$"]]
+  inline = [["\\(", "\\)"]]
+[markup.highlight]
+  noClasses = false
+  guessSyntax = true
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 3
+
+[[menus.main]]
+  name = "Documentation"
+  pageRef = "/docs"
+  weight = 10
+
+[params]
+  description = "Documentation for the example product."
+  github = "https://github.com/example/example-docs"
+  editURL = "https://github.com/example/example-docs/edit/main/content/"
+  version = "v1.0"
+  codeTheme = "adaptive"
+  sidebarSections = ["docs"]
+  sidebarOpenDepth = 1
+
+  [[params.versions]]
+    label = "v1.0"
+    url = "/"
+    note = "latest"
+```
 
 ## Required output formats
 
@@ -78,22 +159,32 @@ raw HTML. The theme itself does not require it.
 
 Place these below `[params]` in `hugo.toml`:
 
-| Parameter | When to configure it |
-|---|---|
-| `version` / `versions` | When publishing versioned documentation |
-| `github` | To show a repository icon in the header |
-| `editURL` | To show language-aware Edit-this-page links |
-| `sidebarSections` | When documentation lives outside `/docs/` |
-| `sidebarOpenDepth` | To change initial nesting expansion |
-| `codeTheme = "adaptive"` | To use light code panels in light mode |
-| `darkSurface = "navy"` | To choose the server-rendered dark surface |
-| `announcement` | For a dismissible release or service notice |
-| `feedbackEndpoint` | When a server implements `CONTRACT-feedback.md` |
-| `selfHostAssets` | When public CDNs are prohibited |
-| `math = true` | When nearly every page contains mathematics |
+The table is the complete public parameter set. Scalar parameters are assigned
+below `[params]`; tables and arrays use the TOML shapes shown in their detailed
+pages.
 
-Boolean switches `search`, `feedback`, `accessibilityMenu`, `sidebarFilter` and
-`commandPalette` default to enabled; set one to `false` to remove it.
+| Parameter | Type and default | Configure when | Details |
+|---|---|---|---|
+| `description` | string, empty | Setting site metadata | [Header and navigation](features/header-navigation.md) |
+| `github` | URL, unset | Showing a repository header action | [Header and navigation](features/header-navigation.md) |
+| `editURL` | URL or language map, unset | Showing Edit-this-page links | [Editing and feedback](features/editing-feedback.md) |
+| `version` | string, unset | Labelling the current documentation | [Versioning](features/versioning.md) |
+| `versions` | array, empty | Linking published documentation trees | [Versioning](features/versioning.md) |
+| `versionProbe` | boolean, `true` | Disabling same-page version probing globally | [Versioning](features/versioning.md) |
+| `sidebarSections` | string array, `["docs"]` | Putting the sidebar on other sections | [Header and navigation](features/header-navigation.md) |
+| `sidebarOpenDepth` | integer, `1` | Changing initially expanded levels | [Header and navigation](features/header-navigation.md) |
+| `codeTheme` | `adaptive` or `dark`, `adaptive` | Forcing code and terminal panels dark | [Tailwind and design tokens](features/tailwind.md) |
+| `darkSurface` | `navy`, unset | Making navy the initial dark surface | [Accessibility](features/accessibility.md) |
+| `announcement` | table, unset | Showing a dismissible notice | [Header and navigation](features/header-navigation.md) |
+| `feedbackEndpoint` | URL, unset | Sending page votes to a service | [Editing and feedback](features/editing-feedback.md) |
+| `selfHostAssets` | boolean, `false` | Replacing public CDN URLs | [Dependencies](dependencies.md) |
+| `math` | boolean, `false` | Loading KaTeX on every page | [Content authoring](guides/_index.md#diagrams-and-mathematics) |
+| `search` | boolean, `true` | Disabling search and its index | [Search](features/search.md) |
+| `feedback` | boolean, `true` | Hiding the page-vote control | [Editing and feedback](features/editing-feedback.md) |
+| `accessibilityMenu` | boolean, `true` | Hiding reader preference controls | [Accessibility](features/accessibility.md) |
+| `sidebarFilter` | boolean, `true` | Hiding the sidebar filter | [Search](features/search.md) |
+| `commandPalette` | boolean, `true` | Disabling the keyboard palette | [Header and navigation](features/header-navigation.md) |
+| `build.tailwind` | boolean, `true` | Building without Node/Tailwind | [Tailwind and design tokens](features/tailwind.md) |
 
 ## Menus and languages
 
@@ -108,30 +199,21 @@ language under `[languages.<code>]` with `label` and `weight`. See
 |---|---|
 | `title` | Page title and navigation label |
 | `linkTitle` | Optional shorter navigation label |
-| `description` | Lede, SEO description and search excerpt |
+| `description` | Introductory summary below the title, SEO description and search excerpt |
 | `weight` | Sidebar, card and previous/next order |
 | `icon` | Generated overview-card icon |
-| `toc = false` | Hide the table of contents |
-| `cards = false` | Hide generated child-page cards on a section |
-| `hidden = true` | Exclude a child from its generated card grid |
-| `math = true` | Load KaTeX on this page |
-| `private = true` | Exclude from search and sitemap |
+| `toc` | Show the table of contents; default `true`, set `false` to hide |
+| `cards` | Generate child-page cards; default `true`, set `false` to hide |
+| `hidden` | Exclude a child from generated cards; default `false` |
+| `math` | Load KaTeX on this page; default `false` |
+| `private` | Exclude from search and sitemap; default `false` |
 | `cover` / `coverAlt` | Blog cover image and alternative text |
 
 ## Edit and feedback integrations
 
-`params.editURL` may be one prefix or a language map. The page's content-relative
-path is appended automatically:
-
-```toml
-[params.editURL]
-  default = "https://github.com/org/repo/edit/main/content/"
-  de = "https://github.com/org/repo/edit/main/content/de/"
-  fr = "https://github.com/org/repo/edit/main/content/fr/"
-```
-
-`params.feedbackEndpoint` receives `{path, value, title, lang}`. Client throttling
-is only a usability feature; the endpoint must enforce origin, path and rate limits.
+See [Editing and feedback](features/editing-feedback.md) for repository URL
+mapping, the request payload, the browser's one-vote-per-page behavior and the
+security requirements for an optional receiving service.
 
 ## Notebook conversion
 
@@ -150,13 +232,31 @@ path. Notebook basenames must be unique.
 
 ## Search engines and llms.txt
 
-With `enableRobotsTXT = true`, `robots.txt` excludes duplicate search and print
-views. The sitemap excludes private pages and emits translated alternates.
+`robots.txt` gives compliant web crawlers crawl instructions. Set
+`enableRobotsTXT = true`; Hugo then asks the theme to publish `/robots.txt`. The
+theme allows canonical content while excluding generated search indexes and print
+variants that duplicate it. For example:
 
-`llms.txt` is separate: the `LLMS` home output writes a compact, language-aware
-list of canonical page titles, descriptions and Markdown links. It helps tools
-discover documentation without scraping navigation chrome. It is not an access
-control, model-training directive or replacement for `robots.txt`.
+```text
+User-agent: *
+Disallow: /search/
+Disallow: /*/print.html
+Sitemap: https://docs.example.com/sitemap.xml
+```
+
+`llms.txt` is a discovery document, not a crawler rule. Enable it by defining the
+`LLMS` output format and adding `"LLMS"` to `outputs.home`, as in the copyable
+configuration. It contains page titles, descriptions and links to clean Markdown
+representations, without repeated header, sidebar and footer controls:
+
+```text
+# Example documentation
+## Documentation
+- [Getting started](https://docs.example.com/docs/getting-started/index.md): Create a site.
+```
+
+Neither file is access control. Private information must not be published; use
+authentication at the hosting layer when content requires access restrictions.
 
 ## Validate configuration changes
 

@@ -1,6 +1,6 @@
 +++
-title = "Dokumentation, die sich wie Ihr Produkt anfühlt"
-eyebrow = "Cloud · Agile · Agentic AI"
+title = "projectious.work Hugo-Theme"
+eyebrow = "projectious.work Brand-Design-System"
 tagline = "Ein produktionsreifes Hugo-Theme für Dokumentation, Versionshinweise und Produktseiten — barrierearm, durchsuchbar und mehrsprachig."
 [[cta]]
   label = "Erste Schritte"
@@ -11,7 +11,7 @@ tagline = "Ein produktionsreifes Hugo-Theme für Dokumentation, Versionshinweise
   variant = "secondary"
 +++
 
-## Alles für eine moderne Dokumentationsseite
+## Alles für eine moderne statische Website
 
 {{< cards >}}
   {{< card title="Strukturierte Dokumentation" subtitle="Generierte Navigation, Inhaltsverzeichnis, Seitenwerkzeuge und Druckansicht." link="/docs/features/" icon="book" >}}

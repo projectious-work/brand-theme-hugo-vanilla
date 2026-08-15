@@ -1,6 +1,6 @@
 +++
 title = "Leitfaden für Inhalte"
-linkTitle = "Leitfäden"
+linkTitle = "Leitfaden zur Inhaltserstellung"
 description = "Seiten, Links, Code, Diagramme, Aufzeichnungen und Notebook-Ausgaben erstellen."
 weight = 40
 icon = "book"

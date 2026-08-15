@@ -1,53 +1,96 @@
 +++
 title = "Getting started"
-description = "Install the theme, create the required configuration and run a local documentation site."
+description = "Create a Hugo site from scratch, install the theme from a release or local checkout, configure its outputs and run it."
 weight = 10
 icon = "book"
 tags = ["setup"]
 +++
 
-This walkthrough assumes basic Hugo knowledge and produces a local site using Hugo
-Modules, the recommended installation method.
+This is a from-scratch walkthrough for a new site. Existing Hugo sites can begin
+at [Choose how to install the theme](#choose-how-to-install-the-theme).
 
-## Requirements
+## 1. Install the tools
 
-- Hugo 0.128.0 or newer;
-- Go for Hugo Module resolution;
-- Node.js and npm for the Tailwind CSS build; and
-- Git.
+Install Hugo 0.128.0 or newer, Go, Node.js/npm and Git. Confirm them before
+creating files:
 
-The repository itself is verified with Hugo 0.164.0. See `TESTING.md` for the
-current version-matrix limitation.
+```sh
+hugo version
+go version
+node --version
+npm --version
+git --version
+```
 
-## Install the theme
+The example is verified with Hugo 0.164.0. Use Hugo Extended because the CSS
+pipeline invokes Tailwind through Hugo Pipes.
+
+## 2. Create an empty site
+
+```sh
+hugo new site example-docs
+cd example-docs
+git init
+hugo mod init example.com/example-docs
+npm init -y
+npm install --save-dev @tailwindcss/cli@^4.1.0
+```
+
+`hugo new site` creates `hugo.toml`, `content/`, `layouts/`, `static/` and other
+standard Hugo directories. `hugo mod init` creates `go.mod`, which records the
+theme dependency.
+
+## 3. Choose how to install the theme
+
+### Released Hugo Module — recommended
+
+Add the module import to the new site's `hugo.toml`:
 
 ```toml {filename="hugo.toml"}
 [module]
   [[module.imports]]
     path = "github.com/projectious-work/brand-theme-hugo-vanilla"
-
-[build.buildStats]
-  enable = true
 ```
 
-Initialize the site module and fetch dependencies:
+Fetch and pin a released version:
 
 ```sh
-hugo mod init example.com/docs
-npm install
 hugo mod get github.com/projectious-work/brand-theme-hugo-vanilla@v0.3.0
+hugo mod tidy
 ```
 
-Pin a released tag in `go.mod`; do not depend on a moving branch for production.
+Commit `go.mod` and `go.sum`. Production sites should use a release tag, not a
+moving branch.
 
-## Copy the feature configuration
+### Local checkout — offline development or theme changes
 
-Copy `[outputFormats]`, `[outputs]` and `[markup]` from
-`src/content/hugo.toml`. They enable search, print, Markdown outputs, `llms.txt`,
-syntax highlighting and math delimiters. The
-[Configuration guide](configuration.md) explains each block.
+Clone or unpack the theme beside the site:
 
-## Create the first documentation section
+```text
+workspace/
+├── brand-theme-hugo-vanilla/
+└── example-docs/
+```
+
+Keep the same module import, then add a local replacement to the site's `go.mod`:
+
+```go {filename="go.mod"}
+replace github.com/projectious-work/brand-theme-hugo-vanilla => ../brand-theme-hugo-vanilla
+```
+
+Hugo now reads the local checkout without downloading the module. Do not commit a
+machine-specific `replace` line in a production site; remove it and run
+`hugo mod tidy` before releasing.
+
+## 4. Configure the feature outputs
+
+Copy the complete commented configuration from
+[Configuration](configuration.md#complete-copyable-configuration) into the
+site's root `hugo.toml`—the file created by `hugo new site`. The output-format
+blocks enable search, print views, page Markdown and `llms.txt`; the markup block
+enables class-based syntax highlighting, heading tables of contents and math.
+
+## 5. Create the first pages
 
 ```text
 content/
@@ -55,6 +98,13 @@ content/
 └── docs/
     ├── _index.md
     └── first-page.md
+```
+
+```toml {filename="content/_index.md"}
++++
+title = "Example documentation"
+tagline = "Documentation for the example product."
++++
 ```
 
 ```toml {filename="content/docs/_index.md"}
@@ -76,24 +126,24 @@ icon = "book"
 Write the page in ordinary Markdown.
 ```
 
-## Run locally
+## 6. Run and verify locally
 
 ```sh
 hugo server --disableFastRender
 ```
 
-Open the URL printed by Hugo. Confirm that navigation, search and colour controls
-work before adding more content.
+Open the URL printed by Hugo. Check the sidebar, search, language and appearance
+menus, code colours and keyboard focus. A production build is `hugo --minify`.
 
 ## Next steps
 
-1. Read [Configuration](configuration.md) and set site identity, outputs and menus.
-2. Follow the [content authoring guide](guides/_index.md).
-3. Review the [feature map](features/_index.md) and disable anything not required.
+1. Read [Configuration](configuration.md) and set site identity and integrations.
+2. Follow the [Content authoring guide](guides/_index.md).
+3. Review the [feature map](features/_index.md).
 4. Adopt the [maintenance workflow](maintenance.md) before the first release.
 
 {{< callout type="note" title="Building without Node" >}}
-Set `params.build.tailwind = false` to serve bundled tokens and component CSS
-without Tailwind utilities. This is useful for constrained consumers, but the
-normal supported build installs the locked Node dependencies.
+Set `params.build.tailwind = false` to serve the theme's tokens and component CSS
+without Tailwind utilities. Site-authored Tailwind utility classes will then not be
+generated.
 {{< /callout >}}

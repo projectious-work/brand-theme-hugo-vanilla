@@ -1,6 +1,6 @@
 +++
 title = "Content authoring guide"
-linkTitle = "Guides"
+linkTitle = "Content authoring guide"
 description = "Write pages, links, code, diagrams, recordings and notebook output with Hugo-friendly Markdown."
 weight = 40
 icon = "book"
@@ -63,19 +63,36 @@ highlighted lines through fence attributes. Use the terminal shortcode for a
 captured command interaction:
 
 {{< terminal title="local preview" >}}
-$ hugo server --disableFastRender
-Watching for changes in content and layouts
-Web Server is available at http://localhost:1313/
-Press Ctrl+C to stop
+$ hugo --minify
+✓ Content validated
+✓ Search index generated
+⚠ Review two external links
+Build completed in 284 ms
 {{< /terminal >}}
 
 ```md
 {{</* terminal title="local preview" */>}}
-$ hugo server --disableFastRender
-Watching for changes in content and layouts
-Web Server is available at http://localhost:1313/
-Press Ctrl+C to stop
+$ hugo --minify
+✓ Content validated
+✓ Search index generated
+⚠ Review two external links
+Build completed in 284 ms
 {{</* /terminal */>}}
+```
+
+Language fences show syntax colours without a shortcode:
+
+```python {filename="report.py", linenos=table, hl_lines="3"}
+from pathlib import Path
+
+pages = list(Path("content").rglob("*.md"))
+print(f"{len(pages)} pages ready")
+```
+
+```toml {filename="hugo.toml"}
+[params]
+  codeTheme = "adaptive"
+  sidebarOpenDepth = 1
 ```
 
 ## Diagrams and mathematics
@@ -90,12 +107,28 @@ flowchart LR
   H --> P[HTML and print]
 ```
 
+````md
+```mermaid
+flowchart LR
+  M[Markdown] --> H[Hugo]
+  H --> P[HTML and print]
+```
+````
+
 Set `math = true` in front matter before using KaTeX. Inline mathematics such as
 \( t_{build} < 1s \) stays in the sentence; display mathematics gets its own block:
 
 $$
 T_{publish} = T_{build} + T_{verify} + T_{deploy}
 $$
+
+```md
+Inline: \\( t_{build} < 1s \\)
+
+$$
+T_{publish} = T_{build} + T_{verify} + T_{deploy}
+$$
+```
 
 ## Terminal recordings
 
@@ -112,6 +145,7 @@ under `static/casts/`.
 ```
 
 Autoplay is disabled by default. The player version is pinned in `data/cdn.yaml`.
+Its light and dark palettes follow the page colour mode.
 
 ## Jupyter notebooks
 
@@ -121,7 +155,11 @@ published pages remain ordinary Markdown and images.
 
 {{< notebook "theme-demo" >}}
 
-Create the pinned conversion environment and convert every notebook:
+The preview above includes the converted Python input cell and its output. The
+source `.ipynb` file is JSON and is not embedded directly in a page.
+
+Create an isolated, reproducible conversion environment and convert every
+notebook:
 
 ```sh
 python3 -m venv .venv
@@ -130,6 +168,12 @@ pip install -r scripts/requirements.txt
 ./scripts/notebooks.sh
 ```
 
-Embed the converted result with `{{</* notebook "theme-demo" */>}}`. See
+`scripts/requirements.txt` pins `nbconvert` and its converters so the same notebook
+produces stable Markdown on developer machines and in releases. The virtual
+environment keeps these Python tools out of the system installation.
+
+Embed the converted result with `{{</* notebook "theme-demo" */>}}`. Notebook
+shortcodes reference a converted file; they cannot execute or contain an inline
+notebook. See
 [Configuration](../configuration.md#notebook-conversion) for paths and lookup
 rules.

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ .Language.Locale }}" dir="{{ or .Language.Direction "ltr" }}" data-a11y="auto"{{ with site.Params.darkSurface }} data-surface="{{ . }}"{{ end }}{{ with site.Params.codeTheme }} data-code="{{ . }}"{{ end }} data-search-index="{{ partial "url.html" "index.json" }}">
+<html lang="{{ .Language.Locale }}" dir="{{ or .Language.Direction "ltr" }}" data-a11y="auto"{{ with site.Params.darkSurface }} data-surface="{{ . }}"{{ end }} data-code="{{ site.Params.codeTheme | default "adaptive" }}" data-search-index="{{ partial "url.html" "index.json" }}">
 <head>{{ partial "head.html" . }}</head>
 <body>
   <a class="skip-link" href="#main">{{ i18n "skipToContent" }}</a>

@@ -116,6 +116,11 @@ Project policies live in [CONTRIBUTING.md](CONTRIBUTING.md),
 [SECURITY.md](SECURITY.md), [SUPPORT.md](SUPPORT.md),
 [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), and [LICENSE](LICENSE).
 
+Consuming sites can copy `scripts/check-theme-update.sh` from a release. It checks
+their installed Hugo Module against upstream SemVer tags without changing files;
+the explicit `--update` mode updates and tidies the module after release notes have
+been reviewed.
+
 ## Notes and deliberate deviations
 
 - **Active-heading tracking uses IntersectionObserver, not Bootstrap ScrollSpy.**

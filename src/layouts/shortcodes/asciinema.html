@@ -8,15 +8,27 @@
 {{ end -}}
 <div class="cast" id="cast-{{ .Ordinal }}"></div>
 <script>
-  AsciinemaPlayer.create({{ $src | jsonify | safeJS }}, document.getElementById("cast-{{ .Ordinal }}"), {
-    cols: {{ .Get "cols" | default 100 }},
-    rows: {{ .Get "rows" | default 22 }},
-    idleTimeLimit: {{ .Get "idleTimeLimit" | default 2 }},
-    speed: {{ .Get "speed" | default 1 }},
-    autoPlay: {{ if eq (.Get "autoplay") "true" }}true{{ else }}false{{ end }},
-    loop: {{ if eq (.Get "loop") "true" }}true{{ else }}false{{ end }},
-    poster: "npt:0:01",
-    theme: "asciinema",
-    terminalFontFamily: "'IBM Plex Mono', ui-monospace, monospace"
-  });
+  (() => {
+    const mount = document.getElementById("cast-{{ .Ordinal }}");
+    const dark = () => document.documentElement.getAttribute("data-theme") === "dark"
+      || (!document.documentElement.getAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
+    let player;
+    const render = () => {
+      if (player && typeof player.dispose === "function") player.dispose();
+      mount.replaceChildren();
+      player = AsciinemaPlayer.create({{ $src | jsonify | safeJS }}, mount, {
+        cols: {{ .Get "cols" | default 100 }},
+        rows: {{ .Get "rows" | default 22 }},
+        idleTimeLimit: {{ .Get "idleTimeLimit" | default 2 }},
+        speed: {{ .Get "speed" | default 1 }},
+        autoPlay: {{ if eq (.Get "autoplay") "true" }}true{{ else }}false{{ end }},
+        loop: {{ if eq (.Get "loop") "true" }}true{{ else }}false{{ end }},
+        poster: "npt:0:01",
+        theme: dark() ? "asciinema" : "solarized-light",
+        terminalFontFamily: "'IBM Plex Mono', ui-monospace, monospace"
+      });
+    };
+    render();
+    document.addEventListener("pw:mode", render);
+  })();
 </script>
