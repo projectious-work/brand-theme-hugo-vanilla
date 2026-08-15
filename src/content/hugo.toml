@@ -74,17 +74,13 @@ enableGitInfo = true
     endLevel = 3
 
 [[menus.main]]
-  name = "Docs"
+  name = "Documentation"
   pageRef = "/docs"
   weight = 10
 [[menus.main]]
   name = "Blog"
   pageRef = "/blog"
   weight = 20
-[[menus.main]]
-  name = "Tags"
-  pageRef = "/tags"
-  weight = 30
 
 [params]
   description = "Documentation, blog and marketing pages on the projectious.work brand system."
@@ -92,10 +88,10 @@ enableGitInfo = true
   # A single string is appended to the page's content-relative path. For a
   # multilingual site the theme adds the language directory automatically; pass a
   # map keyed by language code when the repo layout differs per language.
-  editURL = "https://github.com/projectious-work/brand-theme-hugo-vanilla/edit/main/src/content/content/"
-  # [params.editURL]
-  #   default = ".../edit/main/src/content/content/"
-  #   de      = ".../edit/main/src/content/content/de/"
+  [params.editURL]
+    default = "https://github.com/projectious-work/brand-theme-hugo-vanilla/edit/main/src/content/content/en/"
+    de = "https://github.com/projectious-work/brand-theme-hugo-vanilla/edit/main/src/content/content/de/"
+    fr = "https://github.com/projectious-work/brand-theme-hugo-vanilla/edit/main/src/content/content/fr/"
   version = "v0.3"
   darkSurface = "navy"   # navy dark mode; remove for the default terminal-surface dark
   codeTheme = "adaptive" # light code panels in light mode; remove for always-dark
@@ -142,10 +138,19 @@ enableGitInfo = true
   # theme mirrors its sidebar rail, chevrons, step rail and file-tree connectors.
   [languages.en]
     label = "English"
+    contentDir = "content/en"
     weight = 1
   [languages.de]
     label = "Deutsch"
+    contentDir = "content/de"
     weight = 2
     title = "projectious.work"
     [languages.de.params]
       description = "Dokumentation und Blog auf Basis des projectious.work Markensystems."
+  [languages.fr]
+    label = "Français"
+    contentDir = "content/fr"
+    weight = 3
+    title = "projectious.work"
+    [languages.fr.params]
+      description = "Documentation et blog fondés sur le système de marque projectious.work."

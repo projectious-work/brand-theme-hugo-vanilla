@@ -1,31 +1,66 @@
 +++
 title = "Konfiguration"
-description = "Parameter, die das Theme liest, und was sie jeweils bewirken."
-weight = 30
-tags = ["referenz"]
+description = "Konfigurationsdateien verstehen und Theme-Funktionen gezielt aktivieren."
+weight = 20
+icon = "versions"
 +++
 
-## Parameter
+## Dateien und Zuständigkeiten
 
-| Parameter | Wirkung |
+| Datei | Aufgabe |
 |---|---|
-| `params.version` | Bezeichnung in der Versionsauswahl und im Footer |
-| `params.versions` | Liste aus `{label, url, note}` für die Auswahl |
-| `params.editURL` | Präfix für „Diese Seite bearbeiten“; der Seitenpfad wird angehängt |
-| `params.announcement` | Ausblendbarer Hinweisbalken über der Kopfzeile |
-| `params.search` | `false` entfernt Index, Suchfeld und `/search` |
-| `params.sidebarFilter` | `false` verbirgt das Filterfeld in der Seitenleiste |
-| `params.feedback` | `false` verbirgt das Feedback-Element |
-| `params.accessibilityMenu` | `false` verbirgt die Barrierefreiheits-Auswahl |
-| `params.build.tailwind` | `false` überspringt den Tailwind-Schritt |
+| `hugo.toml` | URL, Modul, Sprachen, Menüs, Ausgabeformate und Parameter |
+| `go.mod` | Theme-Version als Hugo Module |
+| `package.json` | Tailwind und Browsertests |
+| `data/cdn.yaml` | Fixierte KaTeX-, Mermaid- und asciinema-Versionen |
+| `i18n/*.toml` | Übersetzete Oberflächentexte |
+| Frontmatter | Seitentitel, Reihenfolge und seitenbezogene Optionen |
+
+`src/content/hugo.toml` ist die vollständige lauffähige Referenz. Übernehmen Sie
+die benötigten Tabellen in die Konfiguration Ihrer Website.
+
+## Mindestkonfiguration und Ausgabeformate
+
+Setzen Sie `baseURL`, `title`, das Hugo-Modul und `build.buildStats.enable = true`.
+Die zusätzlichen Ausgabeformate erzeugen:
+
+| Format | Ergebnis |
+|---|---|
+| `SearchIndex` | `/index.json` für Seiten- und Überschriftensuche |
+| `Print` | eine druckbare Gesamtansicht je Bereich |
+| `Markdown` | `index.md` für Kopieren/Anzeigen als Markdown |
+| `LLMS` | `/llms.txt` als kompakte, sprachabhängige Linkliste |
+| `RSS` | abonnierbare Versionshinweise |
+
+## Theme-Parameter
+
+Parameter stehen unter `[params]`. Häufig benötigt werden `github`, `editURL`,
+`version`, `versions`, `sidebarSections`, `codeTheme`, `announcement`,
+`feedbackEndpoint` und `selfHostAssets`. Die Schalter `search`, `feedback`,
+`accessibilityMenu`, `sidebarFilter` und `commandPalette` lassen sich mit `false`
+abschalten.
 
 ## Frontmatter
 
-| Schlüssel | Wirkung |
-|---|---|
-| `weight` | Reihenfolge in Seitenleiste und Vor/Zurück |
-| `description` | Einleitungsabsatz, Meta-Beschreibung, Suchindex |
-| `cover` | Titelbild für Blogliste und Beitrag |
-| `toc` | `false` verbirgt das Inhaltsverzeichnis |
-| `math` | `true` lädt KaTeX für diese Seite |
-| `private` | `true` hält die Seite aus dem Suchindex |
+`title`, `description`, `weight` und `icon` steuern Navigation und Übersichtskarten.
+`toc`, `cards`, `math`, `private`, `cover` und `coverAlt` aktivieren oder verändern
+seitenbezogene Funktionen.
+
+## Notebook-Konvertierung
+
+```sh
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r scripts/requirements.txt
+./scripts/notebooks.sh
+```
+
+Das Ergebnis liegt unter `content/_notebooks/` und `static/notebooks/`.
+
+## Suchmaschinen und llms.txt
+
+`robots.txt` schließt doppelte Such- und Druckansichten aus. Die Sitemap enthält
+Sprachalternativen. `llms.txt` ist davon unabhängig: Es listet kanonische Titel,
+Beschreibungen und Markdown-Links für Werkzeuge auf; es ist keine Zugriffskontrolle.
+
+Prüfen Sie jede Änderung mit `./scripts/verify.sh`.

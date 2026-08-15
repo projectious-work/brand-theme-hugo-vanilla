@@ -25,7 +25,7 @@ code, kbd, pre, samp { font-family: var(--font-code); }
 .ico--lg svg{width:24px;height:24px}
 
 /* ── Header ─────────────────────────────────────────────────────────── */
-.header{position:sticky;top:0;z-index:40;height:var(--header-h);display:flex;align-items:center;gap:20px;padding:0 24px;background:var(--color-surface);border-bottom:1px solid var(--color-border)}
+.header{position:sticky;top:0;z-index:40;height:var(--header-h);display:flex;align-items:center;gap:20px;padding-inline:max(24px,calc((100vw - 1440px)/2));background:var(--color-surface);border-bottom:1px solid var(--color-border)}
 .header__brand{display:flex;align-items:center;gap:8px;font-family:var(--font-heading);font-weight:700;font-size:calc(16px * var(--font-scale));letter-spacing:-0.4px;color:var(--color-text-primary)}
 .header__brand:hover{color:var(--color-text-primary)}
 .header__brand img{width:26px;height:26px;display:block}
@@ -358,7 +358,7 @@ html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .gd{color:var(--synt
 
 /* ── Landing ────────────────────────────────────────────────────────── */
 .shell{max-width:var(--shell-max);margin:0 auto;padding:0 24px}
-.hero{padding:88px 0 72px}
+.hero{padding-top:88px;padding-bottom:72px}
 /* Named .hero__eyebrow, not .overline: Tailwind owns "overline" as a
    text-decoration utility and would draw a line above the text. */
 .hero__eyebrow{font-family:var(--font-body);font-size:var(--type-overline-size);font-weight:600;line-height:var(--type-overline-lh);letter-spacing:.14em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:14px}
@@ -530,6 +530,15 @@ html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .gd{color:var(--synt
 }
 [data-theme="dark"] :focus-visible { outline-color: var(--midnight-dark-11, #8fb3dd); }
 .skip-link:focus-visible { outline-offset: 0; }
+html[data-focus="strong"] :focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 1px var(--color-surface);
+}
+html[data-focus="strong"][data-theme="dark"] :focus-visible,
+html[data-focus="strong"] [data-theme="dark"] :focus-visible {
+  outline-color: var(--orange-9);
+}
 
 /* ── Right-to-left ──────────────────────────────────────────────────────
    Logical properties handle most of the flip; these are the rules that name a

@@ -1,9 +1,17 @@
 # Contributing
 
-`main` remains the stable v0.2.x line. The `release/v0.3.0` branch contains
-the imported v0.3 theme and its example site.
+Thank you for improving the projectious.work Hugo theme. Contributions should be
+small enough to review, documented for users, and verified locally.
 
-Install and verify the toolchain before submitting a change:
+## Before opening a change
+
+- Search existing issues and pull requests.
+- Open an issue for substantial behavior, API or design changes before investing
+  in implementation.
+- Do not disclose security vulnerabilities publicly; follow `SECURITY.md`.
+- Agree to follow `CODE_OF_CONDUCT.md` in every project space.
+
+## Development setup
 
 ```sh
 npm install
@@ -11,36 +19,53 @@ npm install
 ./scripts/verify.sh
 ```
 
-When contributing:
+The example site is available at
+`http://localhost:1312/brand-theme-hugo-vanilla/`. Theme source lives under
+`src/`; release and deployment tooling stays outside that directory.
 
-- make v0.3.0 work on short-lived branches based on `release/v0.3.0`;
-- merge reviewed changes back into `release/v0.3.0`;
-- use Conventional Commits;
-- do not edit the generated `gh-pages` branch directly;
-- keep build and deployment tooling outside `src/`; and
-- treat the imported theme in `src/` as unchanged upstream source unless a
-  future task explicitly authorizes theme changes.
+## Branch and pull-request workflow
+
+1. Synchronize `main` and create a short-lived branch.
+2. Make focused changes using Conventional Commits.
+3. Add or update tests and documentation in the same branch.
+4. Run `./scripts/verify.sh` and relevant security checks.
+5. Open a pull request linked to its WorkItem or issue.
+6. Address review feedback and squash-merge after approval.
+
+`main` is protected. Do not push directly, bypass hooks, use `--no-verify`, or edit
+the generated `gh-pages` branch. Existing user changes in a working tree must be
+preserved.
+
+## Visual changes
+
+Playwright failures produce actual, expected and diff images under `.deploy/`.
+Inspect them before running:
+
+```sh
+npx playwright test --update-snapshots
+```
+
+Commit a new baseline only when the visual change is intentional and reviewed at
+desktop and mobile widths.
+
+## Documentation and translations
+
+Use plain, professional English and define unfamiliar terms. Keep English, German
+and French page topology aligned. New reader-facing behavior needs configuration,
+authoring and maintenance guidance where applicable.
+
+Hard-wrap prose at 80 columns, except tables, URLs and code blocks.
 
 ## Local release chain
 
-This repository deliberately has no GitHub Actions or workflow files. After a
-release branch has passed review and its pull request is merged, update the
-version and dated changelog on that branch. From a clean, synchronized `main`,
-run:
+This repository intentionally has no GitHub Actions or workflow files. After the
+release pull request is merged, run from a clean, synchronized `main`:
 
 ```sh
 ./scripts/release.sh vX.Y.Z
 ```
 
-The command fails closed unless deterministic builds and Playwright visual
-regressions pass. It then packages the theme, creates and pushes an annotated
-tag, creates and verifies the GitHub Release, and deploys that exact tagged
-commit to `gh-pages`. Do not use `scripts/deploy.sh --allow-untagged` in the
-normal release chain.
-
-The managed watch server remains available at
-`http://localhost:1312/brand-theme-hugo-vanilla/`. Use
-`./scripts/serve-watch.sh status` or `./scripts/serve-watch.sh stop` to inspect
-or stop it.
-
-The immutable `v0.2.x` tags remain the reference for the previous theme.
+The script verifies deterministic output and browser baselines, packages the theme,
+creates and pushes an annotated tag, publishes the GitHub release and deploys that
+tagged commit to GitHub Pages. `--allow-untagged` is not part of the normal release
+process.

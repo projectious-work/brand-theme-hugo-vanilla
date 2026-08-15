@@ -14,8 +14,13 @@
 {{- if or (urls.Parse $u).IsAbs (hasPrefix $u "//") (hasPrefix $u "#") (hasPrefix $u "mailto:") (hasPrefix $u "tel:") -}}
   {{- $u -}}
 {{- else if and $page (or (hasPrefix $u "<") (strings.Contains $u ".md")) -}}
-  {{- $target := trim $u "<>" -}}
-  {{- with $page.GetPage $target }}{{ .RelPermalink }}{{ else }}{{ errorf "url.html: no page found for ref %q on %s" $target $page.Path }}{{ end -}}
+  {{- $parsed := urls.Parse (trim $u "<>") -}}
+  {{- $target := $parsed.Path -}}
+  {{- with $page.GetPage $target -}}
+    {{- .RelPermalink -}}{{- with $parsed.Fragment }}#{{ . }}{{ end -}}
+  {{- else -}}
+    {{- errorf "url.html: no page found for ref %q on %s" $target $page.Path -}}
+  {{- end -}}
 {{- else -}}
   {{- strings.TrimPrefix "/" $u | relLangURL -}}
 {{- end -}}

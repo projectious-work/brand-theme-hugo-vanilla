@@ -1,15 +1,43 @@
 +++
 title = "Erste Schritte"
-description = "Theme als Hugo-Modul einbinden und die erste Seite bauen."
+description = "Theme installieren, erforderliche Hugo-Konfiguration ergänzen und lokal starten."
 weight = 10
+icon = "book"
 +++
 
 ## Voraussetzungen
 
-Hugo **0.128.0** oder neuer, Go für die Modulauflösung, Node nur für den
-Tailwind-Schritt.
+Hugo ab 0.128.0, Go für Hugo Modules, Node.js mit npm für Tailwind sowie Git.
 
-{{< terminal >}}
-$ npm install
-$ hugo server
-{{< /terminal >}}
+## Installation
+
+```toml {filename="hugo.toml"}
+[module]
+  [[module.imports]]
+    path = "github.com/projectious-work/brand-theme-hugo-vanilla"
+
+[build.buildStats]
+  enable = true
+```
+
+```sh
+hugo mod init example.com/docs
+npm install
+hugo mod get github.com/projectious-work/brand-theme-hugo-vanilla@v0.3.0
+```
+
+Kopieren Sie `[outputFormats]`, `[outputs]` und `[markup]` aus der
+Beispielkonfiguration. Sie aktivieren Suche, Druck, Markdown, `llms.txt`,
+Syntaxhervorhebung und Mathematik.
+
+## Erste Seite und lokaler Server
+
+Legen Sie `content/docs/_index.md` sowie eine Markdown-Seite mit `title`,
+`description` und `weight` an. Starten Sie anschließend:
+
+```sh
+hugo server --disableFastRender
+```
+
+Weiter geht es mit [Konfiguration](configuration.md),
+[Features](features/_index.md) und dem [Autorenleitfaden](guides/_index.md).

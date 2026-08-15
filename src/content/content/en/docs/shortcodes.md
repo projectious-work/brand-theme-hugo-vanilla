@@ -1,0 +1,357 @@
++++
+title = "Shortcodes"
+description = "Every component the theme ships, with the Markdown that produces it."
+weight = 50
+icon = "list"
+math = true
+tags = ["reference"]
++++
+
+Each section shows the rendered component, then the exact Markdown. Nothing here
+needs raw HTML — the theme ships with `unsafe = false`.
+
+{{< callout type="important" title="Markdown first" >}}
+Prose, lists, links, images, tables and code fences are ordinary Markdown. A fenced
+block already gets a filename bar, language label and copy button; an image already
+becomes a captioned, lazy-loaded figure that opens in a lightbox. Reach for a
+shortcode only where a component needs structured children.
+{{< /callout >}}
+
+## Callouts
+
+{{< callout type="info" >}}Information a reader needs but did not ask for.{{< /callout >}}
+{{< callout type="note" title="Note" >}}Context that supports the main line.{{< /callout >}}
+{{< callout type="success" >}}The documentation build completed successfully.{{< /callout >}}
+{{< callout type="warning" title="Careful" >}}Preview configuration changes before publishing them.{{< /callout >}}
+{{< callout type="error" title="Failed" >}}The referenced page was not found.{{< /callout >}}
+{{< callout type="important" >}}Sentence case everywhere. The brand name stays lowercase.{{< /callout >}}
+
+```md
+{{</* callout type="warning" title="Careful" */>}}
+Preview configuration changes before publishing them.
+{{</* /callout */>}}
+```
+
+`type` takes `info`, `note`, `success`, `warning`, `error` or `important`.
+
+## Cards
+
+A section's overview cards are generated from its child pages' front matter —
+`title`, `description`, `icon`, `weight` — so you never hand-maintain a card list
+that drifts as pages come and go. Set `cards = false` in a section's front matter to
+suppress the grid, or `hidden = true` on a child to leave it out.
+
+Write cards by hand only for a set that is not a page list:
+
+{{< cards cols="2" >}}
+  {{< card title="Authoring" subtitle="Write pages with Markdown and focused shortcodes." link="/docs/guides/" icon="file-code" >}}
+  {{< card title="Configuration" subtitle="Choose navigation, outputs and optional features." link="/docs/configuration/" icon="list" >}}
+{{< /cards >}}
+
+```md
+{{</* cards cols="2" */>}}
+  {{</* card title="Authoring" subtitle="Write pages with Markdown." link="/docs/guides/" icon="file-code" */>}}
+  {{</* card title="Configuration" subtitle="Choose site options." link="/docs/configuration/" icon="list" */>}}
+{{</* /cards */>}}
+```
+
+`cols` is `2`, `3` (default) or `4`, so an incomplete last row keeps its width.
+`card` also takes `image` and `alt` for an image card. `subtitle` is rendered as
+Markdown, so links and code spans work inside it.
+
+### Unpaired and paired
+
+Hugo decides which is which from the template: a shortcode whose template reads
+`.Inner` **requires** a closing tag, and one that never touches it must not have
+one.
+
+**Unpaired** — one tag, no closing tag, and no XML-style trailing slash:
+`card` · `file` · `icon` · `badge` · `button` · `term` · `image` · `notebook` ·
+`asciinema`.
+
+**Paired** — these wrap content and take a closing tag:
+`callout` · `cards` · `tabs` · `tab` · `steps` · `step` · `details` · `filetree` ·
+`folder` · `terminal` · `mermaid`.
+
+    {{</* badge "v0.3" */>}}              <!-- unpaired: correct -->
+    {{</* badge "v0.3" /*/>}}             <!-- wrong: no trailing slash -->
+
+    {{</* details title="Why?" */>}}      <!-- paired: correct -->
+    It wraps content, so it closes.
+    {{</* /details */>}}
+
+Writing shortcode-syntax examples **inside** a paired shortcode does not work:
+`.Inner` is re-parsed, so even the escaped form is interpreted and the build fails.
+Keep examples in fenced or indented blocks at the top level, as above.
+
+## Tabs
+
+{{< tabs items="npm, pnpm, go" >}}
+  {{< tab >}}```sh
+npm install
+```{{< /tab >}}
+  {{< tab >}}```sh
+pnpm install
+```{{< /tab >}}
+  {{< tab >}}```sh
+go mod download
+```{{< /tab >}}
+{{< /tabs >}}
+
+```md
+{{</* tabs items="npm, pnpm, go" */>}}
+  {{</* tab */>}}First panel.{{</* /tab */>}}
+  {{</* tab */>}}Second panel.{{</* /tab */>}}
+  {{</* tab */>}}Third panel.{{</* /tab */>}}
+{{</* /tabs */>}}
+```
+
+Panel order follows tab order. Arrow keys move between tabs.
+
+## Steps
+
+{{< steps >}}
+  {{< step title="Install Hugo" >}}
+Use the minimum version listed in the theme's README.
+  {{< /step >}}
+  {{< step title="Configure the module" >}}
+Add the theme import and required output formats.
+  {{< /step >}}
+  {{< step title="Run" >}}
+Start the local server and review the generated pages.
+  {{< /step >}}
+{{< /steps >}}
+
+```md
+{{</* steps */>}}
+  {{</* step title="Install Hugo" */>}}
+Use the supported version.
+  {{</* /step */>}}
+  {{</* step title="Configure the module" */>}}
+Add the theme import.
+  {{</* /step */>}}
+{{</* /steps */>}}
+```
+
+Numbering is CSS counters — steps renumber themselves when you reorder them.
+
+## Collapsible details
+
+{{< details title="What does the search index contain?" >}}
+Title, description, breadcrumb, tags, every H2 and H3 heading, and the first 2000
+characters of plain text per page — generated by the `SearchIndex` output format.
+{{< /details >}}
+
+```md
+{{</* details title="What does the search index contain?" */>}}
+Title, description, breadcrumb, tags and headings.
+{{</* /details */>}}
+```
+
+Add `open="true"` to start expanded.
+
+## File tree
+
+{{< filetree >}}
+  {{< folder name="content" >}}
+    {{< file name="_index.md" note="landing" >}}
+    {{< folder name="docs" >}}
+      {{< file name="getting-started.md" >}}
+      {{< file name="configuration.md" >}}
+    {{< /folder >}}
+    {{< folder name="blog" closed="true" >}}
+      {{< file name="release-v0-3-0.md" >}}
+    {{< /folder >}}
+  {{< /folder >}}
+{{< /filetree >}}
+
+```md
+{{</* filetree */>}}
+  {{</* folder name="content" */>}}
+    {{</* file name="_index.md" note="landing" */>}}
+    {{</* folder name="docs" */>}}
+      {{</* file name="getting-started.md" */>}}
+    {{</* /folder */>}}
+    {{</* folder name="blog" closed="true" */>}}
+      {{</* file name="release-v0-3-0.md" */>}}
+    {{</* /folder */>}}
+  {{</* /folder */>}}
+{{</* /filetree */>}}
+```
+
+`folder` takes `closed="true"`; `file` takes `note` for a trailing chip and `icon`
+to override the glyph.
+
+## Icons
+
+{{< icon "brand-github" >}} {{< icon "printer" >}} {{< icon "accessible" >}} {{< icon "versions" >}} {{< icon "book" >}}
+
+```md
+{{</* icon "brand-github" */>}}
+{{</* icon name="printer" class="ico--lg" label="Print" */>}}
+```
+
+Any file in `assets/icons/` works by name. `label` gives an icon a text
+alternative; without it the glyph is `aria-hidden`.
+
+## Badges
+
+{{< badge "v0.3" >}} {{< badge label="latest" variant="accent" >}}
+
+```md
+{{</* badge "v0.3" */>}}
+{{</* badge label="latest" variant="accent" */>}}
+```
+
+## Buttons
+
+{{< button label="Read the docs" href="/docs/" >}}
+{{< button label="Search" href="/search/" variant="secondary" icon="search" >}}
+
+```md
+{{</* button label="Read the docs" href="/docs/" */>}}
+{{</* button label="Search" href="/search/" variant="secondary" icon="search" */>}}
+```
+
+`variant` is `primary` (default) or `secondary`.
+
+## Terminal
+
+{{< terminal title="deploy" >}}
+$ hugo server --disableFastRender
+Watching for changes in content and layouts
+Built in 284 ms
+Web Server is available at http://localhost:1313/
+{{< /terminal >}}
+
+```md
+{{</* terminal title="deploy" */>}}
+$ hugo server --disableFastRender
+Watching for changes in content and layouts
+Built in 284 ms
+Web Server is available at http://localhost:1313/
+{{</* /terminal */>}}
+```
+
+For a plain code listing use a fenced block — the filename bar, language label and
+copy button come free, and fence options work:
+
+    ```yaml {filename="navigation.yaml", linenos=table, hl_lines="2-3"}
+    title: Documentation
+    weight: 10
+    icon: book
+    ```
+
+## Terminology
+
+A {{< term "module" >}} installs the theme. A {{< term "page-bundle" >}} keeps
+page resources together, while a {{< term "shortcode" >}} adds structured markup.
+
+```md
+A {{</* term "module" */>}} installs the theme.
+{{</* term key="page-bundle" label="Page bundles" */>}} overrides the displayed text.
+```
+
+Definitions live in `data/glossary.yaml`, so a wording change is one edit.
+
+## Links
+
+Ordinary Markdown links work, and internal ones resolve against the site's base
+path — so a project deployment such as GitHub Pages keeps its prefix:
+
+```md
+[Configuration](/docs/configuration/)
+```
+
+Prefer Hugo-aware references so moving a target **fails the build** instead of
+silently publishing a broken link:
+
+```md
+[Configuration](configuration.md)
+[Guides](<guides/_index.md>)
+[Output formats](configuration.md#output-formats)
+[Linking guide](guides/_index.md#link-within-and-between-pages)
+```
+
+External links get `target="_blank"`, `rel="noopener noreferrer"` and an icon
+automatically.
+
+## Images
+
+Markdown images become figures automatically — the title becomes the caption:
+
+```md
+![Documentation navigation](navigation.png "Generated navigation on a documentation page")
+```
+
+Prefer a **page bundle**: put `navigation.png` next to the page's `index.md` and
+reference it by name. Hugo then knows its dimensions, so the figure carries intrinsic
+width and height and the page does not shift as images load. A sibling
+`navigation-dark.png` is picked up and swapped by colour mode. To be explicit, or to
+caption with Markdown:
+
+```md
+{{</* image src="/img/navigation.png" src-dark="/img/navigation-dark.png"
+       alt="Documentation navigation" caption="Navigation in *both* modes" */>}}
+```
+
+Every image in prose opens in a lightbox on click or Enter.
+
+## Diagrams
+
+{{< mermaid >}}
+flowchart LR
+  A[Markdown] --> B[Hugo]
+  B --> C[HTML]
+  B --> D[Search index]
+  B --> E[Print output]
+{{< /mermaid >}}
+
+```md
+{{</* mermaid */>}}
+flowchart LR
+  A[Markdown] --> B[Hugo]
+{{</* /mermaid */>}}
+```
+
+A ` ```mermaid ` fence renders the same way. Mermaid picks up the brand palette
+and the current colour mode.
+
+## Math
+
+Set `math = true` in front matter, then write LaTeX inline — \\( E = mc^2 \\) — or
+as a block:
+
+$$
+\text{cost}(n) = c_{\text{fixed}} + n \cdot c_{\text{run}}
+$$
+
+```md
+Inline: \\( E = mc^2 \\) or $E = mc^2$
+
+$$
+\text{cost}(n) = c_{\text{fixed}} + n \cdot c_{\text{run}}
+$$
+```
+
+Both `$…$`/`$$…$$` and `\(…\)`/`\[…\]` are recognised.
+
+## Terminal recordings
+
+```md
+{{</* asciinema src="/casts/deploy.cast" rows="18" idleTimeLimit="1.5" */>}}
+```
+
+Record with `asciinema rec deploy.cast` and keep the file in the page bundle, or
+under `static/casts/`. `cols`, `rows`, `speed`, `idleTimeLimit`, `autoplay` and
+`loop` are all supported — autoplay is off by default, per the brand rule on motion.
+
+## Notebooks
+
+```md
+{{</* notebook "analysis" */>}}
+```
+
+Run `scripts/notebooks.sh` first. The shortcode looks for a page resource named
+`analysis.md` in the page bundle, then `content/_notebooks/analysis.md` — both exact,
+so duplicate basenames are an error rather than a coin flip.

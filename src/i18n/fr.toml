@@ -1,0 +1,166 @@
+[skipToContent]
+other = "Aller au contenu"
+[mainNav]
+other = "Navigation principale"
+[docsNav]
+other = "Navigation de la documentation"
+[breadcrumbs]
+other = "Fil d’Ariane"
+[home]
+other = "Accueil"
+[overview]
+other = "Vue d’ensemble"
+[menu]
+other = "Menu"
+[search]
+other = "Recherche"
+[searchPlaceholder]
+other = "Rechercher dans la documentation"
+[searchShortcut]
+other = "Ctrl K"
+[noResults]
+other = "Aucun résultat"
+[resultsWord]
+other = "résultats"
+[onThisPage]
+other = "Sur cette page"
+[previous]
+other = "Précédent"
+[next]
+other = "Suivant"
+[pagination]
+other = "Navigation entre les pages"
+[permalink]
+other = "Lien vers ce titre"
+[copyCode]
+other = "Copier"
+[copied]
+other = "Copié"
+[appearance]
+other = "Apparence"
+[light]
+other = "Clair"
+[dark]
+other = "Sombre"
+[darkNavy]
+other = "Bleu nuit"
+[darkDeep]
+other = "Sombre profond"
+[system]
+other = "Système"
+[toggleTheme]
+other = "Mode de couleur"
+[language]
+other = "Langue"
+[version]
+other = "Version"
+[a11yOptions]
+other = "Options d’accessibilité"
+[textSize]
+other = "Taille du texte"
+[reading]
+other = "Lecture"
+[highContrast]
+other = "Contraste élevé"
+[strongFocus]
+other = "Focus renforcé"
+[underlineLinks]
+other = "Souligner les liens"
+[reduceMotion]
+other = "Réduire les animations"
+[looseSpacing]
+other = "Espacement du texte"
+[tools]
+other = "Outils"
+[printSection]
+other = "Imprimer cette section"
+[printedOn]
+other = "Imprimé"
+[contents]
+other = "Sommaire"
+[pagesWord]
+other = "pages"
+[editThisPage]
+other = "Modifier cette page"
+[lastUpdated]
+other = "Mis à jour"
+[feedbackPrompt]
+other = "Cette page était-elle utile?"
+[feedbackThanks]
+other = "Merci pour votre avis."
+[yes]
+other = "Oui"
+[no]
+other = "Non"
+[minRead]
+other = "{{ .Count }} min de lecture"
+[taxonomy]
+other = "Taxonomie"
+[tagged]
+other = "Étiqueté"
+[notFoundTitle]
+other = "Page introuvable"
+[notFoundBody]
+other = "La page demandée n’existe pas ou a été déplacée."
+[backHome]
+other = "Retour à l’accueil"
+[builtWith]
+other = "Construit avec Hugo"
+[dismiss]
+other = "Fermer"
+[backToTop]
+other = "Retour en haut"
+[filterPages]
+other = "Filtrer les pages"
+[imageViewer]
+other = "Visionneuse d’image"
+[close]
+other = "Fermer"
+[copyAsMarkdown]
+other = "Copier en Markdown"
+[viewMarkdown]
+other = "Voir le Markdown"
+[source]
+other = "Source"
+[optional]
+other = "Facultatif"
+[outdatedVersion]
+other = "Vous consultez la documentation {{ .Version }}."
+[goToLatest]
+other = "Aller à {{ .Version }}"
+[table]
+other = "Tableau"
+[commandPalette]
+other = "Palette de commandes"
+[palettePlaceholder]
+other = "Rechercher ou accéder à…"
+[keyboardShortcuts]
+other = "Raccourcis clavier"
+[modKey]
+other = "Ctrl"
+[shortcutPalette]
+other = "Ouvrir la palette de commandes"
+[shortcutSearch]
+other = "Placer le focus dans la recherche"
+[shortcutHelp]
+other = "Afficher les raccourcis"
+[shortcutHome]
+other = "Aller à l’accueil"
+[shortcutDocs]
+other = "Aller à la documentation"
+[shortcutBlog]
+other = "Aller au blog"
+[shortcutTheme]
+other = "Basculer entre clair et sombre"
+[shortcutClose]
+other = "Fermer cette fenêtre"
+[navigate]
+other = "Naviguer"
+[open]
+other = "Ouvrir"
+[jumpTo]
+other = "Accéder à"
+[actions]
+other = "Actions"
+[notebookMissing]
+other = "Le notebook « {{ .Name }} » n’est pas encore converti. Exécutez scripts/notebooks.sh."

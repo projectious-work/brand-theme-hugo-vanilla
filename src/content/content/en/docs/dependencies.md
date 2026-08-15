@@ -1,0 +1,45 @@
++++
+title = "Dependencies and SBOM"
+description = "Understand build tools, browser runtimes, bundled assets, versions and licences."
+weight = 80
+icon = "list"
++++
+
+The theme has no server runtime. Hugo produces static files. Dependencies fall into
+build-time tools, browser-loaded libraries and bundled assets.
+
+## Direct dependency inventory
+
+| Component | Version | Delivery | Purpose | Licence |
+|---|---:|---|---|---|
+| Hugo | 0.128.0 minimum; verified with 0.164.0 | Build tool | Static-site generation and asset pipeline | Apache-2.0 |
+| Go | 1.22 module declaration | Build tool | Hugo Module resolution | BSD-3-Clause |
+| `@tailwindcss/cli` | 4.3.3 locked | npm development dependency | Compile utility CSS from Hugo build statistics | MIT |
+| Playwright test | 1.62.1 locked | npm development dependency | Browser behavior and visual regression tests | Apache-2.0 |
+| FlexSearch | 0.8.143 | Bundled browser asset | Local full-text search | Apache-2.0 |
+| KaTeX | 0.18.4 | Pinned CDN or self-hosted | Mathematics rendering | MIT |
+| Mermaid | 11.16.1 | Pinned CDN or self-hosted | Diagram rendering | MIT |
+| asciinema-player | 3.17.0 | Pinned CDN or self-hosted | Terminal recording playback | Apache-2.0 |
+| nbconvert | 7.16.6 | Optional pinned Python tool | Convert Jupyter notebooks to Markdown | BSD-3-Clause |
+
+Exact browser-runtime URLs are maintained in `src/data/cdn.yaml`; exact npm
+transitives and integrity values are in `package-lock.json`; Python conversion pins
+are in `scripts/requirements.txt`.
+
+## Bundled fonts and icons
+
+Plus Jakarta Sans, Source Sans 3 and IBM Plex Mono are bundled as WOFF2 under the
+SIL Open Font License 1.1. Licence texts ship under `src/static/fonts/licenses/`.
+The theme's SVG icon set follows Tabler geometry and is distributed with its source
+notes. FlexSearch's licence ships under `src/static/licenses/flexsearch/`.
+
+## SBOM scope and maintenance
+
+This page is the human-readable software bill of materials for v0.3.x. Before each
+release, maintainers must compare it with `package-lock.json`, `requirements.txt`,
+`data/cdn.yaml`, bundled asset directories and Hugo/Go declarations. Generated
+CycloneDX or SPDX output may supplement this page, but must not replace checked-in
+licence files or the exact lockfiles.
+
+Run `npm audit --json` for the Node graph. CDN and bundled assets require separate
+release-note and advisory review because npm audit cannot see them.

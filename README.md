@@ -63,7 +63,7 @@ contents and math passthrough.
 `filetree`/`folder`/`file` · `icon` · `badge` · `button` · `terminal` · `term` ·
 `mermaid` · `math` · `asciinema` · `notebook`
 
-`src/content/content/docs/shortcodes.md` is the live gallery — every shortcode with
+`src/content/content/en/docs/shortcodes.md` is the live gallery — every shortcode with
 the Markdown that produces it. Fenced code blocks get a filename bar, language
 label and copy button with no shortcode:
 
@@ -82,7 +82,7 @@ src/assets/css/   main.css (Tailwind entry) · brand-tokens · fonts · theme-la
 src/assets/icons/ bundled stroke icon set
 src/assets/js/    theme.js · interactions.js · search.js · vendor/flexsearch
 src/data/         glossary.yaml · pinned CDN versions in cdn.yaml
-src/i18n/         en.toml · de.toml
+src/i18n/         en.toml · de.toml · fr.toml
 src/layouts/      _default · docs · blog · index · 404 · search index
 src/static/       fonts (WOFF2, OFL) · logo
 src/content/      example site (module replace back to the repo root)
@@ -106,6 +106,15 @@ The bundled icon and font assets do not make third-party requests.
 See [TESTING.md](TESTING.md) for the upstream assertion checklist and known
 version-matrix gap. [CONTRACT-feedback.md](CONTRACT-feedback.md) defines the
 optional feedback endpoint; client-side throttling is not a security control.
+
+The example documentation includes the complete [feature
+catalogue](src/content/content/en/docs/features/_index.md), [maintenance and
+upgrade guide](src/content/content/en/docs/maintenance.md), [developer
+guide](src/content/content/en/docs/developer-guide.md), and a human-readable
+[dependency inventory and SBOM](src/content/content/en/docs/dependencies.md).
+Project policies live in [CONTRIBUTING.md](CONTRIBUTING.md),
+[SECURITY.md](SECURITY.md), [SUPPORT.md](SUPPORT.md),
+[CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), and [LICENSE](LICENSE).
 
 ## Notes and deliberate deviations
 
