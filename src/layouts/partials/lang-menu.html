@@ -1,16 +1,18 @@
-{{ if gt (len site.Languages) 1 }}
+{{ $langs := site.Home.AllTranslations }}
+{{ if gt (len $langs) 1 }}
 {{ $page := . }}
 <div class="menu">
   <button class="chipbtn target" type="button" data-menu-trigger aria-expanded="false" aria-haspopup="true">
-    {{ partial "icon.html" (dict "name" "language" "class" "ico--sm") }}<span>{{ site.Language.Lang | upper }}</span>
+    {{ partial "icon.html" (dict "name" "language" "class" "ico--sm") }}<span>{{ .Language.Lang | upper }}</span>
   </button>
   <div class="menu__panel" role="menu">
     <div class="menu__label">{{ i18n "language" }}</div>
-    {{ range site.Languages }}
-      {{ $lang := . }}
-      {{ $href := printf "/%s/" $lang.Lang | relURL }}
+    {{ range $langs }}
+      {{ $lang := .Language }}
+      {{ $href := .RelPermalink }}
+      {{- /* Prefer this page's own translation; fall back to that language's home. */ -}}
       {{ range $page.AllTranslations }}{{ if eq .Language.Lang $lang.Lang }}{{ $href = .RelPermalink }}{{ end }}{{ end }}
-      <a href="{{ $href }}" role="menuitemradio" aria-checked="{{ eq $lang.Lang $page.Language.Lang }}">{{ or $lang.LanguageName $lang.Lang }}</a>
+      <a href="{{ $href }}" hreflang="{{ $lang.Locale }}" role="menuitemradio" aria-checked="{{ eq $lang.Lang $page.Language.Lang }}">{{ or $lang.Label $lang.Lang }}</a>
     {{ end }}
   </div>
 </div>

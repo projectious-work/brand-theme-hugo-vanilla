@@ -5,7 +5,7 @@
 <link rel="icon" href="{{ "logo/favicon-32.png" | relURL }}" sizes="32x32">
 <link rel="apple-touch-icon" href="{{ "logo/apple-touch-icon-180.png" | relURL }}">
 {{ partial "styles.html" . }}
-{{ with resources.Get "js/theme.js" }}{{ with . | js.Build (dict "minify" hugo.IsProduction) }}<script src="{{ .RelPermalink }}"></script>{{ end }}{{ end }}
+{{ partial "script.html" (dict "src" "theme.js" "defer" false) }}
 {{ if or .Params.math site.Params.math }}{{ partial "math.html" . }}{{ end }}
 {{ range .AlternativeOutputFormats }}<link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink }}">
 {{ end }}

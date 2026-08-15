@@ -1,10 +1,11 @@
 {{- $lang := .Type | default "text" -}}
 {{- if eq $lang "mermaid" -}}
+{{- /* Same flag the shortcode sets, so one loader serves both entry points. */ -}}
+{{- .Page.Store.Set "needsMermaid" true -}}
 <pre class="mermaid">{{ .Inner }}</pre>
 {{- else -}}
 {{- /* transform.HighlightCodeBlock passes the fence's options through to Chroma,
-       so {linenos=table, hl_lines="3-5", lineNoStart=10} all work. Hand-rolling
-       the highlight call silently dropped them. */ -}}
+       so {linenos=table, hl_lines="3-5", lineNoStart=10} all work. */ -}}
 {{- $result := transform.HighlightCodeBlock . -}}
 <div class="code">
   <div class="code__bar">

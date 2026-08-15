@@ -1,0 +1,7 @@
+{{- /* Builds, minifies, fingerprints and integrity-tags one theme script.
+       Scripts used to ship on stable URLs while CSS was hashed, so a theme
+       update could sit stale in a browser or CDN cache indefinitely. */ -}}
+{{- with resources.Get (printf "js/%s" .src) -}}
+  {{- $b := . | js.Build (dict "minify" hugo.IsProduction "target" "es2018") | fingerprint "sha384" -}}
+  <script src="{{ $b.RelPermalink }}" integrity="{{ $b.Data.Integrity }}" crossorigin="anonymous"{{ if $.defer }} defer{{ end }}></script>
+{{- end -}}

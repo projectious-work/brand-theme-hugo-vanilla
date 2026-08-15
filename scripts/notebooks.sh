@@ -11,7 +11,9 @@
 #
 # Then in a page:  {{< notebook "analysis" >}}
 #
-# Requires: python3 -m pip install nbconvert
+# Requires the pinned environment, not whatever nbconvert happens to be installed:
+#   python3 -m venv .venv && . .venv/bin/activate
+#   pip install -r scripts/requirements.txt
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -19,7 +21,15 @@ SRC="${1:-src/content/content}"
 OUT_MD="$SRC/_notebooks"
 OUT_IMG="src/content/static/notebooks"
 
-command -v jupyter >/dev/null || { echo "jupyter not found: python3 -m pip install nbconvert" >&2; exit 1; }
+command -v jupyter >/dev/null || { echo "jupyter not found: pip install -r scripts/requirements.txt" >&2; exit 1; }
+want="7.16.6"
+have="$(jupyter nbconvert --version 2>/dev/null || echo 0)"
+[ "$have" = "$want" ] || echo "warning: nbconvert $have, pinned $want — output may differ" >&2
+
+# Basenames must be unique: the shortcode resolves by name, and two notebooks
+# called the same thing cannot be told apart.
+dupes="$(find "$SRC" -name '*.ipynb' -not -path '*/.ipynb_checkpoints/*' -exec basename {} \; | sort | uniq -d)"
+[ -z "$dupes" ] || { echo "duplicate notebook basenames:" >&2; echo "$dupes" >&2; exit 1; }
 
 mkdir -p "$OUT_MD" "$OUT_IMG"
 found=0

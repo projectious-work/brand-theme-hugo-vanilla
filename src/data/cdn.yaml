@@ -1,0 +1,32 @@
+# Third-party runtime dependencies. Pinned to exact versions with Subresource
+# Integrity hashes — a floating major can change under a build that has already
+# been reviewed, and SRI makes a swapped CDN payload fail closed.
+#
+# Bumping a pin: change the version, fetch the new file, and regenerate the hash:
+#   curl -sL <url> | openssl dgst -sha384 -binary | openssl base64 -A
+#
+# selfHost: set params.selfHostAssets = true and place the same files under
+# static/vendor/<name>/ for deployments that prohibit public CDNs. The templates
+# prefer that copy when the flag is on; nothing is bundled by default.
+katex:
+  version: "0.18.4"
+  base: "https://cdn.jsdelivr.net/npm/katex@0.18.4/dist"
+  local: "vendor/katex"
+  files:
+    css: "katex.min.css"
+    js: "katex.min.js"
+    autorender: "contrib/auto-render.min.js"
+    autorenderLocal: "auto-render.min.js"
+mermaid:
+  version: "11.16.1"
+  base: "https://cdn.jsdelivr.net/npm/mermaid@11.16.1/dist"
+  local: "vendor/mermaid"
+  files:
+    esm: "mermaid.esm.min.mjs"
+asciinema:
+  version: "3.17.0"
+  base: "https://cdn.jsdelivr.net/npm/asciinema-player@3.17.0/dist/bundle"
+  local: "vendor/asciinema"
+  files:
+    js: "asciinema-player.min.js"
+    css: "asciinema-player.css"

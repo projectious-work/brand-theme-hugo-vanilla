@@ -1,8 +1,9 @@
-{{ with resources.Get "js/interactions.js" }}{{ with . | js.Build (dict "minify" hugo.IsProduction) }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}{{ end }}
-{{ if not (eq site.Params.search false) }}
-  {{ with resources.Get "js/vendor/flexsearch.bundle.min.js" }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
-  {{ with resources.Get "js/search.js" }}{{ with . | js.Build (dict "minify" hugo.IsProduction) }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}{{ end }}
+{{ partial "script.html" (dict "src" "interactions.js" "defer" true) }}
+{{ if ne site.Params.search false }}
+  {{ with resources.Get "js/vendor/flexsearch.bundle.min.js" }}
+    {{ $f := . | fingerprint "sha384" }}
+    <script src="{{ $f.RelPermalink }}" integrity="{{ $f.Data.Integrity }}" defer></script>
+  {{ end }}
+  {{ partial "script.html" (dict "src" "search.js" "defer" true) }}
 {{ end }}
-{{ if ne site.Params.commandPalette false }}
-  {{ with resources.Get "js/palette.js" }}{{ with . | js.Build (dict "minify" hugo.IsProduction) }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}{{ end }}
-{{ end }}
+{{ if ne site.Params.commandPalette false }}{{ partial "script.html" (dict "src" "palette.js" "defer" true) }}{{ end }}

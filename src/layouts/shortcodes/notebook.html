@@ -1,22 +1,27 @@
-{{- /* Embeds a notebook converted by scripts/notebooks.sh. The converted
-       Markdown lives in the page bundle or in content/_notebooks/, and is
-       rendered through the page so every other shortcode, the code-block hook
-       and the image hook all apply to it. */ -}}
+{{- /* Embeds a notebook converted by scripts/notebooks.sh.
+
+       Lookup order, first match wins, no site-wide scan:
+         1. a page resource — the idiomatic case, notebook.ipynb beside index.md
+         2. content/_notebooks/<name>.md — the documented shared location
+       Two notebooks with the same basename used to resolve unpredictably because
+       every page in the site was scanned; both paths are now exact, and a
+       resource glob matching more than one file is an error rather than a guess. */ -}}
 {{- $name := .Get "name" | default (.Get 0) -}}
-{{- $md := "" -}}
-{{- with .Page.Resources.GetMatch (printf "%s.md" $name) }}{{ $md = .Content }}{{ end -}}
+{{- $md := "" }}{{ $from := "" -}}
+{{- $matches := .Page.Resources.Match (printf "%s.md" $name) -}}
+{{- if gt (len $matches) 1 -}}
+  {{- errorf "notebook %q matches %d page resources on %s — rename so the basename is unique" $name (len $matches) .Page.Path -}}
+{{- end -}}
+{{- with index $matches 0 }}{{ $md = .Content }}{{ $from = "resource" }}{{ end -}}
 {{- if not $md -}}
-  {{- range site.Pages -}}
-    {{- if and (.File) (eq .File.BaseFileName $name) (in .File.Dir "_notebooks") -}}
-      {{- $md = .RawContent -}}
-    {{- end -}}
-  {{- end -}}
+  {{- with site.GetPage (printf "/_notebooks/%s" $name) }}{{ $md = .RawContent }}{{ $from = "content" }}{{ end -}}
 {{- end -}}
 {{- if $md -}}
-<div class="notebook">
+<div class="notebook" data-notebook="{{ $name }}" data-source="{{ $from }}">
   {{ $md | .Page.RenderString (dict "display" "block") }}
 </div>
 {{- else -}}
+{{- warnf "notebook %q not found for %s — run scripts/notebooks.sh" $name .Page.Path -}}
 <div class="callout callout--warning">
   {{ partial "icon.html" (dict "name" "alert-triangle" "class" "ico--sm") }}
   <div class="callout__body">{{ i18n "notebookMissing" (dict "Name" $name) }}</div>

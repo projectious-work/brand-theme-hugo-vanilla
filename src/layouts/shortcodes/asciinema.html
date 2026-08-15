@@ -1,12 +1,14 @@
-{{- /* Terminal recording player. src is a .cast file (v2) under static/. */ -}}
+{{- /* Terminal recording player, pinned. src is a .cast file (v2) — a page
+       resource when the page is a bundle, otherwise a path under static/. */ -}}
 {{- $src := .Get "src" | default (.Get 0) -}}
+{{- with .Page.Resources.GetMatch $src }}{{ $src = .RelPermalink }}{{ else }}{{ $src = partial "url.html" $src }}{{ end -}}
 {{- if not (.Page.Store.Get "castLoaded") }}{{ .Page.Store.Set "castLoaded" true }}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/asciinema-player@3.17.0/dist/bundle/asciinema-player.css">
-<script src="https://cdn.jsdelivr.net/npm/asciinema-player@3.17.0/dist/bundle/asciinema-player.min.js"></script>
-{{ end }}
+<link rel="stylesheet" href="{{ partial "cdn-url.html" (dict "pkg" "asciinema" "file" "css") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}>
+<script src="{{ partial "cdn-url.html" (dict "pkg" "asciinema" "file" "js") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}></script>
+{{ end -}}
 <div class="cast" id="cast-{{ .Ordinal }}"></div>
 <script>
-  AsciinemaPlayer.create({{ $src | relURL }}, document.getElementById("cast-{{ .Ordinal }}"), {
+  AsciinemaPlayer.create({{ $src }}, document.getElementById("cast-{{ .Ordinal }}"), {
     cols: {{ .Get "cols" | default 100 }},
     rows: {{ .Get "rows" | default 22 }},
     idleTimeLimit: {{ .Get "idleTimeLimit" | default 2 }},

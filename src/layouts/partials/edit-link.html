@@ -13,7 +13,7 @@
     {{- if not $base }}{{ $base = index . "default" }}{{ end -}}
   {{- else -}}
     {{- $base = . -}}
-    {{- if and (gt (len site.Languages) 1) (ne $.Page.Language.Lang site.Home.Language.Lang) -}}
+    {{- if and (gt (len site.Home.AllTranslations) 1) (ne $.Page.Language.Lang site.Home.Language.Lang) -}}
       {{- $base = printf "%s%s/" (strings.TrimSuffix "/" $base | printf "%s/") $.Page.Language.Lang -}}
     {{- end -}}
   {{- end -}}

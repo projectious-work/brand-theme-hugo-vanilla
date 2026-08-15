@@ -1,2 +1,11 @@
-{{- $external := strings.HasPrefix .Destination "http" -}}
-<a href="{{ .Destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $external }} target="_blank" rel="noopener"{{ end }}>{{ .Text | safeHTML }}{{ if $external }}{{ partial "icon.html" (dict "name" "external-link" "class" "ico--sm") }}{{ end }}</a>
+{{- /* Internal destinations resolve through url.html, which handles project base
+       paths and ref/relref semantics — a leading-slash link used to be emitted
+       verbatim and escaped a project deployment. Testing hasPrefix "http" also
+       missed protocol-relative and mailto: values; urls.Parse decides now.
+
+       [Configuration](configuration.md) and [Docs](<docs/_index.md>) become page
+       refs, so a moved page fails the build instead of rotting into a 404. */ -}}
+{{- $dest := partial "url.html" (dict "url" .Destination "page" .Page) -}}
+{{- $external := (urls.Parse $dest).IsAbs -}}
+{{- if $external }}{{ $external = ne (urls.Parse $dest).Host (urls.Parse site.BaseURL).Host }}{{ end -}}
+<a href="{{ $dest | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .Text | safeHTML }}{{ if $external }}{{ partial "icon.html" (dict "name" "external-link" "class" "ico--sm") }}{{ end }}</a>

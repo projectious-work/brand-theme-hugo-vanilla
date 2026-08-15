@@ -26,9 +26,11 @@ test("pinned CDN math and diagrams render", async ({ page }, testInfo) => {
 
   await page.goto("docs/shortcodes/");
   await expect(page.locator(".mermaid svg")).toBeVisible();
+  await page.evaluate(() => window.pwTheme.set("dark"));
+  await expect(page.locator(".mermaid svg")).toBeVisible();
 });
 
-test("v3 generated-data and template contracts are valid", async ({ page, request }) => {
+test("v5 generated-data and template contracts are valid", async ({ page, request }) => {
   const response = await request.get("index.json");
   expect(response.ok()).toBeTruthy();
   const entries = await response.json();

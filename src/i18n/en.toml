@@ -129,7 +129,7 @@ other = "You are reading the {{ .Version }} documentation."
 [goToLatest]
 other = "Go to {{ .Version }}"
 [castUnvendored]
-other = "The terminal player is not vendored in this build. Run scripts/vendor.sh, or download the recording:"
+other = "The self-hosted terminal player is unavailable. Add the pinned files under static/vendor/asciinema, or download the recording:"
 [table]
 other = "Table"
 [commandPalette]

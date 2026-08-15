@@ -54,7 +54,11 @@ enableGitInfo = true
 
 [markup]
   [markup.goldmark.renderer]
-    unsafe = true
+    # The theme is shortcode-based and needs no raw HTML in Markdown. Leaving
+    # this false keeps the injection surface closed for every author on the site.
+    # Turn it on only if you knowingly need inline HTML in content — no theme
+    # feature requires it.
+    unsafe = false
   [markup.goldmark.extensions.passthrough]
     enable = true
     [markup.goldmark.extensions.passthrough.delimiters]
@@ -107,9 +111,14 @@ enableGitInfo = true
 
   [params.announcement]
     id = "v030"
-    text = "v0.3.0 is out — expanded icons, pinned CDN runtimes, section-filtered search."
+    text = "v0.3.0 is out — pinned runtimes, section-filtered search, command palette."
     href = "/blog/"
     label = "Read the notes"
+
+  # Third-party runtime assets come from pinned CDN versions with SRI — see
+  # data/cdn.yaml. Set this true and mirror those files under static/vendor/
+  # for deployments that prohibit public CDNs.
+  selfHostAssets = false
 
   [params.build]
     tailwind = true
@@ -118,17 +127,21 @@ enableGitInfo = true
     label = "v0.3"
     url = "/"
     note = "latest"
-  [[params.versions]]
-    label = "v0.2"
-    url = "/v0.2/"
-    # probe = false   # this entry always lands on its root, never the same path
+  # Only list versions that are actually published — the menu must never
+  # advertise a known 404. Entries may be site-relative ("v0.2/") or absolute
+  # ("https://docs.example.com/v0.2/"); both resolve through url.html, so a
+  # project deployment keeps its base path.
+  # [[params.versions]]
+  #   label = "v0.2"
+  #   url = "v0.2/"
+  #   probe = false   # land on this version's root rather than the same path
 
 [languages]
   [languages.en]
-    languageName = "English"
+    label = "English"
     weight = 1
   [languages.de]
-    languageName = "Deutsch"
+    label = "Deutsch"
     weight = 2
     title = "projectious.work"
     [languages.de.params]

@@ -1,14 +1,21 @@
-{{- /* Resolves an authored URL. An absolute URL, a protocol-relative one or a
-       fragment passes through untouched; anything else goes through relLangURL
-       so a project-scoped deployment (GitHub Pages) keeps its base path.
-       Previously "/docs/" worked but "https://github.com/..." was prefixed. */ -}}
-{{- $u := . -}}
-{{- if or (urls.Parse $u).IsAbs (strings.HasPrefix $u "//") (strings.HasPrefix $u "#") (strings.HasPrefix $u "mailto:") -}}
+{{- /* Resolves an authored URL exactly once.
+
+       External, protocol-relative, fragment and mailto: values pass through
+       untouched. Everything else is treated as internal and resolved with
+       relLangURL — after stripping any leading slash, because a leading-slash
+       argument is what caused the project base path to be dropped.
+
+       Accepts a string, or a dict {url, page} to enable ref/relref semantics:
+       a value in angle brackets, or ending in .md, is resolved as a page ref so
+       a moved page produces a build error rather than a dead link. */ -}}
+{{- $u := "" }}{{ $page := "" -}}
+{{- if reflect.IsMap . }}{{ $u = .url }}{{ $page = .page }}{{ else }}{{ $u = . }}{{ end -}}
+{{- $u = string $u -}}
+{{- if or (urls.Parse $u).IsAbs (hasPrefix $u "//") (hasPrefix $u "#") (hasPrefix $u "mailto:") (hasPrefix $u "tel:") -}}
   {{- $u -}}
+{{- else if and $page (or (hasPrefix $u "<") (strings.Contains $u ".md")) -}}
+  {{- $target := trim $u "<>" -}}
+  {{- with $page.GetPage $target }}{{ .RelPermalink }}{{ else }}{{ errorf "url.html: no page found for ref %q on %s" $target $page.Path }}{{ end -}}
 {{- else -}}
-  {{- with site.GetPage $u -}}
-    {{- .RelPermalink -}}
-  {{- else -}}
-    {{- strings.TrimPrefix "/" $u | relURL -}}
-  {{- end -}}
+  {{- strings.TrimPrefix "/" $u | relLangURL -}}
 {{- end -}}

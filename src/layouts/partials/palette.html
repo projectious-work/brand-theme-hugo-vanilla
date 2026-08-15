@@ -1,22 +1,26 @@
 {{- /* Command palette: search results, section jumps and page actions in one
-       dialog. Ctrl/Cmd K opens it; "?" opens the same dialog on its shortcut
-       list. Reuses the search index, so it costs no extra payload. */ -}}
+       dialog. Ctrl/Cmd K opens it; "?" opens it on the shortcut list.
+
+       Destinations are deduplicated by resolved URL — the main menu and the
+       section list overlap, which produced two "Docs" rows — and sections come
+       from this language's home, so an English palette no longer offers the
+       German homepage. */ -}}
 {{ if ne site.Params.commandPalette false }}
-{{- $actions := slice -}}
-{{- /* Menu .URL is already resolved by Hugo; other hrefs go through url.html so
-       a project base path survives. */ -}}
+{{- $seen := slice }}{{ $actions := slice -}}
 {{- range site.Menus.main -}}
-  {{- $actions = $actions | append (dict "label" .Name "href" .URL "group" (i18n "jumpTo")) -}}
+  {{- $u := partial "url.html" .URL -}}
+  {{- if not (in $seen $u) }}{{ $seen = $seen | append $u }}{{ $actions = $actions | append (dict "label" .Name "href" $u "group" (i18n "jumpTo")) }}{{ end -}}
 {{- end -}}
-{{- range site.Sections.ByWeight -}}
-  {{- $actions = $actions | append (dict "label" .LinkTitle "href" .RelPermalink "group" (i18n "jumpTo")) -}}
+{{- range site.Home.Sections.ByWeight -}}
+  {{- if not (in $seen .RelPermalink) }}{{ $seen = $seen | append .RelPermalink }}{{ $actions = $actions | append (dict "label" .LinkTitle "href" .RelPermalink "group" (i18n "jumpTo")) }}{{ end -}}
 {{- end -}}
 {{- if ne site.Params.search false -}}
-  {{- $actions = $actions | append (dict "label" (i18n "search") "href" (partial "url.html" "/search/") "group" (i18n "actions")) -}}
+  {{- $u := partial "url.html" "/search/" -}}
+  {{- if not (in $seen $u) }}{{ $seen = $seen | append $u }}{{ $actions = $actions | append (dict "label" (i18n "search") "href" $u "group" (i18n "actions")) }}{{ end -}}
 {{- end -}}
-{{- with .FirstSection.OutputFormats.Get "print" -}}
+{{- with .FirstSection }}{{ with .OutputFormats.Get "print" -}}
   {{- $actions = $actions | append (dict "label" (i18n "printSection") "href" .RelPermalink "group" (i18n "actions")) -}}
-{{- end -}}
+{{- end }}{{ end -}}
 <div class="palette" data-palette data-open="false" data-palette-base="{{ site.Home.RelPermalink }}" data-palette-actions="{{ $actions | jsonify }}" data-empty="{{ i18n "noResults" }}" role="dialog" aria-modal="true" aria-label="{{ i18n "commandPalette" }}">
   <div class="palette__panel">
     <label class="palette__field">

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection "ltr" }}" data-a11y="auto"{{ with site.Params.darkSurface }} data-surface="{{ . }}"{{ end }}{{ with site.Params.codeTheme }} data-code="{{ . }}"{{ end }} data-search-index="{{ "index.json" | relLangURL }}">
+<html lang="{{ .Language.Locale }}" dir="{{ or .Language.Direction "ltr" }}" data-a11y="auto"{{ with site.Params.darkSurface }} data-surface="{{ . }}"{{ end }}{{ with site.Params.codeTheme }} data-code="{{ . }}"{{ end }} data-search-index="{{ "index.json" | relLangURL }}">
 <head>{{ partial "head.html" . }}</head>
 <body>
   <a class="skip-link" href="#main">{{ i18n "skipToContent" }}</a>
@@ -11,5 +11,8 @@
   {{ partial "lightbox.html" . }}
   {{ partial "palette.html" . }}
   {{ partial "scripts.html" . }}
+  {{- /* Last, so every shortcode and render hook on the page has already had a
+         chance to raise the flag. */ -}}
+  {{ partial "mermaid-loader.html" . }}
 </body>
 </html>

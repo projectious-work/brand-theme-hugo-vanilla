@@ -8,7 +8,14 @@ tags = ["reference"]
 +++
 
 Each section shows the rendered component, then the exact Markdown. Nothing here
-needs raw HTML.
+needs raw HTML — the theme ships with `unsafe = false`.
+
+{{< callout type="important" title="Markdown first" >}}
+Prose, lists, links, images, tables and code fences are **ordinary Markdown**. A
+fenced block already gets a filename bar, language label and copy button; an image
+already becomes a captioned, lazy-loaded figure that opens in a lightbox. Reach for
+a shortcode only where a component needs structured children.
+{{< /callout >}}
 
 ## Callouts
 
@@ -29,6 +36,13 @@ Attaching a policy version does not affect runs in progress.
 
 ## Cards
 
+A section's overview cards are generated from its child pages' front matter —
+`title`, `description`, `icon`, `weight` — so you never hand-maintain a card list
+that drifts as pages come and go. Set `cards = false` in a section's front matter to
+suppress the grid, or `hidden = true` on a child to leave it out.
+
+Write cards by hand only for a set that is not a page list:
+
 {{< cards cols="2" >}}
   {{< card title="Pipelines" subtitle="Declare stages in YAML and run them under audit." link="/docs/" icon="versions" >}}
   {{< card title="Policies" subtitle="Versioned rules, attached per pipeline." link="/docs/" icon="circle-check" >}}
@@ -45,13 +59,17 @@ Attaching a policy version does not affect runs in progress.
 `card` also takes `image` and `alt` for an image card. `subtitle` is rendered as
 Markdown, so links and code spans work inside it.
 
-{{< callout type="note" title="Leaf and paired shortcodes" >}}
-`card`, `file`, `icon`, `badge`, `button`, `term`, `image`, `notebook` and
-`asciinema` are **leaf** shortcodes — self-closing, without a matching closing
-tag. Hugo
-requires a closing tag for any shortcode whose template touches `.Inner`, so these
-deliberately do not. `callout`, `cards`, `tabs`, `tab`, `steps`, `step`,
-`details`, `filetree`, `folder`, `terminal` and `mermaid` are paired.
+{{< callout type="note" title="Unpaired and paired shortcodes" >}}
+**Unpaired**: `card` · `file` · `icon` · `badge` · `button` · `term` · `image` ·
+`notebook` · `asciinema`. One tag, no closing tag, and **no XML-style trailing
+slash**. Use the ordinary Hugo shortcode form shown in the examples above.
+
+**Paired**: `callout` · `cards` · `tabs` · `tab` · `steps` · `step` · `details` ·
+`filetree` · `folder` · `terminal` · `mermaid`. These wrap content and take a
+matching closing tag.
+
+Hugo decides which is which from the template: any shortcode whose template reads
+`.Inner` requires a closing tag. The unpaired ones deliberately never touch it.
 {{< /callout >}}
 
 ## Tabs
@@ -222,16 +240,39 @@ A {{</* term "pipeline" */>}} moves a run through stages.
 
 Definitions live in `data/glossary.yaml`, so a wording change is one edit.
 
+## Links
+
+Ordinary Markdown links work, and internal ones resolve against the site's base
+path — so a project deployment such as GitHub Pages keeps its prefix:
+
+```md
+[Configuration](/docs/configuration/)
+```
+
+Better, use Hugo's ref semantics so a moved page **fails the build** instead of
+rotting into a 404:
+
+```md
+[Configuration](configuration.md)
+[Guides](<guides/_index.md>)
+```
+
+External links get `target="_blank"`, `rel="noopener noreferrer"` and an icon
+automatically.
+
 ## Images
 
 Markdown images become figures automatically — the title becomes the caption:
 
 ```md
-![Pipeline stages](/img/pipeline.png "Stages of an audited run")
+![Pipeline stages](pipeline.png "Stages of an audited run")
 ```
 
-A sibling `pipeline-dark.png` is picked up and swapped by colour mode. To be
-explicit, or to caption with Markdown:
+Prefer a **page bundle**: put `pipeline.png` next to the page's `index.md` and
+reference it by name. Hugo then knows its dimensions, so the figure carries intrinsic
+width and height and the page does not shift as images load. A sibling
+`pipeline-dark.png` is picked up and swapped by colour mode. To be explicit, or to
+caption with Markdown:
 
 ```md
 {{</* image src="/img/pipeline.png" src-dark="/img/pipeline-dark.png"
@@ -285,7 +326,16 @@ Both `$…$`/`$$…$$` and `\(…\)`/`\[…\]` are recognised.
 {{</* asciinema src="/casts/deploy.cast" rows="18" idleTimeLimit="1.5" */>}}
 ```
 
-Record with `asciinema rec static/casts/deploy.cast`. The shortcode loads the
-exactly pinned asciinema-player 3.17.0 runtime from jsDelivr. `cols`, `rows`,
-`speed`, `idleTimeLimit`, `autoplay` and `loop` are all supported — autoplay is
-off by default, per the brand rule on motion.
+Record with `asciinema rec deploy.cast` and keep the file in the page bundle, or
+under `static/casts/`. `cols`, `rows`, `speed`, `idleTimeLimit`, `autoplay` and
+`loop` are all supported — autoplay is off by default, per the brand rule on motion.
+
+## Notebooks
+
+```md
+{{</* notebook "analysis" */>}}
+```
+
+Run `scripts/notebooks.sh` first. The shortcode looks for a page resource named
+`analysis.md` in the page bundle, then `content/_notebooks/analysis.md` — both exact,
+so duplicate basenames are an error rather than a coin flip.
