@@ -25,15 +25,45 @@ test("pinned CDN media, math and diagrams render", async ({ page }, testInfo) =>
   await expect(page.locator(".katex").first()).toBeVisible();
   await expect(page.locator(".notebook[data-notebook='theme-demo']")).toBeVisible();
   await expect(page.locator(".terminal")).toContainText([
-    "$ hugo server --disableFastRender",
-    "Watching for changes in content and layouts",
-    "Web Server is available at http://localhost:1313/",
-    "Press Ctrl+C to stop",
+    "$ hugo --minify",
+    "✓ Content validated",
+    "✓ Search index generated",
+    "⚠ Review two external links",
+    "Build completed in 284 ms",
   ].join("\n"));
 
   await expect(page.locator(".mermaid svg")).toBeVisible();
   await page.evaluate(() => window.pwTheme.set("dark"));
   await expect(page.locator(".mermaid svg")).toBeVisible();
+});
+
+test("prose markers and adaptive technical panels follow colour mode", async ({ page }, testInfo) => {
+  test.skip(!testInfo.project.name.startsWith("desktop"));
+  await page.goto("docs/maintenance/");
+  await page.evaluate(() => window.pwTheme.set("light"));
+
+  const listStyles = await page.locator("article.prose").evaluate((article) => {
+    const ul = article.querySelector("ul");
+    const ol = article.querySelector("ol");
+    return {
+      ul: getComputedStyle(ul).listStyleType,
+      ol: getComputedStyle(ol).listStyleType,
+    };
+  });
+  expect(listStyles).toEqual({ ul: "disc", ol: "decimal" });
+
+  await page.goto("docs/guides/");
+  const lightCode = await page.locator(".terminal").evaluate((node) =>
+    getComputedStyle(node).backgroundColor,
+  );
+  expect(lightCode).toBe("rgb(244, 245, 247)");
+  await expect(page.locator(".mermaid")).toHaveCSS("background-color", "rgb(255, 255, 255)");
+
+  await page.evaluate(() => window.pwTheme.set("dark"));
+  const darkCode = await page.locator(".terminal").evaluate((node) =>
+    getComputedStyle(node).backgroundColor,
+  );
+  expect(darkCode).not.toBe(lightCode);
 });
 
 test("generated data, navigation and template contracts are valid", async ({ page, request }) => {

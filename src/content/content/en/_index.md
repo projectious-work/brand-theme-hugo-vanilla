@@ -1,6 +1,6 @@
 +++
-title = "Documentation that feels like your product"
-eyebrow = "Cloud · Agile · Agentic AI"
+title = "projectious.work Hugo theme"
+eyebrow = "projectious.work brand design system"
 tagline = "A production-ready Hugo theme for documentation, release notes and product pages — accessible, searchable, multilingual and built on the projectious.work brand system."
 [[cta]]
   label = "Getting started"
@@ -11,7 +11,7 @@ tagline = "A production-ready Hugo theme for documentation, release notes and pr
   variant = "secondary"
 +++
 
-## Everything a documentation site needs
+## Everything a static site needs
 
 {{< cards >}}
   {{< card title="Structured documentation" subtitle="Generated navigation, breadcrumbs, table of contents, page tools and printable sections." link="/docs/features/" icon="book" >}}

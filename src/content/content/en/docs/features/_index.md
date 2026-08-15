@@ -7,7 +7,8 @@ icon = "star"
 
 The theme combines Hugo-native content organization with progressive enhancement.
 Use this overview to find the configuration and authoring instructions for each
-capability.
+capability. Visual language and tokens come from the
+[projectious.work brand design system](https://github.com/projectious-work/brand).
 
 ## Reading and navigation
 
@@ -18,7 +19,8 @@ capability.
 - Light, navy and deep-dark appearances
 
 See [Header and navigation](header-navigation.md) and
-[Accessibility](accessibility.md).
+[Accessibility](accessibility.md), [Editing and feedback](editing-feedback.md) and
+[Tailwind and design tokens](tailwind.md).
 
 ## Discovery and publishing
 

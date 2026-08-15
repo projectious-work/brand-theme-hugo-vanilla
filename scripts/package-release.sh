@@ -23,6 +23,8 @@ rm -f "$STAGE_DIR/src/content/.hugo_build.lock" \
 cp "$ROOT_DIR/LICENSE" "$ROOT_DIR/README.md" "$ROOT_DIR/CHANGELOG.md" \
   "$ROOT_DIR/go.mod" "$ROOT_DIR/hugo.toml" "$ROOT_DIR/theme.toml" \
   "$ROOT_DIR/package.json" "$ROOT_DIR/package-lock.json" "$STAGE_DIR/"
+mkdir -p "$STAGE_DIR/scripts"
+cp "$ROOT_DIR/scripts/check-theme-update.sh" "$STAGE_DIR/scripts/"
 tar -C "$ARCHIVE_DIR" -czf "$ARCHIVE" \
   "brand-theme-hugo-vanilla-$VERSION"
 sha256sum "$ARCHIVE" > "$ARCHIVE.sha256"

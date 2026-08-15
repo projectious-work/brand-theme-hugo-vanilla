@@ -32,9 +32,9 @@ CSS variables in `brand-tokens.css` are the stable styling surface. Put site-lev
 overrides in a later stylesheet rather than changing component selectors whenever
 possible.
 
-## Bundled icons
+## Icons and Tabler
 
-The complete bundled set is:
+The theme currently bundles this small offline fallback set:
 
 `accessible`, `alert-circle`, `alert-triangle`, `arrow-left`, `arrow-right`,
 `book`, `brand-github`, `check`, `chevron-down`, `chevron-left`, `chevron-right`,
@@ -46,11 +46,23 @@ The complete bundled set is:
 The source files and licence notes are in
 [`src/assets/icons/`](https://github.com/projectious-work/brand-theme-hugo-vanilla/tree/main/src/assets/icons).
 Use a name with `{{</* icon "search" */>}}` or front-matter `icon = "search"`.
+The partial uses Hugo's merged asset filesystem, so a consuming site can add a
+Tabler SVG at `assets/icons/chart-bar.svg` and immediately use
+`{{</* icon "chart-bar" */>}}`; no theme template needs to be copied.
 
-To swap the library, replace SVG files while keeping filenames used by templates,
-or add new files and update content. SVGs must use `currentColor`, a compatible
-`viewBox`, and no scripts or external references. Keep licence attribution with
-the distributed assets.
+The current release does **not** mount the complete Tabler Icons library as a Hugo
+Module dependency. Until an upstream adapter module is provided, download only the
+needed `icons/outline/*.svg` files from
+[Tabler Icons](https://tabler.io/icons), keep their upstream filenames, and place
+them in the site's `assets/icons/`. SVGs must use `currentColor`, a compatible
+`viewBox`, and no scripts or external references. Preserve the MIT attribution.
+
+## Tailwind in site templates
+
+Content Markdown should not contain presentation classes. Site-owned layouts and
+shortcodes may use the theme's Tailwind namespaces and CSS tokens. See
+[Tailwind and design tokens](features/tailwind.md) for the complete mapped utility
+surface, token categories and a working component example.
 
 ## Swap fonts or runtime assets
 
