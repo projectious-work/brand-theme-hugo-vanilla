@@ -128,8 +128,6 @@ other = "Optional"
 other = "You are reading the {{ .Version }} documentation."
 [goToLatest]
 other = "Go to {{ .Version }}"
-[castUnvendored]
-other = "The self-hosted terminal player is unavailable. Add the pinned files under static/vendor/asciinema, or download the recording:"
 [table]
 other = "Table"
 [commandPalette]

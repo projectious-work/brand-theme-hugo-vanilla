@@ -15,13 +15,13 @@
   {{- if not (in $seen .RelPermalink) }}{{ $seen = $seen | append .RelPermalink }}{{ $actions = $actions | append (dict "label" .LinkTitle "href" .RelPermalink "group" (i18n "jumpTo")) }}{{ end -}}
 {{- end -}}
 {{- if ne site.Params.search false -}}
-  {{- $u := partial "url.html" "/search/" -}}
+  {{- $u := partial "url.html" "search/" -}}
   {{- if not (in $seen $u) }}{{ $seen = $seen | append $u }}{{ $actions = $actions | append (dict "label" (i18n "search") "href" $u "group" (i18n "actions")) }}{{ end -}}
 {{- end -}}
 {{- with .FirstSection }}{{ with .OutputFormats.Get "print" -}}
   {{- $actions = $actions | append (dict "label" (i18n "printSection") "href" .RelPermalink "group" (i18n "actions")) -}}
 {{- end }}{{ end -}}
-<div class="palette" data-palette data-open="false" data-palette-base="{{ site.Home.RelPermalink }}" data-palette-actions="{{ $actions | jsonify }}" data-empty="{{ i18n "noResults" }}" role="dialog" aria-modal="true" aria-label="{{ i18n "commandPalette" }}">
+<div class="palette" data-palette data-open="false" data-palette-base="{{ partial "url.html" "" }}" data-palette-actions="{{ $actions | jsonify }}" data-empty="{{ i18n "noResults" }}" role="dialog" aria-modal="true" aria-label="{{ i18n "commandPalette" }}">
   <div class="palette__panel">
     <label class="palette__field">
       {{ partial "icon.html" (dict "name" "search" "class" "ico--sm") }}

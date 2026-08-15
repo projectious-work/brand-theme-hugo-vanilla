@@ -1,24 +1,22 @@
 {{- /* Repo path for the current page.
 
-       .File.Path is relative to the CONTENT root, which for a multilingual site
-       is the language's own mount — content/de/docs/x.md arrives as
-       "docs/x.md", so appending it to a single editURL points at the English
-       file. params.editURL may therefore be a map keyed by language code, and
-       falls back to appending the language directory. Windows separators in
-       .File.Path are normalised. */ -}}
+       .File.Path is relative to the CONTENT root, which on a multilingual site is
+       that language's own mount — content/de/docs/x.md arrives as "docs/x.md", so
+       a single editURL would point at the English file. params.editURL may
+       therefore be a map keyed by language code; otherwise the theme appends the
+       language directory for non-default languages. */ -}}
 {{- $base := "" -}}
 {{- with site.Params.editURL -}}
   {{- if reflect.IsMap . -}}
-    {{- $base = index . $.Page.Language.Lang -}}
-    {{- if not $base }}{{ $base = index . "default" }}{{ end -}}
+    {{- $base = or (index . $.Page.Language.Lang) (index . "default") -}}
   {{- else -}}
-    {{- $base = . -}}
-    {{- if and (gt (len site.Home.AllTranslations) 1) (ne $.Page.Language.Lang site.Home.Language.Lang) -}}
-      {{- $base = printf "%s%s/" (strings.TrimSuffix "/" $base | printf "%s/") $.Page.Language.Lang -}}
+    {{- $base = printf "%s/" (strings.TrimSuffix "/" .) -}}
+    {{- if ne $.Page.Language.Lang site.Home.Language.Lang -}}
+      {{- $base = printf "%s%s/" $base $.Page.Language.Lang -}}
     {{- end -}}
   {{- end -}}
 {{- end -}}
 {{- if and $base .File -}}
   {{- $path := replace .File.Path "\\" "/" -}}
-  <a href="{{ printf "%s%s" (strings.TrimSuffix "/" $base | printf "%s/") $path }}">{{ partial "icon.html" (dict "name" "pencil" "class" "ico--sm") }}{{ i18n "editThisPage" }}</a>
+  <a href="{{ printf "%s/%s" (strings.TrimSuffix "/" $base) (strings.TrimPrefix "/" $path) }}">{{ partial "icon.html" (dict "name" "pencil" "class" "ico--sm") }}{{ i18n "editThisPage" }}</a>
 {{- end -}}

@@ -15,8 +15,8 @@ Record with `asciinema rec static/casts/deploy.cast`, then embed it:
 {{</* asciinema src="/casts/deploy.cast" rows="18" idleTimeLimit="1.5" */>}}
 ```
 
-The shortcode loads the exactly pinned asciinema-player 3.17.0 runtime from
-jsDelivr. Set `params.selfHostAssets = true` to use a local mirror instead.
+The player loads from a pinned CDN version declared in `data/cdn.yaml`. Keep the
+`.cast` file in the page bundle, or under `static/casts/`.
 
 {{< callout type="note" title="Why not autoplay?" >}}
 The brand system rules out autoplay video. Recordings start on click; pass
@@ -32,8 +32,8 @@ $$
 \text{cost}(n) = c_{\text{fixed}} + n \cdot c_{\text{run}}
 $$
 
-KaTeX 0.18.4 loads from an exactly pinned jsDelivr URL on pages with math, or
-from the configured local mirror when self-hosting is enabled.
+KaTeX loads from the same pinned CDN. For a deployment that prohibits public CDNs,
+set `params.selfHostAssets = true` and mirror the files under `static/vendor/`.
 
 ## Raw Markdown
 

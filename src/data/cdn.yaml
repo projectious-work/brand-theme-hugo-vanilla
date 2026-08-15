@@ -1,9 +1,20 @@
-# Third-party runtime dependencies pinned to exact versions. A floating major
-# can change underneath a build that has already been reviewed.
+# Third-party runtime dependencies, pinned to exact versions. A floating major can
+# change under a build that has already been reviewed, so every URL names a full
+# version.
 #
-# selfHost: set params.selfHostAssets = true and place the same files under
-# static/vendor/<name>/ for deployments that prohibit public CDNs. The templates
-# prefer that copy when the flag is on; nothing is bundled by default.
+# No Subresource Integrity: KaTeX and asciinema ship as multi-file bundles that
+# fetch siblings at runtime (fonts, chunks), which a hash on the entry file cannot
+# cover, and jsdelivr does not publish stable per-file digests we could vendor
+# here without fetching at build time. Exact pinning is the guarantee this file
+# makes; if you need cryptographic assurance, use selfHostAssets below and serve
+# the files yourself.
+#
+# Bumping a pin: change version and base together, then re-check rendered output —
+# Mermaid in particular changes diagram defaults between minors.
+#
+# selfHostAssets: set params.selfHostAssets = true and place the same files under
+# static/vendor/<name>/ for deployments that prohibit public CDNs. Nothing is
+# bundled by default.
 katex:
   version: "0.18.4"
   base: "https://cdn.jsdelivr.net/npm/katex@0.18.4/dist"

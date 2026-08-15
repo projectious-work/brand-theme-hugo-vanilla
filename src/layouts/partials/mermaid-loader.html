@@ -1,40 +1,48 @@
-{{- /* Emitted once near the end of the page when anything on it asked for
-       Mermaid. Both entry points set the same page-store flag: the {{< mermaid >}}
-       shortcode and the fenced-code hook for ```mermaid. Previously only the
-       shortcode loaded the module, so a page whose only diagram was a fence
-       rendered the source as plain text. */ -}}
+{{- /* Emitted once, at the end of the page, when anything on it asked for
+       Mermaid. Both entry points set the same flag: the mermaid shortcode and the
+       fenced-code hook for a mermaid fence. Previously only the shortcode loaded
+       the module, so a page whose only diagram was a fence showed its source. */ -}}
 {{ if .Store.Get "needsMermaid" }}
 <script type="module">
   import mermaid from "{{ partial "cdn-url.html" (dict "pkg" "mermaid" "file" "esm") }}";
   const root = document.documentElement;
-  document.querySelectorAll(".mermaid").forEach((el) => {
-    el.dataset.src = el.textContent;
-  });
+
+  /* Mermaid replaces each <pre> with an SVG, so the definition is gone after the
+     first render. Stash it before initialising — re-rendering on a colour-mode
+     change used to read back the already-rendered SVG markup and fail. */
+  const blocks = document.querySelectorAll("pre.mermaid");
+  blocks.forEach((el) => { el.dataset.src = el.textContent; });
+
   const dark = () => root.getAttribute("data-theme") === "dark"
     || (!root.getAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
-  const css = getComputedStyle(root);
-  const init = () => mermaid.initialize({
-    startOnLoad: true,
-    securityLevel: "strict",
-    theme: "base",
-    themeVariables: {
-      fontFamily: css.getPropertyValue("--font-body"),
-      primaryColor: dark() ? "#1a2b3e" : "#f0f3f8",
-      primaryTextColor: dark() ? "#e6edf6" : "#142438",
-      primaryBorderColor: dark() ? "#2e4b68" : "#cdd0d5",
-      lineColor: "#546a82",
-      tertiaryColor: dark() ? "#132440" : "#ffffff"
-    }
-  });
-  init();
-  {{- /* Re-render on a colour-mode change so diagram chrome follows the page. */ -}}
-  document.addEventListener("pw:mode", async () => {
-    document.querySelectorAll(".mermaid[data-processed]").forEach((el) => {
+
+  const init = () => {
+    const css = getComputedStyle(root);
+    mermaid.initialize({
+      startOnLoad: false,
+      securityLevel: "strict",
+      theme: "base",
+      themeVariables: {
+        fontFamily: css.getPropertyValue("--font-body"),
+        primaryColor: dark() ? "#1a2b3e" : "#f0f3f8",
+        primaryTextColor: dark() ? "#e6edf6" : "#142438",
+        primaryBorderColor: dark() ? "#2e4b68" : "#cdd0d5",
+        lineColor: "#546a82",
+        tertiaryColor: dark() ? "#132440" : "#ffffff"
+      }
+    });
+  };
+
+  const render = async () => {
+    blocks.forEach((el) => {
       el.removeAttribute("data-processed");
       el.textContent = el.dataset.src;
     });
     init();
-    await mermaid.run();
-  });
+    await mermaid.run({ nodes: blocks });
+  };
+
+  await render();
+  document.addEventListener("pw:mode", render);
 </script>
 {{ end }}

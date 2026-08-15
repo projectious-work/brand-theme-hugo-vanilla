@@ -128,8 +128,6 @@ other = "Optional"
 other = "Sie lesen die Dokumentation zu {{ .Version }}."
 [goToLatest]
 other = "Zu {{ .Version }} wechseln"
-[castUnvendored]
-other = "Der selbst gehostete Terminal-Player fehlt. Legen Sie die versionierten Dateien unter static/vendor/asciinema ab oder laden Sie die Aufzeichnung herunter:"
 [table]
 other = "Tabelle"
 [commandPalette]

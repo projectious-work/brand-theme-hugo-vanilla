@@ -11,10 +11,10 @@ Each section shows the rendered component, then the exact Markdown. Nothing here
 needs raw HTML — the theme ships with `unsafe = false`.
 
 {{< callout type="important" title="Markdown first" >}}
-Prose, lists, links, images, tables and code fences are **ordinary Markdown**. A
-fenced block already gets a filename bar, language label and copy button; an image
-already becomes a captioned, lazy-loaded figure that opens in a lightbox. Reach for
-a shortcode only where a component needs structured children.
+Prose, lists, links, images, tables and code fences are ordinary Markdown. A fenced
+block already gets a filename bar, language label and copy button; an image already
+becomes a captioned, lazy-loaded figure that opens in a lightbox. Reach for a
+shortcode only where a component needs structured children.
 {{< /callout >}}
 
 ## Callouts
@@ -59,18 +59,30 @@ Write cards by hand only for a set that is not a page list:
 `card` also takes `image` and `alt` for an image card. `subtitle` is rendered as
 Markdown, so links and code spans work inside it.
 
-{{< callout type="note" title="Unpaired and paired shortcodes" >}}
-**Unpaired**: `card` · `file` · `icon` · `badge` · `button` · `term` · `image` ·
-`notebook` · `asciinema`. One tag, no closing tag, and **no XML-style trailing
-slash**. Use the ordinary Hugo shortcode form shown in the examples above.
+### Unpaired and paired
 
-**Paired**: `callout` · `cards` · `tabs` · `tab` · `steps` · `step` · `details` ·
-`filetree` · `folder` · `terminal` · `mermaid`. These wrap content and take a
-matching closing tag.
+Hugo decides which is which from the template: a shortcode whose template reads
+`.Inner` **requires** a closing tag, and one that never touches it must not have
+one.
 
-Hugo decides which is which from the template: any shortcode whose template reads
-`.Inner` requires a closing tag. The unpaired ones deliberately never touch it.
-{{< /callout >}}
+**Unpaired** — one tag, no closing tag, and no XML-style trailing slash:
+`card` · `file` · `icon` · `badge` · `button` · `term` · `image` · `notebook` ·
+`asciinema`.
+
+**Paired** — these wrap content and take a closing tag:
+`callout` · `cards` · `tabs` · `tab` · `steps` · `step` · `details` · `filetree` ·
+`folder` · `terminal` · `mermaid`.
+
+    {{</* badge "v0.3" */>}}              <!-- unpaired: correct -->
+    {{</* badge "v0.3" /*/>}}             <!-- wrong: no trailing slash -->
+
+    {{</* details title="Why?" */>}}      <!-- paired: correct -->
+    It wraps content, so it closes.
+    {{</* /details */>}}
+
+Writing shortcode-syntax examples **inside** a paired shortcode does not work:
+`.Inner` is re-parsed, so even the escaped form is interpreted and the build fails.
+Keep examples in fenced or indented blocks at the top level, as above.
 
 ## Tabs
 

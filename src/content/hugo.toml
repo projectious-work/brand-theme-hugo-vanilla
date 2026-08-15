@@ -115,8 +115,8 @@ enableGitInfo = true
     href = "/blog/"
     label = "Read the notes"
 
-  # Third-party runtime assets come from pinned CDN versions — see data/cdn.yaml.
-  # Set this true and mirror those files under static/vendor/
+  # Third-party runtime assets come from exact pinned CDN versions — see
+  # data/cdn.yaml. Set this true and mirror those files under static/vendor/
   # for deployments that prohibit public CDNs.
   selfHostAssets = false
 
@@ -137,6 +137,9 @@ enableGitInfo = true
   #   probe = false   # land on this version's root rather than the same path
 
 [languages]
+  # "label" is the current key; languageName is deprecated. languageDirection is
+  # now "languagedirection" — set it to "rtl" for a right-to-left language and the
+  # theme mirrors its sidebar rail, chevrons, step rail and file-tree connectors.
   [languages.en]
     label = "English"
     weight = 1
