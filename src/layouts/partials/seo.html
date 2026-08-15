@@ -7,5 +7,11 @@
 <meta property="og:url" content="{{ .Permalink }}">
 <meta name="twitter:card" content="summary">
 {{ with .Params.images }}<meta property="og:image" content="{{ index . 0 | absURL }}">{{ end }}
-{{ if .IsTranslated }}{{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}">
-{{ end }}{{ end }}<link rel="canonical" href="{{ .Permalink }}">
+{{- /* AllTranslations includes this page, so the set is complete on the home
+       page too — .IsTranslated gated it off before. x-default points at the
+       default-language build, per Google's guidance. */ -}}
+{{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}">
+{{ end }}
+{{- range .AllTranslations }}{{ if eq .Language.Lang site.Home.Language.Lang }}<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
+{{ end }}{{ end }}
+<link rel="canonical" href="{{ .Permalink }}">

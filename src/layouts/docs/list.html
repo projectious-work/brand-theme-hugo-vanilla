@@ -1,18 +1,19 @@
 {{ define "main" }}
-{{ .Store.Set "hasSidebar" true }}
 <div class="docs docs--no-toc">
   {{ partial "sidebar.html" . }}
   <main id="main" class="docs__main">
     {{ partial "breadcrumbs.html" . }}
+    {{ partial "version-banner.html" . }}
+    {{ partial "page-tools.html" . }}
     <article class="prose">
       <h1>{{ .Title }}</h1>
       {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
       {{ .Content }}
     </article>
-    <div class="cards">
+    <div class="cards{{ if eq (len .Pages) 2 }} cards--2{{ else if eq (len .Pages) 4 }} cards--4{{ end }}">
       {{ range .Pages.ByWeight }}
       <a class="card" href="{{ .RelPermalink }}">
-        {{ with .Params.icon }}<div class="card__icon">{{ partial "icon.html" (dict "name" . "class" "ico--lg") }}</div>{{ end }}
+        <div class="card__icon">{{ partial "icon.html" (dict "name" (.Params.icon | default (cond .IsSection "folder" "file")) "class" "ico--lg") }}</div>
         <div class="card__title">{{ .LinkTitle }}{{ if .IsSection }} &rarr;{{ end }}</div>
         <p class="card__text">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 120 }}{{ end }}</p>
       </a>

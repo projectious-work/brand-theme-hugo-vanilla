@@ -1,10 +1,13 @@
 {{ $root := .FirstSection }}
 <nav class="sidebar" aria-label="{{ i18n "docsNav" }}" data-open="false">
+  {{ if ne site.Params.sidebarFilter false }}
+  <label class="sidebar__filter">
+    {{ partial "icon.html" (dict "name" "search" "class" "ico--sm") }}
+    <input type="search" data-sidebar-filter placeholder="{{ i18n "filterPages" }}" aria-label="{{ i18n "filterPages" }}" autocomplete="off">
+  </label>
+  <div class="sidebar__empty" data-sidebar-empty hidden>{{ i18n "noResults" }}</div>
+  {{ end }}
   <div class="sidebar__group">{{ $root.LinkTitle }}</div>
   <a href="{{ $root.RelPermalink }}"{{ if eq $root . }} aria-current="page"{{ end }}>{{ i18n "overview" }}</a>
   {{ partial "sidebar-tree.html" (dict "page" $root "current" . "level" 0) }}
-  {{ with $root.OutputFormats.Get "print" }}
-  <div class="sidebar__group">{{ i18n "tools" }}</div>
-  <a href="{{ .RelPermalink }}">{{ i18n "printSection" }}</a>
-  {{ end }}
 </nav>

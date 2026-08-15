@@ -1,0 +1,14 @@
+{{- /* Whether this page shows the docs sidebar.
+
+       This must be answerable while the HEADER renders. The docs templates used
+       to set a Store flag, but the header is emitted from baseof before the main
+       block runs, so the flag was always empty and the burger never appeared.
+       Section membership is known up front, so that is the test.
+
+       params.sidebarSections defaults to ["docs"]. */ -}}
+{{- $sections := site.Params.sidebarSections | default (slice "docs") -}}
+{{- $on := false -}}
+{{- if and (not .IsHome) (in (slice "page" "section") .Kind) (ne .Layout "search") -}}
+  {{- if in $sections .Section }}{{ $on = true }}{{ end -}}
+{{- end -}}
+{{- return $on -}}

@@ -1,7 +1,7 @@
 <pre class="mermaid">{{ .Inner }}</pre>
 {{ if not (.Page.Store.Get "mermaidLoaded") }}{{ .Page.Store.Set "mermaidLoaded" true }}
 <script type="module">
-  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.16.1/dist/mermaid.esm.min.mjs";
   const dark = document.documentElement.getAttribute("data-theme") === "dark"
     || (!document.documentElement.getAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
   const css = getComputedStyle(document.documentElement);
@@ -10,11 +10,11 @@
     theme: "base",
     themeVariables: {
       fontFamily: css.getPropertyValue("--font-body"),
-      primaryColor: dark ? "#1a2c42" : "#f0f3f8",
+      primaryColor: dark ? "#1a2b3e" : "#f0f3f8",
       primaryTextColor: dark ? "#e6edf6" : "#142438",
-      primaryBorderColor: dark ? "#263f5a" : "#cdd0d5",
+      primaryBorderColor: dark ? "#2e4b68" : "#cdd0d5",
       lineColor: "#546a82",
-      tertiaryColor: dark ? "#0e1720" : "#ffffff"
+      tertiaryColor: dark ? "#132440" : "#ffffff"
     }
   });
 </script>

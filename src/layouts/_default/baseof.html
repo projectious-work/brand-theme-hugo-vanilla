@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection "ltr" }}" data-a11y="auto"{{ with site.Params.darkSurface }} data-surface="{{ . }}"{{ end }} data-search-index="{{ "index.json" | relLangURL }}">
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection "ltr" }}" data-a11y="auto"{{ with site.Params.darkSurface }} data-surface="{{ . }}"{{ end }}{{ with site.Params.codeTheme }} data-code="{{ . }}"{{ end }} data-search-index="{{ "index.json" | relLangURL }}">
 <head>{{ partial "head.html" . }}</head>
 <body>
   <a class="skip-link" href="#main">{{ i18n "skipToContent" }}</a>
+  {{ partial "announcement.html" . }}
   {{ partial "header.html" . }}
   {{ block "main" . }}{{ end }}
   {{ partial "footer.html" . }}
+  {{ partial "back-to-top.html" . }}
+  {{ partial "lightbox.html" . }}
+  {{ partial "palette.html" . }}
   {{ partial "scripts.html" . }}
 </body>
 </html>

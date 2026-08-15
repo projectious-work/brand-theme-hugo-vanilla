@@ -2,7 +2,7 @@
 <div class="shell">
   <main id="main">
     <div class="hero">
-      <div class="overline">{{ site.Title }}</div>
+      <div class="hero__eyebrow">{{ site.Title }}</div>
       <h1>{{ .Title }}</h1>
       {{ with .Description }}<p>{{ . }}</p>{{ end }}
     </div>
@@ -10,14 +10,19 @@
     {{ $paginator := .Paginate .Pages }}
     <div class="postlist">
       {{ range $paginator.Pages }}
-      <article class="postlist__item">
+      <article class="postlist__item{{ with .Params.cover }} postlist__item--cover{{ end }}">
+        {{ with .Params.cover }}
+        <a class="postlist__cover" href="{{ $.RelPermalink }}" tabindex="-1" aria-hidden="true"><img src="{{ . | relURL }}" alt="" loading="lazy"></a>
+        {{ end }}
+        <div>
         <div class="postlist__meta">
           <span>{{ time.Format ":date_medium" .Date }}</span>
           <span>{{ i18n "minRead" (dict "Count" .ReadingTime) }}</span>
         </div>
         <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
         <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 200 }}{{ end }}</p>
-        {{ with .Params.tags }}<div class="taglist">{{ range . }}<a class="badge" href="{{ printf "tags/%s/" (urlize .) | relLangURL }}">{{ . }}</a>{{ end }}</div>{{ end }}
+        {{ partial "taglist.html" . }}
+        </div>
       </article>
       {{ end }}
     </div>

@@ -1,0 +1,14 @@
+{{- /* Tag chips. The term page's own RelPermalink carries the site's base path,
+       so a project-scoped deployment (GitHub Pages) keeps working — a literal
+       "/tags/x/" escapes the prefix and 404s. Terms with no page are skipped. */ -}}
+{{- with .Params.tags }}
+<span class="taglist">
+  {{- range . -}}
+    {{- with site.GetPage (printf "/tags/%s" (urlize .)) -}}
+      <a class="badge" href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+    {{- else -}}
+      <span class="badge">{{ . }}</span>
+    {{- end -}}
+  {{- end -}}
+</span>
+{{- end -}}

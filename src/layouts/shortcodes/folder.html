@@ -2,6 +2,6 @@
 <ul><li>
   <details{{ if ne (.Get "closed") "true" }} open{{ end }}>
     <summary><span class="filetree__row">{{ partial "icon.html" (dict "name" "folder" "class" "ico--sm") }}{{ $name }}</span></summary>
-    {{ .Inner | .Page.RenderString (dict "display" "block") }}
+    {{ .Inner }}
   </details>
 </li></ul>

@@ -30,8 +30,8 @@ REMOTE_URL="$(git remote get-url "$REMOTE")"
   echo "error: unexpected deployment remote $REMOTE_URL" >&2
   exit 1
 }
-[[ "$SOURCE_BRANCH" == "main" || "$SOURCE_BRANCH" == "release/v0.3.0" ]] || {
-  echo "error: deploy from main or release/v0.3.0" >&2
+[[ "$SOURCE_BRANCH" == "main" ]] || {
+  echo "error: deploy only from protected main" >&2
   exit 1
 }
 [[ -z "$(git status --porcelain)" ]] || {

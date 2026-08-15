@@ -5,5 +5,5 @@
     <button class="tabs__tab" type="button" role="tab" aria-selected="{{ eq $i 0 }}">{{ trim $l " " }}</button>
     {{ end }}
   </div>
-  {{ .Inner | .Page.RenderString (dict "display" "block") }}
+  {{ .Inner }}
 </div>

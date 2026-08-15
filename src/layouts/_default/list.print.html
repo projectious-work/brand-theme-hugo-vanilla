@@ -1,11 +1,20 @@
 <!DOCTYPE html>
-<html lang="{{ site.Language.LanguageCode }}"{{ with site.Params.darkSurface }} data-surface="{{ . }}"{{ end }}>
-<head>{{ partial "head.html" . }}</head>
+<html lang="{{ site.Language.LanguageCode }}"{{ with site.Params.codeTheme }} data-code="{{ . }}"{{ end }}>
+<head>
+{{ partial "head.html" . }}
+{{ with resources.Get "css/print.css" }}{{ $p := . | minify | fingerprint }}<link rel="stylesheet" href="{{ $p.RelPermalink }}" media="print">{{ end }}
+</head>
 <body>
+  {{- /* Repeated at the top of every printed sheet via position: running(). */ -}}
+  <div class="print-head">
+    <span>{{ site.Title }} &middot; {{ .Title }}</span>
+    <span>{{ with site.Params.version }}{{ . }}{{ end }}</span>
+  </div>
   <main id="main" class="shell">
-    <div class="prose">
-      <div class="overline">{{ site.Title }}{{ with site.Params.version }} &middot; {{ . }}{{ end }}</div>
+    <div class="prose print-toc">
+      <div class="hero__eyebrow">{{ site.Title }}{{ with site.Params.version }} &middot; {{ . }}{{ end }}</div>
       <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
       <p class="lede">{{ i18n "printedOn" }} {{ time.Format ":date_long" now }} &middot; {{ len .RegularPagesRecursive }} {{ i18n "pagesWord" }}</p>
       <h2>{{ i18n "contents" }}</h2>
       <ol>{{ range .RegularPagesRecursive.ByWeight }}<li><a href="#{{ .File.ContentBaseName | urlize }}">{{ .LinkTitle }}</a></li>{{ end }}</ol>

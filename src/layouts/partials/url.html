@@ -1,0 +1,14 @@
+{{- /* Resolves an authored URL. An absolute URL, a protocol-relative one or a
+       fragment passes through untouched; anything else goes through relLangURL
+       so a project-scoped deployment (GitHub Pages) keeps its base path.
+       Previously "/docs/" worked but "https://github.com/..." was prefixed. */ -}}
+{{- $u := . -}}
+{{- if or (urls.Parse $u).IsAbs (strings.HasPrefix $u "//") (strings.HasPrefix $u "#") (strings.HasPrefix $u "mailto:") -}}
+  {{- $u -}}
+{{- else -}}
+  {{- with site.GetPage $u -}}
+    {{- .RelPermalink -}}
+  {{- else -}}
+    {{- strings.TrimPrefix "/" $u | relURL -}}
+  {{- end -}}
+{{- end -}}

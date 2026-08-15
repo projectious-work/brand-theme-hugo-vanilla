@@ -106,3 +106,63 @@ other = "Diese Seite existiert nicht oder wurde verschoben."
 other = "Zur Startseite"
 [builtWith]
 other = "Mit Hugo gebaut"
+[dismiss]
+other = "Ausblenden"
+[backToTop]
+other = "Nach oben"
+[filterPages]
+other = "Seiten filtern"
+[imageViewer]
+other = "Bildansicht"
+[close]
+other = "Schließen"
+[copyAsMarkdown]
+other = "Als Markdown kopieren"
+[viewMarkdown]
+other = "Markdown ansehen"
+[source]
+other = "Quelle"
+[optional]
+other = "Optional"
+[outdatedVersion]
+other = "Sie lesen die Dokumentation zu {{ .Version }}."
+[goToLatest]
+other = "Zu {{ .Version }} wechseln"
+[castUnvendored]
+other = "Der Terminal-Player ist in diesem Build nicht enthalten. Führen Sie scripts/vendor.sh aus oder laden Sie die Aufzeichnung herunter:"
+[table]
+other = "Tabelle"
+[commandPalette]
+other = "Befehlspalette"
+[palettePlaceholder]
+other = "Suchen oder springen…"
+[keyboardShortcuts]
+other = "Tastenkürzel"
+[modKey]
+other = "Strg"
+[shortcutPalette]
+other = "Befehlspalette öffnen"
+[shortcutSearch]
+other = "Suchfeld fokussieren"
+[shortcutHelp]
+other = "Diese Kürzel anzeigen"
+[shortcutHome]
+other = "Zur Startseite"
+[shortcutDocs]
+other = "Zur Dokumentation"
+[shortcutBlog]
+other = "Zum Blog"
+[shortcutTheme]
+other = "Zwischen hell und dunkel wechseln"
+[shortcutClose]
+other = "Dialog schließen"
+[navigate]
+other = "Navigieren"
+[open]
+other = "Öffnen"
+[jumpTo]
+other = "Springen zu"
+[actions]
+other = "Aktionen"
+[notebookMissing]
+other = "Notebook \"{{ .Name }}\" wurde noch nicht konvertiert. Führen Sie scripts/notebooks.sh aus."

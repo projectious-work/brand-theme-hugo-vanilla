@@ -1,6 +1,4 @@
-{{- /* LaTeX via KaTeX. Enable per page with math: true, or site-wide with
-       params.math = true. Goldmark passthrough keeps the delimiters intact.
-       Vendor KaTeX into assets/ if the site must make no network requests. */ -}}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+{{- $base := "https://cdn.jsdelivr.net/npm/katex@0.18.4/dist" -}}
+<link rel="stylesheet" href="{{ $base }}/katex.min.css" crossorigin="anonymous">
+<script defer src="{{ $base }}/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="{{ $base }}/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}]})"></script>

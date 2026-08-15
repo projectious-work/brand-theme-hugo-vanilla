@@ -1,12 +1,12 @@
 {{ define "main" }}
 <main id="main">
   <section class="shell hero">
-    {{ with .Params.eyebrow }}<div class="overline">{{ . }}</div>{{ end }}
+    {{ with .Params.eyebrow }}<div class="hero__eyebrow">{{ . }}</div>{{ end }}
     <h1>{{ .Title }}</h1>
     {{ with .Params.tagline }}<p>{{ . }}</p>{{ end }}
     {{ with .Params.cta }}
     <div class="hero__ctas">
-      {{ range . }}<a class="btn btn--{{ .variant | default "primary" }}" href="{{ .href | relLangURL }}">{{ .label }}</a>{{ end }}
+      {{ range . }}<a class="btn btn--{{ .variant | default "primary" }}" href="{{ partial "url.html" .href }}">{{ .label }}</a>{{ end }}
     </div>
     {{ end }}
   </section>

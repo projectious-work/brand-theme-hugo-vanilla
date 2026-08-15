@@ -1,0 +1,13 @@
+{{- /* Enable with enableRobotsTXT = true. Search and print views are indexable
+       noise: they duplicate content that already has a canonical page. */ -}}
+User-agent: *
+Allow: /
+Disallow: {{ "/search/" | relLangURL }}
+Disallow: *print.html
+{{ range site.Languages }}{{ if ne .Lang $.Site.Home.Language.Lang }}Disallow: {{ printf "/%s/search/" .Lang | relURL }}
+{{ end }}{{ end }}
+Sitemap: {{ "sitemap.xml" | absURL }}
+{{ with site.Params.llms }}{{ if ne . false }}
+# Site map for language models — see llmstxt.org
+# {{ "llms.txt" | absURL }}
+{{ end }}{{ end }}

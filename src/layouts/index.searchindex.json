@@ -3,13 +3,16 @@
 {{- range $i, $p := $pages -}}
   {{- $crumb := slice -}}
   {{- range $p.Ancestors.Reverse -}}{{- if not .IsHome -}}{{- $crumb = $crumb | append .LinkTitle -}}{{- end -}}{{- end -}}
+  {{- $headings := partial "headings-flat.html" (dict "headings" $p.Fragments.Headings) -}}
   {{- $out = $out | append (dict
       "id" $i
       "title" $p.LinkTitle
       "href" $p.RelPermalink
       "crumb" (delimit $crumb " · ")
+      "section" $p.Section
       "description" (or $p.Description "")
       "tags" (or $p.Params.tags slice)
+      "headings" $headings
       "content" ($p.Plain | truncate 2000 "")) -}}
 {{- end -}}
 {{- $out | jsonify -}}

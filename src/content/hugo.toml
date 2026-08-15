@@ -34,10 +34,23 @@ enableGitInfo = true
   notAlternative = true
   permalinkable = true
 
+[outputFormats.LLMS]
+  mediaType = "text/plain"
+  baseName = "llms"
+  isPlainText = true
+  notAlternative = true
+
+# text/markdown is a built-in media type — declaring it again risks a suffix
+# registration collision.
+[outputFormats.Markdown]
+  mediaType = "text/markdown"
+  isPlainText = true
+  permalinkable = true
+
 [outputs]
-  home = ["HTML", "RSS", "SearchIndex"]
-  section = ["HTML", "RSS", "Print"]
-  page = ["HTML"]
+  home = ["HTML", "RSS", "SearchIndex", "LLMS"]
+  section = ["HTML", "RSS", "Print", "Markdown"]
+  page = ["HTML", "Markdown"]
 
 [markup]
   [markup.goldmark.renderer]
@@ -72,24 +85,43 @@ enableGitInfo = true
 [params]
   description = "Documentation, blog and marketing pages on the projectious.work brand system."
   github = "https://github.com/projectious-work/brand-theme-hugo-vanilla"
+  # A single string is appended to the page's content-relative path. For a
+  # multilingual site the theme adds the language directory automatically; pass a
+  # map keyed by language code when the repo layout differs per language.
   editURL = "https://github.com/projectious-work/brand-theme-hugo-vanilla/edit/main/src/content/content/"
+  # [params.editURL]
+  #   default = ".../edit/main/src/content/content/"
+  #   de      = ".../edit/main/src/content/content/de/"
   version = "v0.3"
   darkSurface = "navy"   # navy dark mode; remove for the default terminal-surface dark
+  codeTheme = "adaptive" # light code panels in light mode; remove for always-dark
+  sidebarOpenDepth = 1   # 0 collapses everything off the current path
+  sidebarSections = ["docs"]  # sections that show the sidebar (and the mobile burger)
   # feedbackEndpoint = "https://example.org/api/feedback"
   # search = false            # disables the index, the header box and /search
   # accessibilityMenu = false # hides the accessibility selector
+  # sidebarFilter = false     # hides the sidebar filter box
+  # commandPalette = false    # disables Ctrl K and the shortcut help
+  # versionProbe = false      # version links always land on that version's root
   # math = true               # loads KaTeX on every page
+
+  [params.announcement]
+    id = "v030"
+    text = "v0.3.0 is out — expanded icons, pinned CDN runtimes, section-filtered search."
+    href = "/blog/"
+    label = "Read the notes"
 
   [params.build]
     tailwind = true
 
   [[params.versions]]
     label = "v0.3"
-    url = ""
+    url = "/"
     note = "latest"
   [[params.versions]]
     label = "v0.2"
-    url = "v0.2/"
+    url = "/v0.2/"
+    # probe = false   # this entry always lands on its root, never the same path
 
 [languages]
   [languages.en]

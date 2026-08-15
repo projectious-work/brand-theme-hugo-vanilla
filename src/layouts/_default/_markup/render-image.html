@@ -1,0 +1,30 @@
+{{- /* Markdown images become figures with a caption from the title, lazy
+       loading, and intrinsic dimensions where the format has them.
+
+       MediaType.MainType == "image" is not enough to read .Width/.Height — an
+       SVG is an image resource without metadata, so reflect.IsImageResourceWithMeta
+       is the guard. A sibling <name>-dark.<ext> is swapped by colour mode. */ -}}
+{{- $src := .Destination -}}
+{{- $url := $src -}}
+{{- $dark := "" }}{{ $w := 0 }}{{ $h := 0 -}}
+{{- if not (urls.Parse $src).IsAbs -}}
+  {{- $res := or (.Page.Resources.GetMatch $src) (resources.Get $src) -}}
+  {{- with $res -}}
+    {{- $url = .RelPermalink -}}
+    {{- if reflect.IsImageResourceWithMeta . }}{{ $w = .Width }}{{ $h = .Height }}{{ end -}}
+  {{- end -}}
+  {{- $ext := path.Ext $src -}}
+  {{- $darkPath := printf "%s-dark%s" (strings.TrimSuffix $ext $src) $ext -}}
+  {{- $dark = or (.Page.Resources.GetMatch $darkPath) (resources.Get $darkPath) -}}
+{{- end -}}
+<figure class="figure">
+  {{- if $dark -}}
+  <span class="imgswap">
+    <img class="imgswap__light" src="{{ $url }}" alt="{{ .Text }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $w }} width="{{ $w }}" height="{{ $h }}"{{ end }} loading="lazy" decoding="async">
+    <img class="imgswap__dark" src="{{ $dark.RelPermalink }}" alt="{{ .Text }}"{{ if $w }} width="{{ $w }}" height="{{ $h }}"{{ end }} loading="lazy" decoding="async">
+  </span>
+  {{- else -}}
+  <img src="{{ $url }}" alt="{{ .Text }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $w }} width="{{ $w }}" height="{{ $h }}"{{ end }} loading="lazy" decoding="async">
+  {{- end -}}
+  {{ with .Title }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>

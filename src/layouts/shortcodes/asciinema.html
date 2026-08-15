@@ -1,0 +1,20 @@
+{{- /* Terminal recording player. src is a .cast file (v2) under static/. */ -}}
+{{- $src := .Get "src" | default (.Get 0) -}}
+{{- if not (.Page.Store.Get "castLoaded") }}{{ .Page.Store.Set "castLoaded" true }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/asciinema-player@3.17.0/dist/bundle/asciinema-player.css">
+<script src="https://cdn.jsdelivr.net/npm/asciinema-player@3.17.0/dist/bundle/asciinema-player.min.js"></script>
+{{ end }}
+<div class="cast" id="cast-{{ .Ordinal }}"></div>
+<script>
+  AsciinemaPlayer.create({{ $src | relURL }}, document.getElementById("cast-{{ .Ordinal }}"), {
+    cols: {{ .Get "cols" | default 100 }},
+    rows: {{ .Get "rows" | default 22 }},
+    idleTimeLimit: {{ .Get "idleTimeLimit" | default 2 }},
+    speed: {{ .Get "speed" | default 1 }},
+    autoPlay: {{ if eq (.Get "autoplay") "true" }}true{{ else }}false{{ end }},
+    loop: {{ if eq (.Get "loop") "true" }}true{{ else }}false{{ end }},
+    poster: "npt:0:01",
+    theme: "asciinema",
+    terminalFontFamily: "'IBM Plex Mono', ui-monospace, monospace"
+  });
+</script>

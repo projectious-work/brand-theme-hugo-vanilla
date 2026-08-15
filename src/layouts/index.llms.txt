@@ -1,0 +1,22 @@
+{{- /* llms.txt — a flat, link-first map of the site for language models.
+       https://llmstxt.org/ */ -}}
+# {{ site.Title }}
+
+> {{ site.Params.description }}
+{{ with site.Params.version }}
+Version: {{ . }}
+{{ end }}
+{{ range site.Sections.ByWeight }}
+## {{ .LinkTitle }}
+{{ with .Description }}
+{{ . }}
+{{ end }}
+{{ range .RegularPagesRecursive.ByWeight -}}
+- [{{ .LinkTitle }}]({{ .Permalink }}){{ with .Description }}: {{ . }}{{ end }}
+{{ end }}
+{{- end }}
+## {{ i18n "optional" }}
+
+{{ range where site.RegularPages "Section" "" -}}
+- [{{ .LinkTitle }}]({{ .Permalink }})
+{{ end }}

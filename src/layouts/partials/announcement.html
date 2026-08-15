@@ -1,0 +1,10 @@
+{{- /* Dismissible site-wide notice. params.announcement = { id, text, href, label }.
+       The id is the localStorage key — bump it to re-show a dismissed bar. */ -}}
+{{ with site.Params.announcement }}
+<div class="announce" data-announcement="{{ .id | default "1" }}">
+  <span>{{ .text }}{{ with .href }} <a href="{{ partial "url.html" . }}">{{ $.Site.Params.announcement.label | default "Read more" }}</a>{{ end }}</span>
+  <button class="announce__close" type="button" data-announcement-close aria-label="{{ i18n "dismiss" }}">
+    {{ partial "icon.html" (dict "name" "x" "class" "ico--sm") }}
+  </button>
+</div>
+{{ end }}

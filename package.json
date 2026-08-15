@@ -3,7 +3,14 @@
   "version": "0.3.0",
   "private": true,
   "description": "Build dependency for the Tailwind v4 CSS pipeline. Hugo invokes the CLI through css.TailwindCSS.",
+  "scripts": {
+    "build": "./scripts/build.sh",
+    "test": "./scripts/verify.sh",
+    "test:browser": "playwright test",
+    "serve": "./scripts/serve.sh"
+  },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "@tailwindcss/cli": "^4.1.0"
   }
 }

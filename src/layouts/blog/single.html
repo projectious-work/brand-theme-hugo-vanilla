@@ -2,6 +2,7 @@
 <div class="shell">
   <main id="main">
     {{ partial "breadcrumbs.html" . }}
+    {{ with .Params.cover }}<figure class="posthero"><img src="{{ . | relURL }}" alt="{{ $.Params.coverAlt | default "" }}"></figure>{{ end }}
     <article class="prose">
       <div class="postlist__meta">
         <span>{{ time.Format ":date_long" .Date }}</span>
@@ -12,6 +13,7 @@
       {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
       {{ .Content }}
     </article>
+    {{ partial "page-tools.html" . }}
     {{ partial "page-footer.html" . }}
   </main>
 </div>

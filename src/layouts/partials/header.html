@@ -1,5 +1,5 @@
 <header class="header">
-  {{ if .Store.Get "hasSidebar" }}
+  {{ if partial "has-sidebar.html" . }}
   <button class="iconbtn target header__burger" type="button" data-sidebar-toggle aria-expanded="false" aria-label="{{ i18n "menu" }}">
     {{ partial "icon.html" (dict "name" "menu-2" "class" "ico--sm") }}
   </button>

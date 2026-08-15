@@ -1,9 +1,13 @@
+{{- /* No .Inner: referencing it would make Hugo demand a closing tag on every
+       call, and cards are written as leaf shortcodes. Body text is "subtitle",
+       which is rendered as Markdown so links and code spans still work. */ -}}
 {{- $link := .Get "link" -}}
 {{- $tag := cond (ne $link nil) "a" "div" -}}
-<{{ $tag }} class="card"{{ with $link }} href="{{ . | relLangURL }}"{{ end }}>
-  {{ with .Get "image" }}<div class="card__media"><img src="{{ . | relURL }}" alt="{{ $.Get "alt" | default "" }}" loading="lazy"></div>{{ end }}
+{{- $open := printf "<%s class=\"card\"" $tag -}}
+{{- with $link }}{{ $open = printf "%s href=\"%s\"" $open (partial "url.html" .) }}{{ end -}}
+{{ printf "%s>" $open | safeHTML }}
+  {{ with .Get "image" }}<div class="card__media"><img src="{{ partial "url.html" . }}" alt="{{ $.Get "alt" | default "" }}" loading="lazy"></div>{{ end }}
   {{ with .Get "icon" }}<div class="card__icon">{{ partial "icon.html" (dict "name" . "class" "ico--lg") }}</div>{{ end }}
   {{ with .Get "title" }}<div class="card__title">{{ . }}</div>{{ end }}
-  {{ with .Get "subtitle" }}<p class="card__text">{{ . }}</p>{{ end }}
-  {{ with .Inner }}<div class="card__text">{{ $.Inner | $.Page.RenderString (dict "display" "block") }}</div>{{ end }}
-</{{ $tag }}>
+  {{ with .Get "subtitle" }}<p class="card__text">{{ . | $.Page.RenderString }}</p>{{ end }}
+{{ printf "</%s>" $tag | safeHTML }}

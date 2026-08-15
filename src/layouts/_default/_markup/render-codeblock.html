@@ -2,11 +2,15 @@
 {{- if eq $lang "mermaid" -}}
 <pre class="mermaid">{{ .Inner }}</pre>
 {{- else -}}
+{{- /* transform.HighlightCodeBlock passes the fence's options through to Chroma,
+       so {linenos=table, hl_lines="3-5", lineNoStart=10} all work. Hand-rolling
+       the highlight call silently dropped them. */ -}}
+{{- $result := transform.HighlightCodeBlock . -}}
 <div class="code">
   <div class="code__bar">
     <span class="code__name">{{ with .Attributes.filename }}{{ . }}{{ else }}{{ $lang }}{{ end }}</span>
     <button class="code__copy" type="button" data-copied="{{ i18n "copied" }}">{{ partial "icon.html" (dict "name" "copy" "class" "ico--sm") }}<span>{{ i18n "copyCode" }}</span></button>
   </div>
-  {{ highlight (trim .Inner "\n") $lang (.Options.hl_inline | default "") }}
+  {{ $result.Wrapped }}
 </div>
 {{- end -}}

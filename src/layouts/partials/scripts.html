@@ -3,3 +3,6 @@
   {{ with resources.Get "js/vendor/flexsearch.bundle.min.js" }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
   {{ with resources.Get "js/search.js" }}{{ with . | js.Build (dict "minify" hugo.IsProduction) }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}{{ end }}
 {{ end }}
+{{ if ne site.Params.commandPalette false }}
+  {{ with resources.Get "js/palette.js" }}{{ with . | js.Build (dict "minify" hugo.IsProduction) }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}{{ end }}
+{{ end }}
