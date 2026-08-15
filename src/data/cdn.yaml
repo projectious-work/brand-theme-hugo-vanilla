@@ -1,9 +1,5 @@
-# Third-party runtime dependencies. Pinned to exact versions with Subresource
-# Integrity hashes — a floating major can change under a build that has already
-# been reviewed, and SRI makes a swapped CDN payload fail closed.
-#
-# Bumping a pin: change the version, fetch the new file, and regenerate the hash:
-#   curl -sL <url> | openssl dgst -sha384 -binary | openssl base64 -A
+# Third-party runtime dependencies pinned to exact versions. A floating major
+# can change underneath a build that has already been reviewed.
 #
 # selfHost: set params.selfHostAssets = true and place the same files under
 # static/vendor/<name>/ for deployments that prohibit public CDNs. The templates
