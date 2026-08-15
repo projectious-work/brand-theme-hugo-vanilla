@@ -1,6 +1,7 @@
 +++
 title = "Guide de rédaction"
-linkTitle = "Guide de rédaction de contenu"
+linkTitle = "Guides"
+overviewTitle = "Guide de rédaction de contenu"
 description = "Créer des pages, liens, blocs de code, diagrammes, enregistrements et notebooks."
 weight = 40
 icon = "book"

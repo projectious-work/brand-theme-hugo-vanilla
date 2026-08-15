@@ -1,6 +1,7 @@
 +++
 title = "Content authoring guide"
-linkTitle = "Content authoring guide"
+linkTitle = "Guides"
+overviewTitle = "Content authoring guide"
 description = "Write pages, links, code, diagrams, recordings and notebook output with Hugo-friendly Markdown."
 weight = 40
 icon = "book"
@@ -89,11 +90,67 @@ pages = list(Path("content").rglob("*.md"))
 print(f"{len(pages)} pages ready")
 ```
 
+````md
+```python {filename="report.py", linenos=table, hl_lines="3"}
+from pathlib import Path
+
+pages = list(Path("content").rglob("*.md"))
+print(f"{len(pages)} pages ready")
+```
+````
+
 ```toml {filename="hugo.toml"}
 [params]
   codeTheme = "adaptive"
   sidebarOpenDepth = 1
 ```
+
+````md
+```toml {filename="hugo.toml"}
+[params]
+  codeTheme = "adaptive"
+  sidebarOpenDepth = 1
+```
+````
+
+### Code block options
+
+Put the language immediately after the opening fence and options inside `{}`.
+`filename` controls the theme's title bar; the remaining options are handled by
+Hugo's Chroma syntax highlighter.
+
+| Option | Values and effect |
+|---|---|
+| `filename="report.py"` | Theme-specific label shown above the code |
+| `linenos=false` | Hide line numbers, including when enabled globally |
+| `linenos=table` | Copy-friendly line-number column |
+| `linenos=inline` | Put line numbers inside each highlighted line |
+| `linenostart=20` | Display 20 as the first line number |
+| `hl_lines=[3,"6-8"]` | Emphasize individual lines and ranges |
+| `anchorlinenos=true` | Make displayed line numbers link targets |
+| `lineanchors="example-"` | Prefix line-anchor IDs so multiple blocks do not collide |
+
+```python {filename="checks.py", linenos=table, linenostart=20, hl_lines=[2,"4-5"], anchorlinenos=true, lineanchors="checks-"}
+def verify(build):
+    if not build.deterministic:
+        raise ValueError("build output changed")
+
+    return "ready"
+```
+
+````md
+```python {filename="checks.py", linenos=table, linenostart=20, hl_lines=[2,"4-5"], anchorlinenos=true, lineanchors="checks-"}
+def verify(build):
+    if not build.deterministic:
+        raise ValueError("build output changed")
+
+    return "ready"
+```
+````
+
+Set site-wide defaults under `[markup.highlight]` in `hugo.toml`; attributes on a
+fence override them for that block. Hugo documents every supported option in its
+[syntax-highlighting reference](https://gohugo.io/content-management/syntax-highlighting/).
 
 ## Diagrams and mathematics
 

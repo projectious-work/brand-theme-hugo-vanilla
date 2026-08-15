@@ -31,6 +31,7 @@ repository.
 baseURL = "https://docs.example.com/"
 title = "Example documentation"
 defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
 enableRobotsTXT = true
 
 [module]
@@ -53,6 +54,7 @@ the example identity and repository values. Comments mark optional settings.
 baseURL = "https://docs.example.com/"
 title = "Example documentation"
 defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
 enableRobotsTXT = true
 
 [module]

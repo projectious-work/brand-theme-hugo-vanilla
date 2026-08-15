@@ -66,7 +66,7 @@ test("prose markers and adaptive technical panels follow colour mode", async ({ 
   expect(darkCode).not.toBe(lightCode);
 });
 
-test("generated data, navigation and template contracts are valid", async ({ page, request }) => {
+test("generated data, navigation and template contracts are valid", async ({ page, request }, testInfo) => {
   const response = await request.get("index.json");
   expect(response.ok()).toBeTruthy();
   const entries = await response.json();
@@ -85,6 +85,23 @@ test("generated data, navigation and template contracts are valid", async ({ pag
 
   await page.goto("docs/getting-started/");
   await expect(page.locator(".code .highlight").first()).toBeVisible();
+
+  await page.goto("docs/guides/template-authoring/");
+  await expect(page.locator("html")).toHaveAttribute("lang", "en");
+  if (testInfo.project.name.startsWith("desktop")) {
+    const guidesGroup = page.locator(".sidebar details").filter({ hasText: "Guides" });
+    await expect(guidesGroup.locator("summary")).toHaveText("Guides");
+    await expect(guidesGroup.getByRole("link", { name: "Content authoring guide" })).toBeVisible();
+    await expect(guidesGroup.getByRole("link", { name: "Template authoring guide" })).toBeVisible();
+  }
+
+  await page.goto("docs/guides/");
+  await expect(
+    page.locator("code.language-md").filter({ hasText: '```python {filename="report.py"' }),
+  ).toBeVisible();
+  await expect(
+    page.locator("code.language-md").filter({ hasText: '```toml {filename="hugo.toml"' }),
+  ).toBeVisible();
 });
 
 test("landing and wide documentation rails align", async ({ page }, testInfo) => {
