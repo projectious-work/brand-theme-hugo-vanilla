@@ -26,6 +26,8 @@ tags = ["reference"]
 | `params.sidebarOpenDepth` | How many sidebar levels start expanded (default 1; 0 collapses everything off the current path) |
 | `params.commandPalette` | `false` disables the palette and its shortcuts |
 | `params.versionProbe` | `false` makes every version link land on that version's root |
+| `params.selfHostAssets` | `true` loads KaTeX, Mermaid and asciinema from `static/vendor/` instead of the pinned CDN |
+| `params.sidebarSections` | Sections that show the sidebar and the mobile menu button (default `["docs"]`) |
 | `params.darkSurface` | Server-rendered default before JS runs; `"navy"` matches the menu default |
 
 ## Front matter
@@ -70,15 +72,30 @@ origin check and a path allow-list before pointing this at production.
 ## Notebooks
 
 `.ipynb` is JSON with embedded base64 images and ANSI stream output — converting it
-in a template is the wrong shape, so it happens before the build:
+in a template is the wrong shape, so it happens before the build, in a pinned
+environment:
 
 ```sh
+python3 -m venv .venv && . .venv/bin/activate
+pip install -r scripts/requirements.txt
 ./scripts/notebooks.sh
 ```
 
+The pin matters: nbconvert changes its Markdown output between minor versions, which
+would silently change published pages.
+
 That writes `content/_notebooks/<name>.md` plus `static/notebooks/<name>/` images.
-Embed the result with `{{< notebook "name" >}}`; it renders through the page, so the
-code-block hook, image hook and every other shortcode apply to it.
+Embed with `{{</* notebook "name" */>}}`. Lookup is exact — a page resource in the same
+bundle first, then `content/_notebooks/<name>.md` — so basenames must be unique; the
+script refuses to run if two notebooks share one.
+
+## Raw HTML in Markdown
+
+The theme ships with `markup.goldmark.renderer.unsafe = false`. No theme feature
+needs raw HTML: components are shortcodes, and prose, tables, images and code fences
+are plain Markdown. Leaving it off keeps the injection surface closed for every
+author on the site. Turn it on only if your own content knowingly requires inline
+HTML.
 
 ## Printing
 
@@ -136,11 +153,29 @@ The theme reads five beyond HTML. Copy the blocks from `hugo.toml`:
 | `LLMS` | `/llms.txt` — a link-first site map for language models |
 | `RSS` | Feeds, styled by `static/feed.xsl` when opened in a browser |
 
-## Third-party runtime assets
+## Third-party assets
 
-KaTeX 0.18.4, Mermaid 11.16.1 and asciinema-player 3.17.0 load from jsDelivr
-with exact version pins. Their templates are loaded only on pages that use the
-corresponding feature. Fonts and the theme icon set remain bundled with the theme.
+KaTeX, Mermaid and the asciinema player load from **pinned CDN versions** declared
+in `data/cdn.yaml` — exact versions, never a floating major, so a reviewed build
+cannot change underneath you.
+
+```yaml {filename="data/cdn.yaml"}
+mermaid:
+  version: "11.16.1"
+  base: "https://cdn.jsdelivr.net/npm/mermaid@11.16.1/dist"
+```
+
+The icon set is the one exception: it is bundled, inlined by Hugo, and never
+fetched.
+
+For a deployment that prohibits public CDNs, set `params.selfHostAssets = true` and
+mirror the same files under `static/vendor/<package>/`. Every template then resolves
+through the local path instead. Nothing is bundled by default.
+
+{{< callout type="note" title="Bumping a pin" >}}
+Change the version and base in `data/cdn.yaml`, then re-check the rendered output —
+Mermaid in particular changes diagram defaults between minors.
+{{< /callout >}}
 
 ## Versioned documentation
 

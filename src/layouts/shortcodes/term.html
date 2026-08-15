@@ -1,4 +1,6 @@
-{{- /* Leaf shortcode — no .Inner. Override the displayed text with "label". */ -}}
+{{- /* Unpaired shortcode — never references .Inner. Override the displayed
+       text with "label". Definitions live in data/glossary.yaml. */ -}}
 {{- $key := .Get "key" | default (.Get 0) -}}
-{{- $entry := index site.Data.glossary $key -}}
+{{- $entry := index hugo.Data.glossary $key -}}
+{{- if not $entry }}{{ warnf "term: %q is not in data/glossary.yaml (%s)" $key .Page.Path }}{{ end -}}
 <abbr class="term" title="{{ with $entry }}{{ .definition }}{{ else }}{{ $key }}{{ end }}">{{ with $.Get "label" }}{{ . }}{{ else }}{{ with $entry }}{{ .term }}{{ else }}{{ $key }}{{ end }}{{ end }}</abbr>

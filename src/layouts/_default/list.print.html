@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.Language.LanguageCode }}"{{ with site.Params.codeTheme }} data-code="{{ . }}"{{ end }}>
+<html lang="{{ site.Language.Locale }}"{{ with site.Params.codeTheme }} data-code="{{ . }}"{{ end }}>
 <head>
 {{ partial "head.html" . }}
 {{ with resources.Get "css/print.css" }}{{ $p := . | minify | fingerprint }}<link rel="stylesheet" href="{{ $p.RelPermalink }}" media="print">{{ end }}

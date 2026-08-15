@@ -45,6 +45,7 @@ contents and math passthrough.
 | Search page | `content/search.md` with `layout = "search"` |
 | Multilingual + language selector | `i18n/`, `partials/lang-menu.html` |
 | Version selector | `params.versions`, `partials/version-menu.html` — keeps the reader's path across versions |
+| Structured data + social cards | `partials/schema.html` — TechArticle, BlogPosting, WebSite and breadcrumbs |
 | Blog, taxonomy, landing, 404 | `layouts/blog/`, `_default/terms.html`, `term.html`, `index.html`, `404.html` |
 | Multilingual edit links + feedback | `partials/edit-link.html`, `feedback.html` |
 | Print a whole docs section | `Print` output format → `_default/list.print.html` + `assets/css/print.css` |
@@ -53,6 +54,8 @@ contents and math passthrough.
 | Syntax highlighting | Chroma classes mapped to the ten brand syntax roles in `assets/css/syntax.css`; fence options are preserved |
 | Accessibility selectors | `partials/a11y-menu.html` driving the brand system's `data-*` switches |
 | Icons | `assets/icons/*.svg`, inlined by `partials/icon.html` — bundled, no CDN |
+| Child-page card grids | `partials/child-cards.html` — generated from title, description, icon and weight |
+| RTL layout | Set the language direction to `rtl`; navigation and structural rails mirror automatically |
 
 ## Shortcodes
 
@@ -74,28 +77,43 @@ one-word edit in Markdown.
 ## Structure
 
 ```
-src/archetypes/   new-content templates (default, docs, blog)
+src/archetypes/   new-content templates (default, docs, blog, release)
 src/assets/css/   main.css (Tailwind entry) · brand-tokens · fonts · theme-layer · syntax · components
 src/assets/icons/ bundled stroke icon set
 src/assets/js/    theme.js · interactions.js · search.js · vendor/flexsearch
-src/data/         glossary.yaml
+src/data/         glossary.yaml · pinned CDN versions in cdn.yaml
 src/i18n/         en.toml · de.toml
 src/layouts/      _default · docs · blog · index · 404 · search index
 src/static/       fonts (WOFF2, OFL) · logo
 src/content/      example site (module replace back to the repo root)
 ```
 
+## Third-party runtime assets
+
+KaTeX 0.18.4, Mermaid 11.16.1 and asciinema-player 3.17.0 load from
+exact version URLs declared in `src/data/cdn.yaml`. Set
+`params.selfHostAssets = true` and mirror those files under
+`static/vendor/<package>/` for deployments that prohibit public CDNs. Nothing
+is downloaded or locally bundled by the theme build.
+
+The bundled icon and font assets do not make third-party requests.
+
+See [TESTING.md](TESTING.md) for the upstream assertion checklist and known
+version-matrix gap. [CONTRACT-feedback.md](CONTRACT-feedback.md) defines the
+optional feedback endpoint; client-side throttling is not a security control.
+
 ## Notes and deliberate deviations
 
 - **Active-heading tracking uses IntersectionObserver, not Bootstrap ScrollSpy.**
   ScrollSpy would pull Bootstrap's JS and CSS reset in alongside Tailwind; the
   observer is ~20 lines and behaves the same.
-- **KaTeX 0.18.4, Mermaid 11.16.1, and asciinema-player 3.17.0 load from
-  jsDelivr**, pinned to exact versions and only on pages that use them.
+- **KaTeX, Mermaid and asciinema-player load only on pages that use them.**
+  Their versions are centralized in `src/data/cdn.yaml`.
 - **Fonts are bundled** as version-pinned WOFF2 (SIL OFL 1.1, licences under
   `static/fonts/licenses/`). Generated pages make no font-CDN request.
 - **Icons** are authored on Tabler's conventions (24 px grid, 1.5 px stroke, round
   caps) and ship in-repo; drop Tabler's `icons/outline/*.svg` into
   `assets/icons/` to swap in the full MIT set.
-- **Notebooks convert before the build.** `scripts/notebooks.sh` runs
-  `nbconvert`; the theme consumes the resulting Markdown and images.
+- **Notebooks convert before the build.** `scripts/notebooks.sh` uses the pinned
+  environment in `scripts/requirements.txt`; the theme consumes only the
+  resulting Markdown and images.

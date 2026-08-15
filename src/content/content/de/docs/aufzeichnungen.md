@@ -16,6 +16,7 @@ Mit `asciinema rec static/casts/deploy.cast` aufnehmen, dann einbinden:
 ```
 
 Der Shortcode lädt den exakt versionierten asciinema-player 3.17.0 von jsDelivr.
+Mit `params.selfHostAssets = true` wird stattdessen ein lokaler Spiegel verwendet.
 
 {{< callout type="note" title="Kein Autoplay" >}}
 Das Markensystem schließt Autoplay aus. Aufzeichnungen starten auf Klick.

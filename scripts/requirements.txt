@@ -1,0 +1,10 @@
+# Pinned notebook conversion environment. An unpinned nbconvert changes its
+# Markdown output between minor versions — image paths, prompt handling and
+# fence languages have all moved — which silently changes published pages.
+#
+#   python3 -m venv .venv && . .venv/bin/activate
+#   pip install -r scripts/requirements.txt
+nbconvert==7.16.6
+nbformat==5.10.4
+jinja2==3.1.6
+mistune==3.1.3

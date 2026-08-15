@@ -7,14 +7,7 @@
       {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
       {{ .Content }}
     </article>
-    <div class="cards{{ if eq (len .Pages) 2 }} cards--2{{ else if eq (len .Pages) 4 }} cards--4{{ end }}">
-      {{ range .Pages.ByWeight }}
-      <a class="card" href="{{ .RelPermalink }}">
-        <div class="card__title">{{ .LinkTitle }}</div>
-        <p class="card__text">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 120 }}{{ end }}</p>
-      </a>
-      {{ end }}
-    </div>
+    {{ partial "child-cards.html" . }}
   </main>
 </div>
 {{ end }}

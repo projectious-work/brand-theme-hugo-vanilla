@@ -1,16 +1,16 @@
-{{- /* Each entry is {label, url, note}. When a version's url is a site prefix,
-       the reader's current path is appended so switching versions stays on the
-       same page where that page exists — set probe = false on an entry (or
-       params.versionProbe = false globally) to always land on its root.
+{{- /* Version entries are {label, url, note, probe}. url may be an absolute URL
+       (a separate host) or a site-relative path — either way it goes through
+       url.html, so a project deployment keeps its prefix. A root-relative
+       literal previously escaped it, sending the reader to the domain root.
 
-       Hugo cannot know whether the other build has the page, so the link is
-       built optimistically and the target's 404 catches the miss. That is the
-       right trade for cross-build navigation: the alternative is landing every
-       reader on the version root, which loses their place every time. */ -}}
+       probe (default true) appends the reader's current path so switching
+       versions keeps their place; the target build's own 404 catches a page that
+       does not exist there. Set probe = false for a version whose structure has
+       diverged. */ -}}
 {{ with site.Params.versions }}
 {{ $current := or site.Params.version (index . 0).label }}
 {{ $probe := true }}{{ if isset site.Params "versionprobe" }}{{ $probe = site.Params.versionProbe }}{{ end }}
-{{ $rel := strings.TrimPrefix (site.BaseURL | urls.Parse).Path $.RelPermalink }}
+{{ $here := strings.TrimPrefix (relLangURL "") $.RelPermalink }}
 <div class="menu">
   <button class="chipbtn target" type="button" data-menu-trigger aria-expanded="false" aria-haspopup="true">
     {{ partial "icon.html" (dict "name" "versions" "class" "ico--sm") }}<span>{{ $current }}</span>
@@ -18,9 +18,9 @@
   <div class="menu__panel" role="menu">
     <div class="menu__label">{{ i18n "version" }}</div>
     {{ range . }}
-      {{ $href := .url }}
-      {{ if and $probe (ne .label $current) (ne (.probe | default true) false) }}
-        {{ $href = printf "%s%s" (strings.TrimSuffix "/" .url) $rel }}
+      {{ $href := partial "url.html" .url }}
+      {{ if and $probe (ne .label $current) (ne (.probe | default true) false) $here }}
+        {{ $href = printf "%s%s" (strings.TrimSuffix "/" $href) (printf "/%s" (strings.TrimPrefix "/" $here)) }}
       {{ end }}
       <a href="{{ $href }}" role="menuitemradio" aria-checked="{{ eq .label $current }}">{{ .label }}{{ with .note }} <span class="badge">{{ . }}</span>{{ end }}</a>
     {{ end }}

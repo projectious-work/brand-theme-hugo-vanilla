@@ -1,0 +1,13 @@
+{{- /* Resolves one pinned dependency file to a URL.
+       Call: partial "cdn-url.html" (dict "pkg" "katex" "file" "js").
+       Returns the CDN URL, or the self-hosted path when
+       params.selfHostAssets is true. */ -}}
+{{- $pkg := index hugo.Data.cdn .pkg -}}
+{{- $name := index $pkg.files .file -}}
+{{- if site.Params.selfHostAssets -}}
+  {{- $localName := $name -}}
+  {{- with index $pkg.files (printf "%sLocal" .file) }}{{ $localName = . }}{{ end -}}
+  {{- printf "%s/%s" $pkg.local $localName | relURL -}}
+{{- else -}}
+  {{- printf "%s/%s" $pkg.base $name -}}
+{{- end -}}

@@ -1,4 +1,7 @@
-{{- $base := "https://cdn.jsdelivr.net/npm/katex@0.18.4/dist" -}}
-<link rel="stylesheet" href="{{ $base }}/katex.min.css" crossorigin="anonymous">
-<script defer src="{{ $base }}/katex.min.js" crossorigin="anonymous"></script>
-<script defer src="{{ $base }}/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false}]})"></script>
+{{- /* KaTeX, pinned. Delimiters cover $…$, $$…$$ and the \(…\) / \[…\] pairs
+       Goldmark's passthrough extension preserves. */ -}}
+{{- $delims := "delimiters:[{left:'$$',right:'$$',display:true},{left:'\\\\[',right:'\\\\]',display:true},{left:'$',right:'$',display:false},{left:'\\\\(',right:'\\\\)',display:false}],throwOnError:false" -}}
+{{- $cross := cond (eq site.Params.selfHostAssets true) "" "anonymous" -}}
+<link rel="stylesheet" href="{{ partial "cdn-url.html" (dict "pkg" "katex" "file" "css") }}"{{ with $cross }} crossorigin="{{ . }}"{{ end }}>
+<script defer src="{{ partial "cdn-url.html" (dict "pkg" "katex" "file" "js") }}"{{ with $cross }} crossorigin="{{ . }}"{{ end }}></script>
+<script defer src="{{ partial "cdn-url.html" (dict "pkg" "katex" "file" "autorender") }}"{{ with $cross }} crossorigin="{{ . }}"{{ end }} onload="renderMathInElement(document.body,{ {{- $delims | safeJS -}} })"></script>

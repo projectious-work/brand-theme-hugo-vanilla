@@ -12,11 +12,12 @@ if [[ -d "$ROOT_DIR/.github/workflows" ]] && \
   exit 1
 fi
 
-rg -q 'katex@0\.18\.4/dist' "$ROOT_DIR/src/layouts/partials/math.html"
-rg -q 'mermaid@11\.16\.1/dist' \
-  "$ROOT_DIR/src/layouts/shortcodes/mermaid.html"
-rg -q 'asciinema-player@3\.17\.0/dist' \
-  "$ROOT_DIR/src/layouts/shortcodes/asciinema.html"
+rg -q 'version: "0\.18\.4"' "$ROOT_DIR/src/data/cdn.yaml"
+rg -q 'katex@0\.18\.4/dist' "$ROOT_DIR/src/data/cdn.yaml"
+rg -q 'version: "11\.16\.1"' "$ROOT_DIR/src/data/cdn.yaml"
+rg -q 'mermaid@11\.16\.1/dist' "$ROOT_DIR/src/data/cdn.yaml"
+rg -q 'version: "3\.17\.0"' "$ROOT_DIR/src/data/cdn.yaml"
+rg -q 'asciinema-player@3\.17\.0/dist' "$ROOT_DIR/src/data/cdn.yaml"
 if rg -n 'static/vendor|scripts/vendor\.sh|@latest|mermaid@11/dist' \
   "$ROOT_DIR/src/layouts" >/dev/null; then
   echo "error: local, floating, or stale runtime asset reference found" >&2
@@ -31,6 +32,11 @@ for required in index.html index.json docs/index.html search/index.html; do
     exit 1
   }
 done
+
+rg -q 'katex@0\.18\.4' "$VERIFY_DIR/build-a/docs/recordings/index.html"
+rg -q 'mermaid@11\.16\.1' "$VERIFY_DIR/build-a/docs/shortcodes/index.html"
+rg -q 'cdn-url.html.*asciinema' \
+  "$ROOT_DIR/src/layouts/shortcodes/asciinema.html"
 
 hash_tree() {
   find "$1" -type f -print0 \

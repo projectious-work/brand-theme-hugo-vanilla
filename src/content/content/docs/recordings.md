@@ -16,7 +16,7 @@ Record with `asciinema rec static/casts/deploy.cast`, then embed it:
 ```
 
 The shortcode loads the exactly pinned asciinema-player 3.17.0 runtime from
-jsDelivr.
+jsDelivr. Set `params.selfHostAssets = true` to use a local mirror instead.
 
 {{< callout type="note" title="Why not autoplay?" >}}
 The brand system rules out autoplay video. Recordings start on click; pass
@@ -32,7 +32,8 @@ $$
 \text{cost}(n) = c_{\text{fixed}} + n \cdot c_{\text{run}}
 $$
 
-KaTeX 0.18.4 loads from an exactly pinned jsDelivr URL on pages with math.
+KaTeX 0.18.4 loads from an exactly pinned jsDelivr URL on pages with math, or
+from the configured local mirror when self-hosting is enabled.
 
 ## Raw Markdown
 

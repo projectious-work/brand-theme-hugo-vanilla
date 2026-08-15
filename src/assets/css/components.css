@@ -498,6 +498,63 @@ html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .gd{color:var(--synt
 /* ── Asciinema ──────────────────────────────────────────────────────── */
 .cast{margin:24px 0;border:1px solid var(--color-border);border-radius:var(--radius-md);overflow:hidden;background:var(--terminal-surface)}
 
+/* ── Non-text contrast (WCAG 1.4.11) ────────────────────────────────────
+   --color-border (slate-5, ~1.5:1) is a divider token: fine for a card edge or
+   a rule between rows, where the surface change carries the boundary. It is NOT
+   enough for the edge of an interactive control, which must reach 3:1 against
+   its background. Every control boundary below is therefore --border-strong.
+   Decorative separators are deliberately left on the subtle token. */
+.searchbox input,
+.sidebar__filter input,
+.iconbtn,
+.chipbtn,
+.feedback button,
+.filters button,
+.pagetools button,
+.pagetools a,
+.code__copy,
+.btn--secondary,
+.totop { border-color: var(--border-strong); }
+
+.tabs__list { border-bottom-color: var(--border-strong); }
+.tabs__tab[aria-selected="true"] { border-bottom-color: var(--color-accent); }
+
+/* The base focus ring is ~1.2:1 by design upstream, so that adopting the token
+   sheet changes nothing visually. A documentation theme cannot rely on the
+   reader opting in, so the conforming ring is the default here: 2px solid
+   midnight-9, 8.59:1, with an offset that keeps it clear of the control. */
+:focus-visible {
+  outline: 2px solid var(--midnight-9);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+[data-theme="dark"] :focus-visible { outline-color: var(--midnight-dark-11, #8fb3dd); }
+.skip-link:focus-visible { outline-offset: 0; }
+
+/* ── Right-to-left ──────────────────────────────────────────────────────
+   Logical properties handle most of the flip; these are the rules that name a
+   physical side because the design does (the sidebar rail, the accent edge). */
+[dir="rtl"] .sidebar { border-right: 0; border-left: 1px solid var(--color-border); }
+[dir="rtl"] .sidebar a { border-left: 0; border-right: 2px solid transparent; }
+[dir="rtl"] .sidebar a[aria-current="page"] { border-right-color: var(--color-accent); padding-left: 10px; padding-right: 8px; }
+[dir="rtl"] .sidebar details > div { border-left: 0; border-right: 1px solid var(--color-border); margin-left: 0; margin-right: 14px; padding-left: 0; padding-right: 12px; }
+[dir="rtl"] .filetree ul { border-left: 0; border-right: 1px solid var(--color-border); padding-left: 0; padding-right: var(--ft-indent); margin-left: 0; margin-right: calc(var(--ft-pad) + var(--ft-icon) / 2); }
+[dir="rtl"] .prose blockquote { border-left: 0; border-right: 2px solid var(--color-accent); padding-left: 0; padding-right: 18px; }
+[dir="rtl"] .step { border-left: 0; border-right: 1px solid var(--color-border); padding-left: 0; padding-right: 44px; margin-left: 0; margin-right: 14px; }
+[dir="rtl"] .step::before { left: auto; right: -15px; }
+[dir="rtl"] .announce { box-shadow: inset -3px 0 0 var(--color-accent); }
+[dir="rtl"] .searchbox .ico, [dir="rtl"] .sidebar__filter .ico { left: auto; right: 10px; }
+[dir="rtl"] .searchbox input { padding: 8px 34px 8px 12px; }
+[dir="rtl"] .searchbox kbd { right: auto; left: 8px; }
+[dir="rtl"] .menu__panel { right: auto; left: 0; }
+[dir="rtl"] .totop { right: auto; left: 24px; }
+[dir="rtl"] .pager .next { text-align: left; align-items: flex-start; }
+[dir="rtl"] .header__nav { margin-left: 0; margin-right: auto; }
+[dir="rtl"] .header__tools, [dir="rtl"] .pagefoot__meta { flex-direction: row-reverse; }
+[dir="rtl"] .crumbs .ico { transform: scaleX(-1); }
+[dir="rtl"] .sidebar summary svg { transform: rotate(180deg); }
+[dir="rtl"] .sidebar details[open] > summary svg { transform: rotate(90deg); }
+
 /* ── Optional navy dark surface ──────────────────────────────────────────
    The default dark mode paints page and cards on the terminal surface
    (#0e1720), which reads near-black. This variant moves them up the midnight
