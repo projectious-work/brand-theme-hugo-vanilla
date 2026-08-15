@@ -1,38 +1,42 @@
----
-title: "Build with the projectious.work theme"
-eyebrow: "Hugo theme documentation"
-tagline: "A content-first Hugo theme for projectious.work documentation, articles, releases, and product surfaces."
-cta:
-  - label: "Get started"
-    href: "/docs/getting-started/"
-    variant: "accent"
-  - label: "Browse examples"
-    href: "/examples/"
-    variant: "ghost"
----
++++
+title = "Redesigning work"
+eyebrow = "Cloud · Agile · Agentic AI"
+tagline = "A Hugo theme for documentation, blog and marketing pages — built on the projectious.work brand system. Light and dark, searchable, multilingual, printable."
+[[cta]]
+  label = "Read the docs"
+  href = "/docs/"
+[[cta]]
+  label = "View on GitHub"
+  href = "https://github.com/projectious-work/brand-theme-hugo-vanilla"
+  variant = "secondary"
++++
 
-## One theme, several publishing surfaces
+{{< cards >}}
+  {{< card title="Documentation" subtitle="Auto-generated sidebar, table of contents with active-heading tracking, breadcrumbs, prev/next, print view." link="/docs/" icon="book" >}}
+  {{< card title="Search" subtitle="FlexSearch over a generated index. Ctrl K from anywhere; no external service." link="/search/" icon="search" >}}
+  {{< card title="Blog" subtitle="Dates, reading time, tags, RSS, pagination." link="/blog/" icon="list" >}}
+{{< /cards >}}
 
-The example site is the manual. It demonstrates the same layouts and
-components you use from Markdown, without copying presentation markup into
-content.
+## Written in Markdown, not HTML
 
-{{< grid columns="3" >}}
-{{< card title="Documentation" meta="Navigation · search · table of contents" href="/docs/" >}}Write ordered technical guides with ordinary Markdown.{{< /card >}}
-{{< card title="Publishing" meta="Blog · articles · changelog" href="/blog/" >}}Publish long-form thinking and versioned release notes.{{< /card >}}
-{{< card title="Product UI" meta="Panels · metrics · status · fields" href="/examples/" >}}Compose branded application examples from reusable shortcodes.{{< /card >}}
-{{< /grid >}}
+Every component in the theme is a shortcode. Content authors write Markdown;
+the theme owns the markup.
 
-## Start from content
+{{< callout type="info" title="Idiomatic by default" >}}
+Section templates are chosen from a page's section name — no front matter switch.
+Sidebar order comes from `weight`. Taxonomies are plain Hugo taxonomies.
+{{< /callout >}}
+
+## Convictions
 
 {{< steps >}}
-{{% step title="Install the theme" %}}Use a Hugo Module or git submodule.{{% /step %}}
-{{% step title="Configure the site" %}}Set menus, search output, syntax highlighting, and optional comments.{{% /step %}}
-{{% step title="Write Markdown" %}}Choose a section layout and add shortcodes only where a semantic component is needed.{{% /step %}}
+  {{< step title="Do more with more" >}}
+Augment people's strengths so the same or more people produce more, at higher quality, for broader markets.
+  {{< /step >}}
+  {{< step title="Specialized beats generic now" >}}
+Agents collapse the cost of bespoke software. Lot-of-one systems are economically rational.
+  {{< /step >}}
+  {{< step title="Provider independence" >}}
+Agnostic, self-hosted where needed. No single AI vendor becomes a single point of failure.
+  {{< /step >}}
 {{< /steps >}}
-
-{{< panel variant="dark" title="Brand contract" >}}
-Cloud · Agile · Agentic AI. Direct, technical, humanistic, and restrained.
-The theme carries the current v2.1.1 tokens so content authors do not need to
-recreate the design system page by page.
-{{< /panel >}}

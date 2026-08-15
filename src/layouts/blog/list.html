@@ -1,26 +1,32 @@
 {{ define "main" }}
-<div class="container">
-  <header class="section-header">
-    <h1>{{ .Title }}</h1>
-    {{ with .Content }}<div class="section-desc content">{{ . }}</div>{{ end }}
-  </header>
-  {{ $pages := .Paginate (where .Pages "Type" "blog") }}
-  <div class="post-list">
-  {{ range $pages.Pages }}
-    <article class="post-card">
-      <a href="{{ .RelPermalink }}" class="post-card__link">
-        <h2 class="post-card__title">{{ .Title }}</h2>
-        <div class="post-card__meta caption">{{ .Date.Format "Jan 2, 2006" }} · {{ i18n "minRead" .ReadingTime }}</div>
-        <p class="post-card__summary">{{ .Summary | plainify | truncate 180 }}</p>
-      </a>
-      {{ with .Params.tags }}
-      <div class="post-card__tags">
-        {{ range . }}<a class="tag" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>{{ end }}
-      </div>
+<div class="shell">
+  <main id="main">
+    <div class="hero">
+      <div class="hero__eyebrow">{{ site.Title }}</div>
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p>{{ . }}</p>{{ end }}
+    </div>
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+    {{ $paginator := .Paginate .Pages }}
+    <div class="postlist">
+      {{ range $paginator.Pages }}
+      <article class="postlist__item{{ with .Params.cover }} postlist__item--cover{{ end }}">
+        {{ with .Params.cover }}
+        <a class="postlist__cover" href="{{ $.RelPermalink }}" tabindex="-1" aria-hidden="true"><img src="{{ . | relURL }}" alt="" loading="lazy"></a>
+        {{ end }}
+        <div>
+        <div class="postlist__meta">
+          <span>{{ time.Format ":date_medium" .Date }}</span>
+          <span>{{ i18n "minRead" (dict "Count" .ReadingTime) }}</span>
+        </div>
+        <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+        <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 200 }}{{ end }}</p>
+        {{ partial "taglist.html" . }}
+        </div>
+      </article>
       {{ end }}
-    </article>
-  {{ end }}
-  </div>
-  {{ template "_internal/pagination.html" . }}
+    </div>
+    {{ template "_internal/pagination.html" . }}
+  </main>
 </div>
 {{ end }}

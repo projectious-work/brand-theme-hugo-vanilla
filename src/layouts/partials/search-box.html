@@ -1,5 +1,8 @@
-<button class="search-box" data-search-open type="button">
-  {{ partial "icon.html" (dict "name" "search" "size" 16) }}
-  <span class="search-box__placeholder">{{ i18n "searchPlaceholder" }}</span>
-  <kbd class="search-box__kbd">/</kbd>
-</button>
+{{ if not (eq site.Params.search false) }}
+<div class="searchbox" data-search data-empty="{{ i18n "noResults" }}">
+  {{ partial "icon.html" (dict "name" "search" "class" "ico--sm") }}
+  <input type="search" placeholder="{{ i18n "searchPlaceholder" }}" aria-label="{{ i18n "search" }}" autocomplete="off">
+  <kbd>{{ i18n "searchShortcut" }}</kbd>
+  <div class="results" role="listbox" aria-label="{{ i18n "search" }}"></div>
+</div>
+{{ end }}

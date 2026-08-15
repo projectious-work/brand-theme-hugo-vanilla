@@ -1,0 +1,2 @@
+{{- $name := .Get "name" | default (.Get 0) -}}
+<ul><li><span class="filetree__row">{{ partial "icon.html" (dict "name" (.Get "icon" | default "file") "class" "ico--sm") }}{{ $name }}{{ with .Get "note" }} <span class="badge">{{ . }}</span>{{ end }}</span></li></ul>

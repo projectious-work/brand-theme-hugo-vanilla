@@ -1,0 +1,6 @@
+{{ if and (ne .Params.toc false) (gt (len .TableOfContents) 60) }}
+<details class="toc-mobile">
+  <summary>{{ partial "icon.html" (dict "name" "list" "class" "ico--sm") }}<span>{{ i18n "onThisPage" }}</span>{{ partial "icon.html" (dict "name" "chevron-down" "class" "ico--sm") }}</summary>
+  <nav aria-label="{{ i18n "onThisPage" }}">{{ .TableOfContents }}</nav>
+</details>
+{{ end }}

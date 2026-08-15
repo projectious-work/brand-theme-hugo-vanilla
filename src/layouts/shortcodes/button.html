@@ -1,3 +1,1 @@
-{{- /* Inline — see status.html on whitespace. */ -}}
-{{- $variant := .Get "variant" | default "primary" -}}
-<a class="btn btn--{{ $variant }}" href="{{ .Get "href" }}"{{ if .Get "external" }} target="_blank" rel="noopener"{{ end }}>{{ .Inner }}</a>
+<a class="btn btn--{{ .Get "variant" | default "primary" }}" href="{{ partial "url.html" (.Get "href") }}">{{ .Get "label" | default (.Get 0) }}{{ with .Get "icon" }}{{ partial "icon.html" (dict "name" . "class" "ico--sm") }}{{ end }}</a>

@@ -1,213 +1,291 @@
----
-title: "Shortcode reference"
-description: "Every shortcode shipped by the theme, with syntax and rendered examples."
-weight: 4
----
++++
+title = "Shortcodes"
+description = "Every component the theme ships, with the Markdown that produces it."
+weight = 20
+icon = "list"
+math = true
+tags = ["reference"]
++++
 
-Shortcodes are semantic additions to Markdown. Prefer Markdown for ordinary
-prose, lists, tables, links, quotes, and code.
+Each section shows the rendered component, then the exact Markdown. Nothing here
+needs raw HTML.
 
-## Callout
+## Callouts
 
-Parameters: `type` is `info`, `success`, `warning`, or `danger`.
+{{< callout type="info" >}}Information a reader needs but did not ask for.{{< /callout >}}
+{{< callout type="note" title="Note" >}}Context that supports the main line.{{< /callout >}}
+{{< callout type="success" >}}The run passed every policy check.{{< /callout >}}
+{{< callout type="warning" title="Careful" >}}Attaching a policy version does not affect runs in progress.{{< /callout >}}
+{{< callout type="error" title="Failed" >}}`POLICY_NOT_FOUND` — the version was deleted or never published.{{< /callout >}}
+{{< callout type="important" >}}Sentence case everywhere. The brand name stays lowercase.{{< /callout >}}
 
-```go-html-template
-{{</* callout type="warning" */>}}Back up the configuration first.{{</* /callout */>}}
+```md
+{{</* callout type="warning" title="Careful" */>}}
+Attaching a policy version does not affect runs in progress.
+{{</* /callout */>}}
 ```
 
-{{< callout type="info" >}}Use information for relevant context.{{< /callout >}}
-{{< callout type="success" >}}The build completed.{{< /callout >}}
-{{< callout type="warning" >}}Review the migration before applying it.{{< /callout >}}
-{{< callout type="danger" >}}Deployment is blocked.{{< /callout >}}
+`type` takes `info`, `note`, `success`, `warning`, `error` or `important`.
 
-## Button
+## Cards
 
-Parameters: `href`, `variant` (`primary`, `accent`, `outline`, `ghost`, or
-`danger`), and optional `external`.
+{{< cards cols="2" >}}
+  {{< card title="Pipelines" subtitle="Declare stages in YAML and run them under audit." link="/docs/" icon="versions" >}}
+  {{< card title="Policies" subtitle="Versioned rules, attached per pipeline." link="/docs/" icon="circle-check" >}}
+{{< /cards >}}
 
-```go-html-template
-{{</* button href="/docs/" variant="accent" */>}}Read the docs{{</* /button */>}}
-```
-
-{{< button href="#" variant="primary" >}}Primary{{< /button >}}
-{{< button href="#" variant="accent" >}}Accent{{< /button >}}
-{{< button href="#" variant="outline" >}}Outline{{< /button >}}
-{{< button href="#" variant="ghost" >}}Ghost{{< /button >}}
-
-## Cards and grid
-
-`cards` is the automatic card collection. `grid columns="2|3|4"` is the more
-general responsive grid used with cards, panels, or metrics.
-
-```go-html-template
-{{</* cards */>}}
-{{</* card title="Getting started" meta="Guide" href="/docs/getting-started/" */>}}
-Install and run the theme.
-{{</* /card */>}}
+```md
+{{</* cards cols="2" */>}}
+  {{</* card title="Pipelines" subtitle="Declare stages in YAML." link="/docs/" icon="versions" */>}}
+  {{</* card title="Policies" subtitle="Versioned rules." link="/docs/" icon="circle-check" */>}}
 {{</* /cards */>}}
-
-{{</* grid columns="2" */>}}
-{{</* card title="Configuration" meta="Guide" href="/docs/configuration/" */>}}
-Control theme behavior without a fork.
-{{</* /card */>}}
-{{</* /grid */>}}
 ```
 
-{{< grid columns="2" >}}
-{{< card title="Flat card" meta="Brand recipe" >}}Raised white surface, visible border, no default shadow.{{< /card >}}
-{{< panel variant="accent" title="Accent panel" >}}Use the accent for decisions, not decoration.{{< /panel >}}
-{{< /grid >}}
+`cols` is `2`, `3` (default) or `4`, so an incomplete last row keeps its width.
+`card` also takes `image` and `alt` for an image card. `subtitle` is rendered as
+Markdown, so links and code spans work inside it.
 
-## Panel
+{{< callout type="note" title="Leaf and paired shortcodes" >}}
+`card`, `file`, `icon`, `badge`, `button`, `term`, `image`, `notebook` and
+`asciinema` are **leaf** shortcodes — self-closing, without a matching closing
+tag. Hugo
+requires a closing tag for any shortcode whose template touches `.Inner`, so these
+deliberately do not. `callout`, `cards`, `tabs`, `tab`, `steps`, `step`,
+`details`, `filetree`, `folder`, `terminal` and `mermaid` are paired.
+{{< /callout >}}
 
-Parameters: optional `title`; `variant` is `default`, `accent`, or `dark`.
+## Tabs
 
-```go-html-template
-{{</* panel variant="dark" title="System output" */>}}Content{{</* /panel */>}}
+{{< tabs items="npm, pnpm, go" >}}
+  {{< tab >}}```sh
+npm install
+```{{< /tab >}}
+  {{< tab >}}```sh
+pnpm install
+```{{< /tab >}}
+  {{< tab >}}```sh
+go mod download
+```{{< /tab >}}
+{{< /tabs >}}
+
+```md
+{{</* tabs items="npm, pnpm, go" */>}}
+  {{</* tab */>}}First panel.{{</* /tab */>}}
+  {{</* tab */>}}Second panel.{{</* /tab */>}}
+  {{</* tab */>}}Third panel.{{</* /tab */>}}
+{{</* /tabs */>}}
 ```
 
-{{< panel variant="dark" title="System output" >}}
-The audit trail is append-only and the latest run passed.
-{{< /panel >}}
-
-## Metrics and stats
-
-Use `metric` in a `grid` for dashboard summaries. Use `stats` with nested
-`stat` for centered editorial statistics.
-
-```go-html-template
-{{</* grid columns="3" */>}}
-{{</* metric value="12" label="active agents" */>}}
-{{</* metric value="99.8%" label="success rate" */>}}
-{{</* /grid */>}}
-
-{{</* stats */>}}
-{{</* stat value="3" label="practice areas" */>}}
-{{</* stat value="273" label="design tokens" */>}}
-{{</* /stats */>}}
-```
-
-{{< grid columns="3" >}}
-{{< metric value="12" label="active agents" >}}
-{{< metric value="99.8%" label="success rate" >}}
-{{< metric value="42s" label="average audit" >}}
-{{< /grid >}}
-
-{{< stats >}}
-{{< stat value="3" label="practice areas" >}}
-{{< stat value="273" label="design tokens" >}}
-{{< /stats >}}
-
-## Status
-
-Variants: `healthy`, `success`, `running`, `info`, `warning`, `pending`,
-`failed`, `danger`, and `idle`.
-
-```go-html-template
-{{</* status variant="running" */>}}Running{{</* /status */>}}
-```
-
-{{< status variant="healthy" >}}Healthy{{< /status >}}
-{{< status variant="running" >}}Running{{< /status >}}
-{{< status variant="warning" >}}Warning{{< /status >}}
-{{< status variant="failed" >}}Failed{{< /status >}}
-{{< status variant="idle" >}}Idle{{< /status >}}
-
-## Field
-
-Parameters: `label`, optional `type`, `value`, `placeholder`, and `hint`.
-This is appropriate for demonstrations and simple forms; production forms
-still need a real submission endpoint and validation.
-
-```go-html-template
-{{</* field label="Project name" value="Documentation site"
-hint="Shown in page metadata." */>}}
-```
-
-{{< field label="Project name" value="Documentation site" hint="Shown in page metadata." >}}
-
-## Terminal
-
-Lines beginning with `$`, `✓`, `✗`, or `●` receive prompt/status treatment.
-
-```go-html-template
-{{</* terminal */>}}
-$ hugo --minify
-✓ Built 18 pages
-● Watching for changes
-{{</* /terminal */>}}
-```
-
-{{< terminal >}}
-$ hugo --minify
-✓ Built 18 pages
-● Watching for changes
-{{< /terminal >}}
+Panel order follows tab order. Arrow keys move between tabs.
 
 ## Steps
 
-`steps` contains nested `step` shortcodes. Each step accepts `title`.
+{{< steps >}}
+  {{< step title="Install the CLI" >}}
+Everything below assumes `projectious` is on your `PATH`.
+  {{< /step >}}
+  {{< step title="Authenticate" >}}
+One device-code flow per workspace.
+  {{< /step >}}
+  {{< step title="Run" >}}
+The first run creates the audit trail.
+  {{< /step >}}
+{{< /steps >}}
 
-```go-html-template
+```md
 {{</* steps */>}}
-{{%/* step title="Configure" */%}}Set site parameters.{{%/* /step */%}}
-{{%/* step title="Write" */%}}Create content in Markdown.{{%/* /step */%}}
+  {{</* step title="Install the CLI" */>}}
+Everything below assumes `projectious` is on your `PATH`.
+  {{</* /step */>}}
+  {{</* step title="Authenticate" */>}}
+One device-code flow per workspace.
+  {{</* /step */>}}
 {{</* /steps */>}}
 ```
 
-{{< steps >}}
-{{% step title="Configure" %}}Set site parameters.{{% /step %}}
-{{% step title="Write" %}}Create content in Markdown.{{% /step %}}
-{{% step title="Ship" %}}Run the production build.{{% /step %}}
-{{< /steps >}}
+Numbering is CSS counters — steps renumber themselves when you reorder them.
 
-## Tags and badges
+## Collapsible details
 
-`tag` accepts `neutral` or `accent`. `badge` accepts `info`, `success`,
-`warning`, or `danger`.
+{{< details title="What does the search index contain?" >}}
+Title, description, breadcrumb, tags, every H2 and H3 heading, and the first 2000
+characters of plain text per page — generated by the `SearchIndex` output format.
+{{< /details >}}
 
-```go-html-template
-{{</* tag */>}}Cloud{{</* /tag */>}}
-{{</* tag variant="accent" */>}}Agentic AI{{</* /tag */>}}
-{{</* badge variant="success" */>}}Passed{{</* /badge */>}}
+```md
+{{</* details title="What does the search index contain?" */>}}
+Title, description, breadcrumb, tags and headings.
+{{</* /details */>}}
 ```
 
-{{< tag >}}Cloud{{< /tag >}} {{< tag >}}Agile{{< /tag >}}
-{{< tag variant="accent" >}}Agentic AI{{< /tag >}}
-{{< badge variant="success" >}}Passed{{< /badge >}}
-{{< badge variant="warning" >}}Review{{< /badge >}}
+Add `open="true"` to start expanded.
 
-## Quote
+## File tree
 
-Parameters: optional `author` and `role`.
+{{< filetree >}}
+  {{< folder name="content" >}}
+    {{< file name="_index.md" note="landing" >}}
+    {{< folder name="docs" >}}
+      {{< file name="getting-started.md" >}}
+      {{< file name="configuration.md" >}}
+    {{< /folder >}}
+    {{< folder name="blog" closed="true" >}}
+      {{< file name="release-v0-3-0.md" >}}
+    {{< /folder >}}
+  {{< /folder >}}
+{{< /filetree >}}
 
-```go-html-template
-{{%/* quote author="Theme maintainer" role="projectious.work" */%}}
-Content stays portable when presentation stays in the theme.
-{{%/* /quote */%}}
+```md
+{{</* filetree */>}}
+  {{</* folder name="content" */>}}
+    {{</* file name="_index.md" note="landing" */>}}
+    {{</* folder name="docs" */>}}
+      {{</* file name="getting-started.md" */>}}
+    {{</* /folder */>}}
+    {{</* folder name="blog" closed="true" */>}}
+      {{</* file name="release-v0-3-0.md" */>}}
+    {{</* /folder */>}}
+  {{</* /folder */>}}
+{{</* /filetree */>}}
 ```
 
-{{% quote author="Theme maintainer" role="projectious.work" %}}
-Content stays portable when presentation stays in the theme.
-{{% /quote %}}
+`folder` takes `closed="true"`; `file` takes `note` for a trailing chip and `icon`
+to override the glyph.
 
-## App shell
+## Icons
 
-`app` wraps product-surface examples in a responsive console shell. It is
-intended for demos and documentation, not as an application framework.
+{{< icon "brand-github" >}} {{< icon "printer" >}} {{< icon "accessible" >}} {{< icon "versions" >}} {{< icon "book" >}}
 
-```go-html-template
-{{</* app */>}}
-## Pipelines
-{{</* grid columns="2" */>}}...{{</* /grid */>}}
-{{</* /app */>}}
+```md
+{{</* icon "brand-github" */>}}
+{{</* icon name="printer" class="ico--lg" label="Print" */>}}
 ```
 
-{{< app >}}
-## Pipelines
+Any file in `assets/icons/` works by name. `label` gives an icon a text
+alternative; without it the glyph is `aria-hidden`.
 
-{{< grid columns="2" >}}
-{{< metric value="8" label="healthy" >}}
-{{< metric value="1" label="running" >}}
-{{< /grid >}}
-{{< /app >}}
+## Badges
+
+{{< badge "v0.3" >}} {{< badge label="latest" variant="accent" >}}
+
+```md
+{{</* badge "v0.3" */>}}
+{{</* badge label="latest" variant="accent" */>}}
+```
+
+## Buttons
+
+{{< button label="Read the docs" href="/docs/" >}}
+{{< button label="Search" href="/search/" variant="secondary" icon="search" >}}
+
+```md
+{{</* button label="Read the docs" href="/docs/" */>}}
+{{</* button label="Search" href="/search/" variant="secondary" icon="search" */>}}
+```
+
+`variant` is `primary` (default) or `secondary`.
+
+## Terminal
+
+{{< terminal title="deploy" >}}
+$ projectious run --pipeline onboarding-audit
+✓ Config validated against schema v3.2
+✓ Policy check: 12 rules passed
+● Deploying to staging...
+{{< /terminal >}}
+
+```md
+{{</* terminal title="deploy" */>}}
+$ projectious run --pipeline onboarding-audit
+✓ Config validated against schema v3.2
+{{</* /terminal */>}}
+```
+
+For a plain code listing use a fenced block — the filename bar, language label and
+copy button come free, and fence options work:
+
+    ```yaml {filename="pipeline.yaml", linenos=table, hl_lines="2-3"}
+    name: onboarding-audit
+    trigger: on_document_upload
+    agent: auditor-v3
+    ```
+
+## Terminology
+
+A {{< term "pipeline" >}} moves a run through stages; each stage is audited
+against a {{< term "policy" >}}. {{< term key="agent" label="Agents" >}} do the work.
+
+```md
+A {{</* term "pipeline" */>}} moves a run through stages.
+{{</* term key="agent" label="Agents" */>}} overrides the displayed text.
+```
+
+Definitions live in `data/glossary.yaml`, so a wording change is one edit.
+
+## Images
+
+Markdown images become figures automatically — the title becomes the caption:
+
+```md
+![Pipeline stages](/img/pipeline.png "Stages of an audited run")
+```
+
+A sibling `pipeline-dark.png` is picked up and swapped by colour mode. To be
+explicit, or to caption with Markdown:
+
+```md
+{{</* image src="/img/pipeline.png" src-dark="/img/pipeline-dark.png"
+       alt="Pipeline stages" caption="Stages of an *audited* run" */>}}
+```
+
+Every image in prose opens in a lightbox on click or Enter.
+
+## Diagrams
+
+{{< mermaid >}}
+flowchart LR
+  A[Trigger] --> B[Validate]
+  B --> C{Policy check}
+  C -->|pass| D[Deploy staging]
+  C -->|fail| E[Halt and report]
+{{< /mermaid >}}
+
+```md
+{{</* mermaid */>}}
+flowchart LR
+  A[Trigger] --> B[Validate]
+{{</* /mermaid */>}}
+```
+
+A ` ```mermaid ` fence renders the same way. Mermaid picks up the brand palette
+and the current colour mode.
+
+## Math
+
+Set `math = true` in front matter, then write LaTeX inline — \\( E = mc^2 \\) — or
+as a block:
+
+$$
+\text{cost}(n) = c_{\text{fixed}} + n \cdot c_{\text{run}}
+$$
+
+```md
+Inline: \\( E = mc^2 \\) or $E = mc^2$
+
+$$
+\text{cost}(n) = c_{\text{fixed}} + n \cdot c_{\text{run}}
+$$
+```
+
+Both `$…$`/`$$…$$` and `\(…\)`/`\[…\]` are recognised.
+
+## Terminal recordings
+
+```md
+{{</* asciinema src="/casts/deploy.cast" rows="18" idleTimeLimit="1.5" */>}}
+```
+
+Record with `asciinema rec static/casts/deploy.cast`. The shortcode loads the
+exactly pinned asciinema-player 3.17.0 runtime from jsDelivr. `cols`, `rows`,
+`speed`, `idleTimeLimit`, `autoplay` and `loop` are all supported — autoplay is
+off by default, per the brand rule on motion.

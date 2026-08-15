@@ -1,35 +1,42 @@
-(function(){
-  var STORAGE_KEY = 'theme';
-  function apply(theme){
-    if(theme === 'light' || theme === 'dark'){ document.documentElement.setAttribute('data-theme', theme); }
-    else { document.documentElement.removeAttribute('data-theme'); }
+/* Colour mode + accessibility selectors. Loaded in <head>, before paint,
+   so the stored choice never flashes. Everything persists to localStorage. */
+(function () {
+  var K = 'pw:mode', A = 'pw:a11y', html = document.documentElement;
+
+  /* Four choices. "navy" and "dark" are both dark mode; they differ only in
+     which surface the page and cards sit on. System dark resolves to navy,
+     the house default — an explicit "dark" pick opts into the deeper one. */
+  function applyMode(mode) {
+    if (mode === 'light') { html.setAttribute('data-theme', 'light'); }
+    else if (mode === 'system') { html.removeAttribute('data-theme'); }
+    else { html.setAttribute('data-theme', 'dark'); }
+    if (mode === 'dark') { html.removeAttribute('data-surface'); }
+    else { html.setAttribute('data-surface', 'navy'); }
+    html.setAttribute('data-mode-pref', mode);
   }
-  function isDark(){
-    var attr = document.documentElement.getAttribute('data-theme');
-    if(attr) return attr === 'dark';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
-  }
-  function updateGiscus(theme){
-    var frame = document.querySelector('iframe.giscus-frame');
-    if(!frame) return;
-    frame.contentWindow.postMessage({ giscus: { setConfig: { theme: theme } } }, 'https://giscus.app');
-  }
-  /* giscus renders with preferred_color_scheme; if the page pins a mode,
-     tell the frame about it once it exists. */
-  window.addEventListener('message', function(e){
-    if(e.origin !== 'https://giscus.app' || !e.data || !e.data.giscus) return;
-    if(document.documentElement.getAttribute('data-theme')) updateGiscus(isDark() ? 'dark' : 'light');
+  var stored = null;
+  try { stored = localStorage.getItem(K); } catch (e) {}
+  applyMode(stored || 'system');
+
+  var a11y = {};
+  try { a11y = JSON.parse(localStorage.getItem(A) || '{}'); } catch (e) {}
+  Object.keys(a11y).forEach(function (k) {
+    if (a11y[k]) { html.setAttribute(k, a11y[k]); } else { html.removeAttribute(k); }
   });
-  document.addEventListener('DOMContentLoaded', function(){
-    var btn = document.querySelector('[data-theme-toggle]');
-    if(!btn) return;
-    btn.setAttribute('aria-pressed', String(isDark()));
-    btn.addEventListener('click', function(){
-      var next = isDark() ? 'light' : 'dark';
-      try { localStorage.setItem(STORAGE_KEY, next); } catch(e) {}
-      apply(next);
-      btn.setAttribute('aria-pressed', String(next === 'dark'));
-      updateGiscus(next);
-    });
-  });
+
+  window.pwTheme = {
+    set: function (mode) {
+      try { localStorage.setItem(K, mode); } catch (e) {}
+      applyMode(mode);
+      document.dispatchEvent(new CustomEvent('pw:mode', { detail: mode }));
+    },
+    get: function () { return html.getAttribute('data-mode-pref') || 'system'; },
+    setA11y: function (attr, value) {
+      if (value) { html.setAttribute(attr, value); a11y[attr] = value; }
+      else { html.removeAttribute(attr); delete a11y[attr]; }
+      try { localStorage.setItem(A, JSON.stringify(a11y)); } catch (e) {}
+      document.dispatchEvent(new CustomEvent('pw:a11y', { detail: a11y }));
+    },
+    getA11y: function (attr) { return html.getAttribute(attr) || ''; }
+  };
 })();

@@ -1,0 +1,13 @@
+{{- $src := .Get "src" | default (.Get 0) -}}
+{{- $dark := .Get "src-dark" -}}
+<figure class="figure{{ with .Get "class" }} {{ . }}{{ end }}">
+  {{- if $dark -}}
+  <span class="imgswap">
+    <img class="imgswap__light" src="{{ partial "url.html" $src }}" alt="{{ .Get "alt" | default "" }}" loading="lazy" decoding="async"{{ with .Get "width" }} width="{{ . }}"{{ end }}{{ with .Get "height" }} height="{{ . }}"{{ end }}>
+    <img class="imgswap__dark" src="{{ partial "url.html" $dark }}" alt="{{ .Get "alt" | default "" }}" loading="lazy" decoding="async"{{ with .Get "width" }} width="{{ . }}"{{ end }}{{ with .Get "height" }} height="{{ . }}"{{ end }}>
+  </span>
+  {{- else -}}
+  <img src="{{ partial "url.html" $src }}" alt="{{ .Get "alt" | default "" }}" loading="lazy" decoding="async"{{ with .Get "width" }} width="{{ . }}"{{ end }}{{ with .Get "height" }} height="{{ . }}"{{ end }}>
+  {{- end -}}
+  {{ with .Get "caption" }}<figcaption>{{ . | $.Page.RenderString }}</figcaption>{{ end }}
+</figure>

@@ -1,16 +1,36 @@
-const { defineConfig } = require('@playwright/test');
+const { defineConfig, devices } = require("@playwright/test");
 
 module.exports = defineConfig({
-  testDir: './tests/browser',
-  timeout: 30_000,
-  expect: { timeout: 5_000 },
-  fullyParallel: false,
+  testDir: "./tests/browser",
+  outputDir: ".deploy/playwright-results",
+  reporter: [["list"], ["html", {
+    outputFolder: ".deploy/playwright-report",
+    open: "never",
+  }]],
+  forbidOnly: true,
+  retries: 0,
   workers: 1,
-  reporter: 'line',
   use: {
-    baseURL: process.env.PLAYWRIGHT_BASE_URL ||
-      'http://127.0.0.1:4174/brand-theme-hugo-vanilla/',
-    browserName: 'chromium',
-    colorScheme: 'light',
+    baseURL: "http://127.0.0.1:1312/brand-theme-hugo-vanilla/",
+    colorScheme: "light",
+    locale: "en-US",
+    screenshot: "only-on-failure",
+    trace: "retain-on-failure",
   },
+  webServer: {
+    command: "./scripts/serve.sh",
+    url: "http://127.0.0.1:1312/brand-theme-hugo-vanilla/",
+    reuseExistingServer: true,
+    timeout: 120_000,
+  },
+  projects: [
+    {
+      name: "desktop-chromium",
+      use: { ...devices["Desktop Chrome"] },
+    },
+    {
+      name: "mobile-chromium",
+      use: { ...devices["Pixel 5"] },
+    },
+  ],
 });

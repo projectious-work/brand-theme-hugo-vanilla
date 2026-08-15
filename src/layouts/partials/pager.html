@@ -1,6 +1,7 @@
-{{ if or .PrevInSection .NextInSection }}
-<nav class="pager">
-  {{ with .PrevInSection }}<a class="pager__prev" href="{{ .RelPermalink }}"><span class="pager__label caption">{{ i18n "previous" }}</span><span class="pager__title">{{ .Title }}</span></a>{{ end }}
-  {{ with .NextInSection }}<a class="pager__next" href="{{ .RelPermalink }}"><span class="pager__label caption">{{ i18n "next" }}</span><span class="pager__title">{{ .Title }}</span></a>{{ end }}
+{{ $prev := .NextInSection }}{{ $next := .PrevInSection }}
+{{ if or $prev $next }}
+<nav class="pager" aria-label="{{ i18n "pagination" }}">
+  {{ with $prev }}<a class="prev" href="{{ .RelPermalink }}"><span class="dir">{{ i18n "previous" }}</span><span class="t">{{ .LinkTitle }}</span></a>{{ end }}
+  {{ with $next }}<a class="next" href="{{ .RelPermalink }}"><span class="dir">{{ i18n "next" }}</span><span class="t">{{ .LinkTitle }}</span></a>{{ end }}
 </nav>
 {{ end }}

@@ -1,0 +1,24 @@
+{{- /* Embeds a notebook converted by scripts/notebooks.sh. The converted
+       Markdown lives in the page bundle or in content/_notebooks/, and is
+       rendered through the page so every other shortcode, the code-block hook
+       and the image hook all apply to it. */ -}}
+{{- $name := .Get "name" | default (.Get 0) -}}
+{{- $md := "" -}}
+{{- with .Page.Resources.GetMatch (printf "%s.md" $name) }}{{ $md = .Content }}{{ end -}}
+{{- if not $md -}}
+  {{- range site.Pages -}}
+    {{- if and (.File) (eq .File.BaseFileName $name) (in .File.Dir "_notebooks") -}}
+      {{- $md = .RawContent -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if $md -}}
+<div class="notebook">
+  {{ $md | .Page.RenderString (dict "display" "block") }}
+</div>
+{{- else -}}
+<div class="callout callout--warning">
+  {{ partial "icon.html" (dict "name" "alert-triangle" "class" "ico--sm") }}
+  <div class="callout__body">{{ i18n "notebookMissing" (dict "Name" $name) }}</div>
+</div>
+{{- end -}}

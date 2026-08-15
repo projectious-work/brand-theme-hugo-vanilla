@@ -1,53 +1,168 @@
-[minRead]
-other = "{{ .Count }} min read"
-
-[words]
-other = "words"
-
-[copyCode]
-other = "Copy code"
-
-[searchPlaceholder]
-other = "Search..."
-
-[closeSearch]
-other = "Close search"
-
-[toggleTheme]
-other = "Toggle light/dark mode"
-
-[menu]
-other = "Menu"
-
-[onThisPage]
-other = "On this page"
-
-[previous]
-other = "Previous"
-
-[next]
-other = "Next"
-
-[notFoundTitle]
-other = "Page not found"
-
-[notFoundBody]
-other = "The page you're looking for doesn't exist or has moved."
-
-[backHome]
-other = "Back to home"
-
-[docsNav]
-other = "Documentation navigation"
-
-[noResults]
-other = "No results"
-
 [skipToContent]
 other = "Skip to content"
-
+[mainNav]
+other = "Main navigation"
+[docsNav]
+other = "Documentation navigation"
+[breadcrumbs]
+other = "Breadcrumbs"
+[home]
+other = "Home"
+[overview]
+other = "Overview"
+[menu]
+other = "Menu"
 [search]
 other = "Search"
-
-[terminalOutput]
-other = "Terminal output"
+[searchPlaceholder]
+other = "Search documentation"
+[searchShortcut]
+other = "Ctrl K"
+[noResults]
+other = "No results"
+[resultsWord]
+other = "results"
+[onThisPage]
+other = "On this page"
+[previous]
+other = "Previous"
+[next]
+other = "Next"
+[pagination]
+other = "Page navigation"
+[permalink]
+other = "Link to this heading"
+[copyCode]
+other = "Copy"
+[copied]
+other = "Copied"
+[appearance]
+other = "Appearance"
+[light]
+other = "Light"
+[dark]
+other = "Dark"
+[darkNavy]
+other = "Dark navy"
+[darkDeep]
+other = "Dark deep"
+[system]
+other = "System"
+[toggleTheme]
+other = "Colour mode"
+[language]
+other = "Language"
+[version]
+other = "Version"
+[a11yOptions]
+other = "Accessibility options"
+[textSize]
+other = "Text size"
+[reading]
+other = "Reading"
+[highContrast]
+other = "High contrast"
+[strongFocus]
+other = "Strong focus ring"
+[underlineLinks]
+other = "Underline links"
+[reduceMotion]
+other = "Reduce motion"
+[looseSpacing]
+other = "Loose text spacing"
+[tools]
+other = "Tools"
+[printSection]
+other = "Print this section"
+[printedOn]
+other = "Printed"
+[contents]
+other = "Contents"
+[pagesWord]
+other = "pages"
+[editThisPage]
+other = "Edit this page"
+[lastUpdated]
+other = "Updated"
+[feedbackPrompt]
+other = "Was this page useful?"
+[feedbackThanks]
+other = "Thanks for the feedback."
+[yes]
+other = "Yes"
+[no]
+other = "No"
+[minRead]
+other = "{{ .Count }} min read"
+[taxonomy]
+other = "Taxonomy"
+[tagged]
+other = "Tagged"
+[notFoundTitle]
+other = "Page not found"
+[notFoundBody]
+other = "The page you are looking for does not exist or has moved."
+[backHome]
+other = "Back to home"
+[builtWith]
+other = "Built with Hugo"
+[dismiss]
+other = "Dismiss"
+[backToTop]
+other = "Back to top"
+[filterPages]
+other = "Filter pages"
+[imageViewer]
+other = "Image viewer"
+[close]
+other = "Close"
+[copyAsMarkdown]
+other = "Copy as Markdown"
+[viewMarkdown]
+other = "View Markdown"
+[source]
+other = "Source"
+[optional]
+other = "Optional"
+[outdatedVersion]
+other = "You are reading the {{ .Version }} documentation."
+[goToLatest]
+other = "Go to {{ .Version }}"
+[castUnvendored]
+other = "The terminal player is not vendored in this build. Run scripts/vendor.sh, or download the recording:"
+[table]
+other = "Table"
+[commandPalette]
+other = "Command palette"
+[palettePlaceholder]
+other = "Search or jump to…"
+[keyboardShortcuts]
+other = "Keyboard shortcuts"
+[modKey]
+other = "Ctrl"
+[shortcutPalette]
+other = "Open the command palette"
+[shortcutSearch]
+other = "Focus the search box"
+[shortcutHelp]
+other = "Show these shortcuts"
+[shortcutHome]
+other = "Go to the home page"
+[shortcutDocs]
+other = "Go to the documentation"
+[shortcutBlog]
+other = "Go to the blog"
+[shortcutTheme]
+other = "Switch between light and dark"
+[shortcutClose]
+other = "Close this dialog"
+[navigate]
+other = "Navigate"
+[open]
+other = "Open"
+[jumpTo]
+other = "Jump to"
+[actions]
+other = "Actions"
+[notebookMissing]
+other = "Notebook \"{{ .Name }}\" has not been converted yet. Run scripts/notebooks.sh."

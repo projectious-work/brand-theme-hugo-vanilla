@@ -1,25 +1,25 @@
 {{ define "main" }}
-<div class="docs-layout">
+<div class="docs docs--no-toc">
   {{ partial "sidebar.html" . }}
-  <article class="docs-content">
+  <main id="main" class="docs__main">
     {{ partial "breadcrumbs.html" . }}
-    <h1>{{ .Title }}</h1>
-    {{ with .Content }}<div class="docs-lede content">{{ . }}</div>{{ end }}
-    {{ if .Pages }}
-    <div class="card-grid">
+    {{ partial "version-banner.html" . }}
+    {{ partial "page-tools.html" . }}
+    <article class="prose">
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+      {{ .Content }}
+    </article>
+    <div class="cards{{ if eq (len .Pages) 2 }} cards--2{{ else if eq (len .Pages) 4 }} cards--4{{ end }}">
       {{ range .Pages.ByWeight }}
       <a class="card" href="{{ .RelPermalink }}">
-        <div class="card__body">
-          <div class="card__title">{{ .Title }}</div>
-          {{ with .Params.description }}<div class="card__desc">{{ . }}</div>{{ end }}
-        </div>
+        <div class="card__icon">{{ partial "icon.html" (dict "name" (.Params.icon | default (cond .IsSection "folder" "file")) "class" "ico--lg") }}</div>
+        <div class="card__title">{{ .LinkTitle }}{{ if .IsSection }} &rarr;{{ end }}</div>
+        <p class="card__text">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 120 }}{{ end }}</p>
       </a>
       {{ end }}
     </div>
-    {{ end }}
-  </article>
-  <aside class="docs-toc">
-    {{ partial "toc.html" . }}
-  </aside>
+    {{ partial "page-footer.html" . }}
+  </main>
 </div>
 {{ end }}

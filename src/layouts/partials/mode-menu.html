@@ -1,0 +1,12 @@
+<div class="menu">
+  <button class="iconbtn target" type="button" data-menu-trigger aria-expanded="false" aria-haspopup="true" aria-label="{{ i18n "toggleTheme" }}">
+    {{ partial "icon.html" (dict "name" "sun" "class" "ico--sm") }}
+  </button>
+  <div class="menu__panel" role="menu">
+    <div class="menu__label">{{ i18n "appearance" }}</div>
+    <button type="button" role="menuitemradio" data-mode="light" aria-checked="false">{{ partial "icon.html" (dict "name" "sun" "class" "ico--sm") }}{{ i18n "light" }}</button>
+    <button type="button" role="menuitemradio" data-mode="navy" aria-checked="false">{{ partial "icon.html" (dict "name" "moon" "class" "ico--sm") }}{{ i18n "darkNavy" }}</button>
+    <button type="button" role="menuitemradio" data-mode="dark" aria-checked="false">{{ partial "icon.html" (dict "name" "moon" "class" "ico--sm") }}{{ i18n "darkDeep" }}</button>
+    <button type="button" role="menuitemradio" data-mode="system" aria-checked="false">{{ partial "icon.html" (dict "name" "device-desktop" "class" "ico--sm") }}{{ i18n "system" }}</button>
+  </div>
+</div>

@@ -1,29 +1,15 @@
-{{/* The brand system's accessibility layer is entirely opt-in — nothing
-     applies until an attribute is set on <html>. The theme opts in by
-     default: data-focus="strong" is the WCAG 1.4.11 conforming ring (the
-     base ring is documented upstream as non-conforming), data-a11y="auto"
-     follows the OS motion/contrast/transparency preferences, and
-     prose link underlines are available as an opt-in accessibility aid.
-     Each setting is overridable under [params.accessibility]. */}}
-{{- $a11y := merge (dict "auto" true "focus" "strong" "linkUnderline" false) (or site.Params.accessibility dict) -}}
 <!DOCTYPE html>
-<html lang="{{ site.Language.Lang }}"
-  {{- if $a11y.auto }} data-a11y="auto"{{ end }}
-  {{- with $a11y.focus }} data-focus="{{ . }}"{{ end }}
-  {{- if $a11y.linkUnderline }} data-link-underline="on"{{ end }}
-  data-fonts="{{ site.Params.fonts | default "bundled" }}"
-  data-search-index="{{ "index.json" | relURL }}">
-<head>
-{{ partial "head.html" . }}
-</head>
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection "ltr" }}" data-a11y="auto"{{ with site.Params.darkSurface }} data-surface="{{ . }}"{{ end }}{{ with site.Params.codeTheme }} data-code="{{ . }}"{{ end }} data-search-index="{{ "index.json" | relLangURL }}">
+<head>{{ partial "head.html" . }}</head>
 <body>
-<a class="skip-link" href="#main-content">{{ i18n "skipToContent" }}</a>
-{{ partial "header.html" . }}
-<main class="site-main" id="main-content" tabindex="-1">
-{{ block "main" . }}{{ end }}
-</main>
-{{ partial "footer.html" . }}
-{{ partial "search-modal.html" . }}
-{{ partial "scripts.html" . }}
+  <a class="skip-link" href="#main">{{ i18n "skipToContent" }}</a>
+  {{ partial "announcement.html" . }}
+  {{ partial "header.html" . }}
+  {{ block "main" . }}{{ end }}
+  {{ partial "footer.html" . }}
+  {{ partial "back-to-top.html" . }}
+  {{ partial "lightbox.html" . }}
+  {{ partial "palette.html" . }}
+  {{ partial "scripts.html" . }}
 </body>
 </html>

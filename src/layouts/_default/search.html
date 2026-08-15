@@ -1,0 +1,24 @@
+{{ define "main" }}
+<div class="shell">
+  <main id="main">
+    <div class="hero" style="padding-bottom:24px">
+      <div class="hero__eyebrow">{{ i18n "search" }}</div>
+      <h1>{{ .Title }}</h1>
+      <div data-search-page data-empty="{{ i18n "noResults" }}" style="max-width:640px">
+        <div class="searchbox" style="max-width:none">
+          {{ partial "icon.html" (dict "name" "search" "class" "ico--sm") }}
+          <input type="search" autofocus placeholder="{{ i18n "searchPlaceholder" }}" aria-label="{{ i18n "search" }}">
+        </div>
+        <div class="filters">
+          {{ range site.Sections.ByWeight }}
+          <button type="button" data-section-filter="{{ .Section }}" aria-pressed="false">{{ .LinkTitle }} <span data-count></span></button>
+          {{ end }}
+        </div>
+        <p class="postlist__meta" style="margin:12px 0"><span data-search-count data-label="{{ i18n "resultsWord" }}"></span></p>
+        <div class="results" style="position:static;box-shadow:none;max-height:none"></div>
+      </div>
+    </div>
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+  </main>
+</div>
+{{ end }}

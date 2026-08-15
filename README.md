@@ -1,117 +1,101 @@
-# brand-theme-hugo-vanilla
+# brand-theme-hugo-vanilla — v0.3.0
 
-A lean, idiomatic Hugo theme implementing the projectious.work brand system. No npm, no build step beyond `hugo`/`hugo server` — styling and scripting run entirely through Hugo Pipes (`resources.Get` → `minify` → `fingerprint`).
+A Hugo theme implementing the **projectious.work** brand system for documentation,
+blog, taxonomy and marketing pages. Content authors write Markdown and shortcodes;
+the theme owns every piece of markup.
+
+Requires Hugo **0.128.0+**. Node is needed only for the Tailwind v4 step.
 
 ## Install
-
-Git submodule:
-
-```
-git submodule add https://github.com/projectious-work/brand-theme-hugo-vanilla.git themes/brand-theme-hugo-vanilla
-```
-
-or as a Hugo Module in your `hugo.toml`:
 
 ```toml
 [module]
   [[module.imports]]
     path = "github.com/projectious-work/brand-theme-hugo-vanilla"
+
+[build]
+  [build.buildStats]
+    enable = true   # Tailwind v4 reads Hugo's class inventory
 ```
 
-Then set `theme = "brand-theme-hugo-vanilla"` (submodule). Hugo Modules need
-no `theme` key.
+```sh
+npm install       # @tailwindcss/cli, used through css.TailwindCSS
+hugo server
+```
 
-Copy the settings from `src/content/hugo.toml` into your own site config:
-the `[outputs]`/`[outputFormats.SearchIndex]` block (powers search) and the
-`[markup]` block (syntax highlighting + table of contents). The example site
-consumes the theme as a Hugo Module with a `replace` directive back to the
-repository root (see its `go.mod`); run `scripts/serve.sh` from the theme root
-to preview it.
+No Node available? Set `params.build.tailwind = false`. Hugo then serves the brand
+tokens plus the theme's component CSS unprocessed — utility classes stop resolving,
+every page in the theme still renders.
 
-## Content types
+Copy the `[outputFormats]`, `[outputs]` and `[markup]` blocks from
+`src/content/hugo.toml`: the `SearchIndex` format powers search, `Print` powers the
+whole-section print view, and `[markup]` enables Chroma classes, the table of
+contents and math passthrough.
 
-- **Docs** (`content/docs/`) — sidebar tree (by `weight`), breadcrumbs, table of contents, prev/next.
-- **Blog** (`content/blog/`) — tags, RSS (built in), pagination, reading time.
-- **Changelog** (`content/changelog/`) — timeline list; give each entry a `version` param.
-- **Everything else** — plain pages via `_default/single.html` and `_default/list.html`.
+## What it does
 
-Section templates are picked automatically from a page's section name — no front matter switch needed.
+| Feature | Where it lives |
+|---|---|
+| Light / dark / system mode | `assets/js/theme.js`, `partials/mode-menu.html` |
+| Two darks in the mode menu | Light · Dark navy (default) · Dark deep · System — `assets/js/theme.js` sets `data-theme` + `data-surface` |
+| Auto-generated hierarchical sidebar | `partials/sidebar.html`, `sidebar-tree.html` (ordered by `weight`) |
+| Table of contents, active-heading tracking | `partials/toc.html` + IntersectionObserver in `interactions.js` |
+| Breadcrumbs, prev/next, heading permalinks | `partials/breadcrumbs.html`, `pager.html`, `_markup/render-heading.html` |
+| Full-text search | `layouts/index.searchindex.json` → `assets/js/search.js` (FlexSearch, vendored) |
+| Search page | `content/search.md` with `layout = "search"` |
+| Multilingual + language selector | `i18n/`, `partials/lang-menu.html` |
+| Version selector | `params.versions`, `partials/version-menu.html` — keeps the reader's path across versions |
+| Blog, taxonomy, landing, 404 | `layouts/blog/`, `_default/terms.html`, `term.html`, `index.html`, `404.html` |
+| Multilingual edit links + feedback | `partials/edit-link.html`, `feedback.html` |
+| Print a whole docs section | `Print` output format → `_default/list.print.html` + `assets/css/print.css` |
+| Jupyter notebooks | `scripts/notebooks.sh` (nbconvert) → `{{< notebook "name" >}}` |
+| robots.txt · sitemap · hreflang | `layouts/robots.txt`, `sitemap.xml`, `partials/seo.html` |
+| Syntax highlighting | Chroma classes mapped to the ten brand syntax roles in `assets/css/syntax.css`; fence options are preserved |
+| Accessibility selectors | `partials/a11y-menu.html` driving the brand system's `data-*` switches |
+| Icons | `assets/icons/*.svg`, inlined by `partials/icon.html` — bundled, no CDN |
 
 ## Shortcodes
 
-`callout`, `card`/`cards`, `button`, `terminal`, `stat`/`stats`, `quote`, `tag`,
-`badge`, `steps`/`step`. See `src/content/content/docs/shortcodes.md` for
-live usage of each. Code fences get syntax highlighting, a copy button, and
-an optional filename automatically — no shortcode needed:
+`callout` · `cards`/`card` · `tabs`/`tab` · `steps`/`step` · `details` ·
+`filetree`/`folder`/`file` · `icon` · `badge` · `button` · `terminal` · `term` ·
+`mermaid` · `math` · `asciinema` · `notebook`
 
-````
-```go {filename="main.go"}
-...
+`src/content/content/docs/shortcodes.md` is the live gallery — every shortcode with
+the Markdown that produces it. Fenced code blocks get a filename bar, language
+label and copy button with no shortcode:
+
+    ```yaml {filename="pipeline.yaml"}
+    name: onboarding-audit
+    ```
+
+Terminology comes from `data/glossary.yaml`, so `{{< term "policy" >}}` stays a
+one-word edit in Markdown.
+
+## Structure
+
 ```
-````
+src/archetypes/   new-content templates (default, docs, blog)
+src/assets/css/   main.css (Tailwind entry) · brand-tokens · fonts · theme-layer · syntax · components
+src/assets/icons/ bundled stroke icon set
+src/assets/js/    theme.js · interactions.js · search.js · vendor/flexsearch
+src/data/         glossary.yaml
+src/i18n/         en.toml · de.toml
+src/layouts/      _default · docs · blog · index · 404 · search index
+src/static/       fonts (WOFF2, OFL) · logo
+src/content/      example site (module replace back to the repo root)
+```
 
-## Search
+## Notes and deliberate deviations
 
-A ~100-line hand-rolled inverted-index search in `src/assets/js/search.js`
-reads a generated `/index.json`. No Lunr/Algolia/Pagefind — kept
-dependency-free and auditable. Trigger it from the header search box,
-`Cmd/Ctrl+K`, or `/`. Swap in a different engine by replacing `search.js` and
-the `SearchIndex` output format if your content library outgrows this.
-
-## AI-readable documentation and MCP
-
-The example site publishes Markdown alternatives, `/llms.txt`, and a bounded
-`/llms-full.txt` from the versioned product contract. A dependency-free,
-read-only stdio MCP server projects the same generated contract, pages, tokens,
-and provenance without exposing repository files. See
-`mcp/product-mcp/README.md` and the example site's **AI discovery and product
-MCP** guide.
-
-## Light/dark mode
-
-Driven by `[data-theme="dark"]` on `<html>`, matching the brand system's own token overrides in `colors_and_type.css`. Defaults to `prefers-color-scheme`; the header toggle persists an explicit choice to `localStorage`.
-
-## Brand provenance and fonts
-
-The theme pins `projectious-work/brand` v2.1.1 and records source revisions,
-transformations, licences, and SHA-256 hashes in
-`src/data/brand-provenance.json`. Run `scripts/check-brand-provenance.py` to
-detect unexplained drift.
-
-Brand fonts are bundled as version-pinned WOFF2 files; generated pages make no
-font-CDN requests. Set `params.fonts = "system"` to use the network-free system
-font profile. Full provenance and regeneration instructions are available in
-the example site's **Brand provenance and fonts** guide.
-
-## Comments
-
-Set `params.giscus.repo` (+ `repoId`, `categoryId`) in `hugo.toml` to enable giscus on docs/blog pages. Leave `repo` empty to omit comments entirely. Disable per-page with `comments: false` in front matter.
-
-## i18n
-
-`src/i18n/en.toml` and `src/i18n/de.toml` ship as a working example — add more
-languages the normal Hugo way (`languages.xx` in config + `i18n/xx.toml`).
-
-## Building & deploying the demo site
-
-All local, no GitHub Actions:
-
-- `scripts/verify.sh` — canonical local verification: identity, provenance,
-  contract, deterministic outputs, full example, minimal consumer, local links,
-  semantics, browser accessibility/visual baselines, and product MCP tests.
-- `scripts/serve.sh` — watch/serve the site in `src/content` at
-  `http://0.0.0.0:1313` (override with `PORT`/`BASE_URL`). Forward the port
-  from the dev container to your host to preview.
-- `scripts/build.sh [dest]` — production build of `src/content` into
-  `public/` (or `dest`).
-- `scripts/deploy.sh` — builds, then force-pushes the output to the `gh-pages` branch via a local git worktree and enables GitHub Pages on that branch if it isn't already (needs `gh` auth with repo admin access).
-
-Contributor workflow, versioning, releases, and hotfixes are documented in
-[`CONTRIBUTING.md`](CONTRIBUTING.md).
-
-## What's deliberately not included
-
-No JS framework, no CSS preprocessor, no icon font/CDN dependency (a small
-hand-drawn SVG icon set lives in `src/layouts/partials/icon.html`), no
-analytics. Add these yourself if you need them — kept out to keep the theme
-lean.
+- **Active-heading tracking uses IntersectionObserver, not Bootstrap ScrollSpy.**
+  ScrollSpy would pull Bootstrap's JS and CSS reset in alongside Tailwind; the
+  observer is ~20 lines and behaves the same.
+- **KaTeX 0.18.4, Mermaid 11.16.1, and asciinema-player 3.17.0 load from
+  jsDelivr**, pinned to exact versions and only on pages that use them.
+- **Fonts are bundled** as version-pinned WOFF2 (SIL OFL 1.1, licences under
+  `static/fonts/licenses/`). Generated pages make no font-CDN request.
+- **Icons** are authored on Tabler's conventions (24 px grid, 1.5 px stroke, round
+  caps) and ship in-repo; drop Tabler's `icons/outline/*.svg` into
+  `assets/icons/` to swap in the full MIT set.
+- **Notebooks convert before the build.** `scripts/notebooks.sh` runs
+  `nbconvert`; the theme consumes the resulting Markdown and images.

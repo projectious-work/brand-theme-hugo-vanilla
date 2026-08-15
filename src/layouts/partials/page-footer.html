@@ -1,0 +1,9 @@
+<div class="pagefoot">
+  <div class="pagefoot__meta">
+    {{ partial "edit-link.html" . }}
+    {{ with .Lastmod }}<span>{{ partial "icon.html" (dict "name" "clock" "class" "ico--sm") }}{{ i18n "lastUpdated" }} {{ time.Format ":date_medium" . }}</span>{{ end }}
+    {{ partial "taglist.html" . }}
+  </div>
+  {{ partial "feedback.html" . }}
+  {{ partial "pager.html" . }}
+</div>

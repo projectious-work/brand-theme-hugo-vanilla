@@ -1,2 +1,1 @@
-{{- $anchor := .Anchor -}}
-<h{{ .Level }} id="{{ $anchor }}" class="h-anchor">{{ .Text | safeHTML }} <a href="#{{ $anchor }}" class="h-anchor__link" data-copy-link aria-label="{{ .PlainText }}">#</a></h{{ .Level }}>
+<h{{ .Level }} id="{{ .Anchor }}">{{ .Text | safeHTML }}<a class="heading-anchor" href="#{{ .Anchor }}" aria-label="{{ i18n "permalink" }}">#</a></h{{ .Level }}>

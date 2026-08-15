@@ -1,8 +1,11 @@
 {{ define "main" }}
-<div class="container error-page">
-  <div class="overline">404</div>
+<main id="main" class="shell errorpage">
+  <div class="hero__eyebrow">404</div>
   <h1>{{ i18n "notFoundTitle" }}</h1>
-  <p>{{ i18n "notFoundBody" }}</p>
-  <a class="btn btn--primary" href="{{ "/" | relLangURL }}">{{ i18n "backHome" }}</a>
-</div>
+  <p class="lede">{{ i18n "notFoundBody" }}</p>
+  <div class="hero__ctas" style="justify-content:center">
+    <a class="btn btn--primary" href="{{ site.Home.RelPermalink }}">{{ i18n "backHome" }}</a>
+    <a class="btn btn--secondary" href="{{ partial "url.html" "/search/" }}">{{ i18n "search" }}</a>
+  </div>
+</main>
 {{ end }}

@@ -1,17 +1,18 @@
-[
-{{- $pages := sort (where site.RegularPages "Type" "not in" (slice "search")) "RelPermalink" -}}
+{{- $out := slice -}}
+{{- $pages := where site.RegularPages "Params.private" "!=" true -}}
 {{- range $i, $p := $pages -}}
-  {{- $record := partial "page-record.html" $p -}}
-  {{ if $i }},{{ end }}
-  {
-    "id": {{ $record.id | jsonify }},
-    "title": {{ $record.title | jsonify }},
-    "url": {{ $record.relativeUrl | jsonify }},
-    "section": {{ $record.section | jsonify }},
-    "description": {{ $record.description | jsonify }},
-    "language": {{ $record.language | jsonify }},
-    "tags": {{ $record.tags | jsonify }},
-    "content": {{ $record.content | jsonify }}
-  }
+  {{- $crumb := slice -}}
+  {{- range $p.Ancestors.Reverse -}}{{- if not .IsHome -}}{{- $crumb = $crumb | append .LinkTitle -}}{{- end -}}{{- end -}}
+  {{- $headings := partial "headings-flat.html" (dict "headings" $p.Fragments.Headings) -}}
+  {{- $out = $out | append (dict
+      "id" $i
+      "title" $p.LinkTitle
+      "href" $p.RelPermalink
+      "crumb" (delimit $crumb " · ")
+      "section" $p.Section
+      "description" (or $p.Description "")
+      "tags" (or $p.Params.tags slice)
+      "headings" $headings
+      "content" ($p.Plain | truncate 2000 "")) -}}
 {{- end -}}
-]
+{{- $out | jsonify -}}

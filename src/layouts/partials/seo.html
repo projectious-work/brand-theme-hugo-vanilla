@@ -1,12 +1,17 @@
-<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
-<meta name="description" content="{{ .Params.description | default site.Params.description | default site.Title }}">
-<link rel="canonical" href="{{ .Permalink }}">
-<meta property="og:title" content="{{ .Title }}">
-<meta property="og:description" content="{{ .Params.description | default site.Params.description }}">
-<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
-<meta property="og:url" content="{{ .Permalink }}">
+{{- $desc := or .Description .Summary site.Params.description -}}
+<meta name="description" content="{{ $desc | plainify | truncate 180 }}">
 <meta property="og:site_name" content="{{ site.Title }}">
-{{ with .Params.image }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{ .Title }}">
-<meta name="twitter:description" content="{{ .Params.description | default site.Params.description }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:description" content="{{ $desc | plainify | truncate 180 }}">
+<meta property="og:type" content="{{ if eq .Kind "page" }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta name="twitter:card" content="summary">
+{{ with .Params.images }}<meta property="og:image" content="{{ index . 0 | absURL }}">{{ end }}
+{{- /* AllTranslations includes this page, so the set is complete on the home
+       page too — .IsTranslated gated it off before. x-default points at the
+       default-language build, per Google's guidance. */ -}}
+{{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}">
+{{ end }}
+{{- range .AllTranslations }}{{ if eq .Language.Lang site.Home.Language.Lang }}<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">
+{{ end }}{{ end }}
+<link rel="canonical" href="{{ .Permalink }}">

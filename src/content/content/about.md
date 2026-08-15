@@ -1,12 +1,9 @@
----
-title: "About"
-description: "Cloud · Agile · Agentic AI."
----
++++
+title = "About"
+description = "What this theme is, and what it deliberately leaves out."
++++
 
-projectious.work augments people's strengths so the same or more people can produce more, at higher quality, for broader markets.
-
-{{< cards >}}
-{{< card title="Cloud" >}}Infrastructure that scales without a dedicated platform team.{{< /card >}}
-{{< card title="Agile" >}}Delivery rhythms suited to small, fast teams.{{< /card >}}
-{{< card title="Agentic AI" >}}Agents as a normal part of how good work happens.{{< /card >}}
-{{< /cards >}}
+The theme implements the projectious.work brand system for Hugo: three type
+roles, a three-colour core, twelve-step scales in both modes, and the component
+recipes the brand documents. It ships no analytics, no JS framework, and no
+icon CDN — the icon set is bundled and inlined.

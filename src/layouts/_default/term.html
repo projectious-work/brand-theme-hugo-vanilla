@@ -1,0 +1,25 @@
+{{ define "main" }}
+<div class="shell">
+  <main id="main">
+    {{ partial "breadcrumbs.html" . }}
+    <div class="hero">
+      <div class="hero__eyebrow">{{ i18n "tagged" }}</div>
+      <h1>{{ .Title }}</h1>
+      <p>{{ len .Pages }} {{ i18n "pagesWord" }}</p>
+    </div>
+    {{ $paginator := .Paginate .Pages }}
+    <div class="postlist">
+      {{ range $paginator.Pages }}
+      <article class="postlist__item">
+        <div>
+        <div class="postlist__meta"><span>{{ .Section }}</span>{{ with .Date }}<span>{{ time.Format ":date_medium" . }}</span>{{ end }}</div>
+        <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+        <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 180 }}{{ end }}</p>
+        </div>
+      </article>
+      {{ end }}
+    </div>
+    {{ template "_internal/pagination.html" . }}
+  </main>
+</div>
+{{ end }}

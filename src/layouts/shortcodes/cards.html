@@ -1,1 +1,3 @@
-<div class="card-grid">{{ .Inner }}</div>
+{{- /* .Inner already holds the rendered card shortcodes. Passing it through
+       RenderString a second time re-parses that HTML and escapes it. */ -}}
+<div class="cards{{ with .Get "cols" }} cards--{{ . }}{{ end }}">{{ .Inner | safeHTML }}</div>

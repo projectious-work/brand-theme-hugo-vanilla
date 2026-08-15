@@ -1,0 +1,9 @@
+{{- $labels := split (.Get "items" | default "") "," -}}
+<div class="tabs">
+  <div class="tabs__list" role="tablist">
+    {{ range $i, $l := $labels }}
+    <button class="tabs__tab" type="button" role="tab" aria-selected="{{ eq $i 0 }}">{{ trim $l " " }}</button>
+    {{ end }}
+  </div>
+  {{ .Inner }}
+</div>

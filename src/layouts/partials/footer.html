@@ -1,9 +1,4 @@
-<footer class="site-footer">
-  <div class="container site-footer__inner">
-    {{ partial "brand.html" (dict "page" . "class" "brand--sm") }}
-    <div class="site-footer__meta caption">
-      <span>© {{ now.Year }} {{ site.Title }}</span>
-      {{ range site.Params.social }}<a href="{{ .url }}" target="_blank" rel="noopener">{{ .name }}</a>{{ end }}
-    </div>
-  </div>
+<footer class="footer">
+  <span>{{ with site.Copyright }}{{ . | safeHTML }}{{ else }}&copy; {{ now.Year }} projectious.work{{ end }}</span>
+  <span class="footer__meta">{{ with site.Params.version }}{{ . }} &middot; {{ end }}{{ i18n "builtWith" }}</span>
 </footer>

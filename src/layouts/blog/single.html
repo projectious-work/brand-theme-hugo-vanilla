@@ -1,17 +1,20 @@
 {{ define "main" }}
-<article class="container post">
-  <header class="post__header">
-    <h1>{{ .Title }}</h1>
-    <div class="post__meta caption">{{ .Date.Format "January 2, 2006" }} · {{ i18n "minRead" .ReadingTime }}</div>
-    {{ with .Params.tags }}
-    <div class="post__tags">{{ range . }}<a class="tag" href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>{{ end }}</div>
-    {{ end }}
-  </header>
-  <div class="content">{{ .Content }}</div>
-  <nav class="post-pager">
-    {{ with .PrevInSection }}<a class="post-pager__prev" href="{{ .RelPermalink }}">← {{ .Title }}</a>{{ end }}
-    {{ with .NextInSection }}<a class="post-pager__next" href="{{ .RelPermalink }}">{{ .Title }} →</a>{{ end }}
-  </nav>
-  {{ if ne .Params.comments false }}{{ partial "comments.html" . }}{{ end }}
-</article>
+<div class="shell">
+  <main id="main">
+    {{ partial "breadcrumbs.html" . }}
+    {{ with .Params.cover }}<figure class="posthero"><img src="{{ . | relURL }}" alt="{{ $.Params.coverAlt | default "" }}"></figure>{{ end }}
+    <article class="prose">
+      <div class="postlist__meta">
+        <span>{{ time.Format ":date_long" .Date }}</span>
+        <span>{{ i18n "minRead" (dict "Count" .ReadingTime) }}</span>
+        {{ with .Params.author }}<span>{{ . }}</span>{{ end }}
+      </div>
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+      {{ .Content }}
+    </article>
+    {{ partial "page-tools.html" . }}
+    {{ partial "page-footer.html" . }}
+  </main>
+</div>
 {{ end }}

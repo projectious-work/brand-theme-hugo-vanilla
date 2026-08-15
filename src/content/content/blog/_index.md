@@ -1,4 +1,4 @@
----
-title: "Blog"
-description: "Notes on agent-first consulting."
----
++++
+title = "Blog"
+description = "Release notes for the theme."
++++

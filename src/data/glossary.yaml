@@ -1,0 +1,14 @@
+# Terminology helpers. {{< term "agent" >}} renders the term with its
+# definition as a tooltip; add entries here rather than in the Markdown.
+agent:
+  term: agent
+  definition: A long-running process that plans and executes work against tools, under policy.
+pipeline:
+  term: pipeline
+  definition: An ordered set of stages a run moves through, from trigger to deploy.
+policy:
+  term: policy
+  definition: A versioned set of rules a run is audited against before it can proceed.
+lot-of-one:
+  term: lot-of-one
+  definition: Software built for one team's exact workflow, economically rational now that agents collapse build cost.

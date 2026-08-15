@@ -1,0 +1,50 @@
+{{- /* Command palette: search results, section jumps and page actions in one
+       dialog. Ctrl/Cmd K opens it; "?" opens the same dialog on its shortcut
+       list. Reuses the search index, so it costs no extra payload. */ -}}
+{{ if ne site.Params.commandPalette false }}
+{{- $actions := slice -}}
+{{- /* Menu .URL is already resolved by Hugo; other hrefs go through url.html so
+       a project base path survives. */ -}}
+{{- range site.Menus.main -}}
+  {{- $actions = $actions | append (dict "label" .Name "href" .URL "group" (i18n "jumpTo")) -}}
+{{- end -}}
+{{- range site.Sections.ByWeight -}}
+  {{- $actions = $actions | append (dict "label" .LinkTitle "href" .RelPermalink "group" (i18n "jumpTo")) -}}
+{{- end -}}
+{{- if ne site.Params.search false -}}
+  {{- $actions = $actions | append (dict "label" (i18n "search") "href" (partial "url.html" "/search/") "group" (i18n "actions")) -}}
+{{- end -}}
+{{- with .FirstSection.OutputFormats.Get "print" -}}
+  {{- $actions = $actions | append (dict "label" (i18n "printSection") "href" .RelPermalink "group" (i18n "actions")) -}}
+{{- end -}}
+<div class="palette" data-palette data-open="false" data-palette-base="{{ site.Home.RelPermalink }}" data-palette-actions="{{ $actions | jsonify }}" data-empty="{{ i18n "noResults" }}" role="dialog" aria-modal="true" aria-label="{{ i18n "commandPalette" }}">
+  <div class="palette__panel">
+    <label class="palette__field">
+      {{ partial "icon.html" (dict "name" "search" "class" "ico--sm") }}
+      <input type="text" data-palette-input placeholder="{{ i18n "palettePlaceholder" }}" aria-label="{{ i18n "commandPalette" }}" autocomplete="off" spellcheck="false">
+      <kbd>Esc</kbd>
+    </label>
+    <div class="palette__body">
+      <div class="palette__results" data-palette-results role="listbox" aria-label="{{ i18n "search" }}"></div>
+      <div class="palette__shortcuts" data-palette-shortcuts hidden>
+        <div class="menu__label">{{ i18n "keyboardShortcuts" }}</div>
+        <dl>
+          <dt><kbd>{{ i18n "modKey" }}</kbd><kbd>K</kbd></dt><dd>{{ i18n "shortcutPalette" }}</dd>
+          <dt><kbd>/</kbd></dt><dd>{{ i18n "shortcutSearch" }}</dd>
+          <dt><kbd>?</kbd></dt><dd>{{ i18n "shortcutHelp" }}</dd>
+          <dt><kbd>g</kbd><kbd>h</kbd></dt><dd>{{ i18n "shortcutHome" }}</dd>
+          <dt><kbd>g</kbd><kbd>d</kbd></dt><dd>{{ i18n "shortcutDocs" }}</dd>
+          <dt><kbd>g</kbd><kbd>b</kbd></dt><dd>{{ i18n "shortcutBlog" }}</dd>
+          <dt><kbd>t</kbd></dt><dd>{{ i18n "shortcutTheme" }}</dd>
+          <dt><kbd>Esc</kbd></dt><dd>{{ i18n "shortcutClose" }}</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="palette__foot">
+      <span><kbd>&uarr;</kbd><kbd>&darr;</kbd> {{ i18n "navigate" }}</span>
+      <span><kbd>&crarr;</kbd> {{ i18n "open" }}</span>
+      <button type="button" data-palette-help>{{ partial "icon.html" (dict "name" "info-circle" "class" "ico--sm") }}{{ i18n "keyboardShortcuts" }}</button>
+    </div>
+  </div>
+</div>
+{{ end }}

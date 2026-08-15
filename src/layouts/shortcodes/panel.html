@@ -1,5 +1,0 @@
-{{ $variant := .Get "variant" | default "default" }}
-<section class="panel{{ if ne $variant "default" }} panel--{{ $variant }}{{ end }}">
-  {{ with .Get "title" }}<h3>{{ . }}</h3>{{ end }}
-  {{ .Inner | markdownify }}
-</section>

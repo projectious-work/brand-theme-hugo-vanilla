@@ -1,0 +1,20 @@
+{{- /* Page-level export actions in one row: copy the source, view the source,
+       print the whole section. They carry equal weight, so they share one
+       presentation rather than being split between the sidebar and the page.
+       Each entry appears only if its output format is enabled. */ -}}
+{{- $md := .OutputFormats.Get "markdown" -}}
+{{- $print := "" -}}
+{{- with .FirstSection }}{{ with .OutputFormats.Get "print" }}{{ $print = . }}{{ end }}{{ end -}}
+{{- if or $md $print }}
+<div class="pagetools">
+  {{ with $md }}
+  <button type="button" data-copy-markdown="{{ .RelPermalink }}" data-copied="{{ i18n "copied" }}">
+    {{ partial "icon.html" (dict "name" "copy" "class" "ico--sm") }}<span>{{ i18n "copyAsMarkdown" }}</span>
+  </button>
+  <a href="{{ .RelPermalink }}">{{ partial "icon.html" (dict "name" "file-code" "class" "ico--sm") }}{{ i18n "viewMarkdown" }}</a>
+  {{ end }}
+  {{ with $print }}
+  <a href="{{ .RelPermalink }}">{{ partial "icon.html" (dict "name" "printer" "class" "ico--sm") }}{{ i18n "printSection" }}</a>
+  {{ end }}
+</div>
+{{ end -}}

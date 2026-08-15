@@ -1,0 +1,7 @@
+{{- $name := .Get "name" | default (.Get 0) -}}
+<ul><li>
+  <details{{ if ne (.Get "closed") "true" }} open{{ end }}>
+    <summary><span class="filetree__row">{{ partial "icon.html" (dict "name" "folder" "class" "ico--sm") }}{{ $name }}</span></summary>
+    {{ .Inner }}
+  </details>
+</li></ul>

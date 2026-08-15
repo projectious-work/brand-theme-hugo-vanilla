@@ -1,57 +1,75 @@
----
-title: "Getting started"
-description: "Install the theme as a Hugo Module or submodule and run the example locally."
-weight: 1
----
++++
+title = "Getting started"
+description = "Install the theme as a Hugo Module and build the first page."
+weight = 10
+icon = "book"
+tags = ["setup"]
++++
 
 ## Requirements
 
-- Hugo Extended, recent enough to support CSS processing and render hooks.
-- Git when installing as a module or submodule.
-- Go only when using Hugo Modules.
+Hugo **0.128.0** or newer (extended not required), Go for module resolution, and
+Node only for the Tailwind step.
 
-## Install as a Hugo Module
+## Install
 
-{{< terminal >}}
-$ hugo mod init example.com/my-site
-$ hugo mod get github.com/projectious-work/brand-theme-hugo-vanilla
-$ hugo server
-✓ Web server available at http://localhost:1313/
-{{< /terminal >}}
-
-Add the import to `hugo.toml`:
-
+{{< tabs items="Hugo Modules, Submodule" >}}
+  {{< tab >}}
 ```toml {filename="hugo.toml"}
-[[module.imports]]
-path = "github.com/projectious-work/brand-theme-hugo-vanilla"
+[module]
+  [[module.imports]]
+    path = "github.com/projectious-work/brand-theme-hugo-vanilla"
 ```
+  {{< /tab >}}
+  {{< tab >}}
+```sh
+git submodule add https://github.com/projectious-work/brand-theme-hugo-vanilla.git themes/brand-theme-hugo-vanilla
+```
+Then set `theme = "brand-theme-hugo-vanilla"`.
+  {{< /tab >}}
+{{< /tabs >}}
 
-## Install as a submodule
+## Styling pipeline
 
-{{< terminal >}}
-$ git submodule add https://github.com/projectious-work/brand-theme-hugo-vanilla.git themes/brand-theme-hugo-vanilla
-$ hugo server
-{{< /terminal >}}
+The theme builds its CSS with the Tailwind v4 CLI through `css.TailwindCSS`.
 
+{{< steps >}}
+  {{< step title="Install the CLI" >}}
+```sh
+npm install
+```
+  {{< /step >}}
+  {{< step title="Let Hugo report its class inventory" >}}
 ```toml {filename="hugo.toml"}
-theme = "brand-theme-hugo-vanilla"
+[build]
+  [build.buildStats]
+    enable = true
 ```
+  {{< /step >}}
+  {{< step title="Serve" >}}
+```sh
+hugo server
+```
+  {{< /step >}}
+{{< /steps >}}
 
-{{< callout type="info" >}}
-Copy the search output and markup configuration from the bundled
-`src/content/hugo.toml`; those settings enable the search index, heading
-anchors, code labels, and syntax highlighting.
+{{< callout type="warning" title="No Node available?" >}}
+Set `params.build.tailwind = false`. Hugo then ships the brand tokens and the
+theme's component CSS without the Tailwind step — utility classes stop resolving,
+but every page in this theme still renders.
 {{< /callout >}}
 
-## Create content
+## Content layout
 
-```text
-content/
-├── _index.md
-├── docs/
-├── blog/
-└── changelog/
-```
-
-Use `hugo new docs/first-guide.md`, add `title`, `description`, and `weight`,
-then write normal Markdown. Section names select their specialized layouts.
+{{< filetree >}}
+  {{< folder name="content" >}}
+    {{< file name="_index.md" note="landing" >}}
+    {{< folder name="docs" >}}
+      {{< file name="_index.md" >}}
+      {{< file name="getting-started.md" >}}
+    {{< /folder >}}
+    {{< folder name="blog" closed="true" >}}
+      {{< file name="why-agent-first.md" >}}
+    {{< /folder >}}
+  {{< /folder >}}
+{{< /filetree >}}

@@ -1,12 +1,16 @@
 {
-  "name": "brand-theme-hugo-vanilla-verification",
+  "name": "brand-theme-hugo-vanilla",
+  "version": "0.3.0",
   "private": true,
+  "description": "Build dependency for the Tailwind v4 CSS pipeline. Hugo invokes the CLI through css.TailwindCSS.",
   "scripts": {
-    "test:browser": "playwright test"
+    "build": "./scripts/build.sh",
+    "test": "./scripts/verify.sh",
+    "test:browser": "playwright test",
+    "serve": "./scripts/serve.sh"
   },
   "devDependencies": {
-    "@axe-core/playwright": "4.13.0",
-    "@playwright/test": "1.62.1",
-    "flexsearch": "^0.8.143"
+    "@playwright/test": "^1.62.1",
+    "@tailwindcss/cli": "^4.1.0"
   }
 }

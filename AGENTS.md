@@ -188,16 +188,22 @@ session until the gateway lifecycle is proven stable.
 
 ## Setup
 
+Install the CSS build dependency, then build or verify the example site:
+
 ```sh
-./scripts/check-docs-local.sh
-uv run scripts/smoke-test-servers.py
+npm install
+./scripts/build.sh
+./scripts/verify.sh
 ```
+
+The imported v0.3 theme lives under `src/`. Keep deployment tooling outside
+that tree so the imported theme remains unchanged.
 
 <!-- pk-managed:pk-commands BEGIN -->
 <!-- pk-commands BEGIN -->
 <!--
-build: "./scripts/check-docs-local.sh"
-test: "uv run scripts/smoke-test-servers.py"
+build: "./scripts/build.sh"
+test: "./scripts/verify.sh"
 lint: ""
 fmt: ""
 typecheck: ""
@@ -209,9 +215,10 @@ typecheck: ""
 
 Hard-wrap Markdown/Python/YAML at 80 cols (exempt: tables, URLs,
 frontmatter, code fences). Conventional Commits; never `--no-verify`.
-`src/` ships to consumers, `context/` is local — never mix. Preferences
-live in per-skill `context/skills/<name>/config/settings.toml`. PRs:
-link WorkItem ID, squash-merge, green tests before merge.
+`src/` ships to consumers, while `context/` remains local process state.
+Preferences live in per-skill `context/skills/<name>/config/settings.toml`.
+PRs link a WorkItem ID, squash-merge, and require the checks defined by the
+new architecture before merge.
 
 ## Team
 

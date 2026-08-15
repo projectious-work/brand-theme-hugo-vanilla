@@ -2,6 +2,42 @@
 
 All notable changes to this project are documented in this file.
 
+## [v0.3.0] — 2026-08-15
+
+### Added
+
+- Added an announcement bar, command palette, version banner, back-to-top
+  control, mobile table of contents, sidebar filtering, image lightbox, styled
+  RSS feeds, and `/llms.txt` output.
+- Added heading-level, section-filtered search and completed the German example
+  documentation.
+- Added whole-section print output with running headers and folios, Jupyter
+  notebook conversion, multilingual edit links, version-path probing, custom
+  robots and sitemap output, hreflang metadata, and rate-limited feedback.
+- Added local-only deterministic build, browser verification, release archive,
+  publication, GitHub Pages deployment, and persistent watch-server scripts.
+
+### Changed
+
+- Replaced the v0.2 implementation with the redesigned projectious.work v3/v4
+  Hugo theme, including scalable component typography and adaptive light/dark
+  code panels.
+- Pinned KaTeX 0.18.4, Mermaid 11.16.1, and asciinema-player 3.17.0 to exact
+  jsDelivr URLs and removed their local runtime bundles.
+- Expanded the shortcode gallery and replaced demonstration blog posts with
+  release notes.
+
+### Fixed
+
+- Corrected recursive search-heading extraction, SVG-safe image metadata,
+  Markdown output registration, code-block wrapping, and command-palette JSON
+  serialization.
+- Corrected malformed and improperly paired shortcodes, escaped dynamic card
+  markup, mobile-sidebar detection, and project-base-path URL resolution.
+- Corrected the landing-page eyebrow, accessibility scaling, search alignment,
+  documentation cards, code colours, file-tree layout, page metadata alignment,
+  pagination spacing, inline math rendering, and taxonomy links.
+
 ## [v0.2.4] — 2026-08-13
 
 ### Fixed
@@ -115,3 +151,4 @@ All notable changes to this project are documented in this file.
 [v0.2.2]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.2
 [v0.2.3]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.3
 [v0.2.4]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.4
+[v0.3.0]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.2.4...v0.3.0

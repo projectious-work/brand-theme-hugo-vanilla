@@ -1,6 +1,6 @@
----
-title: "{{ replace .Name "-" " " | title }}"
-weight: 10
-description: ""
-draft: true
----
++++
+title = "{{ replace .File.ContentBaseName "-" " " | title }}"
+description = ""
+weight = 10
+draft = true
++++

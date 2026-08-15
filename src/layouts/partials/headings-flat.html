@@ -1,0 +1,14 @@
+{{- /* Flattens .Fragments.Headings to a slice of {id, title}.
+       The tree has a root node with no ID or Title, and nests to arbitrary
+       depth — a fixed two-level range emitted an empty record and dropped
+       anything deeper. Returns the slice; call with a dict of {headings}. */ -}}
+{{- $out := slice -}}
+{{- range .headings -}}
+  {{- if and .ID .Title -}}
+    {{- $out = $out | append (dict "id" .ID "title" .Title) -}}
+  {{- end -}}
+  {{- with .Headings -}}
+    {{- $out = $out | append (partial "headings-flat.html" (dict "headings" .)) -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

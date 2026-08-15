@@ -1,0 +1,11 @@
+{{- /* Shown when the build is not the newest entry in params.versions. */ -}}
+{{ with site.Params.versions }}
+  {{ $current := or site.Params.version (index . 0).label }}
+  {{ $latest := index . 0 }}
+  {{ if ne $current $latest.label }}
+  <div class="versionbanner" role="status">
+    {{ partial "icon.html" (dict "name" "alert-triangle" "class" "ico--sm") }}
+    <div>{{ i18n "outdatedVersion" (dict "Version" $current) }} <a href="{{ $latest.url }}">{{ i18n "goToLatest" (dict "Version" $latest.label) }}</a></div>
+  </div>
+  {{ end }}
+{{ end }}

@@ -1,11 +1,8 @@
-{{ $theme := resources.Get "js/theme.js" }}
-{{ $interactions := resources.Get "js/interactions.js" }}
-{{ $flexsearch := resources.Get "js/vendor/flexsearch.bundle.min.js" }}
-{{ $search := resources.Get "js/search.js" }}
-{{ $js := slice $theme $interactions $flexsearch $search | resources.Concat "js/bundle.js" }}
-{{ if hugo.IsProduction }}
-  {{ $js = $js | minify | fingerprint }}
-  <script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
-{{ else }}
-  <script src="{{ $js.RelPermalink }}" defer></script>
+{{ with resources.Get "js/interactions.js" }}{{ with . | js.Build (dict "minify" hugo.IsProduction) }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}{{ end }}
+{{ if not (eq site.Params.search false) }}
+  {{ with resources.Get "js/vendor/flexsearch.bundle.min.js" }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}
+  {{ with resources.Get "js/search.js" }}{{ with . | js.Build (dict "minify" hugo.IsProduction) }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}{{ end }}
+{{ end }}
+{{ if ne site.Params.commandPalette false }}
+  {{ with resources.Get "js/palette.js" }}{{ with . | js.Build (dict "minify" hugo.IsProduction) }}<script src="{{ .RelPermalink }}" defer></script>{{ end }}{{ end }}
 {{ end }}

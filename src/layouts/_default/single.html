@@ -1,6 +1,12 @@
 {{ define "main" }}
-<article class="container page">
-  <h1>{{ .Title }}</h1>
-  <div class="content">{{ .Content }}</div>
-</article>
+<div class="shell">
+  <main id="main">
+    {{ partial "breadcrumbs.html" . }}
+    <article class="prose">
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+      {{ .Content }}
+    </article>
+  </main>
+</div>
 {{ end }}

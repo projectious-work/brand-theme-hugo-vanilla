@@ -1,0 +1,19 @@
+{{ if not (eq site.Params.accessibilityMenu false) }}
+<div class="menu">
+  <button class="iconbtn target" type="button" data-menu-trigger aria-expanded="false" aria-haspopup="true" aria-label="{{ i18n "a11yOptions" }}">
+    {{ partial "icon.html" (dict "name" "accessible" "class" "ico--sm") }}
+  </button>
+  <div class="menu__panel" role="menu">
+    <div class="menu__label">{{ i18n "textSize" }}</div>
+    {{ range slice (slice "lg" "112%") (slice "xl" "125%") (slice "xxl" "150%") (slice "xxxl" "200%") }}
+      <button type="button" role="menuitemradio" aria-checked="false" data-a11y-set="data-font-size" data-a11y-value="{{ index . 0 }}">{{ index . 1 }}</button>
+    {{ end }}
+    <div class="menu__label">{{ i18n "reading" }}</div>
+    <button type="button" role="menuitemcheckbox" aria-checked="false" data-a11y-set="data-contrast" data-a11y-value="high">{{ i18n "highContrast" }}</button>
+    <button type="button" role="menuitemcheckbox" aria-checked="false" data-a11y-set="data-focus" data-a11y-value="strong">{{ i18n "strongFocus" }}</button>
+    <button type="button" role="menuitemcheckbox" aria-checked="false" data-a11y-set="data-link-underline" data-a11y-value="on">{{ i18n "underlineLinks" }}</button>
+    <button type="button" role="menuitemcheckbox" aria-checked="false" data-a11y-set="data-motion" data-a11y-value="reduced">{{ i18n "reduceMotion" }}</button>
+    <button type="button" role="menuitemcheckbox" aria-checked="false" data-a11y-set="data-text-spacing" data-a11y-value="loose">{{ i18n "looseSpacing" }}</button>
+  </div>
+</div>
+{{ end }}

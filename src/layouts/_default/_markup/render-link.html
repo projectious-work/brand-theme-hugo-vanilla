@@ -1,3 +1,2 @@
-{{- $url := urls.Parse .Destination -}}
-{{- $isExternal := and $url.Host (ne $url.Host (urls.Parse site.BaseURL).Host) -}}
-<a href="{{ .Destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $isExternal }} target="_blank" rel="noopener noreferrer" class="link-external"{{ end }}>{{ .Text | safeHTML }}{{ if $isExternal }} <span class="link-external__icon">{{ partial "icon.html" (dict "name" "external-link" "size" 12) }}</span>{{ end }}</a>
+{{- $external := strings.HasPrefix .Destination "http" -}}
+<a href="{{ .Destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $external }} target="_blank" rel="noopener"{{ end }}>{{ .Text | safeHTML }}{{ if $external }}{{ partial "icon.html" (dict "name" "external-link" "class" "ico--sm") }}{{ end }}</a>

@@ -1,64 +1,46 @@
-# Contributing and releases
+# Contributing
 
-## Branches and pull requests
+`main` remains the stable v0.2.x line. The `release/v0.3.0` branch contains
+the imported v0.3 theme and its example site.
 
-`main` is the only long-lived source branch and always represents the stable
-integration state. Use short-lived `feat/<topic>`, `fix/<topic>`, or
-`docs/<topic>` branches and merge reviewed pull requests by squash merge.
-Commits use Conventional Commits.
-
-`gh-pages` contains generated deployment output only. Never implement or edit
-source code on that branch. A promotion branch is introduced only for an
-explicitly approved parallel major rewrite.
-
-This project uses the company simple branching profile. There is no host gate,
-long-lived development branch, or GitHub Actions workflow. Verification,
-release, and publication are deliberate local operations.
-
-## Versioning
-
-The theme follows Semantic Versioning:
-
-- Patch releases contain compatible fixes and documentation corrections.
-- Minor releases add backwards-compatible features or deprecations.
-- Major releases remove or incompatibly change the public theme contract.
-
-Before version 1.0, consumer-facing migrations are still called out prominently
-in the changelog and release notes. The module rename to
-`github.com/projectious-work/brand-theme-hugo-vanilla` requires consumers to
-update both `go.mod` and `hugo.toml` imports.
-
-## Release procedure
-
-Releases are performed from a clean, current `main` checkout:
-
-1. Run the complete local verification command.
-2. Update `CHANGELOG.md` and all version metadata.
-3. Commit the release preparation through a reviewed pull request.
-4. Create an annotated `vX.Y.Z` tag on the merged commit.
-5. Push `main` and the tag.
-6. Create the GitHub release from that immutable tag and its release notes.
-7. Run `scripts/deploy.sh` to publish generated output to `gh-pages`.
-8. Verify the public Pages URL and record its deployed source tag and hashes.
-
-The version bump, changelog, tag, GitHub release, and Pages publication are one
-release procedure. If Pages publication fails after the GitHub release exists,
-retry publication from the same tagged commit; do not create or move a tag.
-
-Run the release-grade local verification entry point:
+Install and verify the toolchain before submitting a change:
 
 ```sh
-scripts/verify.sh
+npm install
+./scripts/serve-watch.sh start
+./scripts/verify.sh
 ```
 
-## Hotfixes and rollback
+When contributing:
 
-Create a hotfix branch from the latest release tag, apply and verify the narrow
-fix, then merge it back to `main`. Publish a new patch tag, GitHub release, and
-Pages deployment using the normal sequence.
+- make v0.3.0 work on short-lived branches based on `release/v0.3.0`;
+- merge reviewed changes back into `release/v0.3.0`;
+- use Conventional Commits;
+- do not edit the generated `gh-pages` branch directly;
+- keep build and deployment tooling outside `src/`; and
+- treat the imported theme in `src/` as unchanged upstream source unless a
+  future task explicitly authorizes theme changes.
 
-Rollback means redeploying a known-good immutable tag. Do not rewrite `main`,
-move a published tag, or implement directly on `gh-pages`.
+## Local release chain
 
-The repository currently has no stale remote source branches. Branch deletion
-is owner-approved cleanup after the corresponding pull request is merged.
+This repository deliberately has no GitHub Actions or workflow files. After a
+release branch has passed review and its pull request is merged, update the
+version and dated changelog on that branch. From a clean, synchronized `main`,
+run:
+
+```sh
+./scripts/release.sh vX.Y.Z
+```
+
+The command fails closed unless deterministic builds and Playwright visual
+regressions pass. It then packages the theme, creates and pushes an annotated
+tag, creates and verifies the GitHub Release, and deploys that exact tagged
+commit to `gh-pages`. Do not use `scripts/deploy.sh --allow-untagged` in the
+normal release chain.
+
+The managed watch server remains available at
+`http://localhost:1312/brand-theme-hugo-vanilla/`. Use
+`./scripts/serve-watch.sh status` or `./scripts/serve-watch.sh stop` to inspect
+or stop it.
+
+The immutable `v0.2.x` tags remain the reference for the previous theme.

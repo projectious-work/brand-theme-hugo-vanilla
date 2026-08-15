@@ -1,9 +1,7 @@
-{{ $ancestors := .Ancestors.Reverse }}
-{{ if $ancestors }}
-<nav class="breadcrumbs caption" aria-label="Breadcrumb">
-  {{ range $ancestors }}
-    {{ if not .IsHome }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a><span class="breadcrumbs__sep">/</span>{{ end }}
+<nav class="crumbs" aria-label="{{ i18n "breadcrumbs" }}">
+  {{ range .Ancestors.Reverse }}
+    <a href="{{ .RelPermalink }}">{{ if .IsHome }}{{ i18n "home" }}{{ else }}{{ .LinkTitle }}{{ end }}</a>
+    {{ partial "icon.html" (dict "name" "chevron-right" "class" "ico--sm") }}
   {{ end }}
-  <span class="breadcrumbs__current">{{ .Title }}</span>
+  <span aria-current="page">{{ .LinkTitle }}</span>
 </nav>
-{{ end }}

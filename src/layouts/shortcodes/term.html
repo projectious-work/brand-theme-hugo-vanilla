@@ -1,0 +1,4 @@
+{{- /* Leaf shortcode — no .Inner. Override the displayed text with "label". */ -}}
+{{- $key := .Get "key" | default (.Get 0) -}}
+{{- $entry := index site.Data.glossary $key -}}
+<abbr class="term" title="{{ with $entry }}{{ .definition }}{{ else }}{{ $key }}{{ end }}">{{ with $.Get "label" }}{{ . }}{{ else }}{{ with $entry }}{{ .term }}{{ else }}{{ $key }}{{ end }}{{ end }}</abbr>

@@ -1,12 +1,19 @@
+# Example site. Consumes the theme as a Hugo Module; scripts/serve.sh runs it
+# from the repository root with a replace directive back to ../..
 baseURL = "https://projectious-work.github.io/brand-theme-hugo-vanilla/"
-locale = "en-US"
-defaultContentLanguage = "en"
 title = "projectious.work"
+defaultContentLanguage = "en"
 enableRobotsTXT = true
+enableGitInfo = true
 
 [module]
   [[module.imports]]
     path = "github.com/projectious-work/brand-theme-hugo-vanilla"
+
+# Tailwind v4 reads this inventory instead of scanning templates.
+[build]
+  [build.buildStats]
+    enable = true
 
 [pagination]
   pagerSize = 8
@@ -20,36 +27,44 @@ enableRobotsTXT = true
   isPlainText = true
   notAlternative = true
 
-[outputFormats.Markdown]
-  mediaType = "text/markdown"
-  baseName = "index"
-  isPlainText = true
+[outputFormats.Print]
+  mediaType = "text/html"
+  baseName = "print"
+  isHTML = true
   notAlternative = true
+  permalinkable = true
 
-[outputFormats.LLMIndex]
+[outputFormats.LLMS]
   mediaType = "text/plain"
   baseName = "llms"
   isPlainText = true
   notAlternative = true
 
-[outputFormats.LLMFull]
-  mediaType = "text/plain"
-  baseName = "llms-full"
+# text/markdown is a built-in media type — declaring it again risks a suffix
+# registration collision.
+[outputFormats.Markdown]
+  mediaType = "text/markdown"
   isPlainText = true
-  notAlternative = true
+  permalinkable = true
 
 [outputs]
-  home = ["HTML", "RSS", "SearchIndex", "Markdown", "LLMIndex", "LLMFull"]
+  home = ["HTML", "RSS", "SearchIndex", "LLMS"]
+  section = ["HTML", "RSS", "Print", "Markdown"]
   page = ["HTML", "Markdown"]
-  section = ["HTML", "RSS", "Markdown"]
 
 [markup]
   [markup.goldmark.renderer]
     unsafe = true
+  [markup.goldmark.extensions.passthrough]
+    enable = true
+    [markup.goldmark.extensions.passthrough.delimiters]
+      block = [["\\[", "\\]"], ["$$", "$$"]]
+      inline = [["\\(", "\\)"]]
   [markup.highlight]
     noClasses = false
     lineNos = false
     guessSyntax = true
+    tabWidth = 2
   [markup.tableOfContents]
     startLevel = 2
     endLevel = 3
@@ -58,42 +73,63 @@ enableRobotsTXT = true
   name = "Docs"
   pageRef = "/docs"
   weight = 10
-
-[[menus.main]]
-  name = "Examples"
-  pageRef = "/examples"
-  weight = 20
-
 [[menus.main]]
   name = "Blog"
   pageRef = "/blog"
+  weight = 20
+[[menus.main]]
+  name = "Tags"
+  pageRef = "/tags"
   weight = 30
 
-[[menus.main]]
-  name = "Changelog"
-  pageRef = "/changelog"
-  weight = 40
-
 [params]
-  description = "Documentation and examples for the projectious.work Hugo theme."
+  description = "Documentation, blog and marketing pages on the projectious.work brand system."
   github = "https://github.com/projectious-work/brand-theme-hugo-vanilla"
+  # A single string is appended to the page's content-relative path. For a
+  # multilingual site the theme adds the language directory automatically; pass a
+  # map keyed by language code when the repo layout differs per language.
+  editURL = "https://github.com/projectious-work/brand-theme-hugo-vanilla/edit/main/src/content/content/"
+  # [params.editURL]
+  #   default = ".../edit/main/src/content/content/"
+  #   de      = ".../edit/main/src/content/content/de/"
+  version = "v0.3"
+  darkSurface = "navy"   # navy dark mode; remove for the default terminal-surface dark
+  codeTheme = "adaptive" # light code panels in light mode; remove for always-dark
+  sidebarOpenDepth = 1   # 0 collapses everything off the current path
+  sidebarSections = ["docs"]  # sections that show the sidebar (and the mobile burger)
+  # feedbackEndpoint = "https://example.org/api/feedback"
+  # search = false            # disables the index, the header box and /search
+  # accessibilityMenu = false # hides the accessibility selector
+  # sidebarFilter = false     # hides the sidebar filter box
+  # commandPalette = false    # disables Ctrl K and the shortcut help
+  # versionProbe = false      # version links always land on that version's root
+  # math = true               # loads KaTeX on every page
 
-  [params.search]
-    placement = "header"
+  [params.announcement]
+    id = "v030"
+    text = "v0.3.0 is out — expanded icons, pinned CDN runtimes, section-filtered search."
+    href = "/blog/"
+    label = "Read the notes"
 
-  [params.giscus]
-    repo = ""
-    repoId = ""
-    categoryId = ""
+  [params.build]
+    tailwind = true
 
-  [[params.social]]
-    name = "GitHub"
-    url = "https://github.com/projectious-work"
+  [[params.versions]]
+    label = "v0.3"
+    url = "/"
+    note = "latest"
+  [[params.versions]]
+    label = "v0.2"
+    url = "/v0.2/"
+    # probe = false   # this entry always lands on its root, never the same path
 
 [languages]
   [languages.en]
-    label = "English"
+    languageName = "English"
     weight = 1
   [languages.de]
-    label = "Deutsch"
+    languageName = "Deutsch"
     weight = 2
+    title = "projectious.work"
+    [languages.de.params]
+      description = "Dokumentation und Blog auf Basis des projectious.work Markensystems."

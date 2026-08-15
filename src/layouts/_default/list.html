@@ -1,20 +1,20 @@
 {{ define "main" }}
-<div class="container">
-  <header class="section-header">
-    <h1>{{ .Title }}</h1>
-    {{ with .Content }}<div class="section-desc content">{{ . }}</div>{{ end }}
-  </header>
-  {{ if .Pages }}
-  <div class="card-grid">
-    {{ range .Pages }}
-    <a class="card" href="{{ .RelPermalink }}">
-      <div class="card__body">
-        <div class="card__title">{{ .Title }}</div>
-        {{ with .Summary }}<div class="card__desc">{{ . | plainify | truncate 140 }}</div>{{ end }}
-      </div>
-    </a>
-    {{ end }}
-  </div>
-  {{ end }}
+<div class="shell">
+  <main id="main">
+    {{ partial "breadcrumbs.html" . }}
+    <article class="prose">
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+      {{ .Content }}
+    </article>
+    <div class="cards{{ if eq (len .Pages) 2 }} cards--2{{ else if eq (len .Pages) 4 }} cards--4{{ end }}">
+      {{ range .Pages.ByWeight }}
+      <a class="card" href="{{ .RelPermalink }}">
+        <div class="card__title">{{ .LinkTitle }}</div>
+        <p class="card__text">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 120 }}{{ end }}</p>
+      </a>
+      {{ end }}
+    </div>
+  </main>
 </div>
 {{ end }}

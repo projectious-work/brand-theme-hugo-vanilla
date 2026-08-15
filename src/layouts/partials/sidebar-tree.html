@@ -1,11 +1,19 @@
-<ul class="sidebar__list">
-{{ range .pages.ByWeight }}
-  {{ $isCurrent := eq .RelPermalink $.current.RelPermalink }}
-  <li class="sidebar__item">
-    <a href="{{ .RelPermalink }}" class="sidebar__link{{ if $isCurrent }} is-current{{ end }}">{{ .LinkTitle }}</a>
-    {{ if .Pages }}
-      {{ partial "sidebar-tree.html" (dict "pages" .Pages "current" $.current) }}
-    {{ end }}
-  </li>
+{{- /* Expands sections up to params.sidebarOpenDepth (default 1), plus every
+       ancestor of the current page regardless of depth. 0 collapses everything
+       that is not on the current path. */ -}}
+{{ $current := .current }}{{ $level := .level }}
+{{ $depth := 1 }}{{ if isset site.Params "sidebaropendepth" }}{{ $depth = site.Params.sidebarOpenDepth }}{{ end }}
+{{ range .page.Pages.ByWeight }}
+  {{ if .IsSection }}
+    {{ $open := or (eq . $current) ($current.IsDescendant .) (lt $level $depth) }}
+    <details{{ if $open }} open{{ end }}>
+      <summary>{{ partial "icon.html" (dict "name" "chevron-right" "class" "ico--sm") }}<span>{{ .LinkTitle }}</span></summary>
+      <div>
+        <a href="{{ .RelPermalink }}"{{ if eq . $current }} aria-current="page"{{ end }}>{{ i18n "overview" }}</a>
+        {{ partial "sidebar-tree.html" (dict "page" . "current" $current "level" (add $level 1)) }}
+      </div>
+    </details>
+  {{ else }}
+    <a href="{{ .RelPermalink }}"{{ if eq . $current }} aria-current="page"{{ end }}>{{ .LinkTitle }}</a>
+  {{ end }}
 {{ end }}
-</ul>
