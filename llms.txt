@@ -1,18 +1,42 @@
 # projectious.work
 
-> Documentation and examples for the projectious.work Hugo theme.
+> Documentation, blog and marketing pages on the projectious.work brand system.
 
-Product: brand-theme-hugo-vanilla 0.2.4
-Module: github.com/projectious-work/brand-theme-hugo-vanilla
+Version: v0.3
 
-## Canonical references
 
-- [Getting started](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/getting-started/)
-- [Theme contract](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/reference/)
-- [Configuration](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/configuration/)
-- [Content model](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/content-model/)
-- [Shortcodes](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/shortcodes/)
-- [Brand provenance and fonts](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/brand-and-fonts/)
-- [Changelog](https://projectious-work.github.io/brand-theme-hugo-vanilla/changelog/)
-- [Full AI-readable guide](https://projectious-work.github.io/brand-theme-hugo-vanilla/llms-full.txt)
-- [Repository licence](https://github.com/projectious-work/brand-theme-hugo-vanilla/blob/main/LICENSE)
+## Documentation
+
+Install the theme, structure your content, and use the shortcode set.
+
+- [Deploying your first pipeline](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/guides/deploying-a-pipeline/): Define a pipeline, attach a policy check, and run it end to end.
+- [Getting started](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/getting-started/): Install the theme as a Hugo Module and build the first page.
+- [Shortcodes](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/shortcodes/): Every component the theme ships, with the Markdown that produces it.
+- [Writing a policy](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/guides/writing-a-policy/): Express a rule set once, version it, and attach it anywhere.
+- [Configuration](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/configuration/): Site parameters the theme reads, and what each one changes.
+- [Recordings and math](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/recordings/): Terminal recordings, LaTeX, and the raw-Markdown affordances.
+
+## Arbeit neu gestalten
+
+- [Erste Pipeline ausrollen](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/guides/pipeline-ausrollen/): Pipeline definieren, Policy-Prüfung zuordnen und den Durchlauf starten.
+- [Erste Schritte](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/getting-started/): Theme als Hugo-Modul einbinden und die erste Seite bauen.
+- [Policy schreiben](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/guides/policy-schreiben/): Ein Regelwerk einmal formulieren, versionieren und überall zuordnen.
+- [Shortcodes](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/shortcodes/): Alle Komponenten des Themes, mit dem Markdown, das sie erzeugt.
+- [Konfiguration](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/configuration/): Parameter, die das Theme liest, und was sie jeweils bewirken.
+- [Aufzeichnungen und Formeln](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/aufzeichnungen/): Terminal-Aufzeichnungen, LaTeX und die Markdown-Werkzeuge.
+- [v0.3.0 — versionierte Laufzeiten, gefilterte Suche, Befehlspalette](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/blog/release-v0-3-0/): Laufzeit-Assets sind exakt versioniert, die Suche indexiert Überschriften, und alle Seitenaktionen stehen in einer Zeile.
+- [v0.2.0 — Navy-Dunkelmodus und die Barrierefreiheits-Ebene](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/blog/release-v0-2-0/): Der Dunkelmodus wechselt auf die Midnight-Skala, und alle Einstellungen sind opt-in.
+- [Suche](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/search/)
+- [Über](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/about/): Was dieses Theme ist und was es bewusst weglässt.
+
+## Blog
+
+Release notes for the theme.
+
+- [v0.3.0 — pinned runtimes, section-filtered search, command palette](https://projectious-work.github.io/brand-theme-hugo-vanilla/blog/release-v0-3-0/): Runtime assets are version-pinned, search indexes headings, and every page action sits in one row.
+- [v0.2.0 — navy dark mode and the accessibility layer](https://projectious-work.github.io/brand-theme-hugo-vanilla/blog/release-v0-2-0/): Dark mode moves onto the midnight scale, and every accessibility setting became opt-in.
+
+## Optional
+
+- [About](https://projectious-work.github.io/brand-theme-hugo-vanilla/about/)
+- [Search](https://projectious-work.github.io/brand-theme-hugo-vanilla/search/)

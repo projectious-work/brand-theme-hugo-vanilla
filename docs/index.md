@@ -1,23 +1,14 @@
----
-title: "Theme documentation"
-url: "https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/"
-description: "Install, configure, write, extend, and ship the projectious.work Hugo theme."
----
+# Documentation
+
+> Install the theme, structure your content, and use the shortcode set.
 
 
-This documentation is both a guide and a working example of the dedicated
-documentation layout: section navigation on the left, readable content in the
-middle, and an in-page table of contents on wide screens.
-
-Start with **Getting started**, then read **Content model** before using the
-complete **Shortcode reference**.
+Start with **Getting started**, then skim the shortcode gallery — it doubles as
+the visual reference for every component in the theme.
 
 
-- [Getting started](/brand-theme-hugo-vanilla/docs/getting-started/)
-- [Content model](/brand-theme-hugo-vanilla/docs/content-model/)
-- [Configuration](/brand-theme-hugo-vanilla/docs/configuration/)
-- [Shortcode reference](/brand-theme-hugo-vanilla/docs/shortcodes/)
-- [Brand provenance and fonts](/brand-theme-hugo-vanilla/docs/brand-and-fonts/)
-- [Theme contract reference](/brand-theme-hugo-vanilla/docs/reference/)
-- [AI discovery and product MCP](/brand-theme-hugo-vanilla/docs/ai-and-mcp/)
-
+- [Getting started](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/getting-started/index.md) — Install the theme as a Hugo Module and build the first page.
+- [Shortcodes](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/shortcodes/index.md) — Every component the theme ships, with the Markdown that produces it.
+- [Configuration](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/configuration/index.md) — Site parameters the theme reads, and what each one changes.
+- [Guides](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/guides/index.md) — Task-shaped walkthroughs. Nested sections collapse in the sidebar.
+- [Recordings and math](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/recordings/index.md) — Terminal recordings, LaTeX, and the raw-Markdown affordances.
