@@ -3,6 +3,7 @@
 baseURL = "https://projectious-work.github.io/brand-theme-hugo-vanilla/"
 title = "projectious.work"
 defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
 enableRobotsTXT = true
 enableGitInfo = true
 

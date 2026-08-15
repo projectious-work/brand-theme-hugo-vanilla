@@ -9,7 +9,7 @@
     <details{{ if $open }} open{{ end }}>
       <summary>{{ partial "icon.html" (dict "name" "chevron-right" "class" "ico--sm") }}<span>{{ .LinkTitle }}</span></summary>
       <div>
-        <a href="{{ .RelPermalink }}"{{ if eq . $current }} aria-current="page"{{ end }}>{{ i18n "overview" }}</a>
+        <a href="{{ .RelPermalink }}"{{ if eq . $current }} aria-current="page"{{ end }}>{{ .Params.overviewTitle | default (i18n "overview") }}</a>
         {{ partial "sidebar-tree.html" (dict "page" . "current" $current "level" (add $level 1)) }}
       </div>
     </details>
