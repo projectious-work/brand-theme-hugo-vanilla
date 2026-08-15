@@ -102,6 +102,11 @@ test("generated data, navigation and template contracts are valid", async ({ pag
   await expect(
     page.locator("code.language-md").filter({ hasText: '```toml {filename="hugo.toml"' }),
   ).toBeVisible();
+  await expect(page.getByRole("link", { name: "Code blocks feature guide" })).toBeVisible();
+
+  await page.goto("docs/features/code-blocks/");
+  await expect(page.getByRole("heading", { name: "Per-block options" })).toBeVisible();
+  await expect(page.getByRole("cell", { name: "anchorlinenos=true" })).toBeVisible();
 });
 
 test("landing and wide documentation rails align", async ({ page }, testInfo) => {

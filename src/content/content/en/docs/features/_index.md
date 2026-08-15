@@ -41,7 +41,8 @@ See [Search](search.md), [Tags](tags.md) and [Versioned documentation](versionin
 - Pre-converted Jupyter notebook output and responsive images
 
 Continue with the [content authoring guide](../guides/_index.md) and
-[shortcode reference](../shortcodes.md).
+[Code blocks](code-blocks.md), then use the [shortcode reference](../shortcodes.md)
+for richer components.
 
 ## Operations
 
