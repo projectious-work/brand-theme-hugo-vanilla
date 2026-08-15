@@ -4,10 +4,10 @@ kind: WorkItem
 metadata:
   id: BACK-20260815_1831-HelpfulLeaf-fix-theme-presentation-and-user-guidance
   created: '2026-08-15T18:31:01+00:00'
-  updated: '2026-08-15T18:42:53+00:00'
+  updated: '2026-08-15T18:44:25+00:00'
 spec:
   title: Fix theme presentation defects and complete user guidance
-  state: review
+  state: done
   type: story
   priority: high
   description: Correct adaptive terminal, code, Mermaid, notebook and list rendering;
@@ -16,6 +16,7 @@ spec:
     safe upstream-update maintenance helper; update landing copy; and prepare an upstream
     defect briefing.
   started_at: '2026-08-15T18:42:49+00:00'
+  completed_at: '2026-08-15T18:44:25+00:00'
 ---
 
 ## Transition note (2026-08-15T18:42:49+00:00)
@@ -26,3 +27,8 @@ Implemented adaptive technical panels, list markers, documentation expansions, T
 ## Transition note (2026-08-15T18:42:53+00:00)
 
 Full deterministic verification passed with artifact 6fc64678305b29e9e734cb6db3450cb4190f2c512b9391efe7895bea16729860; 13 browser tests passed and 5 project-specific cases were skipped.
+
+
+## Transition note (2026-08-15T18:44:25+00:00)
+
+Merged through pull request #27 as squash commit 666d912 after deterministic verification.
