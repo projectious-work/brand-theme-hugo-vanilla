@@ -33,10 +33,12 @@ for required in index.html index.json docs/index.html search/index.html; do
   }
 done
 
-rg -q 'katex@0\.18\.4' "$VERIFY_DIR/build-a/docs/recordings/index.html"
-rg -q 'mermaid@11\.16\.1' "$VERIFY_DIR/build-a/docs/shortcodes/index.html"
-rg -q 'cdn-url.html.*asciinema' \
-  "$ROOT_DIR/src/layouts/shortcodes/asciinema.html"
+rg -q 'katex@0\.18\.4' "$VERIFY_DIR/build-a/docs/guides/index.html"
+rg -q 'mermaid@11\.16\.1' "$VERIFY_DIR/build-a/docs/guides/index.html"
+rg -q 'asciinema-player@3\.17\.0' \
+  "$VERIFY_DIR/build-a/docs/guides/index.html"
+rg -q '/brand-theme-hugo-vanilla/casts/theme-tour\.cast' \
+  "$VERIFY_DIR/build-a/docs/guides/index.html"
 
 hash_tree() {
   find "$1" -type f -print0 \

@@ -8,7 +8,7 @@
 {{ end -}}
 <div class="cast" id="cast-{{ .Ordinal }}"></div>
 <script>
-  AsciinemaPlayer.create({{ $src }}, document.getElementById("cast-{{ .Ordinal }}"), {
+  AsciinemaPlayer.create({{ $src | jsonify | safeJS }}, document.getElementById("cast-{{ .Ordinal }}"), {
     cols: {{ .Get "cols" | default 100 }},
     rows: {{ .Get "rows" | default 22 }},
     idleTimeLimit: {{ .Get "idleTimeLimit" | default 2 }},

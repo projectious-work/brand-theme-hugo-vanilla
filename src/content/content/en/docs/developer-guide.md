@@ -1,0 +1,86 @@
++++
+title = "Developer guide"
+description = "Adapt the theme, swap bundled assets, run tests and contribute changes safely."
+weight = 60
+icon = "file-code"
++++
+
+Theme consumers should override files through Hugo Modules or their project layout
+instead of editing a cached module. Contributors to this repository work below
+`src/`; release and deployment scripts intentionally remain outside that tree.
+
+## Repository structure
+
+```text
+src/assets/       CSS, JavaScript and inline SVG icons
+src/layouts/      Hugo templates, partials, render hooks and shortcodes
+src/i18n/         interface translations
+src/data/         glossary and pinned runtime metadata
+src/static/       fonts, logos and licences
+src/content/      executable multilingual example site
+scripts/          local build, verification, release and deployment commands
+tests/browser/    Playwright behavior and visual baselines
+```
+
+## Override or adapt a template
+
+Hugo's lookup order gives the consuming site's `layouts/` precedence over module
+templates. Copy only the partial or template you need to change and preserve its
+public parameters. This limits the merge work required during upgrades.
+
+CSS variables in `brand-tokens.css` are the stable styling surface. Put site-level
+overrides in a later stylesheet rather than changing component selectors whenever
+possible.
+
+## Bundled icons
+
+The complete bundled set is:
+
+`accessible`, `alert-circle`, `alert-triangle`, `arrow-left`, `arrow-right`,
+`book`, `brand-github`, `check`, `chevron-down`, `chevron-left`, `chevron-right`,
+`chevron-up`, `circle-check`, `clock`, `copy`, `device-desktop`, `external-link`,
+`file`, `file-code`, `folder`, `info-circle`, `language`, `list`, `menu-2`, `moon`,
+`pencil`, `player-play`, `printer`, `search`, `star`, `sun`, `tag`, `thumb-down`,
+`thumb-up`, `versions` and `x`.
+
+The source files and licence notes are in
+[`src/assets/icons/`](https://github.com/projectious-work/brand-theme-hugo-vanilla/tree/main/src/assets/icons).
+Use a name with `{{</* icon "search" */>}}` or front-matter `icon = "search"`.
+
+To swap the library, replace SVG files while keeping filenames used by templates,
+or add new files and update content. SVGs must use `currentColor`, a compatible
+`viewBox`, and no scripts or external references. Keep licence attribution with
+the distributed assets.
+
+## Swap fonts or runtime assets
+
+Font faces live in `src/static/fonts/`; declarations live in `fonts.css`. Replace
+both files and licence documents together, then test layout at 200% text size.
+
+KaTeX, Mermaid and asciinema pins live in `src/data/cdn.yaml`. For offline hosting,
+mirror the exact file structure below `static/vendor/` and enable
+`params.selfHostAssets`. See [Dependencies and SBOM](dependencies.md).
+
+## Build and test
+
+```sh
+npm install
+./scripts/build.sh
+./scripts/verify.sh
+./scripts/serve-watch.sh start
+```
+
+`build.sh` performs two Hugo passes because Tailwind consumes Hugo's generated
+class inventory. `verify.sh` compares two output trees, validates base-path links
+and runs Playwright at desktop and mobile sizes.
+
+When an intentional visual change fails a snapshot, inspect the actual and diff
+images first. Only then run `npx playwright test --update-snapshots` and review the
+new files.
+
+## Contribute
+
+Create a short-lived branch from `main`, use Conventional Commits, add tests for
+behavior changes, run verification locally and open a pull request referencing its
+work item. Do not add GitHub Actions: this repository's release policy is explicitly
+local-only. See the root `CONTRIBUTING.md` for the complete workflow.

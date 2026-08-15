@@ -1,8 +1,8 @@
 +++
 title = "Dokumentation"
-description = "Theme installieren, Inhalte strukturieren, Shortcodes verwenden."
+description = "Theme installieren, konfigurieren, verwenden, erweitern und aktualisieren."
 weight = 10
 +++
 
-Die Struktur folgt der englischen Fassung. Übersetzte Seiten liegen unter
-`content/de/`.
+Beginnen Sie mit **Erste Schritte**. Konfigurieren Sie anschließend die Website,
+bevor Sie Inhalte mit dem Autorenleitfaden erstellen.
