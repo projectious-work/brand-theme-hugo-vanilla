@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="{{ site.Language.Locale }}"{{ with site.Params.codeTheme }} data-code="{{ . }}"{{ end }}>
+<html lang="{{ .Language.Locale }}" dir="{{ or .Language.Direction "ltr" }}"{{ with site.Params.codeTheme }} data-code="{{ . }}"{{ end }}>
 <head>
 {{ partial "head.html" . }}
-{{ with resources.Get "css/print.css" }}{{ $p := . | minify | fingerprint }}<link rel="stylesheet" href="{{ $p.RelPermalink }}" media="print">{{ end }}
+{{ with resources.Get "css/print.css" }}{{ $p := . | minify | fingerprint "sha384" }}<link rel="stylesheet" href="{{ $p.RelPermalink }}" integrity="{{ $p.Data.Integrity }}" media="print">{{ end }}
 </head>
 <body>
   {{- /* Repeated at the top of every printed sheet via position: running(). */ -}}
@@ -27,5 +27,6 @@
     </article>
     {{ end }}
   </main>
+  {{ partial "mermaid-loader.html" . }}
 </body>
 </html>

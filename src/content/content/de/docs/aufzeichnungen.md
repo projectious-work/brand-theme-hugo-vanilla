@@ -15,8 +15,8 @@ Mit `asciinema rec static/casts/deploy.cast` aufnehmen, dann einbinden:
 {{</* asciinema src="/casts/deploy.cast" rows="18" idleTimeLimit="1.5" */>}}
 ```
 
-Der Shortcode lädt den exakt versionierten asciinema-player 3.17.0 von jsDelivr.
-Mit `params.selfHostAssets = true` wird stattdessen ein lokaler Spiegel verwendet.
+Der Player wird von einer in `data/cdn.yaml` festgelegten CDN-Version geladen. Die
+`.cast`-Datei liegt im Page Bundle oder unter `static/casts/`.
 
 {{< callout type="note" title="Kein Autoplay" >}}
 Das Markensystem schließt Autoplay aus. Aufzeichnungen starten auf Klick.

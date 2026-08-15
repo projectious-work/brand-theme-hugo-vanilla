@@ -10,7 +10,7 @@
           <input type="search" autofocus placeholder="{{ i18n "searchPlaceholder" }}" aria-label="{{ i18n "search" }}">
         </div>
         <div class="filters">
-          {{ range site.Sections.ByWeight }}
+          {{ range site.Home.Sections.ByWeight }}
           <button type="button" data-section-filter="{{ .Section }}" aria-pressed="false">{{ .LinkTitle }} <span data-count></span></button>
           {{ end }}
         </div>

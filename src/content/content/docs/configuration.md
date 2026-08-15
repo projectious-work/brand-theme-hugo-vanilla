@@ -157,7 +157,9 @@ The theme reads five beyond HTML. Copy the blocks from `hugo.toml`:
 
 KaTeX, Mermaid and the asciinema player load from **pinned CDN versions** declared
 in `data/cdn.yaml` — exact versions, never a floating major, so a reviewed build
-cannot change underneath you.
+cannot change underneath you. There are no integrity hashes on these three: both
+KaTeX and asciinema fetch sibling files at runtime, which a hash on the entry file
+cannot cover. Theme-owned CSS and JS are hashed, because Hugo computes those itself.
 
 ```yaml {filename="data/cdn.yaml"}
 mermaid:

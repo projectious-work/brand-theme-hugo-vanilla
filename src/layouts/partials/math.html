@@ -1,7 +1,18 @@
-{{- /* KaTeX, pinned. Delimiters cover $…$, $$…$$ and the \(…\) / \[…\] pairs
-       Goldmark's passthrough extension preserves. */ -}}
-{{- $delims := "delimiters:[{left:'$$',right:'$$',display:true},{left:'\\\\[',right:'\\\\]',display:true},{left:'$',right:'$',display:false},{left:'\\\\(',right:'\\\\)',display:false}],throwOnError:false" -}}
+{{- /* KaTeX, pinned in data/cdn.yaml.
+
+       The delimiter list is DATA, serialised with jsonify — writing it as a Go
+       string literal meant every backslash had to survive template quoting and
+       then JS quoting, and \( and \[ arrived in the browser as ( and [ with the
+       backslash stripped. Building it as a slice removes that class of bug. */ -}}
+{{- $bs := "\u005c" | printf "%s" -}}
+{{- $delims := slice
+  (dict "left" "$$" "right" "$$" "display" true)
+  (dict "left" (printf "%s[" $bs) "right" (printf "%s]" $bs) "display" true)
+  (dict "left" "$" "right" "$" "display" false)
+  (dict "left" (printf "%s(" $bs) "right" (printf "%s)" $bs) "display" false) -}}
+{{- $opts := dict "delimiters" $delims "throwOnError" false -}}
 {{- $cross := cond (eq site.Params.selfHostAssets true) "" "anonymous" -}}
 <link rel="stylesheet" href="{{ partial "cdn-url.html" (dict "pkg" "katex" "file" "css") }}"{{ with $cross }} crossorigin="{{ . }}"{{ end }}>
 <script defer src="{{ partial "cdn-url.html" (dict "pkg" "katex" "file" "js") }}"{{ with $cross }} crossorigin="{{ . }}"{{ end }}></script>
-<script defer src="{{ partial "cdn-url.html" (dict "pkg" "katex" "file" "autorender") }}"{{ with $cross }} crossorigin="{{ . }}"{{ end }} onload="renderMathInElement(document.body,{ {{- $delims | safeJS -}} })"></script>
+<script id="katex-options" type="application/json">{{ $opts | jsonify | safeJS }}</script>
+<script defer src="{{ partial "cdn-url.html" (dict "pkg" "katex" "file" "autorender") }}"{{ with $cross }} crossorigin="{{ . }}"{{ end }} onload="renderMathInElement(document.body, JSON.parse(document.getElementById('katex-options').textContent))"></script>

@@ -96,6 +96,11 @@ exact version URLs declared in `src/data/cdn.yaml`. Set
 `static/vendor/<package>/` for deployments that prohibit public CDNs. Nothing
 is downloaded or locally bundled by the theme build.
 
+These CDN resources do not claim Subresource Integrity: KaTeX and asciinema are
+multi-file runtimes that fetch sibling assets, so hashing only an entry file
+would not provide complete integrity. Theme-owned CSS and JavaScript are
+fingerprinted with integrity metadata by Hugo Pipes.
+
 The bundled icon and font assets do not make third-party requests.
 
 See [TESTING.md](TESTING.md) for the upstream assertion checklist and known

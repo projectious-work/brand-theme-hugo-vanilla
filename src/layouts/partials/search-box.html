@@ -1,4 +1,4 @@
-{{ if not (eq site.Params.search false) }}
+{{ if ne site.Params.search false }}
 <div class="searchbox" data-search data-empty="{{ i18n "noResults" }}">
   {{ partial "icon.html" (dict "name" "search" "class" "ico--sm") }}
   <input type="search" placeholder="{{ i18n "searchPlaceholder" }}" aria-label="{{ i18n "search" }}" autocomplete="off">

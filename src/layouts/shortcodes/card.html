@@ -1,13 +1,23 @@
-{{- /* No .Inner: referencing it would make Hugo demand a closing tag on every
-       call, and cards are written as leaf shortcodes. Body text is "subtitle",
-       which is rendered as Markdown so links and code spans still work. */ -}}
+{{- /* Unpaired shortcode — never references .Inner, so Hugo does not demand a
+       closing tag. Body text is "subtitle", rendered as Markdown.
+
+       The linked and unlinked forms are written out separately: <{{ $tag }}> puts a
+       template hole in tag position, which Hugo escapes into text rather than
+       rendering as an element. */ -}}
 {{- $link := .Get "link" -}}
-{{- $tag := cond (ne $link nil) "a" "div" -}}
-{{- $open := printf "<%s class=\"card\"" $tag -}}
-{{- with $link }}{{ $open = printf "%s href=\"%s\"" $open (partial "url.html" .) }}{{ end -}}
-{{ printf "%s>" $open | safeHTML }}
-  {{ with .Get "image" }}<div class="card__media"><img src="{{ partial "url.html" . }}" alt="{{ $.Get "alt" | default "" }}" loading="lazy"></div>{{ end }}
-  {{ with .Get "icon" }}<div class="card__icon">{{ partial "icon.html" (dict "name" . "class" "ico--lg") }}</div>{{ end }}
-  {{ with .Get "title" }}<div class="card__title">{{ . }}</div>{{ end }}
-  {{ with .Get "subtitle" }}<p class="card__text">{{ . | $.Page.RenderString }}</p>{{ end }}
-{{ printf "</%s>" $tag | safeHTML }}
+{{- $icon := .Get "icon" }}{{ $image := .Get "image" }}{{ $title := .Get "title" }}{{ $sub := .Get "subtitle" -}}
+{{- if $link -}}
+<a class="card" href="{{ partial "url.html" (dict "url" $link "page" .Page) }}">
+  {{ with $image }}<div class="card__media"><img src="{{ partial "url.html" . }}" alt="{{ $.Get "alt" | default "" }}" loading="lazy"></div>{{ end }}
+  {{ with $icon }}<div class="card__icon">{{ partial "icon.html" (dict "name" . "class" "ico--lg") }}</div>{{ end }}
+  {{ with $title }}<div class="card__title">{{ . }}</div>{{ end }}
+  {{ with $sub }}<p class="card__text">{{ . | $.Page.RenderString }}</p>{{ end }}
+</a>
+{{- else -}}
+<div class="card">
+  {{ with $image }}<div class="card__media"><img src="{{ partial "url.html" . }}" alt="{{ $.Get "alt" | default "" }}" loading="lazy"></div>{{ end }}
+  {{ with $icon }}<div class="card__icon">{{ partial "icon.html" (dict "name" . "class" "ico--lg") }}</div>{{ end }}
+  {{ with $title }}<div class="card__title">{{ . }}</div>{{ end }}
+  {{ with $sub }}<p class="card__text">{{ . | $.Page.RenderString }}</p>{{ end }}
+</div>
+{{- end -}}

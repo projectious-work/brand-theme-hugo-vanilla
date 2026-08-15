@@ -1,6 +1,6 @@
 {{- /* Tag chips. The term page's own RelPermalink carries the site's base path,
-       so a project-scoped deployment (GitHub Pages) keeps working — a literal
-       "/tags/x/" escapes the prefix and 404s. Terms with no page are skipped. */ -}}
+       so a project-scoped deployment keeps working. Terms with no page render as
+       plain text rather than a dead link. */ -}}
 {{- with .Params.tags }}
 <span class="taglist">
   {{- range . -}}

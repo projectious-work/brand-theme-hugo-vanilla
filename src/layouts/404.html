@@ -4,8 +4,8 @@
   <h1>{{ i18n "notFoundTitle" }}</h1>
   <p class="lede">{{ i18n "notFoundBody" }}</p>
   <div class="hero__ctas" style="justify-content:center">
-    <a class="btn btn--primary" href="{{ site.Home.RelPermalink }}">{{ i18n "backHome" }}</a>
-    <a class="btn btn--secondary" href="{{ partial "url.html" "/search/" }}">{{ i18n "search" }}</a>
+    <a class="btn btn--primary" href="{{ partial "url.html" "" }}">{{ i18n "backHome" }}</a>
+    {{ if ne site.Params.search false }}<a class="btn btn--secondary" href="{{ partial "url.html" "search/" }}">{{ i18n "search" }}</a>{{ end }}
   </div>
 </main>
 {{ end }}

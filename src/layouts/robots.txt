@@ -2,7 +2,7 @@
        content that already has a canonical page. */ -}}
 User-agent: *
 Allow: /
-Disallow: {{ partial "url.html" "/search/" }}
+Disallow: {{ partial "url.html" "search/" }}
 Disallow: *print.html
 {{ range site.Home.AllTranslations }}{{ if ne .Language.Lang site.Home.Language.Lang }}Disallow: {{ printf "%ssearch/" .RelPermalink }}
 {{ end }}{{ end }}
