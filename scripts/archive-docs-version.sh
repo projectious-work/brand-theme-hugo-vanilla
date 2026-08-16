@@ -6,6 +6,7 @@ VERSION="${1:-}"
 DEST_DIR="${2:-}"
 SOURCE_DIR="$ROOT_DIR/.deploy/worktrees/docs-$VERSION"
 BASE_URL="https://projectious-work.github.io/brand-theme-hugo-vanilla/$VERSION/"
+ARCHIVE_CONFIG="$SOURCE_DIR/src/content/hugo.toml,$ROOT_DIR/scripts/docs-versions.toml"
 
 [[ "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || {
   echo "usage: scripts/archive-docs-version.sh vX.Y.Z destination" >&2
@@ -30,10 +31,12 @@ trap cleanup EXIT
 ln -s "$ROOT_DIR/node_modules" "$SOURCE_DIR/node_modules"
 
 build_archive() {
-  PATH="$ROOT_DIR/node_modules/.bin:$PATH" hugo \
+  HUGO_PARAMS_VERSION="$VERSION" \
+    PATH="$ROOT_DIR/node_modules/.bin:$PATH" hugo \
     --source "$SOURCE_DIR/src/content" \
     --destination "$DEST_DIR" \
     --baseURL "$BASE_URL" \
+    --config "$ARCHIVE_CONFIG" \
     --cacheDir "$ROOT_DIR/.deploy/cache/docs-$VERSION" \
     --cleanDestinationDir \
     --gc \

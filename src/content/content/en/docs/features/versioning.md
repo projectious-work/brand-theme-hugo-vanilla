@@ -45,8 +45,10 @@ Set `params.versionProbe = false`, or `probe = false` on one entry, when version
 have different structures. Older builds display a banner linking to the first
 configured version.
 
-This repository lists archived tags in `scripts/docs-archives.txt`. The deployment
-script rebuilds every listed immutable tag below its matching prefix before it
-publishes the current root, so a clean checkout reproduces the complete version
-menu without relying on state left by an earlier deployment. Consumers can use the
-same pattern or retain their archived generated trees by another deployment method.
+This repository lists archived tags in `scripts/docs-archives.txt` and the complete
+cross-version navigation catalog in `scripts/docs-versions.toml`. The deployment
+script rebuilds every listed immutable tag below its matching prefix and injects
+the current catalog before it publishes the current root. A clean checkout thus
+reproduces the complete version menu in every archived site without relying on
+state left by an earlier deployment. Consumers can use the same pattern or retain
+their archived generated trees by another deployment method.
