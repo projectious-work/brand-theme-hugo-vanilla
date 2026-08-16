@@ -1,13 +1,19 @@
 /* Brand fonts, bundled. No CDN request at page load.
    Plus Jakarta Sans · Source Sans 3 · IBM Plex Mono — all SIL OFL 1.1.
    Licences: /fonts/licenses/. Set params.fonts = "system" to skip these. */
-@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/plus-jakarta-sans/plus-jakarta-sans-latin-400-normal.woff2") format("woff2")}
-@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:500;font-display:swap;src:url("/fonts/plus-jakarta-sans/plus-jakarta-sans-latin-500-normal.woff2") format("woff2")}
-@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:600;font-display:swap;src:url("/fonts/plus-jakarta-sans/plus-jakarta-sans-latin-600-normal.woff2") format("woff2")}
-@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:700;font-display:swap;src:url("/fonts/plus-jakarta-sans/plus-jakarta-sans-latin-700-normal.woff2") format("woff2")}
-@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:800;font-display:swap;src:url("/fonts/plus-jakarta-sans/plus-jakarta-sans-latin-800-normal.woff2") format("woff2")}
-@font-face{font-family:"Source Sans 3";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/source-sans-3/source-sans-3-latin-400-normal.woff2") format("woff2")}
-@font-face{font-family:"Source Sans 3";font-style:normal;font-weight:500;font-display:swap;src:url("/fonts/source-sans-3/source-sans-3-latin-500-normal.woff2") format("woff2")}
-@font-face{font-family:"Source Sans 3";font-style:normal;font-weight:600;font-display:swap;src:url("/fonts/source-sans-3/source-sans-3-latin-600-normal.woff2") format("woff2")}
-@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:400;font-display:swap;src:url("/fonts/ibm-plex-mono/ibm-plex-mono-latin-400-normal.woff2") format("woff2")}
-@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:500;font-display:swap;src:url("/fonts/ibm-plex-mono/ibm-plex-mono-latin-500-normal.woff2") format("woff2")}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/plus-jakarta-sans/plus-jakarta-sans-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/plus-jakarta-sans/plus-jakarta-sans-latin-500-normal.woff2") format("woff2")}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:600;font-display:swap;src:url("../fonts/plus-jakarta-sans/plus-jakarta-sans-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/plus-jakarta-sans/plus-jakarta-sans-latin-700-normal.woff2") format("woff2")}
+@font-face{font-family:"Plus Jakarta Sans";font-style:normal;font-weight:800;font-display:swap;src:url("../fonts/plus-jakarta-sans/plus-jakarta-sans-latin-800-normal.woff2") format("woff2")}
+@font-face{font-family:"Source Sans 3";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/source-sans-3/source-sans-3-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"Source Sans 3";font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/source-sans-3/source-sans-3-latin-500-normal.woff2") format("woff2")}
+@font-face{font-family:"Source Sans 3";font-style:normal;font-weight:600;font-display:swap;src:url("../fonts/source-sans-3/source-sans-3-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/ibm-plex-mono/ibm-plex-mono-latin-400-normal.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-style:italic;font-weight:400;font-display:swap;src:url("../fonts/ibm-plex-mono/ibm-plex-mono-latin-400-italic.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/ibm-plex-mono/ibm-plex-mono-latin-500-normal.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-style:italic;font-weight:500;font-display:swap;src:url("../fonts/ibm-plex-mono/ibm-plex-mono-latin-500-italic.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:600;font-display:swap;src:url("../fonts/ibm-plex-mono/ibm-plex-mono-latin-600-normal.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-style:italic;font-weight:600;font-display:swap;src:url("../fonts/ibm-plex-mono/ibm-plex-mono-latin-600-italic.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/ibm-plex-mono/ibm-plex-mono-latin-700-normal.woff2") format("woff2")}
+@font-face{font-family:"IBM Plex Mono";font-style:italic;font-weight:700;font-display:swap;src:url("../fonts/ibm-plex-mono/ibm-plex-mono-latin-700-italic.woff2") format("woff2")}

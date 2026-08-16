@@ -17,6 +17,7 @@ build-time tools, browser-loaded libraries and bundled assets.
 | `@tailwindcss/cli` | 4.3.3 locked | npm development dependency | Compile utility CSS from Hugo build statistics | MIT |
 | Playwright test | 1.62.1 locked | npm development dependency | Browser behavior and visual regression tests | Apache-2.0 |
 | Tabler Icons | 3.31.0 locked | npm development dependency mounted into Hugo assets | Complete outline icon catalogue | MIT |
+| IBM Plex Mono font package | 5.3.0 locked | npm development source for bundled WOFF2 cuts | Code and syntax typography | SIL OFL 1.1 |
 | FlexSearch | 0.8.143 | Bundled browser asset | Local full-text search | Apache-2.0 |
 | KaTeX | 0.18.4 | Pinned CDN or self-hosted | Mathematics rendering | MIT |
 | Mermaid | 11.16.1 | Pinned CDN or self-hosted | Diagram rendering | MIT |
@@ -31,7 +32,9 @@ are in `scripts/requirements.txt`.
 ## Bundled fonts and icons
 
 Plus Jakarta Sans, Source Sans 3 and IBM Plex Mono are bundled as WOFF2 under the
-SIL Open Font License 1.1. Licence texts ship under `src/static/fonts/licenses/`.
+SIL Open Font License 1.1. IBM Plex Mono includes normal and italic cuts at 400,
+500, 600 and 700 so syntax roles use real faces rather than browser-synthesized
+weight or oblique. Licence texts ship under `src/static/fonts/licenses/`.
 The theme's fallback SVG set follows Tabler geometry. The exact Tabler dependency
 is mounted from `node_modules` during the example build; consuming sites may use
 the same mount or rely on the fallback set. See

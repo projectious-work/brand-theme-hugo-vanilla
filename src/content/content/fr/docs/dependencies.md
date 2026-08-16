@@ -11,6 +11,8 @@ icon = "list"
 | Go | 1.22 | modules |
 | Tailwind CLI | 4.3.3 | CSS |
 | Playwright | 1.62.1 | tests navigateur |
+| Tabler Icons | 3.31.0 | catalogue complet d'icônes |
+| IBM Plex Mono | 5.3.0 | fontes intégrées pour le code |
 | FlexSearch | 0.8.143 | recherche locale |
 | KaTeX | 0.18.4 | mathématiques |
 | Mermaid | 11.16.1 | diagrammes |
@@ -19,3 +21,6 @@ icon = "list"
 
 Les dépendances npm exactes sont dans `package-lock.json`, les versions navigateur
 dans `data/cdn.yaml` et les versions Python dans `scripts/requirements.txt`.
+IBM Plex Mono comprend les fontes droites et italiques de graisses 400, 500,
+600 et 700. La coloration syntaxique utilise donc de vraies fontes plutôt que
+des variantes synthétisées par le navigateur.

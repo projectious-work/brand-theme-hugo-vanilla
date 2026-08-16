@@ -1,5 +1,22 @@
 const { test, expect } = require("@playwright/test");
 
+const contrast = (foreground, background) => {
+  const luminance = (color) => {
+    const channels = color.match(/[\d.]+/g).slice(0, 3).map(Number);
+    const linear = channels.map((channel) => {
+      const value = channel / 255;
+      return value <= 0.03928
+        ? value / 12.92
+        : ((value + 0.055) / 1.055) ** 2.4;
+    });
+    return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
+  };
+  const values = [luminance(foreground), luminance(background)].sort(
+    (a, b) => b - a,
+  );
+  return (values[0] + 0.05) / (values[1] + 0.05);
+};
+
 test("landing page matches the approved theme", async ({ page }) => {
   await page.goto("./");
   await expect(page.locator("main")).toBeVisible();
@@ -74,6 +91,15 @@ test("prose markers and adaptive technical panels follow colour mode", async ({ 
       .map((role) => `<span class="${role}">${role}</span>`).join("");
     code.append(fixture);
   });
+  const selectedText = await block.locator("[data-syntax-fixture] .k").evaluate((keyword) => {
+    const range = document.createRange();
+    range.selectNodeContents(keyword);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    return selection.toString();
+  });
+  expect(selectedText).toBe("k");
   const resolvedSyntax = async () => block.evaluate((node) => {
     const fixture = node.querySelector("[data-syntax-fixture]");
     const role = (name) => {
@@ -83,6 +109,10 @@ test("prose markers and adaptive technical panels follow colour mode", async ({ 
     const panel = getComputedStyle(node);
     return {
       panel: { background: panel.backgroundColor, border: panel.borderColor },
+      selection: (() => {
+        const style = getComputedStyle(fixture.querySelector(".k"), "::selection");
+        return { background: style.backgroundColor, color: style.color };
+      })(),
       plain: role("n"), operator: role("o"), comment: role("c1"),
       keyword: role("k"), type: role("kt"), function: role("nf"),
       string: role("s"), number: role("m"), macro: role("nd"),
@@ -101,8 +131,11 @@ test("prose markers and adaptive technical panels follow colour mode", async ({ 
     macro: { weight: "400", style: "italic" },
     invalid: { weight: "600", style: "normal" },
   };
-  const expectSyntax = (actual, colors, panel) => {
+  const expectSyntax = (actual, colors, panel, selection) => {
     expect(actual.panel).toEqual(panel);
+    expect(actual.selection).toEqual(selection);
+    expect(contrast(actual.selection.color, actual.selection.background))
+      .toBeGreaterThanOrEqual(4.5);
     for (const [role, color] of Object.entries(colors)) {
       expect(actual[role]).toEqual({ color, ...faces[role] });
     }
@@ -115,7 +148,8 @@ test("prose markers and adaptive technical panels follow colour mode", async ({ 
     type: "rgb(8, 128, 78)", function: "rgb(22, 104, 216)",
     string: "rgb(201, 66, 8)", number: "rgb(148, 98, 10)",
     macro: "rgb(13, 125, 130)", invalid: "rgb(216, 20, 32)",
-  }, { background: "rgb(244, 245, 247)", border: "rgb(205, 208, 213)" });
+  }, { background: "rgb(244, 245, 247)", border: "rgb(205, 208, 213)" },
+  { background: "rgb(218, 226, 236)", color: "rgb(20, 36, 56)" });
 
   const darkColors = {
     plain: "rgb(197, 218, 240)", operator: "rgb(151, 168, 184)",
@@ -128,9 +162,26 @@ test("prose markers and adaptive technical panels follow colour mode", async ({ 
     background: "rgb(19, 30, 43)", border: "rgb(46, 75, 104)",
   };
   await page.evaluate(() => window.pwTheme.set("dark"));
-  expectSyntax(await resolvedSyntax(), darkColors, darkPanel);
+  const darkSelection = {
+    background: "rgb(32, 53, 77)", color: "rgb(197, 218, 240)",
+  };
+  expectSyntax(await resolvedSyntax(), darkColors, darkPanel, darkSelection);
   await page.evaluate(() => window.pwTheme.set("navy"));
-  expectSyntax(await resolvedSyntax(), darkColors, darkPanel);
+  expectSyntax(await resolvedSyntax(), darkColors, darkPanel, darkSelection);
+
+  const fontFaces = await page.evaluate(async () => {
+    await Promise.all([
+      document.fonts.load('italic 400 14px "IBM Plex Mono"'),
+      document.fonts.load('normal 600 14px "IBM Plex Mono"'),
+      document.fonts.load('normal 700 14px "IBM Plex Mono"'),
+    ]);
+    return {
+      italic: document.fonts.check('italic 400 14px "IBM Plex Mono"'),
+      semibold: document.fonts.check('normal 600 14px "IBM Plex Mono"'),
+      bold: document.fonts.check('normal 700 14px "IBM Plex Mono"'),
+    };
+  });
+  expect(fontFaces).toEqual({ italic: true, semibold: true, bold: true });
 });
 
 test("generated data, navigation and template contracts are valid", async ({ page, request }, testInfo) => {
@@ -230,6 +281,86 @@ test("sidebar, table of contents and all three colour modes keep their contracts
     theme: "dark", surface: "navy", page: "#132440", raised: "#1a2b3e",
     subtle: "#20354d", border: "#2e4b68", strong: "#4d7098", text: "#c5daf0",
   });
+});
+
+test("design-system component and token contracts are implemented", async ({ page }, testInfo) => {
+  test.skip(!testInfo.project.name.startsWith("desktop"));
+  await page.goto("./");
+  await page.evaluate(() => window.pwTheme.set("light"));
+
+  const tokens = await page.locator("html").evaluate(() => {
+    const css = getComputedStyle(document.documentElement);
+    const value = (name) => css.getPropertyValue(name).trim();
+    return {
+      success: [value("--color-success"), value("--color-success-bg"),
+        value("--color-success-fg")],
+      warning: [value("--color-warning"), value("--color-warning-bg"),
+        value("--color-warning-fg")],
+      danger: [value("--color-danger"), value("--color-danger-bg"),
+        value("--color-danger-fg")],
+      info: [value("--color-info"), value("--color-info-bg"),
+        value("--color-info-fg")],
+      spacing: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        .map((step) => value(`--space-${step}`)),
+      radii: ["sm", "md", "lg", "xl", "full"]
+        .map((step) => value(`--radius-${step}`)),
+      type: [value("--type-display-size"), value("--type-h1-size"),
+        value("--type-h2-size"), value("--type-h3-size"),
+        value("--type-body-size"), value("--type-caption-size"),
+        value("--type-overline-size"), value("--type-code-size")],
+      layout: [value("--container-max"), value("--grid-gutter"),
+        value("--touch-target"), value("--measure")],
+      motion: [value("--duration-micro"), value("--duration-standard"),
+        value("--duration-expand"), value("--duration-page")],
+    };
+  });
+  expect(tokens).toEqual({
+    success: ["#17945f", "#d1ebe0", "#17734c"],
+    warning: ["#ef8b0b", "#fff1e0", "#b3520c"],
+    danger: ["#d92d20", "#fce8e8", "#b3261e"],
+    info: ["#2563c9", "#dae2ec", "#2f5fa8"],
+    spacing: ["4px", "8px", "12px", "16px", "24px", "32px", "48px",
+      "64px", "96px"],
+    radii: ["3px", "6px", "9px", "13px", "9999px"],
+    type: ["calc(48px * 1)", "calc(36px * 1)", "calc(28px * 1)",
+      "calc(24px * 1)", "calc(16px * 1)", "calc(13px * 1)",
+      "calc(12px * 1)", "calc(14px * 1)"],
+    layout: ["1100px", "16px", "44px", "65ch"],
+    motion: ["100ms", "200ms", "300ms", "400ms"],
+  });
+
+  const components = await page.locator("main").evaluate((main) => {
+    const style = (selector) => getComputedStyle(main.querySelector(selector));
+    const hero = style(".hero--landing");
+    const card = style(".card");
+    const button = style(".btn--primary");
+    const icon = style(".card .ico svg");
+    return {
+      hero: { background: hero.backgroundColor, radius: hero.borderRadius },
+      heroTitle: style(".hero--landing h1").color,
+      card: { padding: card.padding, radius: card.borderRadius },
+      button: { minHeight: button.minHeight, radius: button.borderRadius,
+        family: button.fontFamily },
+      icon: { width: icon.width, stroke: icon.strokeWidth },
+    };
+  });
+  expect(components).toEqual({
+    hero: { background: "rgb(14, 23, 32)", radius: "13px" },
+    heroTitle: "rgb(255, 255, 255)",
+    card: { padding: "16px 24px", radius: "9px" },
+    button: { minHeight: "44px", radius: "6px",
+      family: '"Plus Jakarta Sans", system-ui, sans-serif' },
+    icon: { width: "24px", stroke: "1.5px" },
+  });
+  await expect(page.locator(".header__mark--light")).toBeVisible();
+  await expect(page.locator(".header__mark--dark")).toBeHidden();
+
+  await page.evaluate(() => window.pwTheme.set("dark"));
+  await expect(page.locator(".header__mark--light")).toBeHidden();
+  await expect(page.locator(".header__mark--dark")).toBeVisible();
+  await expect(page.locator(".hero--landing")).toHaveCSS(
+    "background-color", "rgb(19, 30, 43)",
+  );
 });
 
 test("landing and wide documentation rails align", async ({ page }, testInfo) => {

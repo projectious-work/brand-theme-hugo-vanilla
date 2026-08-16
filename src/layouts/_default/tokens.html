@@ -22,7 +22,7 @@
           <thead><tr><th>Namespace variable</th><th>Resolves to</th></tr></thead>
           <tbody>
           {{ with $layer }}
-            {{ range findRE `--(?:color|font|radius|spacing|breakpoint|ease)-[a-z0-9-]+:s*[^;]+;` .Content }}
+            {{ range findRE `--(?:color|font|radius|spacing|breakpoint|ease)-[a-z0-9-]+:\s*[^;]+;` .Content }}
               {{ $parts := split (strings.TrimSuffix ";" .) ":" }}
               {{ if eq (len $parts) 2 }}
               <tr>
@@ -43,7 +43,7 @@
           <thead><tr><th>Token</th><th>Value</th><th></th></tr></thead>
           <tbody>
           {{ with $tokens }}
-            {{ range findRE `--(?:color|terminal|syntax|border|surface)-[a-z0-9-]+:s*[^;]+;` .Content }}
+            {{ range findRE `--(?:color|terminal|syntax|code|border|surface|tag|shadow|elevated|rim|fixed|scrim|tint|font|type|space|radius|duration|ease|breakpoint|container|grid|touch|measure|hero|header|logo|on-solid)-[a-z0-9-]+:\s*[^;]+;` .Content }}
               {{ $parts := split (strings.TrimSuffix ";" .) ":" }}
               {{ if eq (len $parts) 2 }}
               {{ $name := trim (index $parts 0) " " }}
