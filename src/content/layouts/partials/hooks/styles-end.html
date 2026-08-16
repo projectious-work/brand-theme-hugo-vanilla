@@ -1,0 +1,4 @@
+{{- with resources.Get "scss/site.scss" -}}
+  {{- $built := . | css.Sass (dict "targetPath" "css/site.css") | minify | fingerprint "sha384" -}}
+  <link rel="stylesheet" href="{{ $built.RelPermalink }}" integrity="{{ $built.Data.Integrity }}" crossorigin="anonymous">
+{{- end -}}

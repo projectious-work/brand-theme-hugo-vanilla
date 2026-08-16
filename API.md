@@ -58,6 +58,9 @@ Declared in `assets/css/theme-layer.css` and stable:
   `child-cards.html`, `taglist.html`, `breadcrumbs.html`, `toc.html`,
   `page-tools.html`, `menu-url.html`, `is-listed.html`. Argument shapes are
   documented in each file's header comment.
+- **Asset append hooks**: `hooks/styles-end.html` and
+  `hooks/scripts-end.html`. Both are empty by default, receive the current page
+  as context, and run after the complete theme CSS or JavaScript pipeline.
 - **Shortcodes**: every name in the gallery, with its documented parameters.
 - **Front matter**: `weight`, `description`, `icon`, `toc`, `math`, `private`,
   `hidden`, `unlisted`, `cards`, `cover`, `coverAlt`, `overviewLabel`,
@@ -65,6 +68,36 @@ Declared in `assets/css/theme-layer.css` and stable:
 - **Site params**: every key in the configuration reference.
 - **Blocks**: `main` in `_default/baseof.html`.
 - **Data**: `data/cdn.yaml` and `data/glossary.yaml` keys.
+
+### Site-owned asset hooks
+
+Override only the relevant hook in the consuming site; do not copy
+`styles.html` or `scripts.html`. Because the hook is a normal Hugo partial, it
+can run Hugo Pipes and keeps working whether `params.build.tailwind` is `true`
+or `false`.
+
+`layouts/partials/hooks/styles-end.html`:
+
+```go-html-template
+{{ with resources.Get "scss/site.scss" }}
+  {{ $built := . | css.Sass (dict "targetPath" "css/site.css") | minify | fingerprint "sha384" }}
+  <link rel="stylesheet" href="{{ $built.RelPermalink }}"
+    integrity="{{ $built.Data.Integrity }}" crossorigin="anonymous">
+{{ end }}
+```
+
+`layouts/partials/hooks/scripts-end.html`:
+
+```go-html-template
+{{ with resources.Get "js/site.js" }}
+  {{ $built := . | js.Build (dict "minify" hugo.IsProduction "target" "es2018") | fingerprint "sha384" }}
+  <script src="{{ $built.RelPermalink }}" integrity="{{ $built.Data.Integrity }}"
+    crossorigin="anonymous" defer></script>
+{{ end }}
+```
+
+Place the sources at `assets/scss/site.scss` and `assets/js/site.js`. Hugo
+Extended is required for SCSS, just as it is for the theme's Tailwind pipeline.
 
 ## Internal — do not depend on these
 
