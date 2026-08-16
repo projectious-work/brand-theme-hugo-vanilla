@@ -1,6 +1,6 @@
 {
   "name": "brand-theme-hugo-vanilla",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "description": "Build dependency for the Tailwind v4 CSS pipeline. Hugo invokes the CLI through css.TailwindCSS.",
   "scripts": {

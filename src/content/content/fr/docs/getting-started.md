@@ -23,7 +23,7 @@ Tailwind, Git.
 ```sh
 hugo mod init example.com/docs
 npm install
-hugo mod get github.com/projectious-work/brand-theme-hugo-vanilla@v0.3.0
+hugo mod get github.com/projectious-work/brand-theme-hugo-vanilla@v0.3.1
 ```
 
 Copiez les blocs `[outputFormats]`, `[outputs]` et `[markup]` depuis la

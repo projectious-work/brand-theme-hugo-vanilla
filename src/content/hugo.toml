@@ -113,7 +113,7 @@ enableGitInfo = true
 
   [params.announcement]
     id = "v030"
-    text = "v0.3.0 is out — pinned runtimes, section-filtered search, command palette."
+    text = "v0.3.1 is out — revised design system, multilingual guides, reliable diagrams."
     href = "/blog/"
     label = "Read the notes"
 
