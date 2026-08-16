@@ -1,14 +1,17 @@
 # Dokumentation
 
-> Theme installieren, Inhalte strukturieren, Shortcodes verwenden.
+> Theme installieren, konfigurieren, verwenden, erweitern und aktualisieren.
 
 
-Die Struktur folgt der englischen Fassung. Übersetzte Seiten liegen unter
-`content/de/`.
+Beginnen Sie mit **Erste Schritte**. Konfigurieren Sie anschließend die Website,
+bevor Sie Inhalte mit dem Autorenleitfaden erstellen.
 
 
-- [Erste Schritte](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/getting-started/index.md) — Theme als Hugo-Modul einbinden und die erste Seite bauen.
+- [Erste Schritte](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/getting-started/index.md) — Theme installieren, erforderliche Hugo-Konfiguration ergänzen und lokal starten.
+- [Konfiguration](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/configuration/index.md) — Website-weite Einstellungen und Frontmatter einzelner Seiten.
+- [Features](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/features/index.md) — Vollständige Übersicht für Leser, Autoren und Maintainer.
+- [Leitfäden](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/guides/index.md) — Seiten, Links, Code, Diagramme, Aufzeichnungen und Notebook-Ausgaben erstellen.
 - [Shortcodes](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/shortcodes/index.md) — Alle Komponenten des Themes, mit dem Markdown, das sie erzeugt.
-- [Konfiguration](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/configuration/index.md) — Parameter, die das Theme liest, und was sie jeweils bewirken.
-- [Anleitungen](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/guides/index.md) — Aufgabenbezogene Durchläufe. Verschachtelte Abschnitte klappen in der Seitenleiste zu.
-- [Aufzeichnungen und Formeln](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/aufzeichnungen/index.md) — Terminal-Aufzeichnungen, LaTeX und die Markdown-Werkzeuge.
+- [Entwicklerleitfaden](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/developer-guide/index.md) — Theme anpassen, gebündelte Assets tauschen und Änderungen testen.
+- [Wartung und Upgrades](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/maintenance/index.md) — Theme, Abhängigkeiten, Übersetzungen und veröffentlichte Versionen pflegen.
+- [Abhängigkeiten und SBOM](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/dependencies/index.md) — Build-Werkzeuge, Browserbibliotheken, Versionen und Lizenzen.

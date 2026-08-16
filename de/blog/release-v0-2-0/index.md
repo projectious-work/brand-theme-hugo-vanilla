@@ -20,4 +20,4 @@ erhalten. Alle Einstellungen sind opt-in.
 
 
 ---
-Source: https://projectious-work.github.io/brand-theme-hugo-vanilla/de/blog/release-v0-2-0/index.md
+Quelle: https://projectious-work.github.io/brand-theme-hugo-vanilla/de/blog/release-v0-2-0/index.md

@@ -1,7 +1,8 @@
 User-agent: *
 Allow: /
-Disallow: /search/
+Disallow: /brand-theme-hugo-vanilla/search/
 Disallow: *print.html
-Disallow: /de/search/
+Disallow: /brand-theme-hugo-vanilla/de/search/
+Disallow: /brand-theme-hugo-vanilla/fr/search/
 
 Sitemap: https://projectious-work.github.io/brand-theme-hugo-vanilla/sitemap.xml

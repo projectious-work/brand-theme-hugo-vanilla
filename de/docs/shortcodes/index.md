@@ -6,14 +6,14 @@
 ## Hinweisboxen
 
 {{< callout type="info" >}}Information, die der Leser braucht, aber nicht erfragt hat.{{< /callout >}}
-{{< callout type="warning" title="Achtung" >}}Eine neue Policy-Version wirkt nicht auf laufende Durchläufe.{{< /callout >}}
-{{< callout type="error" title="Fehlgeschlagen" >}}`POLICY_NOT_FOUND` — die Version wurde gelöscht oder nie veröffentlicht.{{< /callout >}}
+{{< callout type="warning" title="Achtung" >}}Prüfen Sie externe Links vor jeder Veröffentlichung.{{< /callout >}}
+{{< callout type="error" title="Fehlgeschlagen" >}}Der Build enthält einen nicht auflösbaren Seitenverweis.{{< /callout >}}
 
 ## Karten
 
 {{< cards >}}
-  {{< card title="Pipelines" subtitle="Stufen in YAML deklarieren und unter Audit ausführen." link="/de/docs/" icon="versions" >}}
-  {{< card title="Policies" subtitle="Versionierte Regeln, pro Pipeline zugeordnet." link="/de/docs/" icon="circle-check" >}}
+  {{< card title="Konfiguration" subtitle="Parameter für Website und Seiten." link="configuration/_index.md" icon="versions" >}}
+  {{< card title="Features" subtitle="Alle Funktionen des Themes." link="features/_index.md" icon="star" >}}
 {{< /cards >}}
 
 ## Tabs
@@ -39,11 +39,11 @@ die ersten 2000 Zeichen Klartext pro Seite.
 
 ## Terminal
 
-{{< terminal title="deploy" >}}
-$ projectious run --pipeline onboarding-audit
-✓ Konfiguration gegen Schema v3.2 geprüft
-✓ Policy-Prüfung: 12 Regeln erfüllt
-● Deployment auf Staging...
+{{< terminal title="Vorschau" >}}
+$ hugo server --disableFastRender
+Watching for changes in content and layouts
+Built in 284 ms
+Web Server is available at http://localhost:1313/
 {{< /terminal >}}
 
 ## Dateibaum
@@ -62,11 +62,11 @@ $ projectious run --pipeline onboarding-audit
 {{< mermaid >}}
 flowchart LR
   A[Auslöser] --> B[Prüfung]
-  B --> C{Policy}
+  B --> C[HTML]
   C -->|erfüllt| D[Staging]
   C -->|verletzt| E[Abbruch und Meldung]
 {{< /mermaid >}}
 
 
 ---
-Source: https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/shortcodes/index.md
+Quelle: https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/shortcodes/index.md

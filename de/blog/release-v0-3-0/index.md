@@ -21,4 +21,4 @@ stehen daher in einer gemeinsamen Zeile.
 
 
 ---
-Source: https://projectious-work.github.io/brand-theme-hugo-vanilla/de/blog/release-v0-3-0/index.md
+Quelle: https://projectious-work.github.io/brand-theme-hugo-vanilla/de/blog/release-v0-3-0/index.md

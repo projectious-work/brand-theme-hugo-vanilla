@@ -1,33 +1,13 @@
 # Konfiguration
 
-> Parameter, die das Theme liest, und was sie jeweils bewirken.
+> Website-weite Einstellungen und Frontmatter einzelner Seiten.
 
 
-## Parameter
-
-| Parameter | Wirkung |
-|---|---|
-| `params.version` | Bezeichnung in der Versionsauswahl und im Footer |
-| `params.versions` | Liste aus `{label, url, note}` für die Auswahl |
-| `params.editURL` | Präfix für „Diese Seite bearbeiten“; der Seitenpfad wird angehängt |
-| `params.announcement` | Ausblendbarer Hinweisbalken über der Kopfzeile |
-| `params.search` | `false` entfernt Index, Suchfeld und `/search` |
-| `params.sidebarFilter` | `false` verbirgt das Filterfeld in der Seitenleiste |
-| `params.feedback` | `false` verbirgt das Feedback-Element |
-| `params.accessibilityMenu` | `false` verbirgt die Barrierefreiheits-Auswahl |
-| `params.build.tailwind` | `false` überspringt den Tailwind-Schritt |
-
-## Frontmatter
-
-| Schlüssel | Wirkung |
-|---|---|
-| `weight` | Reihenfolge in Seitenleiste und Vor/Zurück |
-| `description` | Einleitungsabsatz, Meta-Beschreibung, Suchindex |
-| `cover` | Titelbild für Blogliste und Beitrag |
-| `toc` | `false` verbirgt das Inhaltsverzeichnis |
-| `math` | `true` lädt KaTeX für diese Seite |
-| `private` | `true` hält die Seite aus dem Suchindex |
+[Website-weite Konfiguration](site-wide.md) beschreibt `hugo.toml`, Module,
+Ausgaben und Theme-Parameter. Die
+[Seitenkonfiguration (Frontmatter)](page-configuration.md) gilt jeweils für eine
+Markdown-Datei oder einen Bereich.
 
 
----
-Source: https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/configuration/index.md
+- [Website-weite Konfiguration](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/configuration/site-wide/index.md) — Hugo, Ausgaben, Menüs, Sprachen und Theme-Parameter konfigurieren.
+- [Seitenkonfiguration (Frontmatter)](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/configuration/page-configuration/index.md) — Navigation und optionale Funktionen einer Seite steuern.

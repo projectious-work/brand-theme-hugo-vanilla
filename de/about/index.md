@@ -10,4 +10,4 @@ Icon-CDN — der Icon-Satz liegt im Repository und wird inline eingebettet.
 
 
 ---
-Source: https://projectious-work.github.io/brand-theme-hugo-vanilla/de/about/index.md
+Quelle: https://projectious-work.github.io/brand-theme-hugo-vanilla/de/about/index.md

@@ -4,20 +4,47 @@
 
 
 Each section shows the rendered component, then the exact Markdown. Nothing here
-needs raw HTML.
+needs raw HTML — the theme ships with `unsafe = false`.
+
+{{< callout type="important" title="Markdown first" >}}
+Prose, lists, links, images, tables and code fences are ordinary Markdown. A fenced
+block already gets a filename bar, language label and copy button; an image already
+becomes a captioned, lazy-loaded figure that opens in a lightbox. Reach for a
+shortcode only where a component needs structured children.
+{{< /callout >}}
+
+## Shortcode syntax: paired and unpaired
+
+Hugo decides which form to use from the template. A shortcode whose template
+reads `.Inner` requires a closing tag; one that has no inner content must not have
+one or use an XML-style trailing slash.
+
+**Unpaired:** `card`, `file`, `icon`, `badge`, `button`, `term`, `image`,
+`notebook`, `asciinema`.
+
+**Paired:** `callout`, `cards`, `tabs`, `tab`, `steps`, `step`, `details`,
+`filetree`, `folder`, `terminal`, `mermaid`.
+
+    {{</* badge "v0.3" */>}}              <!-- unpaired -->
+    {{</* details title="Why?" */>}}      <!-- paired -->
+    It wraps content, so it closes.
+    {{</* /details */>}}
+
+Keep shortcode-syntax examples in top-level fenced or indented blocks. Content
+inside a paired shortcode is parsed again, including escaped examples.
 
 ## Callouts
 
 {{< callout type="info" >}}Information a reader needs but did not ask for.{{< /callout >}}
 {{< callout type="note" title="Note" >}}Context that supports the main line.{{< /callout >}}
-{{< callout type="success" >}}The run passed every policy check.{{< /callout >}}
-{{< callout type="warning" title="Careful" >}}Attaching a policy version does not affect runs in progress.{{< /callout >}}
-{{< callout type="error" title="Failed" >}}`POLICY_NOT_FOUND` — the version was deleted or never published.{{< /callout >}}
+{{< callout type="success" >}}The documentation build completed successfully.{{< /callout >}}
+{{< callout type="warning" title="Careful" >}}Preview configuration changes before publishing them.{{< /callout >}}
+{{< callout type="error" title="Failed" >}}The referenced page was not found.{{< /callout >}}
 {{< callout type="important" >}}Sentence case everywhere. The brand name stays lowercase.{{< /callout >}}
 
 ```md
 {{</* callout type="warning" title="Careful" */>}}
-Attaching a policy version does not affect runs in progress.
+Preview configuration changes before publishing them.
 {{</* /callout */>}}
 ```
 
@@ -25,30 +52,28 @@ Attaching a policy version does not affect runs in progress.
 
 ## Cards
 
+A section's overview cards are generated from its child pages' front matter —
+`title`, `description`, `icon`, `weight` — so you never hand-maintain a card list
+that drifts as pages come and go. Set `cards = false` in a section's front matter to
+suppress the grid, or `hidden = true` on a child to leave it out.
+
+Write cards by hand only for a set that is not a page list:
+
 {{< cards cols="2" >}}
-  {{< card title="Pipelines" subtitle="Declare stages in YAML and run them under audit." link="/docs/" icon="versions" >}}
-  {{< card title="Policies" subtitle="Versioned rules, attached per pipeline." link="/docs/" icon="circle-check" >}}
+  {{< card title="Authoring" subtitle="Write pages with Markdown and focused shortcodes." link="/docs/guides/" icon="file-code" >}}
+  {{< card title="Configuration" subtitle="Choose navigation, outputs and optional features." link="/docs/configuration/" icon="list" >}}
 {{< /cards >}}
 
 ```md
 {{</* cards cols="2" */>}}
-  {{</* card title="Pipelines" subtitle="Declare stages in YAML." link="/docs/" icon="versions" */>}}
-  {{</* card title="Policies" subtitle="Versioned rules." link="/docs/" icon="circle-check" */>}}
+  {{</* card title="Authoring" subtitle="Write pages with Markdown." link="/docs/guides/" icon="file-code" */>}}
+  {{</* card title="Configuration" subtitle="Choose site options." link="/docs/configuration/" icon="list" */>}}
 {{</* /cards */>}}
 ```
 
 `cols` is `2`, `3` (default) or `4`, so an incomplete last row keeps its width.
 `card` also takes `image` and `alt` for an image card. `subtitle` is rendered as
 Markdown, so links and code spans work inside it.
-
-{{< callout type="note" title="Leaf and paired shortcodes" >}}
-`card`, `file`, `icon`, `badge`, `button`, `term`, `image`, `notebook` and
-`asciinema` are **leaf** shortcodes — self-closing, without a matching closing
-tag. Hugo
-requires a closing tag for any shortcode whose template touches `.Inner`, so these
-deliberately do not. `callout`, `cards`, `tabs`, `tab`, `steps`, `step`,
-`details`, `filetree`, `folder`, `terminal` and `mermaid` are paired.
-{{< /callout >}}
 
 ## Tabs
 
@@ -77,25 +102,29 @@ Panel order follows tab order. Arrow keys move between tabs.
 ## Steps
 
 {{< steps >}}
-  {{< step title="Install the CLI" >}}
-Everything below assumes `projectious` is on your `PATH`.
-  {{< /step >}}
-  {{< step title="Authenticate" >}}
-One device-code flow per workspace.
-  {{< /step >}}
-  {{< step title="Run" >}}
-The first run creates the audit trail.
-  {{< /step >}}
+  {{% step title="Install Hugo" %}}
+Use the minimum version listed in the theme's README.
+  {{% /step %}}
+  {{% step title="Configure the module" %}}
+Add the theme import and required output formats.
+  {{% /step %}}
+  {{% step title="Run" %}}
+Start the local server and review the generated pages.
+  {{% /step %}}
 {{< /steps >}}
+
+A step is not limited to plain text. Its body is Markdown and may contain lists,
+code, images, callouts, or nested shortcodes such as `cards`. Use `%` delimiters
+for `step` so Hugo renders that mixed body before the step template receives it.
 
 ```md
 {{</* steps */>}}
-  {{</* step title="Install the CLI" */>}}
-Everything below assumes `projectious` is on your `PATH`.
-  {{</* /step */>}}
-  {{</* step title="Authenticate" */>}}
-One device-code flow per workspace.
-  {{</* /step */>}}
+  {{%/* step title="Install Hugo" */%}}
+Use the supported version.
+  {{%/* /step */%}}
+  {{%/* step title="Configure the module" */%}}
+Add the theme import.
+  {{%/* /step */%}}
 {{</* /steps */>}}
 ```
 
@@ -184,54 +213,81 @@ alternative; without it the glyph is `aria-hidden`.
 ## Terminal
 
 {{< terminal title="deploy" >}}
-$ projectious run --pipeline onboarding-audit
-✓ Config validated against schema v3.2
-✓ Policy check: 12 rules passed
-● Deploying to staging...
+$ hugo server --disableFastRender
+Watching for changes in content and layouts
+Built in 284 ms
+Web Server is available at http://localhost:1313/
 {{< /terminal >}}
 
 ```md
 {{</* terminal title="deploy" */>}}
-$ projectious run --pipeline onboarding-audit
-✓ Config validated against schema v3.2
+$ hugo server --disableFastRender
+Watching for changes in content and layouts
+Built in 284 ms
+Web Server is available at http://localhost:1313/
 {{</* /terminal */>}}
 ```
 
 For a plain code listing use a fenced block — the filename bar, language label and
 copy button come free, and fence options work:
 
-    ```yaml {filename="pipeline.yaml", linenos=table, hl_lines="2-3"}
-    name: onboarding-audit
-    trigger: on_document_upload
-    agent: auditor-v3
+    ```yaml {filename="navigation.yaml", linenos=table, hl_lines="2-3"}
+    title: Documentation
+    weight: 10
+    icon: book
     ```
 
 ## Terminology
 
-A {{< term "pipeline" >}} moves a run through stages; each stage is audited
-against a {{< term "policy" >}}. {{< term key="agent" label="Agents" >}} do the work.
+A {{< term "module" >}} installs the theme. A {{< term "page-bundle" >}} keeps
+page resources together, while a {{< term "shortcode" >}} adds structured markup.
 
 ```md
-A {{</* term "pipeline" */>}} moves a run through stages.
-{{</* term key="agent" label="Agents" */>}} overrides the displayed text.
+A {{</* term "module" */>}} installs the theme.
+{{</* term key="page-bundle" label="Page bundles" */>}} overrides the displayed text.
 ```
 
 Definitions live in `data/glossary.yaml`, so a wording change is one edit.
+
+## Links
+
+Ordinary Markdown links work, and internal ones resolve against the site's base
+path — so a project deployment such as GitHub Pages keeps its prefix:
+
+```md
+[Configuration](/docs/configuration/)
+```
+
+Prefer Hugo-aware references so moving a target **fails the build** instead of
+silently publishing a broken link:
+
+```md
+[Configuration](configuration/_index.md)
+[Guides](<guides/_index.md>)
+[Output formats](configuration/site-wide.md#output-formats)
+[Linking guide](guides/_index.md#link-within-and-between-pages)
+```
+
+External links get `target="_blank"`, `rel="noopener noreferrer"` and an icon
+automatically.
 
 ## Images
 
 Markdown images become figures automatically — the title becomes the caption:
 
 ```md
-![Pipeline stages](/img/pipeline.png "Stages of an audited run")
+![Documentation navigation](navigation.png "Generated navigation on a documentation page")
 ```
 
-A sibling `pipeline-dark.png` is picked up and swapped by colour mode. To be
-explicit, or to caption with Markdown:
+Prefer a **page bundle**: put `navigation.png` next to the page's `index.md` and
+reference it by name. Hugo then knows its dimensions, so the figure carries intrinsic
+width and height and the page does not shift as images load. A sibling
+`navigation-dark.png` is picked up and swapped by colour mode. To be explicit, or to
+caption with Markdown:
 
 ```md
-{{</* image src="/img/pipeline.png" src-dark="/img/pipeline-dark.png"
-       alt="Pipeline stages" caption="Stages of an *audited* run" */>}}
+{{</* image src="/img/navigation.png" src-dark="/img/navigation-dark.png"
+       alt="Documentation navigation" caption="Navigation in *both* modes" */>}}
 ```
 
 Every image in prose opens in a lightbox on click or Enter.
@@ -240,16 +296,16 @@ Every image in prose opens in a lightbox on click or Enter.
 
 {{< mermaid >}}
 flowchart LR
-  A[Trigger] --> B[Validate]
-  B --> C{Policy check}
-  C -->|pass| D[Deploy staging]
-  C -->|fail| E[Halt and report]
+  A[Markdown] --> B[Hugo]
+  B --> C[HTML]
+  B --> D[Search index]
+  B --> E[Print output]
 {{< /mermaid >}}
 
 ```md
 {{</* mermaid */>}}
 flowchart LR
-  A[Trigger] --> B[Validate]
+  A[Markdown] --> B[Hugo]
 {{</* /mermaid */>}}
 ```
 
@@ -281,10 +337,19 @@ Both `$…$`/`$$…$$` and `\(…\)`/`\[…\]` are recognised.
 {{</* asciinema src="/casts/deploy.cast" rows="18" idleTimeLimit="1.5" */>}}
 ```
 
-Record with `asciinema rec static/casts/deploy.cast`. The shortcode loads the
-exactly pinned asciinema-player 3.17.0 runtime from jsDelivr. `cols`, `rows`,
-`speed`, `idleTimeLimit`, `autoplay` and `loop` are all supported — autoplay is
-off by default, per the brand rule on motion.
+Record with `asciinema rec deploy.cast` and keep the file in the page bundle, or
+under `static/casts/`. `cols`, `rows`, `speed`, `idleTimeLimit`, `autoplay` and
+`loop` are all supported — autoplay is off by default, per the brand rule on motion.
+
+## Notebooks
+
+```md
+{{</* notebook "analysis" */>}}
+```
+
+Run `scripts/notebooks.sh` first. The shortcode looks for a page resource named
+`analysis.md` in the page bundle, then `content/_notebooks/analysis.md` — both exact,
+so duplicate basenames are an error rather than a coin flip.
 
 
 ---
