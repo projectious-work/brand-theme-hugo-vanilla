@@ -461,10 +461,10 @@ test("configuration hierarchy and generated feature overview stay complete", asy
 
   await page.goto("docs/features/");
   await expect(page.locator(".card__title")).toHaveText([
-    "Versioned documentation", "Tokens and public API", "Terminal recordings",
-    "Tailwind and design tokens", "Tags", "Search", "Mathematics",
-    "Jupyter notebooks", "Internationalization", "Header and navigation",
-    "Editing and feedback", "Diagrams", "Code blocks", "Accessibility",
+    "Accessibility", "Code blocks", "Diagrams", "Editing and feedback",
+    "Header and navigation", "Internationalization", "Jupyter notebooks",
+    "Mathematics", "Search", "Tags", "Tailwind and design tokens",
+    "Terminal recordings", "Tokens and public API", "Versioned documentation",
   ]);
 
   await page.goto("docs/features/tokens/");

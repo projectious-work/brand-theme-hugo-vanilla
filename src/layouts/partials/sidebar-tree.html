@@ -4,7 +4,7 @@
 {{ $current := .current }}{{ $level := .level }}
 {{ $depth := 1 }}{{ if isset site.Params "sidebaropendepth" }}{{ $depth = site.Params.sidebarOpenDepth }}{{ end }}
 {{ $pages := .page.Pages.ByWeight }}
-{{ if eq .page.Params.pageOrder "title-desc" }}{{ $pages = .page.Pages.ByTitle.Reverse }}{{ end }}
+{{ if eq .page.Params.pageOrder "title-asc" }}{{ $pages = .page.Pages.ByTitle }}{{ else if eq .page.Params.pageOrder "title-desc" }}{{ $pages = .page.Pages.ByTitle.Reverse }}{{ end }}
 {{ range $pages }}
   {{ if partial "is-listed.html" . }}
   {{ if .IsSection }}

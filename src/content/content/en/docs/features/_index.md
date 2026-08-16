@@ -3,7 +3,7 @@ title = "Features"
 description = "A complete map of reader, author and maintainer capabilities."
 weight = 30
 icon = "star"
-pageOrder = "title-desc"
+pageOrder = "title-asc"
 +++
 
 The cards below provide a complete map of the theme's reader, author and

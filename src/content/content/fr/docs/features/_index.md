@@ -3,7 +3,7 @@ title = "Fonctionnalités"
 description = "Vue complète des capacités destinées aux lecteurs, auteurs et mainteneurs."
 weight = 30
 icon = "star"
-pageOrder = "title-desc"
+pageOrder = "title-asc"
 +++
 
 Les cartes ci-dessous offrent une vue complète des fonctionnalités destinées

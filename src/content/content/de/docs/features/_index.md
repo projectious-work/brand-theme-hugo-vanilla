@@ -3,7 +3,7 @@ title = "Features"
 description = "Vollständige Übersicht für Leser, Autoren und Maintainer."
 weight = 30
 icon = "star"
-pageOrder = "title-desc"
+pageOrder = "title-asc"
 +++
 
 Die folgenden Karten bieten eine vollständige Übersicht der Funktionen für
