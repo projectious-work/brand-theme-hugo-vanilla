@@ -29,7 +29,7 @@ mermaid:
   base: "https://cdn.jsdelivr.net/npm/mermaid@11.16.1/dist"
   local: "vendor/mermaid"
   files:
-    esm: "mermaid.esm.min.mjs"
+    js: "mermaid.min.js"
 asciinema:
   version: "3.17.0"
   base: "https://cdn.jsdelivr.net/npm/asciinema-player@3.17.0/dist/bundle"

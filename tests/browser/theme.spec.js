@@ -39,6 +39,8 @@ test("pinned CDN media, math and diagrams render", async ({ page }, testInfo) =>
   test.skip(!testInfo.project.name.startsWith("desktop"));
 
   await page.goto("docs/features/diagrams-mathematics/");
+  await expect(page.locator('script[src*="mermaid@11.16.1/dist/mermaid.min.js"]'))
+    .toHaveCount(1);
   await expect(page.locator(".katex").first()).toBeVisible();
   await expect(page.locator(".mermaid svg")).toBeVisible();
   await page.evaluate(() => window.pwTheme.set("dark"));
@@ -57,6 +59,8 @@ test("pinned CDN media, math and diagrams render", async ({ page }, testInfo) =>
   ].join("\n"));
 
   await page.goto("docs/shortcodes/");
+  await expect(page.locator('script[src*="mermaid@11.16.1/dist/mermaid.min.js"]'))
+    .toHaveCount(1);
   await expect(page.locator(".mermaid svg")).toBeVisible();
 });
 

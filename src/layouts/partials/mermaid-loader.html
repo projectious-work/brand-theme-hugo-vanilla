@@ -2,8 +2,9 @@
        Both entry points set the same flag: the mermaid shortcode and the fenced-code
        hook for a mermaid fence. */ -}}
 {{ if .Store.Get "needsMermaid" }}
-<script type="module">
-  import mermaid from "{{ partial "cdn-url.html" (dict "pkg" "mermaid" "file" "esm") }}";
+<script src="{{ partial "cdn-url.html" (dict "pkg" "mermaid" "file" "js") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}></script>
+<script>
+(async function () {
   const root = document.documentElement;
 
   /* Mermaid replaces each <pre> with an SVG, so the definition is gone after the
@@ -74,5 +75,6 @@
 
   await render();
   document.addEventListener("pw:mode", render);
+}());
 </script>
 {{ end }}
