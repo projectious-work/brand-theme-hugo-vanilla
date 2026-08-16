@@ -1,7 +1,26 @@
+{{- /* Resolves an icon name to inlined SVG. Three sources, in order:
+
+         1. assets/icons/<name>.svg          — consuming-site override
+         2. assets/tabler-icons/outline/…    — the pinned Tabler module, when mounted
+         3. the theme's bundled fallback set  — 38 glyphs, Tabler-shaped
+
+       Nothing is fetched at page load: Hugo inlines the file. See
+       ICONS.md for the module setup and the name mapping.
+
+       Call with a name, or a dict {name, class, label}. Without a label the glyph
+       is aria-hidden, which is correct for an icon beside its own text. */ -}}
 {{- $name := "" }}{{ $class := "" }}{{ $label := "" -}}
 {{- if reflect.IsMap . }}{{ $name = .name }}{{ $class = .class }}{{ $label = .label }}{{ else }}{{ $name = . }}{{ end -}}
-{{- with resources.Get (printf "icons/%s.svg" $name) -}}
-<span class="ico{{ with $class }} {{ . }}{{ end }}"{{ if $label }} role="img" aria-label="{{ $label }}"{{ else }} aria-hidden="true"{{ end }}>{{ .Content | safeHTML }}</span>
+{{- $svg := "" -}}
+{{- with resources.Get (printf "icons/%s.svg" $name) }}{{ $svg = . }}{{ end -}}
+{{- if not $svg }}{{ with resources.Get (printf "tabler-icons/outline/%s.svg" $name) }}{{ $svg = . }}{{ end }}{{ end -}}
+{{- if not $svg }}{{ with resources.Get (printf "icons/fallback/%s.svg" $name) }}{{ $svg = . }}{{ end }}{{ end -}}
+{{- with $svg -}}
+{{- /* Strip the outer <svg> wrapper so size and colour come from CSS, then re-emit
+       one wrapper the theme controls. Tabler files carry their own width/height
+       and a stroke colour, which would otherwise defeat .ico sizing. */ -}}
+{{- $inner := .Content | replaceRE `(?s)^.*?<svg[^>]*>` "" | replaceRE `(?s)</svg>\s*$` "" -}}
+<span class="ico{{ with $class }} {{ . }}{{ end }}"{{ if $label }} role="img" aria-label="{{ $label }}"{{ else }} aria-hidden="true"{{ end }}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">{{ $inner | safeHTML }}</svg></span>
 {{- else -}}
-{{- warnf "icon %q not found in assets/icons" $name -}}
+{{- errorf "icon %q not found. Add assets/icons/%s.svg to your site, or mount the Tabler module (see the theme's ICONS.md). Catalogue: https://tabler.io/icons" $name $name -}}
 {{- end -}}

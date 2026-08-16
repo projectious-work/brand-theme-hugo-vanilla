@@ -181,7 +181,24 @@
   --grid-gutter:   16px;
   --touch-target:  44px;  /* floor for any tap target */
   --measure:       65ch;  /* comfortable line length for running text */
+  /* ── Overlays, tints and fixed values ───────────────────────────────
+        Named tokens, never literals repeated through component CSS. The
+        --fixed-* values deliberately do NOT follow the theme: white on a
+        solid control, print output, the reduced-transparency fallback. */
   --scrim:         rgba(20,36,56,0.72);  /* modal backdrop */
+  --scrim-modal:   var(--scrim);
+  --scrim-palette: rgba(14,23,32,0.5);
+  --scrim-lightbox: rgba(14,23,32,0.82);
+  --tint-accent-active: rgba(224,82,50,0.12);
+  --tint-code-header:   rgba(20,36,56,0.03);
+  --tint-highlight-line: rgba(20,36,56,0.06);
+  --tint-dark-code-header: rgba(255,255,255,0.04);
+  --tint-dark-code-border: rgba(255,255,255,0.08);
+  --tint-dark-control-border: rgba(255,255,255,0.14);
+  --shadow-focus-light: rgba(29,51,82,0.15);
+  --fixed-control-text: #ffffff;
+  --fixed-overlay-solid: #0e1720;
+  --fixed-overlay-text:  #c7d3de;
 
   /* ── Terminal — one dark surface, sixteen ANSI slots plus chrome.
         Measured against --terminal-surface; floor 4.95:1. ──────────────── */
@@ -535,7 +552,7 @@ html[data-motion="reduced"] *, html[data-motion="reduced"] *::before, html[data-
 /* ── Reduced transparency — blur is costly to parse visually, and alpha
       surfaces lower effective contrast against whatever sits behind. ─── */
 html[data-transparency="reduced"] * { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
-html[data-transparency="reduced"] { --scrim: rgba(20,36,56,0.94); }
+html[data-transparency="reduced"] { --scrim: rgba(20,36,56,0.94); --scrim-modal: rgba(20,36,56,0.94); }
 
 /* ── Text spacing (WCAG 1.4.12) — a diagnostic, not a house style. Set it
       to prove nothing clips at the required minimums. ────────────────── */

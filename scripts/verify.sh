@@ -39,7 +39,13 @@ rg -q 'asciinema-player@3\.17\.0' \
   "$VERIFY_DIR/build-a/docs/guides/index.html"
 rg -q '/brand-theme-hugo-vanilla/casts/theme-tour\.cast' \
   "$VERIFY_DIR/build-a/docs/guides/index.html"
-rg -q 'solarized-light' "$VERIFY_DIR/build-a/docs/guides/index.html"
+rg -q 'solarized-light' "$ROOT_DIR/src/assets/js/asciinema.js"
+rg -q '/js/asciinema\.[a-f0-9]+\.js' \
+  "$VERIFY_DIR/build-a/docs/guides/index.html"
+if rg -q 'ZgotmplZ' "$VERIFY_DIR/build-a/docs/features/tokens/index.html"; then
+  echo "error: token swatches were rejected by Hugo contextual escaping" >&2
+  exit 1
+fi
 bash -n "$ROOT_DIR/scripts/check-theme-update.sh"
 
 hash_tree() {

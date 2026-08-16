@@ -1,0 +1,66 @@
+{{- /* Token reference, parsed from the CSS at build time.
+
+       The point is that this page cannot drift: it reads theme-layer.css and the
+       brand token sheet as resources and lists what it finds, rather than holding a
+       hand-written copy that goes stale the first time a mapping changes. Use it as
+       layout = "tokens" on a content page. */ -}}
+{{ define "main" }}
+{{ $layer := resources.Get "css/theme-layer.css" }}
+{{ $tokens := resources.Get "css/brand-tokens.css" }}
+<div class="shell">
+  <main id="main">
+    {{ partial "breadcrumbs.html" . }}
+    <article class="prose">
+      <h1>{{ .Title }}</h1>
+      {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+      {{ .Content }}
+
+      <h2 id="tailwind-namespaces">Tailwind namespaces</h2>
+      <p>Parsed from <code>assets/css/theme-layer.css</code>.</p>
+      <div class="tablewrap" tabindex="0" role="region" aria-label="{{ i18n "table" }}">
+        <table>
+          <thead><tr><th>Namespace variable</th><th>Resolves to</th></tr></thead>
+          <tbody>
+          {{ with $layer }}
+            {{ range findRE `--(?:color|font|radius|spacing|breakpoint|ease)-[a-z0-9-]+:s*[^;]+;` .Content }}
+              {{ $parts := split (strings.TrimSuffix ";" .) ":" }}
+              {{ if eq (len $parts) 2 }}
+              <tr>
+                <td><code>{{ trim (index $parts 0) " " }}</code></td>
+                <td><code>{{ trim (index $parts 1) " " }}</code></td>
+              </tr>
+              {{ end }}
+            {{ end }}
+          {{ end }}
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="semantic-tokens">Semantic tokens</h2>
+      <p>Parsed from the brand token sheet. Swatches render the live value.</p>
+      <div class="tablewrap" tabindex="0" role="region" aria-label="{{ i18n "table" }}">
+        <table>
+          <thead><tr><th>Token</th><th>Value</th><th></th></tr></thead>
+          <tbody>
+          {{ with $tokens }}
+            {{ range findRE `--(?:color|terminal|syntax|border|surface)-[a-z0-9-]+:s*[^;]+;` .Content }}
+              {{ $parts := split (strings.TrimSuffix ";" .) ":" }}
+              {{ if eq (len $parts) 2 }}
+              {{ $name := trim (index $parts 0) " " }}
+              <tr>
+                <td><code>{{ $name }}</code></td>
+                <td><code>{{ trim (index $parts 1) " " }}</code></td>
+                {{ $swatch := printf "display:inline-block;width:28px;height:16px;border-radius:3px;border:1px solid var(--color-border);background:var(%s)" $name }}
+                <td><span style="{{ $swatch | safeCSS }}"></span></td>
+              </tr>
+              {{ end }}
+            {{ end }}
+          {{ end }}
+          </tbody>
+        </table>
+      </div>
+    </article>
+    {{ partial "page-footer.html" . }}
+  </main>
+</div>
+{{ end }}

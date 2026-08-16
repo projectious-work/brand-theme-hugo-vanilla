@@ -107,6 +107,62 @@ test("generated data, navigation and template contracts are valid", async ({ pag
   await page.goto("docs/features/code-blocks/");
   await expect(page.getByRole("heading", { name: "Per-block options" })).toBeVisible();
   await expect(page.getByRole("cell", { name: "anchorlinenos=true" })).toBeVisible();
+
+  await page.goto("docs/features/tokens/");
+  await expect(page.getByRole("heading", { name: "Semantic tokens" })).toBeVisible();
+  await expect(page.locator("[style*='background:var(--color-bg)']").first()).toBeVisible();
+
+  await page.goto("docs/developer-guide/");
+  await expect(page.getByRole("img", { name: "Rocket from Tabler Icons" })).toBeVisible();
+});
+
+test("sidebar, table of contents and all three colour modes keep their contracts", async ({ page }, testInfo) => {
+  test.skip(!testInfo.project.name.startsWith("desktop"));
+  await page.goto("docs/guides/template-authoring/");
+
+  const sidebarCurrent = page.locator('.sidebar a[aria-current="page"]');
+  await expect(sidebarCurrent).toHaveCount(1);
+  const currentHref = await sidebarCurrent.getAttribute("href");
+
+  const tocLinks = page.locator('.toc a[href^="#"]');
+  expect(await tocLinks.count()).toBeGreaterThan(2);
+  await tocLinks.nth(1).click();
+  await expect(tocLinks.nth(1)).toHaveAttribute("aria-current", "true");
+  await expect(page.locator('.sidebar a[aria-current="page"]')).toHaveAttribute("href", currentHref);
+  await expect(page.locator('.sidebar a[aria-current="true"]')).toHaveCount(0);
+  await expect(page.locator('[aria-current="false"]')).toHaveCount(0);
+
+  const resolved = async () => page.locator("html").evaluate(() => {
+    const css = getComputedStyle(document.documentElement);
+    return {
+      theme: document.documentElement.dataset.theme || "system",
+      surface: document.documentElement.dataset.surface || "deep",
+      page: css.getPropertyValue("--color-bg").trim(),
+      raised: css.getPropertyValue("--color-surface").trim(),
+      subtle: css.getPropertyValue("--surface-2").trim(),
+      border: css.getPropertyValue("--color-border").trim(),
+      strong: css.getPropertyValue("--border-strong").trim(),
+      text: css.getPropertyValue("--color-text-primary").trim(),
+    };
+  });
+
+  await page.evaluate(() => window.pwTheme.set("light"));
+  expect(await resolved()).toEqual({
+    theme: "light", surface: "navy", page: "#f8f9fb", raised: "#ffffff",
+    subtle: "#f0f3f8", border: "#cdd0d5", strong: "#bec2c8", text: "#142438",
+  });
+
+  await page.evaluate(() => window.pwTheme.set("dark"));
+  expect(await resolved()).toEqual({
+    theme: "dark", surface: "deep", page: "#0e1720", raised: "#131e2b",
+    subtle: "#1a2b3e", border: "#263f5a", strong: "#3a5c7e", text: "#c5daf0",
+  });
+
+  await page.evaluate(() => window.pwTheme.set("navy"));
+  expect(await resolved()).toEqual({
+    theme: "dark", surface: "navy", page: "#132440", raised: "#1a2b3e",
+    subtle: "#20354d", border: "#2e4b68", strong: "#4d7098", text: "#c5daf0",
+  });
 });
 
 test("landing and wide documentation rails align", async ({ page }, testInfo) => {

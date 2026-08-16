@@ -53,7 +53,7 @@ contents and math passthrough.
 | robots.txt · sitemap · hreflang | `layouts/robots.txt`, `sitemap.xml`, `partials/seo.html` |
 | Syntax highlighting | Chroma classes mapped to the ten brand syntax roles in `assets/css/syntax.css`; fence options are preserved |
 | Accessibility selectors | `partials/a11y-menu.html` driving the brand system's `data-*` switches |
-| Icons | `assets/icons/*.svg`, inlined by `partials/icon.html` — bundled, no CDN |
+| Icons | Tabler 3.31.0 mount with `assets/icons/fallback/*.svg` offline fallback; inlined by `partials/icon.html` |
 | Child-page card grids | `partials/child-cards.html` — generated from title, description, icon and weight |
 | RTL layout | Set the language direction to `rtl`; navigation and structural rails mirror automatically |
 
@@ -79,7 +79,7 @@ one-word edit in Markdown.
 ```
 src/archetypes/   new-content templates (default, docs, blog, release)
 src/assets/css/   main.css (Tailwind entry) · brand-tokens · fonts · theme-layer · syntax · components
-src/assets/icons/ bundled stroke icon set
+src/assets/icons/ bundled fallback glyphs; the full Tabler set is mounted at build time
 src/assets/js/    theme.js · interactions.js · search.js · vendor/flexsearch
 src/data/         glossary.yaml · pinned CDN versions in cdn.yaml
 src/i18n/         en.toml · de.toml · fr.toml
@@ -130,9 +130,8 @@ been reviewed.
   Their versions are centralized in `src/data/cdn.yaml`.
 - **Fonts are bundled** as version-pinned WOFF2 (SIL OFL 1.1, licences under
   `static/fonts/licenses/`). Generated pages make no font-CDN request.
-- **Icons** are authored on Tabler's conventions (24 px grid, 1.5 px stroke, round
-  caps) and ship in-repo; drop Tabler's `icons/outline/*.svg` into
-  `assets/icons/` to swap in the full MIT set.
+- **Icons** resolve from a site override, the pinned Tabler Icons 3.31.0 outline
+  mount and then 38 bundled fallback glyphs. See [ICONS.md](ICONS.md).
 - **Notebooks convert before the build.** `scripts/notebooks.sh` uses the pinned
   environment in `scripts/requirements.txt`; the theme consumes only the
   resulting Markdown and images.

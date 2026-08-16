@@ -43,19 +43,34 @@ The theme currently bundles this small offline fallback set:
 `pencil`, `player-play`, `printer`, `search`, `star`, `sun`, `tag`, `thumb-down`,
 `thumb-up`, `versions` and `x`.
 
-The source files and licence notes are in
-[`src/assets/icons/`](https://github.com/projectious-work/brand-theme-hugo-vanilla/tree/main/src/assets/icons).
+The fallback source files are in
+[`src/assets/icons/fallback/`](https://github.com/projectious-work/brand-theme-hugo-vanilla/tree/main/src/assets/icons/fallback).
 Use a name with `{{</* icon "search" */>}}` or front-matter `icon = "search"`.
-The partial uses Hugo's merged asset filesystem, so a consuming site can add a
-Tabler SVG at `assets/icons/chart-bar.svg` and immediately use
-`{{</* icon "chart-bar" */>}}`; no theme template needs to be copied.
+The resolver checks a site override, the mounted Tabler outline library and then
+the bundled fallback. Install the pinned library and mount it in `hugo.toml`:
 
-The current release does **not** mount the complete Tabler Icons library as a Hugo
-Module dependency. Until an upstream adapter module is provided, download only the
-needed `icons/outline/*.svg` files from
-[Tabler Icons](https://tabler.io/icons), keep their upstream filenames, and place
-them in the site's `assets/icons/`. SVGs must use `currentColor`, a compatible
-`viewBox`, and no scripts or external references. Preserve the MIT attribution.
+```sh
+npm install --save-exact @tabler/icons@3.31.0
+```
+
+```toml
+[[module.mounts]]
+  source = "node_modules/@tabler/icons/icons/outline"
+  target = "assets/tabler-icons/outline"
+```
+
+Every [Tabler outline icon](https://tabler.io/icons) is then available by its
+filename without `.svg`. A site can still override or add a glyph at
+`assets/icons/<name>.svg`. See the root `ICONS.md` for resolution order, naming and
+MIT attribution.
+
+This icon is resolved from the mounted full library rather than the fallback set:
+
+{{< icon name="rocket" class="ico--lg" label="Rocket from Tabler Icons" >}}
+
+```md
+{{</* icon name="rocket" class="ico--lg" label="Rocket from Tabler Icons" */>}}
+```
 
 ## Tailwind in site templates
 

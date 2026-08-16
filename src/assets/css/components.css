@@ -47,8 +47,8 @@ code, kbd, pre, samp { font-family: var(--font-code); }
 .searchbox .ico{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--color-text-secondary);pointer-events:none}
 .searchbox input{width:100%;font:inherit;font-size:calc(13px * var(--font-scale));padding:8px 12px 8px 34px;border:1.5px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-bg);color:var(--color-text-primary)}
 .searchbox kbd{position:absolute;right:8px;font-size:calc(11px * var(--font-scale));padding:2px 5px;border:1px solid var(--color-border);border-radius:var(--radius-sm);color:var(--color-text-secondary)}
-.searchbox input:focus{outline:0;box-shadow:0 0 0 2px rgba(29,51,82,0.15)}
-.results{position:absolute;top:calc(100% + 6px);left:0;right:0;max-height:60vh;overflow-y:auto;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:0 4px 12px rgba(0,0,0,0.08);padding:6px;display:none}
+.searchbox input:focus{outline:0;box-shadow:0 0 0 2px var(--shadow-focus-light)}
+.results{position:absolute;top:calc(100% + 6px);left:0;right:0;max-height:60vh;overflow-y:auto;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-2);padding:6px;display:none}
 .results[data-open="true"]{display:block}
 .results a{display:block;padding:8px 10px;border-radius:var(--radius-md);color:var(--color-text-primary)}
 .results a:hover,.results a[data-active="true"]{background:var(--midnight-2)}
@@ -68,8 +68,7 @@ code, kbd, pre, samp { font-family: var(--font-code); }
 /* Accent label on the midnight-3 tint: orange-12 on light, orange-11 on dark —
    the two steps that clear AA against that tint at 13.5px/600. */
 .sidebar a[aria-current="page"]{color:var(--orange-12);background:var(--midnight-3);border-left-color:var(--color-accent);padding-left:8px;font-weight:600}
-[data-theme="dark"] .sidebar a[aria-current="page"]{color:var(--orange-11)}
-[data-theme="dark"] .sidebar a[aria-current="page"]{background:rgba(224,82,50,.12);color:var(--color-accent-light)}
+[data-theme="dark"] .sidebar a[aria-current="page"]{background:var(--tint-accent-active);color:var(--color-accent-light)}
 .sidebar details{margin:0}
 .sidebar summary{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:var(--radius-md);font-size:calc(13.5px * var(--font-scale));font-weight:600;color:var(--color-text-primary);cursor:pointer;list-style:none}
 .sidebar summary::-webkit-details-marker{display:none}
@@ -92,13 +91,27 @@ code, kbd, pre, samp { font-family: var(--font-code); }
 .prose h2{font-size:calc(23px * var(--font-scale));margin:40px 0 12px}
 .prose h3{font-size:calc(18px * var(--font-scale));margin:28px 0 8px}
 .prose p,.prose li{font-size:var(--type-body-size);line-height:var(--type-body-lh);color:var(--color-text-primary);text-wrap:pretty}
-.prose ul,.prose ol{padding-left:22px}
+/* Tailwind's preflight sets list-style: none on ul/ol, so prose has to restore
+   markers explicitly. Nested levels get distinct glyphs so hierarchy survives
+   without indentation alone carrying it. Markers inherit currentColor, so light,
+   dark and high-contrast modes all follow the text role. */
+.prose ul,.prose ol{padding-left:26px;margin:12px 0}
 .prose ul{list-style:disc outside}
+.prose ul ul{list-style:circle outside}
+.prose ul ul ul{list-style:square outside}
 .prose ol{list-style:decimal outside}
-.prose ul ul{list-style-type:circle}
-.prose ul ul ul{list-style-type:square}
-.prose ol ol{list-style-type:lower-alpha}
-.prose li::marker{color:var(--color-text-secondary);font-weight:600}
+.prose ol ol{list-style:lower-alpha outside}
+.prose ol ol ol{list-style:lower-roman outside}
+.prose li::marker{color:var(--color-text-secondary)}
+.prose ol>li::marker{font-family:var(--font-code);font-size:.9em}
+[data-contrast="high"] .prose li::marker{color:var(--color-text-primary)}
+.prose li>ul,.prose li>ol{margin:4px 0}
+/* Task lists keep their checkboxes and lose the marker. */
+.prose ul li:has(>input[type="checkbox"]){list-style:none;margin-left:-20px}
+.prose input[type="checkbox"]{margin-right:8px;accent-color:var(--color-accent-solid)}
+/* Lists inside components sit tighter and are never marker-less. */
+.callout__body ul,.step ul,.details__body ul{list-style:disc outside;padding-left:20px}
+.callout__body ol,.step ol,.details__body ol{list-style:decimal outside;padding-left:20px}
 .prose li{margin:4px 0}
 .prose .lede{font-size:calc(17px * var(--font-scale));color:var(--color-text-secondary);margin:0 0 28px}
 .prose :not(pre)>code{font-size:.88em;background:var(--midnight-2);padding:2px 6px;border-radius:4px;color:var(--color-text-primary)}
@@ -130,9 +143,9 @@ h2:hover .heading-anchor,h3:hover .heading-anchor,h4:hover .heading-anchor{opaci
 
 /* ── Code blocks ────────────────────────────────────────────────────── */
 .code{margin:0 0 20px;border:1px solid var(--color-border);border-radius:var(--radius-md);overflow:hidden;background:var(--terminal-surface)}
-.code__bar{display:flex;align-items:center;gap:8px;padding:7px 12px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.08)}
+.code__bar{display:flex;align-items:center;gap:8px;padding:7px 12px;background:var(--tint-dark-code-header);border-bottom:1px solid var(--tint-dark-code-border)}
 .code__name{font-family:var(--font-code);font-size:calc(12px * var(--font-scale));color:var(--terminal-foreground)}
-.code__copy{margin-left:auto;display:inline-flex;align-items:center;gap:5px;background:transparent;border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-sm);color:#c7d3de;font-size:calc(11px * var(--font-scale));padding:3px 7px;cursor:pointer}
+.code__copy{margin-left:auto;display:inline-flex;align-items:center;gap:5px;background:transparent;border:1px solid var(--tint-dark-control-border);border-radius:var(--radius-sm);color:var(--fixed-overlay-text);font-size:calc(11px * var(--font-scale));padding:3px 7px;cursor:pointer}
 /* The panel owns the surface colour; the pre stays transparent so switching the
    panel (e.g. params.codeTheme="adaptive") needs no second override. */
 .code pre{margin:0;padding:16px 18px;overflow-x:auto;background:transparent}
@@ -146,79 +159,79 @@ h2:hover .heading-anchor,h3:hover .heading-anchor,h4:hover .heading-anchor{opaci
    --syntax-*-light roles and --terminal-light-surface. Dark mode is unchanged.
    The base sheet pins every <pre> to the dark terminal surface, so the pre and
    the .chroma wrapper must both be neutralised explicitly. */
-html[data-code="adaptive"]:not([data-theme="dark"]) .code{background:var(--terminal-light-surface);border-color:var(--color-border)}
-html[data-code="adaptive"]:not([data-theme="dark"]) .code__bar{background:rgba(20,36,56,.03);border-bottom-color:var(--color-border)}
-html[data-code="adaptive"]:not([data-theme="dark"]) .code__name{color:var(--color-text-secondary)}
-html[data-code="adaptive"]:not([data-theme="dark"]) .code__copy{color:var(--color-text-secondary);border-color:var(--color-border)}
-html[data-code="adaptive"]:not([data-theme="dark"]) .code pre,
-html[data-code="adaptive"]:not([data-theme="dark"]) .code .chroma{background:transparent!important;color:var(--syntax-plain-light)}
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .hl{background:rgba(20,36,56,.06)}
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .n,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .nx,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .py,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .nv,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .vc,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .vg,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .vi,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .ni,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .gu,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .w{color:var(--syntax-plain-light)}
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .gs{font-weight:600}
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .ln,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .lnt{color:var(--syntax-comment-light)}
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .c,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .ch,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .cm,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .c1,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .cs{color:var(--syntax-comment-light)}
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .cp,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .cpf,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .na,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .nl{color:var(--syntax-macro-light)}
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .k,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .kc,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .kd,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .kn,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .kp,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .kr,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .nd,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .nt{color:var(--syntax-keyword-light)}
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .kt,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .nc,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .nn,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .ne,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .no,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .gi{color:var(--syntax-type-light)}
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .nb,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .bp,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .nf,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .fm{color:var(--syntax-function-light)}
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .s,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .sa,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .sb,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .sc,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .dl,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .sd,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .s2,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .se,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .sh,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .si,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .sx,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .sr,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .s1,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .ss{color:var(--syntax-string-light)}
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .m,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .mb,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .mf,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .mh,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .mi,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .il,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .mo{color:var(--syntax-number-light)}
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .o,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .ow,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .p{color:var(--syntax-operator-light)}
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .err,
-html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .gd{color:var(--syntax-invalid-light)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .code{background:var(--terminal-light-surface);border-color:var(--color-border)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .code__bar{background:var(--tint-code-header);border-bottom-color:var(--color-border)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .code__name{color:var(--color-text-secondary)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .code__copy{color:var(--color-text-secondary);border-color:var(--color-border)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .code pre,
+html:not([data-code="dark"]):not([data-theme="dark"]) .code .chroma{background:transparent;color:var(--syntax-plain-light)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .hl{background:var(--tint-highlight-line)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .n,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .nx,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .py,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .nv,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .vc,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .vg,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .vi,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .ni,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .gu,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .w{color:var(--syntax-plain-light)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .gs{font-weight:600}
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .ln,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .lnt{color:var(--syntax-comment-light)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .c,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .ch,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .cm,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .c1,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .cs{color:var(--syntax-comment-light)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .cp,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .cpf,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .na,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .nl{color:var(--syntax-macro-light)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .k,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .kc,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .kd,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .kn,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .kp,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .kr,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .nd,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .nt{color:var(--syntax-keyword-light)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .kt,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .nc,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .nn,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .ne,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .no,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .gi{color:var(--syntax-type-light)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .nb,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .bp,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .nf,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .fm{color:var(--syntax-function-light)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .s,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .sa,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .sb,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .sc,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .dl,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .sd,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .s2,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .se,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .sh,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .si,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .sx,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .sr,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .s1,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .ss{color:var(--syntax-string-light)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .m,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .mb,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .mf,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .mh,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .mi,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .il,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .mo{color:var(--syntax-number-light)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .o,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .ow,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .p{color:var(--syntax-operator-light)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .err,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .gd{color:var(--syntax-invalid-light)}
 
 /* ── Callouts ───────────────────────────────────────────────────────── */
 .callout{display:flex;gap:12px;padding:14px 16px;border-radius:var(--radius-lg);margin:20px 0;font-size:calc(14px * var(--font-scale));line-height:1.6}
@@ -242,7 +255,7 @@ html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .gd{color:var(--synt
 .cards--4{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media (max-width:1023px){.cards,.cards--4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .card{display:block;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:16px 20px;transition:border-color 100ms ease-out,box-shadow 100ms ease-out}
-.card:hover{border-color:var(--midnight-8);box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.card:hover{border-color:var(--midnight-8);box-shadow:var(--shadow-1)}
 [data-theme="dark"] .card:hover{border-color:var(--midnight-7);box-shadow:none;background:var(--surface-2)}
 .card:hover .card__title{color:var(--orange-12)}
 [data-theme="dark"] .card:hover .card__title{color:var(--orange-11)}
@@ -294,12 +307,18 @@ html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .gd{color:var(--synt
 .badge{display:inline-flex;align-items:center;gap:4px;font-family:var(--font-code);font-size:calc(11px * var(--font-scale));padding:2px 7px;border-radius:var(--radius-sm);background:var(--midnight-2);color:var(--color-text-secondary);border:1px solid var(--color-border)}
 .badge--accent{background:var(--orange-2);color:var(--orange-12);border-color:var(--orange-5)}
 .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-heading);font-weight:500;font-size:calc(14px * var(--font-scale));padding:10px 20px;border-radius:var(--radius-md);border:1px solid transparent;cursor:pointer}
-.btn--primary{background:var(--color-accent-solid);color:#fff}
-.btn--primary:hover{opacity:.88;color:#fff}
+.btn--primary{background:var(--color-accent-solid);color:var(--fixed-control-text)}
+.btn--primary:hover{opacity:.88;color:var(--fixed-control-text)}
 .btn--secondary{border-color:var(--color-border);color:var(--color-text-primary);background:var(--color-surface)}
 .btn--secondary:hover{border-color:var(--midnight-7);color:var(--color-text-primary)}
-.mermaid{margin:24px 0;padding:16px;text-align:center;background:var(--color-surface)!important;border:1px solid var(--color-border);border-radius:var(--radius-md)}
-.mermaid svg{background:transparent!important}
+/* The diagram sits on a token surface with a border, like any other panel, and
+   the SVG background is forced transparent — Mermaid otherwise paints its own,
+   which showed as a black rectangle in light mode. */
+.mermaid{margin:24px 0;padding:20px;text-align:center;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow-x:auto}
+.mermaid svg{max-width:100%;height:auto;background:transparent!important}
+.mermaid[data-processed] > *:not(svg){display:none}
+.cast{margin:24px 0;border:1px solid var(--color-border);border-radius:var(--radius-md);overflow:hidden;background:var(--terminal-surface)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .cast{background:var(--terminal-light-surface)}
 
 /* ── Page furniture ─────────────────────────────────────────────────── */
 .crumbs{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:calc(12.5px * var(--font-scale));color:var(--color-text-secondary);margin-bottom:10px}
@@ -314,7 +333,7 @@ html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .gd{color:var(--synt
 .pager{display:flex;gap:12px}
 .pager a{flex:1;border:1px solid var(--color-border);border-radius:var(--radius-lg);padding:12px 16px;background:var(--color-surface)}
 .pager a{transition:border-color 100ms ease-out,box-shadow 100ms ease-out}
-.pager a:hover{border-color:var(--midnight-8);box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.pager a:hover{border-color:var(--midnight-8);box-shadow:var(--shadow-1)}
 [data-theme="dark"] .pager a:hover{border-color:var(--midnight-7);box-shadow:none;background:var(--surface-2)}
 .pager a{display:flex;flex-direction:column;gap:4px}
 .pager .dir{font-size:calc(11px * var(--font-scale));letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-secondary)}
@@ -329,7 +348,7 @@ html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .gd{color:var(--synt
 
 /* ── Menus (theme / language / version / a11y) ──────────────────────── */
 .menu{position:relative}
-.menu__panel{position:absolute;right:0;top:calc(100% + 6px);min-width:200px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:0 4px 12px rgba(0,0,0,.08);padding:6px;display:none;z-index:50}
+.menu__panel{position:absolute;right:0;top:calc(100% + 6px);min-width:200px;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);box-shadow:var(--shadow-2);padding:6px;display:none;z-index:50}
 .menu__panel[data-open="true"]{display:block}
 .menu__panel button,.menu__panel a{display:flex;width:100%;align-items:center;gap:8px;font:inherit;font-size:calc(13px * var(--font-scale));text-align:left;padding:7px 10px;border:0;border-radius:var(--radius-md);background:transparent;color:var(--color-text-primary);cursor:pointer}
 .menu__panel button:hover,.menu__panel a:hover{background:var(--midnight-2)}
@@ -340,10 +359,10 @@ html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .gd{color:var(--synt
 .chipbtn:hover{border-color:var(--midnight-7)}
 
 /* ── Command palette ───────────────────────────────────────────────── */
-.palette{position:fixed;inset:0;z-index:70;display:none;justify-content:center;align-items:flex-start;padding:14vh 16px 16px;background:rgba(14,23,32,.5)}
+.palette{position:fixed;inset:0;z-index:70;display:none;justify-content:center;align-items:flex-start;padding:14vh 16px 16px;background:var(--scrim-palette)}
 .palette[data-open="true"]{display:flex}
-[data-transparency="reduced"] .palette{background:#0e1720}
-.palette__panel{width:min(620px,100%);max-height:70vh;display:flex;flex-direction:column;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);box-shadow:0 8px 24px rgba(0,0,0,.12);overflow:hidden}
+[data-transparency="reduced"] .palette{background:var(--fixed-overlay-solid)}
+.palette__panel{width:min(620px,100%);max-height:70vh;display:flex;flex-direction:column;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-xl);box-shadow:var(--shadow-3);overflow:hidden}
 .palette__field{position:relative;display:flex;align-items:center;padding:0 12px;border-bottom:1px solid var(--color-border)}
 .palette__field .ico{color:var(--color-text-secondary)}
 .palette__field input{flex:1;font:inherit;font-family:var(--font-body);font-size:calc(15px * var(--font-scale));padding:14px 10px;border:0;background:transparent;color:var(--color-text-primary);outline:0}
@@ -365,7 +384,7 @@ html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .gd{color:var(--synt
 
 /* ── Landing ────────────────────────────────────────────────────────── */
 .shell{max-width:var(--shell-max);margin:0 auto;padding:0 24px}
-.hero{padding-top:88px;padding-bottom:72px}
+.hero{padding:88px 0 72px}
 /* Named .hero__eyebrow, not .overline: Tailwind owns "overline" as a
    text-decoration utility and would draw a line above the text. */
 .hero__eyebrow{font-family:var(--font-body);font-size:var(--type-overline-size);font-weight:600;line-height:var(--type-overline-lh);letter-spacing:.14em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:14px}
@@ -386,7 +405,7 @@ html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .gd{color:var(--synt
 .taglist{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
 .pagination{display:flex;gap:6px;margin:32px 0;font-family:var(--font-code);font-size:calc(13px * var(--font-scale))}
 .pagination a,.pagination span{padding:6px 11px;border:1px solid var(--color-border);border-radius:var(--radius-md);color:var(--color-text-secondary)}
-.pagination .current{background:var(--midnight-9);color:#fff;border-color:var(--midnight-9)}
+.pagination .current{background:var(--midnight-9);color:var(--fixed-control-text);border-color:var(--midnight-9)}
 .errorpage{padding:120px 0;text-align:center}
 .errorpage h1{font-size:calc(40px * var(--font-scale));margin:8px 0 12px}
 
@@ -446,11 +465,11 @@ html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .gd{color:var(--synt
 .sidebar__filter{position:relative;display:flex;align-items:center;margin:0 10px 8px}
 .sidebar__filter .ico{position:absolute;left:9px;top:50%;transform:translateY(-50%);color:var(--color-text-secondary);pointer-events:none}
 .sidebar__filter input{width:100%;font:inherit;font-size:calc(12.5px * var(--font-scale));padding:6px 10px 6px 30px;border:1.5px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-bg);color:var(--color-text-primary)}
-.sidebar__filter input:focus{outline:0;box-shadow:0 0 0 2px rgba(29,51,82,.15)}
+.sidebar__filter input:focus{outline:0;box-shadow:0 0 0 2px var(--shadow-focus-light)}
 .sidebar__empty{padding:8px 10px;font-size:calc(12.5px * var(--font-scale));color:var(--color-text-secondary)}
 
 /* ── Back to top ────────────────────────────────────────────────────── */
-.totop{position:fixed;right:24px;bottom:24px;z-index:35;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--color-border);border-radius:999px;background:var(--color-surface);color:var(--color-text-secondary);cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.08);opacity:0;pointer-events:none;transition:opacity 200ms ease-out}
+.totop{position:fixed;right:24px;bottom:24px;z-index:35;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--color-border);border-radius:999px;background:var(--color-surface);color:var(--color-text-secondary);cursor:pointer;box-shadow:var(--shadow-2);opacity:0;pointer-events:none;transition:opacity 200ms ease-out}
 .totop[data-visible="true"]{opacity:1;pointer-events:auto}
 .totop:hover{border-color:var(--border-strong)}
 
@@ -466,13 +485,13 @@ html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .gd{color:var(--synt
 .toc-mobile a{display:block;padding:5px 0;font-size:calc(13px * var(--font-scale));color:var(--color-text-secondary)}
 
 /* ── Lightbox ───────────────────────────────────────────────────────── */
-.lightbox{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:40px;background:rgba(14,23,32,.82);backdrop-filter:blur(4px)}
+.lightbox{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:40px;background:var(--scrim-lightbox);backdrop-filter:blur(4px)}
 .lightbox[data-open="true"]{display:flex}
 .lightbox figure{margin:0;max-width:min(1100px,100%);max-height:100%;display:flex;flex-direction:column;gap:10px;align-items:center}
-.lightbox img{max-width:100%;max-height:78vh;border-radius:var(--radius-lg);border:1px solid rgba(255,255,255,.14);background:var(--color-surface)}
-.lightbox figcaption{font-size:calc(13px * var(--font-scale));color:#c7d3de;text-align:center}
-.lightbox__close{position:absolute;top:20px;right:20px;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.2);border-radius:999px;background:transparent;color:#fff;cursor:pointer}
-[data-transparency="reduced"] .lightbox{backdrop-filter:none;background:#0e1720}
+.lightbox img{max-width:100%;max-height:78vh;border-radius:var(--radius-lg);border:1px solid var(--tint-dark-control-border);background:var(--color-surface)}
+.lightbox figcaption{font-size:calc(13px * var(--font-scale));color:var(--fixed-overlay-text);text-align:center}
+.lightbox__close{position:absolute;top:20px;right:20px;width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--tint-dark-control-border);border-radius:999px;background:transparent;color:#fff;cursor:pointer}
+[data-transparency="reduced"] .lightbox{backdrop-filter:none;background:var(--fixed-overlay-solid)}
 
 /* ── Search page filters and heading hits ───────────────────────────── */
 .filters{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
@@ -499,11 +518,15 @@ html[data-code="adaptive"]:not([data-theme="dark"]) .chroma .gd{color:var(--synt
 /* ── Converted notebook output ──────────────────────────────────────── */
 .notebook{margin:24px 0}
 .notebook>*:first-child{margin-top:0}
-.notebook img{max-width:100%;height:auto;border-radius:var(--radius-md);border:1px solid var(--color-border);background:#fff}
+.notebook img{max-width:100%;height:auto;border-radius:var(--radius-md);border:1px solid var(--color-border);background:var(--fixed-control-text)}
 .notebook .code{margin-bottom:12px}
+/* nbconvert emits stream output as a bare <pre>, which the base sheet pins to the
+   dark terminal surface. Wrap it in the same panel treatment as a code block so it
+   follows the mode with everything else. */
+.notebook pre:not(.mermaid){background:var(--terminal-surface);color:var(--syntax-plain);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:14px 16px;overflow-x:auto;font-size:var(--type-code-size);line-height:var(--type-code-lh)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .notebook pre:not(.mermaid){background:var(--terminal-light-surface);color:var(--syntax-plain-light)}
 
 /* ── Asciinema ──────────────────────────────────────────────────────── */
-.cast{margin:24px 0;border:1px solid var(--color-border);border-radius:var(--radius-md);overflow:hidden;background:var(--terminal-surface)}
 
 /* ── Non-text contrast (WCAG 1.4.11) ────────────────────────────────────
    --color-border (slate-5, ~1.5:1) is a divider token: fine for a card edge or
