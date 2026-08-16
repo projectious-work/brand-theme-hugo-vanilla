@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented in this file.
 
-## [Unreleased]
+## [v0.3.2] — 2026-08-16
 
 ### Added
 
@@ -192,5 +192,5 @@ All notable changes to this project are documented in this file.
 [v0.2.3]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.3
 [v0.2.4]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.4
 [v0.3.1]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.0...v0.3.1
-[Unreleased]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.1...HEAD
+[v0.3.2]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.1...v0.3.2
 [v0.3.0]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.2.4...v0.3.0
