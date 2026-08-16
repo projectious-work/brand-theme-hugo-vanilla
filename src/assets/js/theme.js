@@ -2,13 +2,16 @@
    so the stored choice never flashes. Everything persists to localStorage. */
 (function () {
   var K = 'pw:mode', A = 'pw:a11y', html = document.documentElement;
+  var darkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
   /* Four choices. "navy" and "dark" are both dark mode; they differ only in
      which surface the page and cards sit on. System dark resolves to navy,
      the house default — an explicit "dark" pick opts into the deeper one. */
   function applyMode(mode) {
     if (mode === 'light') { html.setAttribute('data-theme', 'light'); }
-    else if (mode === 'system') { html.removeAttribute('data-theme'); }
+    else if (mode === 'system') {
+      html.setAttribute('data-theme', darkScheme.matches ? 'dark' : 'light');
+    }
     else { html.setAttribute('data-theme', 'dark'); }
     if (mode === 'dark') { html.removeAttribute('data-surface'); }
     else { html.setAttribute('data-surface', 'navy'); }
@@ -17,6 +20,13 @@
   var stored = null;
   try { stored = localStorage.getItem(K); } catch (e) {}
   applyMode(stored || 'system');
+  function followSystem() {
+    if (html.getAttribute('data-mode-pref') === 'system') { applyMode('system'); }
+  }
+  if (darkScheme.addEventListener) {
+    darkScheme.addEventListener('change', followSystem);
+  }
+  else if (darkScheme.addListener) { darkScheme.addListener(followSystem); }
 
   var a11y = {};
   try { a11y = JSON.parse(localStorage.getItem(A) || '{}'); } catch (e) {}

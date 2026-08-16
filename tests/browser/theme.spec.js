@@ -221,6 +221,76 @@ test("prose markers and adaptive technical panels follow colour mode", async ({ 
   expect(fontFaces).toEqual({ italic: true, semibold: true, bold: true });
 });
 
+test("every documentation code panel follows all colour modes", async (
+  { page }, testInfo,
+) => {
+  test.skip(!testInfo.project.name.startsWith("desktop"));
+  await page.goto("docs/");
+  const paths = await page
+    .locator(".sidebar a[href*='/docs/']")
+    .evaluateAll((links) => [...new Set(links.map((link) => link.href))]);
+  expect(paths.length).toBeGreaterThan(10);
+
+  const auditMode = async (mode, expectedToken) => {
+    await page.evaluate((selected) => window.pwTheme.set(selected), mode);
+    const result = await page.locator(".code").evaluateAll((panels, token) => {
+      const probe = document.createElement("span");
+      probe.style.backgroundColor = `var(${token})`;
+      document.body.append(probe);
+      const expected = getComputedStyle(probe).backgroundColor;
+      probe.remove();
+      return panels.map((panel) => ({
+        expected,
+        panel: getComputedStyle(panel).backgroundColor,
+        pre: getComputedStyle(panel.querySelector("pre")).backgroundColor,
+      }));
+    }, expectedToken);
+    for (const block of result) {
+      expect(block.panel).toBe(block.expected);
+      expect(["rgba(0, 0, 0, 0)", block.panel]).toContain(block.pre);
+    }
+  };
+
+  for (const path of paths) {
+    await page.goto(path);
+    if (await page.locator(".code").count() === 0) { continue; }
+    await auditMode("light", "--code-panel-surface-light");
+    await auditMode("navy", "--code-panel-surface");
+    await auditMode("dark", "--code-panel-surface");
+    await page.emulateMedia({ colorScheme: "dark" });
+    await auditMode("system", "--code-panel-surface");
+  }
+
+  await page.emulateMedia({ colorScheme: "light" });
+  await page.evaluate(() => window.pwTheme.set("system"));
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  await page.emulateMedia({ colorScheme: "dark" });
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+
+  for (const fixture of [
+    ["docs/features/jupyter-notebooks/", ".notebook pre:not(.mermaid)",
+      "--code-panel-surface"],
+    ["docs/features/terminal-recordings/", ".cast", "--terminal-surface"],
+  ]) {
+    await page.goto(fixture[0]);
+    await page.evaluate(() => window.pwTheme.set("system"));
+    const colours = await page.locator(fixture[1]).first().evaluate((
+      node, token,
+    ) => {
+      const probe = document.createElement("span");
+      probe.style.backgroundColor = `var(${token})`;
+      document.body.append(probe);
+      const result = {
+        actual: getComputedStyle(node).backgroundColor,
+        expected: getComputedStyle(probe).backgroundColor,
+      };
+      probe.remove();
+      return result;
+    }, fixture[2]);
+    expect(colours.actual).toBe(colours.expected);
+  }
+});
+
 test("generated data, navigation and template contracts are valid", async ({ page, request }, testInfo) => {
   const response = await request.get("index.json");
   expect(response.ok()).toBeTruthy();
