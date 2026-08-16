@@ -150,7 +150,7 @@ h2:hover .heading-anchor,h3:hover .heading-anchor,h4:hover .heading-anchor{opaci
    panel (e.g. params.codeTheme="adaptive") needs no second override. */
 .code pre{margin:0;padding:16px 18px;overflow-x:auto;background:transparent}
 .code .chroma{background:transparent}
-.code pre code{font-size:var(--type-code-size);line-height:var(--type-code-lh)}
+.code pre code{font-size:var(--type-code-size);font-weight:var(--type-code-weight);line-height:var(--type-code-lh)}
 .highlight pre{margin:0}
 
 /* ── Adaptive code panels ──────────────────────────────────────────────
@@ -384,7 +384,7 @@ html:not([data-code="dark"]):not([data-theme="dark"]) .cast{background:var(--ter
 
 /* ── Landing ────────────────────────────────────────────────────────── */
 .shell{max-width:var(--shell-max);margin:0 auto;padding:0 24px}
-.hero{padding:88px 0 72px}
+.hero{padding-block:88px 72px}
 /* Named .hero__eyebrow, not .overline: Tailwind owns "overline" as a
    text-decoration utility and would draw a line above the text. */
 .hero__eyebrow{font-family:var(--font-body);font-size:var(--type-overline-size);font-weight:600;line-height:var(--type-overline-lh);letter-spacing:.14em;text-transform:uppercase;color:var(--color-text-secondary);margin-bottom:14px}

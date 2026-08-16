@@ -64,6 +64,25 @@ test("prose markers and adaptive technical panels follow colour mode", async ({ 
     getComputedStyle(node).backgroundColor,
   );
   expect(darkCode).not.toBe(lightCode);
+
+  await page.goto("docs/features/code-blocks/");
+  await page.evaluate(() => window.pwTheme.set("light"));
+  const syntax = await page.locator(".code").filter({ has: page.locator(".k") }).evaluate((block) => {
+    const style = (selector) => getComputedStyle(block.querySelector(selector));
+    return {
+      plain: style("code").color,
+      keyword: style(".k").color,
+      keywordWeight: style(".k").fontWeight,
+      functionColor: style(".nf").color,
+      functionWeight: style(".nf").fontWeight,
+      commentStyle: style(".c1").fontStyle,
+    };
+  });
+  expect(syntax.keyword).not.toBe(syntax.plain);
+  expect(syntax.functionColor).not.toBe(syntax.plain);
+  expect(syntax.keywordWeight).toBe("500");
+  expect(syntax.functionWeight).toBe("500");
+  expect(syntax.commentStyle).toBe("italic");
 });
 
 test("generated data, navigation and template contracts are valid", async ({ page, request }, testInfo) => {
@@ -170,10 +189,10 @@ test("landing and wide documentation rails align", async ({ page }, testInfo) =>
   await page.setViewportSize({ width: 1600, height: 900 });
 
   await page.goto("./");
-  const heroX = await page.locator(".hero").evaluate((node) =>
+  const heroX = await page.locator(".hero > :first-child").evaluate((node) =>
     node.getBoundingClientRect().x,
   );
-  const contentX = await page.locator("main > .shell").nth(1).evaluate((node) =>
+  const contentX = await page.locator("main > .shell .prose > :first-child").evaluate((node) =>
     node.getBoundingClientRect().x,
   );
   expect(Math.abs(heroX - contentX)).toBeLessThanOrEqual(1);

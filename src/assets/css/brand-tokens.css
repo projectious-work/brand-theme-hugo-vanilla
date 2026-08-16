@@ -245,6 +245,9 @@
   --syntax-number:     #e0a92a;
   --syntax-macro:      #74c0c9;  /* decorators and macros */
   --syntax-invalid:    #e55b5b;  /* invalid and deprecated */
+  --syntax-weight-plain:    var(--type-code-weight);
+  --syntax-weight-emphasis: 500;
+  --syntax-style-comment:   italic;
 
   /* ── Syntax roles — on light. Optional companion set: same ten roles,
         darkened for a light panel (~4.7:1+ on white). Nothing switches to
