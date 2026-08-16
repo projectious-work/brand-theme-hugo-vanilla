@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented in this file.
 
+## [Unreleased]
+
+### Added
+
+- Added public `hooks/styles-end.html` and `hooks/scripts-end.html` partials so
+  consuming sites can append Hugo-piped, fingerprinted and SRI-tagged CSS and
+  JavaScript without replacing the theme's internal asset pipelines
+  ([#35](https://github.com/projectious-work/brand-theme-hugo-vanilla/issues/35)).
+
 ## [v0.3.1] — 2026-08-16
 
 ### Added
@@ -183,4 +192,5 @@ All notable changes to this project are documented in this file.
 [v0.2.3]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.3
 [v0.2.4]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.4
 [v0.3.1]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.0...v0.3.1
+[Unreleased]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.1...HEAD
 [v0.3.0]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.2.4...v0.3.0

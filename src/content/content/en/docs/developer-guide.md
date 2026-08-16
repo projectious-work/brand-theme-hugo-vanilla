@@ -32,6 +32,36 @@ CSS variables in `brand-tokens.css` are the stable styling surface. Put site-lev
 overrides in a later stylesheet rather than changing component selectors whenever
 possible.
 
+### Append site-owned CSS and JavaScript
+
+Do not override the theme's complete `styles.html` or `scripts.html` pipelines.
+Create `layouts/partials/hooks/styles-end.html` or
+`layouts/partials/hooks/scripts-end.html` in your site instead. The theme calls
+these public, empty-by-default hooks after its own assets in both Tailwind and
+Hugo-only builds.
+
+For example, compile `assets/scss/site.scss`, then fingerprint it and emit SRI:
+
+```go-html-template
+{{ with resources.Get "scss/site.scss" }}
+  {{ $built := . | css.Sass (dict "targetPath" "css/site.css") | minify | fingerprint "sha384" }}
+  <link rel="stylesheet" href="{{ $built.RelPermalink }}"
+    integrity="{{ $built.Data.Integrity }}" crossorigin="anonymous">
+{{ end }}
+```
+
+Build and protect `assets/js/site.js` the same way:
+
+```go-html-template
+{{ with resources.Get "js/site.js" }}
+  {{ $built := . | js.Build (dict "minify" hugo.IsProduction "target" "es2018") | fingerprint "sha384" }}
+  <script src="{{ $built.RelPermalink }}" integrity="{{ $built.Data.Integrity }}"
+    crossorigin="anonymous" defer></script>
+{{ end }}
+```
+
+The complete public contract is in the root `API.md`.
+
 ## Icons and Tabler
 
 The theme currently bundles this small offline fallback set:

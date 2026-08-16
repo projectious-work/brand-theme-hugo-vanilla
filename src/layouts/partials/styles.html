@@ -16,3 +16,5 @@
   {{- $f := . | fingerprint -}}
   <link rel="stylesheet" href="{{ $f.RelPermalink }}" integrity="{{ $f.Data.Integrity }}">
 {{- end -}}
+{{- /* Public append point. Consumers override only this empty partial. */ -}}
+{{- partial "hooks/styles-end.html" . -}}

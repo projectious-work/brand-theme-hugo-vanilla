@@ -7,3 +7,5 @@
   {{ partial "script.html" (dict "src" "search.js" "defer" true) }}
 {{ end }}
 {{ if ne site.Params.commandPalette false }}{{ partial "script.html" (dict "src" "palette.js" "defer" true) }}{{ end }}
+{{- /* Public append point. Consumers override only this empty partial. */ -}}
+{{- partial "hooks/scripts-end.html" . -}}

@@ -20,6 +20,7 @@ const contrast = (foreground, background) => {
 test("landing page matches the approved theme", async ({ page }) => {
   await page.goto("./");
   await expect(page.locator("main")).toBeVisible();
+  await expect(page.locator("html")).toHaveAttribute("data-site-hook", "ready");
   await expect(page).toHaveScreenshot("landing.png", {
     fullPage: true,
     animations: "disabled",

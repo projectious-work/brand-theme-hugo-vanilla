@@ -47,6 +47,12 @@ if rg -q 'ZgotmplZ' "$VERIFY_DIR/build-a/docs/features/tokens/index.html"; then
   exit 1
 fi
 bash -n "$ROOT_DIR/scripts/check-theme-update.sh"
+rg -q 'partial "hooks/styles-end.html" .' "$ROOT_DIR/src/layouts/partials/styles.html"
+rg -q 'partial "hooks/scripts-end.html" .' "$ROOT_DIR/src/layouts/partials/scripts.html"
+[[ -f "$ROOT_DIR/src/layouts/partials/hooks/styles-end.html" ]]
+[[ -f "$ROOT_DIR/src/layouts/partials/hooks/scripts-end.html" ]]
+rg -q 'css/site(\.min)?\.[a-f0-9]+\.css[^>]+integrity=' "$VERIFY_DIR/build-a/index.html"
+rg -q 'js/site\.[a-f0-9]+\.js[^>]+integrity=' "$VERIFY_DIR/build-a/index.html"
 
 hash_tree() {
   find "$1" -type f -print0 \

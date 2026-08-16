@@ -1,0 +1,4 @@
+{{- with resources.Get "js/site.js" -}}
+  {{- $built := . | js.Build (dict "minify" hugo.IsProduction "target" "es2018") | fingerprint "sha384" -}}
+  <script src="{{ $built.RelPermalink }}" integrity="{{ $built.Data.Integrity }}" crossorigin="anonymous" defer></script>
+{{- end -}}
