@@ -16,10 +16,8 @@
       || (!root.getAttribute('data-theme') && matchMedia('(prefers-color-scheme: dark)').matches);
   }
 
-  /* asciinema ships a small set of named palettes. "asciinema" is the dark house
-     theme; "solarized-light" is the only bundled light one that keeps all 16 ANSI
-     slots legible on a pale surface. */
-  function paletteFor(dark) { return dark ? 'asciinema' : 'solarized-light'; }
+  /* Custom themes map all sixteen ANSI slots to the brand terminal tokens. */
+  function paletteFor(dark) { return dark ? 'projectious' : 'projectious-light'; }
 
   function mount(el) {
     var node = el.querySelector('[data-cast-options]');

@@ -2,7 +2,15 @@
    still renders if a consumer builds without the Tailwind step.
    Every value here traces to a token in brand-tokens.css. */
 
-:root { --shell-max: 1100px; --sidebar-w: 262px; --toc-w: 212px; --header-h: 60px; }
+:root {
+  --rail-max: 1440px;
+  --rail-gutter: 24px;
+  --rail-inset: max(var(--rail-gutter), calc((100vw - var(--rail-max)) / 2));
+  --shell-max: var(--container-max);
+  --sidebar-w: 262px;
+  --toc-w: 212px;
+  --header-h: 60px;
+}
 
 html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 16px); }
 [data-motion="reduced"] html, html[data-motion="reduced"] { scroll-behavior: auto; }
@@ -19,6 +27,8 @@ code, kbd, pre, samp { font-family: var(--font-code); }
 .skip-link{position:absolute;left:8px;top:-48px;z-index:100;padding:8px 14px;border-radius:var(--radius-md);background:var(--color-surface);border:1px solid var(--color-border);transition:top 100ms ease-out}
 .skip-link:focus{top:8px}
 .target{min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center}
+.btn,.iconbtn,.badge--link{position:relative}
+.btn::after,.iconbtn::after{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;height:100%;min-width:var(--touch-target);min-height:var(--touch-target)}
 .ico{display:inline-flex;flex-shrink:0;line-height:0}
 .ico svg{width:20px;height:20px;display:block;stroke-width:1.5}
 .ico[aria-current="true"] svg,.ico[aria-pressed="true"] svg,
@@ -27,7 +37,7 @@ code, kbd, pre, samp { font-family: var(--font-code); }
 .ico--lg svg{width:24px;height:24px}
 
 /* ── Header ─────────────────────────────────────────────────────────── */
-.header{position:sticky;top:0;z-index:40;height:var(--header-h);display:flex;align-items:center;gap:20px;padding-inline:max(24px,calc((100vw - 1440px)/2));background:var(--header-bg);border-bottom:1px solid var(--color-border)}
+.header{position:sticky;top:0;z-index:40;height:var(--header-h);display:flex;align-items:center;gap:20px;padding-inline:var(--rail-inset);background:var(--header-bg);border-bottom:1px solid var(--color-border)}
 .header__brand{display:flex;align-items:center;gap:8px;font-family:var(--font-heading);font-weight:700;font-size:calc(16px * var(--font-scale));letter-spacing:-0.4px;color:var(--color-text-primary)}
 .header__brand:hover{color:var(--color-text-primary)}
 .header__brand img{width:26px;height:26px;display:block}
@@ -68,7 +78,7 @@ code, kbd, pre, samp { font-family: var(--font-code); }
 .results__empty{padding:12px;font-size:calc(13px * var(--font-scale));color:var(--color-text-secondary)}
 
 /* ── Docs shell ─────────────────────────────────────────────────────── */
-.docs{display:grid;grid-template-columns:var(--sidebar-w) minmax(0,1fr) var(--toc-w);gap:0;max-width:1440px;margin:0 auto}
+.docs{display:grid;grid-template-columns:var(--sidebar-w) minmax(0,1fr) var(--toc-w);gap:0;max-width:var(--rail-max);margin:0 auto}
 .docs--no-toc{grid-template-columns:var(--sidebar-w) minmax(0,1fr)}
 .sidebar{border-right:1px solid var(--color-border);padding:24px 12px 64px;align-self:start;position:sticky;top:var(--header-h);max-height:calc(100vh - var(--header-h));overflow-y:auto}
 .sidebar__group{font-size:calc(10px * var(--font-scale));font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-secondary);padding:4px 10px;margin:16px 0 4px}
@@ -320,7 +330,8 @@ html:not([data-code="dark"]):not([data-theme="dark"]) .code *::selection{backgro
 .filetree details>summary{list-style:none;cursor:pointer}
 .filetree details>summary::-webkit-details-marker{display:none}
 .term{border-bottom:1px dashed var(--color-text-secondary);cursor:help}
-.badge{display:inline-flex;align-items:center;gap:4px;font-family:var(--font-code);font-size:calc(11px * var(--font-scale));font-weight:500;padding:2px 8px;border-radius:var(--radius-sm);background:var(--tag-bg);color:var(--tag-text)}
+.token-swatch{display:inline-block;width:28px;height:16px;border:1px solid var(--color-border);border-radius:var(--radius-sm)}
+.badge{display:inline-flex;align-items:center;gap:4px;font-family:var(--font-code);font-size:calc(11px * var(--font-scale));font-weight:500;padding:2px 8px;border-radius:var(--radius-sm);background:var(--color-tag-bg);color:var(--color-tag-fg);border:0}
 .badge--accent{background:var(--tag-bg-accent);color:var(--tag-text-accent)}
 .btn{min-height:var(--touch-target);display:inline-flex;align-items:center;gap:8px;font-family:var(--font-heading);font-weight:500;font-size:var(--type-caption-size);padding:8px 18px;border-radius:var(--radius-md);border:1px solid transparent;cursor:pointer}
 .btn--primary{background:var(--color-accent-solid);color:var(--fixed-control-text)}

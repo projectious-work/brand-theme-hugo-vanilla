@@ -71,3 +71,24 @@ Manual passes that axe cannot make:
 - Print output is verified in Chromium only — `@page` running elements are not
   universally supported, and the folio degrades to nothing where they are absent
 - The feedback endpoint contract is documented but has no reference server
+
+## v8 regression coverage
+
+The browser and build suites must cover these formerly shipped defects:
+
+- generated token pages contain no `ZgotmplZ`, render non-empty rows and work
+  at arbitrary content paths;
+- fallback and mounted Tabler icons inline without a literal closing SVG tag;
+- strong focus computes to a 3px outline with a 3px offset in every palette;
+- sidebar selection survives scrolling and TOC selection follows clicks and
+  scrolling without either navigation overwriting the other's state;
+- fragments survive ordinary, `ref` and `relref` resolution under language and
+  non-root base paths;
+- header, documentation sidebar and content share one alignment rail;
+- palette URLs are resolved once and hidden, private, unlisted or
+  `_build.list = false` pages appear in neither generated navigation surface;
+- code selection remains readable, and code and terminal surfaces remain
+  visually distinct;
+- every `@font-face` URL resolves to a bundled file; run
+  `scripts/vendor-fonts.sh` to validate or restore the font set;
+- syntax role weight and italic styling remain distinguishable in greyscale.

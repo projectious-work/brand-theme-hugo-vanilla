@@ -50,11 +50,11 @@
               {{ $parts := split (strings.TrimSuffix ";" .) ":" }}
               {{ if eq (len $parts) 2 }}
               {{ $name := trim (index $parts 0) " " }}
+              {{ $safeName := "" }}{{ with findRE `^--[a-z0-9-]+$` $name 1 }}{{ $safeName = index . 0 }}{{ end }}
               <tr>
                 <td><code>{{ $name }}</code></td>
                 <td><code>{{ trim (index $parts 1) " " }}</code></td>
-                {{ $swatch := printf "display:inline-block;width:28px;height:16px;border-radius:3px;border:1px solid var(--color-border);background:var(%s)" $name }}
-                <td><span style="{{ $swatch | safeCSS }}"></span></td>
+                <td>{{ with $safeName }}<span class="token-swatch" style="{{ printf "background:var(%s)" . | safeCSS }}"></span>{{ end }}</td>
               </tr>
               {{ end }}
             {{ end }}

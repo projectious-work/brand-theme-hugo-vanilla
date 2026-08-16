@@ -188,6 +188,9 @@
   --grid-gutter:   16px;
   --touch-target:  44px;  /* floor for any tap target */
   --measure:       65ch;  /* comfortable line length for running text */
+  --focus-ring-strong: var(--color-accent-solid);
+  --color-tag-bg: var(--midnight-2);
+  --color-tag-fg: var(--color-text-secondary);
   /* ── Overlays, tints and fixed values ───────────────────────────────
         Named tokens, never literals repeated through component CSS. The
         --fixed-* values deliberately do NOT follow the theme: white on a
@@ -214,6 +217,12 @@
   --fixed-print-code-border: #cdd0d5;
   --fixed-print-code-text: #142438;
   --fixed-print-external-url: #546a82;
+  --fixed-print-bg: #ffffff;
+  --fixed-print-text: #142438;
+  --fixed-print-muted: #546a82;
+  --fixed-print-border: #cdd0d5;
+  --fixed-print-panel: #f1f2f4;
+  --fixed-print-panel-bar: #e6e8ec;
   --fixed-notebook-image-bg: #ffffff;
   --fixed-overlay-solid: var(--fixed-reduced-transparency-bg);
   --fixed-overlay-text: var(--fixed-code-control-text);
@@ -548,15 +557,17 @@ html[data-font-size="xxxl"] { --font-scale: 2; }
 /* ── Focus ring — solid and offset, measured against both surfaces.
       outline (not box-shadow) so overflow can never clip it. ─────────── */
 html[data-focus="strong"] :focus-visible {
-  outline: 2px solid var(--midnight-9);   /* 8.59:1 on --color-bg */
-  outline-offset: 2px;
-  box-shadow: none;
+  outline: 3px solid var(--focus-ring-strong);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 1px var(--color-surface);
+  border-radius: inherit;
 }
 html[data-focus="strong"][data-theme="dark"] :focus-visible,
-html[data-focus="strong"] [data-theme="dark"] :focus-visible { outline-color: var(--midnight-12); }
+html[data-focus="strong"] [data-theme="dark"] :focus-visible,
+html[data-focus="strong"][data-surface="deep"] :focus-visible { --focus-ring-strong: var(--orange-11); box-shadow:0 0 0 1px var(--color-bg); }
 @media (prefers-color-scheme: dark) {
-  html[data-focus="strong"] :focus-visible { outline-color: var(--midnight-12); }
-  html[data-focus="strong"][data-theme="light"] :focus-visible { outline-color: var(--midnight-9); }
+  html[data-focus="strong"] :focus-visible { --focus-ring-strong: var(--orange-11); box-shadow:0 0 0 1px var(--color-bg); }
+  html[data-focus="strong"][data-theme="light"] :focus-visible { --focus-ring-strong:var(--color-accent-solid); box-shadow:0 0 0 1px var(--color-surface); }
 }
 
 /* ── Prose links carry an underline, not colour alone. Scoped to running

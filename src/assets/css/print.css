@@ -14,7 +14,7 @@
 
 @media print {
   html { font-size: 11pt; }
-  body { background: #fff; color: #142438; }
+  body { background: var(--fixed-print-bg); color: var(--fixed-print-text); }
 
   /* Running header, repeated on every sheet after the first. */
   .print-head {
@@ -23,13 +23,13 @@
     justify-content: space-between;
     font-family: var(--font-code);
     font-size: 8pt;
-    color: #546a82;
-    border-bottom: 0.5pt solid #cdd0d5;
+    color: var(--fixed-print-muted);
+    border-bottom: 0.5pt solid var(--fixed-print-border);
     padding-bottom: 3mm;
   }
   @page { @top-center { content: element(head); } }
   @page :first { @top-center { content: none; } }
-  @page { @bottom-right { content: counter(page) " / " counter(pages); font-family: 'IBM Plex Mono', monospace; font-size: 8pt; color: #546a82; } }
+  @page { @bottom-right { content: counter(page) " / " counter(pages); font-family: 'IBM Plex Mono', monospace; font-size: 8pt; color: var(--fixed-print-muted); } }
   @page :first { @bottom-right { content: none; } }
 
   /* Each source page starts a sheet and keeps its heading with its body. */
@@ -50,13 +50,13 @@
   tr { break-inside: avoid; }
 
   /* Code is legible in ink: a light panel, not a dark slab. */
-  .code, .code pre, .chroma { background: #f1f2f4 !important; color: #142438 !important; }
-  .code { border: 0.5pt solid #cdd0d5; }
-  .code__bar { background: #e6e8ec !important; border-bottom: 0.5pt solid #cdd0d5; }
-  .code__name, .chroma * { color: #142438 !important; }
+  .code, .code pre, .chroma { background: var(--fixed-print-panel) !important; color: var(--fixed-print-text) !important; }
+  .code { border: 0.5pt solid var(--fixed-print-border); }
+  .code__bar { background: var(--fixed-print-panel-bar) !important; border-bottom: 0.5pt solid var(--fixed-print-border); }
+  .code__name, .chroma * { color: var(--fixed-print-text) !important; }
 
   /* Link targets are invisible on paper, so print them — except in-page ones. */
-  .prose a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8.5pt; color: #546a82; word-break: break-all; }
+  .prose a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 8.5pt; color: var(--fixed-print-muted); word-break: break-all; }
   .prose a[href^="#"]::after { content: none; }
 
   figure img { max-width: 100%; }

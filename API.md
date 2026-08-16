@@ -28,8 +28,15 @@ and will not be renamed without a major.
 | `--type-*-size`, `--type-*-lh` | Type ramp; all scale through `--font-scale` |
 | `--radius-{sm,md,lg,xl}` | 3 / 6 / 9 / 13 px |
 | `--space-1` … `--space-9` | 4 px base scale |
-| `--terminal-surface`, `--terminal-light-surface` | Code panel surfaces |
+| `--code-panel-surface`, `--code-panel-border`, `--code-panel-foreground` | Code panel tokens |
+| `--code-panel-selection-{bg,fg}`, `--code-panel-light-selection-{bg,fg}` | Readable code selection |
+| `--terminal-surface`, `--terminal-border`, `--terminal-light-surface` | Terminal output tokens |
+| `--color-tag-{bg,fg}` | Neutral tag/badge pair |
+| `--elevated-1..3` | Elevation surfaces paired with `--shadow-1..3` |
+| `--focus-ring-strong` | Strong focus-ring colour |
+| `--hero-title-size`, `--hero-lede-size`, `--hero-pad-block` | Landing hero roles |
 | `--syntax-<role>`, `--syntax-<role>-light` | Ten syntax roles, both modes |
+| `--rail-max`, `--rail-gutter`, `--rail-inset` | Shared header, sidebar and content rail |
 | `--shell-max`, `--sidebar-w`, `--toc-w`, `--header-h` | Theme layout measures |
 
 ## Public — Tailwind namespaces
@@ -49,10 +56,12 @@ Declared in `assets/css/theme-layer.css` and stable:
 
 - **Partials**: `icon.html`, `url.html`, `cdn-url.html`, `script.html`,
   `child-cards.html`, `taglist.html`, `breadcrumbs.html`, `toc.html`,
-  `page-tools.html`. Argument shapes are documented in each file's header comment.
+  `page-tools.html`, `menu-url.html`, `is-listed.html`. Argument shapes are
+  documented in each file's header comment.
 - **Shortcodes**: every name in the gallery, with its documented parameters.
 - **Front matter**: `weight`, `description`, `icon`, `toc`, `math`, `private`,
-  `hidden`, `cards`, `cover`, `coverAlt`, `layout = "search"`.
+  `hidden`, `unlisted`, `cards`, `cover`, `coverAlt`, `overviewLabel`,
+  `layout = "search"`, `layout = "tokens"`.
 - **Site params**: every key in the configuration reference.
 - **Blocks**: `main` in `_default/baseof.html`.
 - **Data**: `data/cdn.yaml` and `data/glossary.yaml` keys.
@@ -84,8 +93,7 @@ listen for it, and your own code can too.
 
 ## Token reference
 
-Any content page with `layout = "tokens"` is **generated from
-`assets/css/theme-layer.css` and the brand token sheet at build time**. The example
-site publishes it at `/docs/features/tokens/`. It parses the CSS rather than
-restating it, so it cannot drift. If a mapping disappears from the CSS it
-disappears from the page.
+The token reference is generated from `assets/css/theme-layer.css` and the brand
+token sheet at build time. It has no fixed route: create a content page at the
+desired path and set `layout = "tokens"`. Its URL then follows that page's path,
+language, slug, permalink configuration and site base path.

@@ -10,11 +10,11 @@
 {{- range site.Menus.main -}}
   {{- /* Menu URLs are already language- and base-path-aware. Sending them
         through url.html again duplicates a non-root base path. */ -}}
-  {{- $u := .URL -}}
+  {{- $u := partial "menu-url.html" . -}}
   {{- if not (in $seen $u) }}{{ $seen = $seen | append $u }}{{ $actions = $actions | append (dict "label" .Name "href" $u "group" (i18n "jumpTo")) }}{{ end -}}
 {{- end -}}
 {{- range site.Home.Sections.ByWeight -}}
-  {{- if and (not .Params.hidden) (not (in $seen .RelPermalink)) }}{{ $seen = $seen | append .RelPermalink }}{{ $actions = $actions | append (dict "label" .LinkTitle "href" .RelPermalink "group" (i18n "jumpTo")) }}{{ end -}}
+  {{- if and (partial "is-listed.html" .) (not (in $seen .RelPermalink)) }}{{ $seen = $seen | append .RelPermalink }}{{ $actions = $actions | append (dict "label" .LinkTitle "href" .RelPermalink "group" (i18n "jumpTo")) }}{{ end -}}
 {{- end -}}
 {{- if ne site.Params.search false -}}
   {{- $u := partial "url.html" "search/" -}}

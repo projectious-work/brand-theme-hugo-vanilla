@@ -1,13 +1,9 @@
-{{- /* Resolves an authored URL exactly once.
+{{- /* Base-path-safe URL resolver.
 
-       External, protocol-relative, fragment and mailto: values pass through
-       untouched. Everything else is treated as internal and resolved with
-       relLangURL — after stripping any leading slash, because a leading-slash
-       argument is what caused the project base path to be dropped.
-
-       Accepts a string, or a dict {url, page} to enable ref/relref semantics:
-       a value in angle brackets, or ending in .md, is resolved as a page ref so
-       a moved page produces a build error rather than a dead link. */ -}}
+       Accepts a string, or {url, page}. Markdown references are resolved through
+       Hugo so moves fail the build. Fragments are split before resolution and
+       reattached on every branch. Already-resolved menu/page permalinks must not
+       pass through this partial; use menu-url.html for menu entries. */ -}}
 {{- $u := "" }}{{ $page := "" -}}
 {{- if reflect.IsMap . }}{{ $u = .url }}{{ $page = .page }}{{ else }}{{ $u = . }}{{ end -}}
 {{- $u = string $u -}}
@@ -22,5 +18,6 @@
     {{- errorf "url.html: no page found for ref %q on %s" $target $page.Path -}}
   {{- end -}}
 {{- else -}}
-  {{- strings.TrimPrefix "/" $u | relLangURL -}}
+  {{- $parsed := urls.Parse $u -}}
+  {{- strings.TrimPrefix "/" $parsed.Path | relLangURL -}}{{- with $parsed.RawQuery }}?{{ . }}{{ end -}}{{- with $parsed.Fragment }}#{{ . }}{{ end -}}
 {{- end -}}
