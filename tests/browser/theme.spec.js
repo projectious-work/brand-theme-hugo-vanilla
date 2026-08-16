@@ -207,6 +207,17 @@ test("landing and wide documentation rails align", async ({ page }, testInfo) =>
   expect(Math.abs(brandX - sidebarX)).toBeLessThanOrEqual(1);
 });
 
+test("documentation section guides expose heading navigation", async ({ page }, testInfo) => {
+  await page.goto("docs/guides/");
+  if (testInfo.project.name.startsWith("desktop")) {
+    await expect(page.locator(".toc")).toBeVisible();
+    await expect(page.locator('.toc a[href="#create-and-order-pages"]')).toBeVisible();
+  } else {
+    await expect(page.locator(".toc-mobile")).toBeVisible();
+    await expect(page.locator('.toc-mobile a[href="#create-and-order-pages"]')).toBeAttached();
+  }
+});
+
 test("strong focus is visibly distinct", async ({ page }, testInfo) => {
   test.skip(!testInfo.project.name.startsWith("desktop"));
   await page.goto("docs/getting-started/");
