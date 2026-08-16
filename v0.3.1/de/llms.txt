@@ -2,6 +2,8 @@
 
 > Dokumentation und Blog auf Basis des projectious.work Markensystems.
 
+Version: v0.3.1
+
 
 ## Dokumentation
 

@@ -203,11 +203,13 @@ directory.</p></li></ol><div class=code><div class=code__bar><span class=code__n
 </span></span><span class=line><span class=cl>    <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;v0.2/&#34;</span></span></span></code></pre></div></div><p>The menu normally appends the current page path so readers stay on the same topic.
 Set <code>params.versionProbe = false</code>, or <code>probe = false</code> on one entry, when versions
 have different structures. Older builds display a banner linking to the first
-configured version.</p><p>This repository lists archived tags in <code>scripts/docs-archives.txt</code>. The deployment
-script rebuilds every listed immutable tag below its matching prefix before it
-publishes the current root, so a clean checkout reproduces the complete version
-menu without relying on state left by an earlier deployment. Consumers can use the
-same pattern or retain their archived generated trees by another deployment method.</p></article><article class="prose print-page" id=page-configuration><h1>Page configuration (front matter)</h1><p class=lede>Control navigation, cards, tables of contents and optional page capabilities.</p><p>Front matter is the TOML block between <code>+++</code> delimiters at the beginning of a
+configured version.</p><p>This repository lists archived tags in <code>scripts/docs-archives.txt</code> and the complete
+cross-version navigation catalog in <code>scripts/docs-versions.toml</code>. The deployment
+script rebuilds every listed immutable tag below its matching prefix and injects
+the current catalog before it publishes the current root. A clean checkout thus
+reproduces the complete version menu in every archived site without relying on
+state left by an earlier deployment. Consumers can use the same pattern or retain
+their archived generated trees by another deployment method.</p></article><article class="prose print-page" id=page-configuration><h1>Page configuration (front matter)</h1><p class=lede>Control navigation, cards, tables of contents and optional page capabilities.</p><p>Front matter is the TOML block between <code>+++</code> delimiters at the beginning of a
 Markdown file. These values affect only that page or section.</p><div class=code><div class=code__bar><span class=code__name>toml</span>
 <button class=code__copy type=button data-copied=Copied><span class="ico ico--sm" aria-hidden=true><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7m0 2.667A2.667 2.667.0 019.667 7h8.666A2.667 2.667.0 0121 9.667v8.666A2.667 2.667.0 0118.333 21H9.667A2.667 2.667.0 017 18.333z"/><path d="M4.012 16.737A2.005 2.005.0 013 15V5c0-1.1.9-2 2-2h10c.75.0 1.158.385 1.5 1"/></svg></span><span>Copy</span></button></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=line><span class=cl><span class=err>+++</span>
 </span></span><span class=line><span class=cl><span class=nx>title</span> <span class=p>=</span> <span class=s2>&#34;API reference&#34;</span>       <span class=c># Required page title.</span>
