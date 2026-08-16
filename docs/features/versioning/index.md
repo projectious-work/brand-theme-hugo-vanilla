@@ -43,9 +43,11 @@ Set `params.versionProbe = false`, or `probe = false` on one entry, when version
 have different structures. Older builds display a banner linking to the first
 configured version.
 
-The repository's release script deploys the current release only. A consumer that
-retains multiple versions needs a deployment step that copies the new root while
-preserving each archived generated tree.
+This repository lists archived tags in `scripts/docs-archives.txt`. The deployment
+script rebuilds every listed immutable tag below its matching prefix before it
+publishes the current root, so a clean checkout reproduces the complete version
+menu without relying on state left by an earlier deployment. Consumers can use the
+same pattern or retain their archived generated trees by another deployment method.
 
 
 ---

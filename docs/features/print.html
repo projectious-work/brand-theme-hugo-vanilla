@@ -19,9 +19,11 @@ directory.</p></li></ol><div class=code><div class=code__bar><span class=code__n
 </span></span><span class=line><span class=cl>    <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;v0.2/&#34;</span></span></span></code></pre></div></div><p>The menu normally appends the current page path so readers stay on the same topic.
 Set <code>params.versionProbe = false</code>, or <code>probe = false</code> on one entry, when versions
 have different structures. Older builds display a banner linking to the first
-configured version.</p><p>The repository&rsquo;s release script deploys the current release only. A consumer that
-retains multiple versions needs a deployment step that copies the new root while
-preserving each archived generated tree.</p></article><article class="prose print-page" id=tokens><h1>Tokens and public API</h1><p class=lede>Inspect the stable semantic CSS tokens and Tailwind namespaces generated from the theme source.</p><p>The tables below are generated from the theme&rsquo;s CSS during the Hugo build. Use
+configured version.</p><p>This repository lists archived tags in <code>scripts/docs-archives.txt</code>. The deployment
+script rebuilds every listed immutable tag below its matching prefix before it
+publishes the current root, so a clean checkout reproduces the complete version
+menu without relying on state left by an earlier deployment. Consumers can use the
+same pattern or retain their archived generated trees by another deployment method.</p></article><article class="prose print-page" id=tokens><h1>Tokens and public API</h1><p class=lede>Inspect the stable semantic CSS tokens and Tailwind namespaces generated from the theme source.</p><p>The tables below are generated from the theme&rsquo;s CSS during the Hugo build. Use
 semantic tokens and documented Tailwind namespaces in site-owned templates;
 palette steps, component selectors and internal behavior attributes may change.</p><p>The root <code>API.md</code> defines the complete compatibility contract. For practical
 authoring examples, see <a href=/brand-theme-hugo-vanilla/docs/features/tailwind/>Tailwind and design tokens</a>.</p></article><article class="prose print-page" id=terminal-recordings><h1>Terminal recordings</h1><p class=lede>Record and embed copyable terminal sessions with asciinema.</p><p><a href=https://asciinema.org/ target=_blank rel="noopener noreferrer">asciinema<span class="ico ico--sm" aria-hidden=true><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6H6A2 2 0 004 8v10a2 2 0 002 2h10a2 2 0 002-2v-6"/><path d="M11 13l9-9"/><path d="M15 4h5v5"/></svg></span></a> records terminal text and timing data rather
