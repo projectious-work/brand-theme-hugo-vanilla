@@ -1,1 +1,3 @@
-<div class="steps">{{ .Inner }}</div>
+{{- /* Step bodies are rendered by step.html and may contain any Markdown plus
+       nested paired or unpaired shortcodes, including cards. */ -}}
+<div class="steps">{{ .Inner | safeHTML }}</div>

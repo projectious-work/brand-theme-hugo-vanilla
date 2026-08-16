@@ -1,7 +1,7 @@
 +++
 title = "Accessibilité"
 description = "Clavier, préférences de lecture et responsabilités des auteurs."
-weight = 40
+weight = 140
 icon = "accessible"
 +++
 

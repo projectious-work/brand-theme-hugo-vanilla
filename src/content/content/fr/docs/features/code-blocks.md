@@ -1,7 +1,7 @@
 +++
 title = "Blocs de code"
 description = "Configurer la coloration, les noms de fichier, les numéros et les lignes mises en évidence."
-weight = 55
+weight = 130
 icon = "file-code"
 +++
 

@@ -8,6 +8,6 @@
   <div class="sidebar__empty" data-sidebar-empty hidden>{{ i18n "noResults" }}</div>
   {{ end }}
   <div class="sidebar__group">{{ $root.LinkTitle }}</div>
-  <a href="{{ $root.RelPermalink }}"{{ if eq $root . }} aria-current="page"{{ end }}>{{ i18n "overview" }}</a>
+  <a href="{{ $root.RelPermalink }}"{{ if eq $root . }} aria-current="page"{{ end }}>{{ or $root.Params.overviewLabel $root.Params.overviewTitle site.Params.overviewLabel (i18n "overview") }}</a>
   {{ partial "sidebar-tree.html" (dict "page" $root "current" . "level" 0) }}
 </nav>

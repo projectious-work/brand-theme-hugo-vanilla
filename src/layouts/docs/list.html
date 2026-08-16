@@ -1,9 +1,11 @@
 {{ define "main" }}
-<div class="docs docs--no-toc">
+{{ $hasTOC := and (ne .Params.toc false) (gt (len .TableOfContents) 60) }}
+<div class="docs{{ if not $hasTOC }} docs--no-toc{{ end }}">
   {{ partial "sidebar.html" . }}
   <main id="main" class="docs__main">
     {{ partial "breadcrumbs.html" . }}
     {{ partial "version-banner.html" . }}
+    {{ partial "toc-mobile.html" . }}
     {{ partial "page-tools.html" . }}
     <article class="prose">
       <h1>{{ .Title }}</h1>
@@ -13,5 +15,6 @@
     {{ partial "child-cards.html" . }}
     {{ partial "page-footer.html" . }}
   </main>
+  {{ partial "toc.html" . }}
 </div>
 {{ end }}

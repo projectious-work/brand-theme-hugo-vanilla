@@ -10,7 +10,6 @@ from __future__ import annotations
 
 import importlib.util
 import os
-import re
 from pathlib import Path
 from typing import Any
 
@@ -212,8 +211,6 @@ def _collect_inventory(
         for manifest_name in rule["manifests"]:
             for manifest in manifest_index.get(manifest_name, []):
                 counts[family] = counts.get(family, 0) + 1
-                if family == "Go" and not _go_module_needs_sum(manifest):
-                    continue
                 if not any((manifest.parent / lock).exists() for lock in rule["lockfiles"]):
                     missing.append((manifest, family))
 
@@ -225,32 +222,6 @@ def _collect_inventory(
 
     dependency_present = bool(manifests or lockfiles)
     return counts, sorted(lockfiles), missing, dependency_present
-
-
-def _go_module_needs_sum(manifest: Path) -> bool:
-    """Return whether a Go module can have remote checksums to lock.
-
-    Dependency-free modules and modules whose requirements are all replaced
-    by local paths correctly have no ``go.sum``. Treating those as missing
-    lockfiles creates an impossible remediation finding.
-    """
-    try:
-        text = manifest.read_text(encoding="utf-8")
-    except OSError:
-        return True
-
-    required = set(re.findall(
-        r"(?m)^\s*(?:require\s+)?([A-Za-z0-9._~/-]+)\s+v[^\s]+",
-        text,
-    ))
-    if not required:
-        return False
-
-    local_replacements = set(re.findall(
-        r"(?m)^\s*replace\s+([A-Za-z0-9._~/-]+)(?:\s+v[^\s]+)?\s+=>\s+(?:\.{1,2}/|/)",
-        text,
-    ))
-    return not required.issubset(local_replacements)
 
 
 def _find_sbom_files(repo_root: Path) -> list[Path]:

@@ -1,7 +1,7 @@
 +++
 title = "Tailwind et jetons de design"
 description = "Employer l'intégration Tailwind et les jetons projectious.work."
-weight = 70
+weight = 40
 icon = "file-code"
 +++
 

@@ -1,6 +1,6 @@
 <nav class="header__nav" aria-label="{{ i18n "mainNav" }}">
   {{ $page := . }}
   {{ range site.Menus.main }}
-    <a href="{{ .URL }}"{{ if or ($page.IsMenuCurrent "main" .) ($page.HasMenuCurrent "main" .) }} aria-current="true"{{ end }}>{{ .Name }}</a>
+    <a href="{{ partial "menu-url.html" . }}"{{ if or ($page.IsMenuCurrent "main" .) ($page.HasMenuCurrent "main" .) }} aria-current="true"{{ end }}>{{ .Name }}</a>
   {{ end }}
 </nav>

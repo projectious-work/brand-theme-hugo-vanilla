@@ -19,5 +19,6 @@ exec env PATH="$ROOT_DIR/node_modules/.bin:$PATH" hugo server \
   --cacheDir "$ROOT_DIR/.deploy/cache" \
   --bind 0.0.0.0 \
   --port "$PORT" \
+  --ignoreCache \
   --disableFastRender \
   --navigateToChanged

@@ -1,1 +1,1 @@
-{{- partial "icon.html" (dict "name" (.Get "name" | default (.Get 0)) "class" (.Get "class" | default "") "label" (.Get "label" | default "")) -}}
+{{- partial "icon.html" (dict "name" (.Get "name" | default (.Get 0)) "class" (.Get "class" | default "") "label" (.Get "label" | default "")) | safeHTML -}}

@@ -23,7 +23,7 @@ Hugo ab 0.128.0, Go für Hugo Modules, Node.js mit npm für Tailwind sowie Git.
 ```sh
 hugo mod init example.com/docs
 npm install
-hugo mod get github.com/projectious-work/brand-theme-hugo-vanilla@v0.3.0
+hugo mod get github.com/projectious-work/brand-theme-hugo-vanilla@v0.3.1
 ```
 
 Kopieren Sie `[outputFormats]`, `[outputs]` und `[markup]` aus der
@@ -39,5 +39,5 @@ Legen Sie `content/docs/_index.md` sowie eine Markdown-Seite mit `title`,
 hugo server --disableFastRender
 ```
 
-Weiter geht es mit [Konfiguration](configuration.md),
+Weiter geht es mit [Konfiguration](configuration/_index.md),
 [Features](features/_index.md) und dem [Autorenleitfaden](guides/_index.md).

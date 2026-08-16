@@ -33,13 +33,19 @@ for required in index.html index.json docs/index.html search/index.html; do
   }
 done
 
-rg -q 'katex@0\.18\.4' "$VERIFY_DIR/build-a/docs/guides/index.html"
-rg -q 'mermaid@11\.16\.1' "$VERIFY_DIR/build-a/docs/guides/index.html"
+rg -q 'katex@0\.18\.4' "$VERIFY_DIR/build-a/docs/features/mathematics/index.html"
+rg -q 'mermaid@11\.16\.1' "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
 rg -q 'asciinema-player@3\.17\.0' \
-  "$VERIFY_DIR/build-a/docs/guides/index.html"
+  "$VERIFY_DIR/build-a/docs/features/terminal-recordings/index.html"
 rg -q '/brand-theme-hugo-vanilla/casts/theme-tour\.cast' \
-  "$VERIFY_DIR/build-a/docs/guides/index.html"
-rg -q 'solarized-light' "$VERIFY_DIR/build-a/docs/guides/index.html"
+  "$VERIFY_DIR/build-a/docs/features/terminal-recordings/index.html"
+rg -q "'projectious-light'" "$ROOT_DIR/src/assets/js/asciinema.js"
+rg -q '/js/asciinema\.[a-f0-9]+\.js' \
+  "$VERIFY_DIR/build-a/docs/features/terminal-recordings/index.html"
+if rg -q 'ZgotmplZ' "$VERIFY_DIR/build-a/docs/features/tokens/index.html"; then
+  echo "error: token swatches were rejected by Hugo contextual escaping" >&2
+  exit 1
+fi
 bash -n "$ROOT_DIR/scripts/check-theme-update.sh"
 
 hash_tree() {

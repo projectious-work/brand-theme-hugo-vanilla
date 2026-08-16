@@ -91,13 +91,23 @@
   /* ── Active-heading tracking for the table of contents ───────────── */
   var toc = d.querySelector('.toc');
   if (toc && 'IntersectionObserver' in window) {
-    var links = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'));
-    var targets = links.map(function (a) { return d.getElementById(decodeURIComponent(a.hash.slice(1))); }).filter(Boolean);
-    var current = null;
-    function mark(id) {
+    /* Block-scoped and distinctly named: a shared `links` here once leaked into
+       the sidebar filter below, so the observer rewrote aria-current on the
+       sidebar's page link instead of the TOC's headings. */
+    const tocLinks = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'));
+    const targets = tocLinks.map(function (a) { return d.getElementById(decodeURIComponent(a.hash.slice(1))); }).filter(Boolean);
+    let current = null;
+    const mark = function (id) {
       if (id === current) return; current = id;
-      links.forEach(function (a) { a.setAttribute('aria-current', String(a.hash.slice(1) === id)); });
-    }
+      tocLinks.forEach(function (a) {
+        if (decodeURIComponent(a.hash.slice(1)) === id) { a.setAttribute('aria-current', 'true'); }
+        else { a.removeAttribute('aria-current'); }
+      });
+    };
+    if (location.hash) { mark(decodeURIComponent(location.hash.slice(1))); }
+    window.addEventListener('hashchange', function () {
+      if (location.hash) mark(decodeURIComponent(location.hash.slice(1)));
+    });
     var io = new IntersectionObserver(function (entries) {
       var visible = entries.filter(function (e) { return e.isIntersecting; })
         .sort(function (a, b) { return a.boundingClientRect.top - b.boundingClientRect.top; });
@@ -110,7 +120,7 @@
   var filter = d.querySelector('[data-sidebar-filter]');
   if (filter) {
     var sb = d.querySelector('.sidebar');
-    var links = Array.prototype.slice.call(sb.querySelectorAll('a'));
+    const sidebarLinks = Array.prototype.slice.call(sb.querySelectorAll('a'));
     var groups = Array.prototype.slice.call(sb.querySelectorAll('details'));
     var empty = sb.querySelector('[data-sidebar-empty]');
     /* Filtering force-opens groups to reveal matches. The reader's own open/closed
@@ -121,7 +131,7 @@
       var q = filter.value.trim().toLowerCase();
       if (q && !restore) { restore = groups.map(function (g) { return g.open; }); }
       var hits = 0;
-      links.forEach(function (a) {
+      sidebarLinks.forEach(function (a) {
         var match = !q || a.textContent.toLowerCase().indexOf(q) > -1;
         a.style.display = match ? '' : 'none';
         if (match) hits++;

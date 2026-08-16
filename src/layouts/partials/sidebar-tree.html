@@ -3,17 +3,21 @@
        that is not on the current path. */ -}}
 {{ $current := .current }}{{ $level := .level }}
 {{ $depth := 1 }}{{ if isset site.Params "sidebaropendepth" }}{{ $depth = site.Params.sidebarOpenDepth }}{{ end }}
-{{ range .page.Pages.ByWeight }}
+{{ $pages := .page.Pages.ByWeight }}
+{{ if eq .page.Params.pageOrder "title-asc" }}{{ $pages = .page.Pages.ByTitle }}{{ else if eq .page.Params.pageOrder "title-desc" }}{{ $pages = .page.Pages.ByTitle.Reverse }}{{ end }}
+{{ range $pages }}
+  {{ if partial "is-listed.html" . }}
   {{ if .IsSection }}
     {{ $open := or (eq . $current) ($current.IsDescendant .) (lt $level $depth) }}
     <details{{ if $open }} open{{ end }}>
       <summary>{{ partial "icon.html" (dict "name" "chevron-right" "class" "ico--sm") }}<span>{{ .LinkTitle }}</span></summary>
       <div>
-        <a href="{{ .RelPermalink }}"{{ if eq . $current }} aria-current="page"{{ end }}>{{ .Params.overviewTitle | default (i18n "overview") }}</a>
+        <a href="{{ .RelPermalink }}"{{ if eq . $current }} aria-current="page"{{ end }}>{{ or .Params.overviewLabel .Params.overviewTitle site.Params.overviewLabel (i18n "overview") }}</a>
         {{ partial "sidebar-tree.html" (dict "page" . "current" $current "level" (add $level 1)) }}
       </div>
     </details>
   {{ else }}
     <a href="{{ .RelPermalink }}"{{ if eq . $current }} aria-current="page"{{ end }}>{{ .LinkTitle }}</a>
+  {{ end }}
   {{ end }}
 {{ end }}

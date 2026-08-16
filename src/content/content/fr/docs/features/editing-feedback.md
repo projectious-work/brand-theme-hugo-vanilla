@@ -1,7 +1,7 @@
 +++
 title = "Modification et retours"
 description = "Relier les pages à leurs sources et recueillir éventuellement l'avis des lecteurs."
-weight = 65
+weight = 110
 icon = "pencil"
 +++
 

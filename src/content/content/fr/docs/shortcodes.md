@@ -15,7 +15,7 @@ essentiels sont traduits ci-dessous.
 {{< callout type="info" title="Information" >}}Un complément utile au lecteur.{{< /callout >}}
 
 {{< cards cols="2" >}}
-  {{< card title="Configuration" subtitle="Paramètres du site et des pages." link="configuration.md" icon="versions" >}}
+  {{< card title="Configuration" subtitle="Paramètres du site et des pages." link="configuration/_index.md" icon="versions" >}}
   {{< card title="Fonctionnalités" subtitle="Toutes les capacités du thème." link="features/_index.md" icon="star" >}}
 {{< /cards >}}
 

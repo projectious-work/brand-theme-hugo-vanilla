@@ -1,7 +1,7 @@
 +++
 title = "Versioned documentation"
 description = "Publish separate documentation builds and connect them with the version menu."
-weight = 30
+weight = 10
 icon = "versions"
 +++
 

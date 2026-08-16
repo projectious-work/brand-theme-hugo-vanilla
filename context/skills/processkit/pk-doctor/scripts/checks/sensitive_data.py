@@ -480,9 +480,6 @@ def _is_false_positive(
     if pattern.id == "sensitive-data.phone-number":
         if path.suffix == ".md" and "skills" in path.parts:
             return True
-        if path.suffix in {".css", ".html", ".js", ".jsx", ".ts", ".tsx"}:
-            if re.search(r"\bz-index\s*:\s*" + re.escape(excerpt), line_text):
-                return True
         digits = re.sub(r"\D", "", excerpt)
         if re.fullmatch(r"20\d{10}", digits):
             return True

@@ -1,7 +1,7 @@
 +++
 title = "Internationalisation"
 description = "Configurer contenus traduits, navigation, métadonnées et RTL."
-weight = 50
+weight = 90
 icon = "language"
 +++
 

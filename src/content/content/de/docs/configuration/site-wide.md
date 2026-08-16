@@ -1,7 +1,7 @@
 +++
-title = "Konfiguration"
-description = "Konfigurationsdateien verstehen und Theme-Funktionen gezielt aktivieren."
-weight = 20
+title = "Website-weite Konfiguration"
+description = "Hugo, Ausgaben, Menüs, Sprachen und Theme-Parameter konfigurieren."
+weight = 10
 icon = "versions"
 +++
 
@@ -39,12 +39,6 @@ Parameter stehen unter `[params]`. Häufig benötigt werden `github`, `editURL`,
 `feedbackEndpoint` und `selfHostAssets`. Die Schalter `search`, `feedback`,
 `accessibilityMenu`, `sidebarFilter` und `commandPalette` lassen sich mit `false`
 abschalten.
-
-## Frontmatter
-
-`title`, `description`, `weight` und `icon` steuern Navigation und Übersichtskarten.
-`toc`, `cards`, `math`, `private`, `cover` und `coverAlt` aktivieren oder verändern
-seitenbezogene Funktionen.
 
 ## Notebook-Konvertierung
 

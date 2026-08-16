@@ -2,6 +2,37 @@
 
 All notable changes to this project are documented in this file.
 
+## [v0.3.1] — 2026-08-16
+
+### Added
+
+- Added complete English, German and French documentation for installation,
+  configuration, content and template authoring, features, maintenance,
+  dependencies and the public theme API.
+- Added generated feature cards, dedicated Mermaid, mathematics, terminal,
+  notebook and code-block guides, and a local font restoration/validation
+  script.
+
+### Changed
+
+- Integrated the v5–v8 upstream theme corrections and the revised
+  projectious.work design system, including complete syntax roles, branded
+  terminal palettes, shared alignment rails and adaptive technical panels.
+- Reorganized configuration and feature documentation, with Feature pages
+  sorted alphabetically in each language.
+- Updated the development-container configuration to aibox 0.32.3 and removed
+  the completed upstream design-system audit.
+
+### Fixed
+
+- Restored reliable Mermaid rendering and readable responsive sizing without
+  regressing host preview or browser-cache behaviour.
+- Fixed sidebar and table-of-contents state, fragments under base paths,
+  generated menu visibility, token swatches, strong focus rings, print colours,
+  list and file-tree markers, code selection, font faces and light/dark syntax.
+- Preserved queries and fragments through Hugo-idiomatic URL resolution and
+  prevented duplicate language or project base paths in generated navigation.
+
 ## [v0.3.0] — 2026-08-15
 
 ### Added
@@ -151,4 +182,5 @@ All notable changes to this project are documented in this file.
 [v0.2.2]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.2
 [v0.2.3]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.3
 [v0.2.4]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.4
+[v0.3.1]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.0...v0.3.1
 [v0.3.0]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.2.4...v0.3.0

@@ -5,10 +5,11 @@
        Suppress on one page with cards = false in the section's front matter, or
        hide a single child with hidden = true. */ -}}
 {{- $pages := where .Pages "Params.hidden" "!=" true -}}
+{{- if eq .Params.pageOrder "title-asc" }}{{ $pages = $pages.ByTitle }}{{ else if eq .Params.pageOrder "title-desc" }}{{ $pages = $pages.ByTitle.Reverse }}{{ else }}{{ $pages = $pages.ByWeight }}{{ end -}}
 {{- if and $pages (ne .Params.cards false) -}}
 {{- $n := len $pages -}}
 <div class="cards{{ if eq $n 2 }} cards--2{{ else if eq (mod $n 4) 0 }} cards--4{{ end }}">
-  {{ range $pages.ByWeight }}
+  {{ range $pages }}
   <a class="card" href="{{ .RelPermalink }}">
     <div class="card__icon">{{ partial "icon.html" (dict "name" (.Params.icon | default (cond .IsSection "folder" "file")) "class" "ico--lg") }}</div>
     <div class="card__title">{{ .LinkTitle }}{{ if .IsSection }} &rarr;{{ end }}</div>

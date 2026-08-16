@@ -1,7 +1,7 @@
 +++
 title = "Code blocks"
 description = "Configure syntax highlighting, filenames, line numbers, highlighted lines and linkable anchors."
-weight = 55
+weight = 130
 icon = "file-code"
 +++
 
@@ -39,6 +39,7 @@ Options may be combined:
 
 ```python {filename="checks.py", linenos=table, linenostart=20, hl_lines=[2,"4-5"], anchorlinenos=true, lineanchors="checks-"}
 def verify(build):
+    # Reject output that cannot be reproduced.
     if not build.deterministic:
         raise ValueError("build output changed")
 
@@ -50,6 +51,7 @@ The Markdown source is:
 ````md
 ```python {filename="checks.py", linenos=table, linenostart=20, hl_lines=[2,"4-5"], anchorlinenos=true, lineanchors="checks-"}
 def verify(build):
+    # Reject output that cannot be reproduced.
     if not build.deterministic:
         raise ValueError("build output changed")
 

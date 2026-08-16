@@ -1,35 +1,80 @@
-{{- /* Emitted once, at the end of the page, when anything on it asked for
-       Mermaid. Both entry points set the same flag: the mermaid shortcode and the
-       fenced-code hook for a mermaid fence. Previously only the shortcode loaded
-       the module, so a page whose only diagram was a fence showed its source. */ -}}
+{{- /* Emitted once, at the end of the page, when anything on it asked for Mermaid.
+       Both entry points set the same flag: the mermaid shortcode and the fenced-code
+       hook for a mermaid fence. */ -}}
 {{ if .Store.Get "needsMermaid" }}
-<script type="module">
-  import mermaid from "{{ partial "cdn-url.html" (dict "pkg" "mermaid" "file" "esm") }}";
+{{- /* Keep the generated-SVG override beside the conditional runtime. Tailwind's
+       development scanner may not retain selectors that only appear after
+       Mermaid executes, while the production build does. Mermaid writes an
+       intrinsic inline max-width; the viewBox safely scales that drawing to the
+       available content width. */ -}}
+<style>
+  .mermaid svg {
+    display: block;
+    width: 100% !important;
+    max-width: none !important;
+    height: auto;
+    margin-inline: auto;
+    background: transparent !important;
+  }
+</style>
+<script src="{{ partial "cdn-url.html" (dict "pkg" "mermaid" "file" "js") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}></script>
+<script>
+(async function () {
   const root = document.documentElement;
 
   /* Mermaid replaces each <pre> with an SVG, so the definition is gone after the
-     first render. Stash it before initialising — re-rendering on a colour-mode
-     change used to read back the already-rendered SVG markup and fail. */
+     first render. Stash it before initialising. */
   const blocks = document.querySelectorAll("pre.mermaid");
   blocks.forEach((el) => { el.dataset.src = el.textContent; });
 
   const dark = () => root.getAttribute("data-theme") === "dark"
     || (!root.getAttribute("data-theme") && matchMedia("(prefers-color-scheme: dark)").matches);
 
+  /* Read the tokens rather than hard-coding hexes, and pass background
+     explicitly — without it Mermaid paints its own dark surface, which showed as
+     a black rectangle on a light page. */
+  const token = (name, fallback) => {
+    const v = getComputedStyle(root).getPropertyValue(name).trim();
+    return v || fallback;
+  };
+
   const init = () => {
-    const css = getComputedStyle(root);
+    const d = dark();
+    const surface = token("--color-surface", d ? "#1a2b3e" : "#ffffff");
+    const text = token("--color-text-primary", d ? "#e6edf6" : "#142438");
+    const border = token("--color-border", d ? "#2e4b68" : "#cdd0d5");
+    const subtle = token("--midnight-2", d ? "#1a2b3e" : "#f0f3f8");
+    const secondary = token("--color-text-secondary", "#546a82");
     mermaid.initialize({
       startOnLoad: false,
       securityLevel: "strict",
       theme: "base",
+      darkMode: d,
       themeVariables: {
-        fontFamily: css.getPropertyValue("--font-body"),
-        background: dark() ? "#131e2b" : "#ffffff",
-        primaryColor: dark() ? "#1a2b3e" : "#f0f3f8",
-        primaryTextColor: dark() ? "#e6edf6" : "#142438",
-        primaryBorderColor: dark() ? "#2e4b68" : "#cdd0d5",
-        lineColor: "#546a82",
-        tertiaryColor: dark() ? "#132440" : "#ffffff"
+        fontFamily: token("--font-body", "sans-serif"),
+        fontSize: "14px",
+        background: surface,
+        mainBkg: subtle,
+        secondBkg: surface,
+        primaryColor: subtle,
+        primaryTextColor: text,
+        primaryBorderColor: border,
+        secondaryColor: surface,
+        secondaryTextColor: text,
+        secondaryBorderColor: border,
+        tertiaryColor: surface,
+        tertiaryTextColor: text,
+        tertiaryBorderColor: border,
+        lineColor: secondary,
+        textColor: text,
+        nodeTextColor: text,
+        titleColor: text,
+        edgeLabelBackground: surface,
+        clusterBkg: surface,
+        clusterBorder: border,
+        noteBkgColor: subtle,
+        noteTextColor: text,
+        noteBorderColor: border
       }
     });
   };
@@ -45,5 +90,6 @@
 
   await render();
   document.addEventListener("pw:mode", render);
+}());
 </script>
 {{ end }}

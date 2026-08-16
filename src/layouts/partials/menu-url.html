@@ -1,0 +1,3 @@
+{{- /* Resolve a menu entry exactly once. Page-backed entries already contain
+       their language and base path; only authored URL values need url.html. */ -}}
+{{- with .Page }}{{ .RelPermalink }}{{ else }}{{ partial "url.html" $.URL }}{{ end -}}

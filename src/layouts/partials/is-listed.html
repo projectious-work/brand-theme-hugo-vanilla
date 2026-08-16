@@ -1,0 +1,9 @@
+{{- /* Shared visibility rule for every generated navigation surface. */ -}}
+{{- $p := . -}}
+{{- $ok := true -}}
+{{- if or $p.Params.hidden $p.Params.private $p.Params.unlisted }}{{ $ok = false }}{{ end -}}
+{{- with or (index $p.Params "_build") (index $p.Params "build") -}}
+  {{- if reflect.IsMap . }}{{ if eq (index . "list") false }}{{ $ok = false }}{{ end }}{{ end -}}
+{{- end -}}
+{{- if not $p.Permalink }}{{ $ok = false }}{{ end -}}
+{{- return $ok -}}

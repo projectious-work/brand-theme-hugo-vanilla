@@ -1,6 +1,6 @@
 {
   "name": "brand-theme-hugo-vanilla",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "private": true,
   "description": "Build dependency for the Tailwind v4 CSS pipeline. Hugo invokes the CLI through css.TailwindCSS.",
   "scripts": {
@@ -10,7 +10,9 @@
     "serve": "./scripts/serve.sh"
   },
   "devDependencies": {
+    "@fontsource/ibm-plex-mono": "5.3.0",
     "@playwright/test": "^1.62.1",
+    "@tabler/icons": "3.31.0",
     "@tailwindcss/cli": "^4.1.0"
   }
 }
