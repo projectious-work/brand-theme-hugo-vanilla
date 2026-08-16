@@ -44,13 +44,22 @@ test("pinned CDN media, math and diagrams render", async ({ page }, testInfo) =>
   await expect(page.locator(".katex").first()).toBeVisible();
   await expect(page.locator(".mermaid svg")).toBeVisible();
   await expect(page.locator(".mermaid svg .node")).not.toHaveCount(0);
-  const diagramBox = await page.locator(".mermaid svg").evaluate((svg) => ({
-    width: svg.getBoundingClientRect().width,
-    height: svg.getBoundingClientRect().height,
-    viewBox: svg.getAttribute("viewBox"),
-  }));
+  const diagramBox = await page.locator(".mermaid svg").evaluate((svg) => {
+    const box = svg.getBoundingClientRect();
+    const panel = svg.parentElement.getBoundingClientRect();
+    return {
+      width: box.width,
+      height: box.height,
+      availableWidth: panel.width - 42,
+      leftInset: box.left - panel.left,
+      rightInset: panel.right - box.right,
+      viewBox: svg.getAttribute("viewBox"),
+    };
+  });
   expect(diagramBox.width).toBeGreaterThan(100);
   expect(diagramBox.height).toBeGreaterThan(40);
+  expect(Math.abs(diagramBox.width - diagramBox.availableWidth)).toBeLessThan(2);
+  expect(Math.abs(diagramBox.leftInset - diagramBox.rightInset)).toBeLessThan(2);
   expect(diagramBox.viewBox).not.toBe("-8 -8 16 16");
   await page.evaluate(() => window.pwTheme.set("dark"));
   await expect(page.locator(".mermaid svg")).toBeVisible();
