@@ -12,18 +12,18 @@
 .chroma .ln, .chroma .lnt { color: var(--syntax-comment); margin-right: 12px }
 .chroma .hl { background: rgba(255,255,255,.06); display: block }
 .chroma .c, .chroma .ch, .chroma .cm, .chroma .c1, .chroma .cs { color: var(--syntax-comment); font-style: var(--syntax-style-comment) }
-.chroma .cp, .chroma .cpf { color: var(--syntax-macro); font-weight: var(--syntax-weight-emphasis) }
-.chroma .k, .chroma .kc, .chroma .kd, .chroma .kn, .chroma .kp, .chroma .kr { color: var(--syntax-keyword); font-weight: var(--syntax-weight-emphasis) }
-.chroma .kt { color: var(--syntax-type); font-weight: var(--syntax-weight-emphasis) }
+.chroma .cp, .chroma .cpf { color: var(--syntax-macro); font-style: var(--syntax-style-macro) }
+.chroma .k, .chroma .kc, .chroma .kd, .chroma .kn, .chroma .kp, .chroma .kr { color: var(--syntax-keyword); font-weight: var(--syntax-weight-keyword) }
+.chroma .kt { color: var(--syntax-type); font-weight: var(--syntax-weight-type) }
 .chroma .n, .chroma .nx, .chroma .py, .chroma .nv, .chroma .vc, .chroma .vg, .chroma .vi { color: var(--syntax-plain) }
-.chroma .na, .chroma .nl { color: var(--syntax-macro); font-weight: var(--syntax-weight-emphasis) }
-.chroma .nb, .chroma .bp, .chroma .nf, .chroma .fm { color: var(--syntax-function); font-weight: var(--syntax-weight-emphasis) }
-.chroma .nc, .chroma .nn, .chroma .ne, .chroma .no { color: var(--syntax-type); font-weight: var(--syntax-weight-emphasis) }
-.chroma .nd, .chroma .nt { color: var(--syntax-keyword); font-weight: var(--syntax-weight-emphasis) }
+.chroma .na, .chroma .nl, .chroma .nd { color: var(--syntax-macro); font-style: var(--syntax-style-macro) }
+.chroma .nb, .chroma .bp, .chroma .nf, .chroma .fm { color: var(--syntax-function); font-weight: var(--syntax-weight-function) }
+.chroma .nc, .chroma .nn, .chroma .ne, .chroma .no { color: var(--syntax-type); font-weight: var(--syntax-weight-type) }
+.chroma .nt { color: var(--syntax-keyword); font-weight: var(--syntax-weight-keyword) }
 .chroma .s, .chroma .sa, .chroma .sb, .chroma .sc, .chroma .dl, .chroma .sd, .chroma .s2, .chroma .se, .chroma .sh, .chroma .si, .chroma .sx, .chroma .sr, .chroma .s1, .chroma .ss { color: var(--syntax-string) }
 .chroma .m, .chroma .mb, .chroma .mf, .chroma .mh, .chroma .mi, .chroma .il, .chroma .mo { color: var(--syntax-number) }
 .chroma .o, .chroma .ow, .chroma .p { color: var(--syntax-operator) }
-.chroma .err, .chroma .gd { color: var(--syntax-invalid) }
-.chroma .gi { color: var(--syntax-type) }
+.chroma .err, .chroma .gd { color: var(--syntax-invalid); font-weight: var(--syntax-weight-invalid) }
+.chroma .gi { color: var(--syntax-type); font-weight: var(--syntax-weight-type) }
 .chroma .gs { font-weight: 600 }
 .chroma .ge { font-style: italic }

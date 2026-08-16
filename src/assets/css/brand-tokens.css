@@ -236,7 +236,7 @@
   /* ── Syntax roles (ten). Hues assigned by measured perceptual distance —
         see CHANGELOG v2.0.2. All values are terminal-palette steps. ────── */
   --syntax-plain:      #c5daf0;
-  --syntax-comment:    #72889d;
+  --syntax-comment:    #7d90a3;
   --syntax-operator:   #97a8b8;
   --syntax-keyword:    #d491b4;  /* keywords and modifiers */
   --syntax-type:       #6cc090;  /* types and classes */
@@ -246,22 +246,31 @@
   --syntax-macro:      #74c0c9;  /* decorators and macros */
   --syntax-invalid:    #e55b5b;  /* invalid and deprecated */
   --syntax-weight-plain:    var(--type-code-weight);
-  --syntax-weight-emphasis: 500;
+  --syntax-weight-keyword:  700;
+  --syntax-weight-type:     600;
+  --syntax-weight-function: 500;
+  --syntax-weight-invalid:  600;
   --syntax-style-comment:   italic;
+  --syntax-style-macro:     italic;
 
   /* ── Syntax roles — on light. Optional companion set: same ten roles,
         darkened for a light panel (~4.7:1+ on white). Nothing switches to
         these automatically — a component opts in by using the token. ──── */
-  --syntax-plain-light:      #142438;
-  --syntax-comment-light:    #5c6f82;
-  --syntax-operator-light:   #4a5e74;
-  --syntax-keyword-light:    #1d3352;
-  --syntax-type-light:       #276754;
-  --syntax-function-light:   #3a5a82;
-  --syntax-string-light:     #a8461f;
-  --syntax-number-light:     #8b6508;
-  --syntax-macro-light:      #1c6b6b;
-  --syntax-invalid-light:    #a8261c;
+  --syntax-plain-light:      #0f1c2e;
+  --syntax-operator-light:   #54697f;
+  --syntax-comment-light:    #5e7082;
+  --syntax-keyword-light:    #c2117f;
+  --syntax-type-light:       #08804e;
+  --syntax-function-light:   #1668d8;
+  --syntax-string-light:     #c94208;
+  --syntax-number-light:     #94620a;
+  --syntax-macro-light:      #0d7d82;
+  --syntax-invalid-light:    #d81420;
+
+  /* Code panels are deliberately lifted above terminal surfaces. */
+  --code-dark-surface: #131e2b;
+  --code-dark-border:  #2e4b68;
+  --code-dark-shadow:  inset 0 1px 0 rgba(255,255,255,0.04);
 
   /* ── Terminal — on light. Optional companion to the dark terminal above.
         The brand default for real terminal chrome stays dark ("code blocks

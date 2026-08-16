@@ -142,7 +142,7 @@ h2:hover .heading-anchor,h3:hover .heading-anchor,h4:hover .heading-anchor{opaci
 .tablewrap table{margin:0}
 
 /* ── Code blocks ────────────────────────────────────────────────────── */
-.code{margin:0 0 20px;border:1px solid var(--color-border);border-radius:var(--radius-md);overflow:hidden;background:var(--terminal-surface)}
+.code{margin:0 0 20px;border:1px solid var(--code-dark-border);border-radius:var(--radius-md);overflow:hidden;background:var(--code-dark-surface);box-shadow:var(--code-dark-shadow)}
 .code__bar{display:flex;align-items:center;gap:8px;padding:7px 12px;background:var(--tint-dark-code-header);border-bottom:1px solid var(--tint-dark-code-border)}
 .code__name{font-family:var(--font-code);font-size:calc(12px * var(--font-scale));color:var(--terminal-foreground)}
 .code__copy{margin-left:auto;display:inline-flex;align-items:center;gap:5px;background:transparent;border:1px solid var(--tint-dark-control-border);border-radius:var(--radius-sm);color:var(--fixed-overlay-text);font-size:calc(11px * var(--font-scale));padding:3px 7px;cursor:pointer}
@@ -159,7 +159,7 @@ h2:hover .heading-anchor,h3:hover .heading-anchor,h4:hover .heading-anchor{opaci
    --syntax-*-light roles and --terminal-light-surface. Dark mode is unchanged.
    The base sheet pins every <pre> to the dark terminal surface, so the pre and
    the .chroma wrapper must both be neutralised explicitly. */
-html:not([data-code="dark"]):not([data-theme="dark"]) .code{background:var(--terminal-light-surface);border-color:var(--color-border)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .code{background:var(--terminal-light-surface);border-color:var(--color-border);box-shadow:none}
 html:not([data-code="dark"]):not([data-theme="dark"]) .code__bar{background:var(--tint-code-header);border-bottom-color:var(--color-border)}
 html:not([data-code="dark"]):not([data-theme="dark"]) .code__name{color:var(--color-text-secondary)}
 html:not([data-code="dark"]):not([data-theme="dark"]) .code__copy{color:var(--color-text-secondary);border-color:var(--color-border)}
@@ -187,14 +187,14 @@ html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .cs{color:var(--sy
 html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .cp,
 html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .cpf,
 html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .na,
-html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .nl{color:var(--syntax-macro-light)}
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .nl,
+html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .nd{color:var(--syntax-macro-light)}
 html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .k,
 html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .kc,
 html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .kd,
 html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .kn,
 html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .kp,
 html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .kr,
-html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .nd,
 html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .nt{color:var(--syntax-keyword-light)}
 html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .kt,
 html:not([data-code="dark"]):not([data-theme="dark"]) .chroma .nc,

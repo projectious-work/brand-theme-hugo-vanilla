@@ -66,23 +66,71 @@ test("prose markers and adaptive technical panels follow colour mode", async ({ 
   expect(darkCode).not.toBe(lightCode);
 
   await page.goto("docs/features/code-blocks/");
-  await page.evaluate(() => window.pwTheme.set("light"));
-  const syntax = await page.locator(".code").filter({ has: page.locator(".k") }).evaluate((block) => {
-    const style = (selector) => getComputedStyle(block.querySelector(selector));
+  const block = page.locator(".code").filter({ has: page.locator(".k") }).first();
+  await block.locator(".chroma code.language-python").evaluate((code) => {
+    const fixture = document.createElement("span");
+    fixture.dataset.syntaxFixture = "";
+    fixture.innerHTML = ["n", "o", "c1", "k", "kt", "nf", "s", "m", "nd", "err"]
+      .map((role) => `<span class="${role}">${role}</span>`).join("");
+    code.append(fixture);
+  });
+  const resolvedSyntax = async () => block.evaluate((node) => {
+    const fixture = node.querySelector("[data-syntax-fixture]");
+    const role = (name) => {
+      const style = getComputedStyle(fixture.querySelector(`.${name}`));
+      return { color: style.color, weight: style.fontWeight, style: style.fontStyle };
+    };
+    const panel = getComputedStyle(node);
     return {
-      plain: style("code").color,
-      keyword: style(".k").color,
-      keywordWeight: style(".k").fontWeight,
-      functionColor: style(".nf").color,
-      functionWeight: style(".nf").fontWeight,
-      commentStyle: style(".c1").fontStyle,
+      panel: { background: panel.backgroundColor, border: panel.borderColor },
+      plain: role("n"), operator: role("o"), comment: role("c1"),
+      keyword: role("k"), type: role("kt"), function: role("nf"),
+      string: role("s"), number: role("m"), macro: role("nd"),
+      invalid: role("err"),
     };
   });
-  expect(syntax.keyword).not.toBe(syntax.plain);
-  expect(syntax.functionColor).not.toBe(syntax.plain);
-  expect(syntax.keywordWeight).toBe("500");
-  expect(syntax.functionWeight).toBe("500");
-  expect(syntax.commentStyle).toBe("italic");
+  const faces = {
+    plain: { weight: "400", style: "normal" },
+    operator: { weight: "400", style: "normal" },
+    comment: { weight: "400", style: "italic" },
+    keyword: { weight: "700", style: "normal" },
+    type: { weight: "600", style: "normal" },
+    function: { weight: "500", style: "normal" },
+    string: { weight: "400", style: "normal" },
+    number: { weight: "400", style: "normal" },
+    macro: { weight: "400", style: "italic" },
+    invalid: { weight: "600", style: "normal" },
+  };
+  const expectSyntax = (actual, colors, panel) => {
+    expect(actual.panel).toEqual(panel);
+    for (const [role, color] of Object.entries(colors)) {
+      expect(actual[role]).toEqual({ color, ...faces[role] });
+    }
+  };
+
+  await page.evaluate(() => window.pwTheme.set("light"));
+  expectSyntax(await resolvedSyntax(), {
+    plain: "rgb(15, 28, 46)", operator: "rgb(84, 105, 127)",
+    comment: "rgb(94, 112, 130)", keyword: "rgb(194, 17, 127)",
+    type: "rgb(8, 128, 78)", function: "rgb(22, 104, 216)",
+    string: "rgb(201, 66, 8)", number: "rgb(148, 98, 10)",
+    macro: "rgb(13, 125, 130)", invalid: "rgb(216, 20, 32)",
+  }, { background: "rgb(244, 245, 247)", border: "rgb(205, 208, 213)" });
+
+  const darkColors = {
+    plain: "rgb(197, 218, 240)", operator: "rgb(151, 168, 184)",
+    comment: "rgb(125, 144, 163)", keyword: "rgb(212, 145, 180)",
+    type: "rgb(108, 192, 144)", function: "rgb(138, 172, 200)",
+    string: "rgb(234, 117, 88)", number: "rgb(224, 169, 42)",
+    macro: "rgb(116, 192, 201)", invalid: "rgb(229, 91, 91)",
+  };
+  const darkPanel = {
+    background: "rgb(19, 30, 43)", border: "rgb(46, 75, 104)",
+  };
+  await page.evaluate(() => window.pwTheme.set("dark"));
+  expectSyntax(await resolvedSyntax(), darkColors, darkPanel);
+  await page.evaluate(() => window.pwTheme.set("navy"));
+  expectSyntax(await resolvedSyntax(), darkColors, darkPanel);
 });
 
 test("generated data, navigation and template contracts are valid", async ({ page, request }, testInfo) => {
