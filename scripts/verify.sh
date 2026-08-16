@@ -25,6 +25,7 @@ if rg -n 'static/vendor|scripts/vendor\.sh|@latest|mermaid@11/dist' \
 fi
 "$ROOT_DIR/scripts/build.sh" "$VERIFY_DIR/build-a"
 "$ROOT_DIR/scripts/build.sh" "$VERIFY_DIR/build-b"
+"$ROOT_DIR/scripts/archive-docs-version.sh" v0.3.1 "$VERIFY_DIR/archive-v0.3.1"
 
 for required in index.html index.json docs/index.html search/index.html; do
   [[ -s "$VERIFY_DIR/build-a/$required" ]] || {
@@ -47,12 +48,17 @@ if rg -q 'ZgotmplZ' "$VERIFY_DIR/build-a/docs/features/tokens/index.html"; then
   exit 1
 fi
 bash -n "$ROOT_DIR/scripts/check-theme-update.sh"
+bash -n "$ROOT_DIR/scripts/archive-docs-version.sh"
+rg -q '^v0\.3\.1$' "$ROOT_DIR/scripts/docs-archives.txt"
 rg -q 'partial "hooks/styles-end.html" .' "$ROOT_DIR/src/layouts/partials/styles.html"
 rg -q 'partial "hooks/scripts-end.html" .' "$ROOT_DIR/src/layouts/partials/scripts.html"
 [[ -f "$ROOT_DIR/src/layouts/partials/hooks/styles-end.html" ]]
 [[ -f "$ROOT_DIR/src/layouts/partials/hooks/scripts-end.html" ]]
 rg -q 'css/site(\.min)?\.[a-f0-9]+\.css[^>]+integrity=' "$VERIFY_DIR/build-a/index.html"
 rg -q 'js/site\.[a-f0-9]+\.js[^>]+integrity=' "$VERIFY_DIR/build-a/index.html"
+rg -q 'role=menuitemradio[^>]*>v0\.3\.1' "$VERIFY_DIR/build-a/index.html"
+rg -q '/brand-theme-hugo-vanilla/v0\.3\.1/css/' "$VERIFY_DIR/archive-v0.3.1/index.html"
+[[ -s "$VERIFY_DIR/archive-v0.3.1/docs/features/versioning/index.html" ]]
 
 hash_tree() {
   find "$1" -type f -print0 \
