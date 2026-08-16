@@ -112,9 +112,9 @@ enableGitInfo = true
   # math = true               # loads KaTeX on every page
 
   [params.announcement]
-    id = "v030"
+    id = "v031"
     text = "v0.3.1 is out — revised design system, multilingual guides, reliable diagrams."
-    href = "/blog/"
+    href = "/blog/release-v0-3-1/"
     label = "Read the notes"
 
   # Third-party runtime assets come from exact pinned CDN versions — see
