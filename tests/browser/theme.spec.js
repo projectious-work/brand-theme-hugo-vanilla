@@ -38,9 +38,16 @@ test("documentation page matches the approved theme", async ({ page }) => {
 test("pinned CDN media, math and diagrams render", async ({ page }, testInfo) => {
   test.skip(!testInfo.project.name.startsWith("desktop"));
 
-  await page.goto("docs/guides/");
+  await page.goto("docs/features/diagrams-mathematics/");
   await expect(page.locator(".katex").first()).toBeVisible();
+  await expect(page.locator(".mermaid svg")).toBeVisible();
+  await page.evaluate(() => window.pwTheme.set("dark"));
+  await expect(page.locator(".mermaid svg")).toBeVisible();
+
+  await page.goto("docs/features/jupyter-notebooks/");
   await expect(page.locator(".notebook[data-notebook='theme-demo']")).toBeVisible();
+
+  await page.goto("docs/guides/");
   await expect(page.locator(".terminal")).toContainText([
     "$ hugo --minify",
     "✓ Content validated",
@@ -49,8 +56,7 @@ test("pinned CDN media, math and diagrams render", async ({ page }, testInfo) =>
     "Build completed in 284 ms",
   ].join("\n"));
 
-  await expect(page.locator(".mermaid svg")).toBeVisible();
-  await page.evaluate(() => window.pwTheme.set("dark"));
+  await page.goto("docs/shortcodes/");
   await expect(page.locator(".mermaid svg")).toBeVisible();
 });
 
@@ -74,8 +80,6 @@ test("prose markers and adaptive technical panels follow colour mode", async ({ 
     getComputedStyle(node).backgroundColor,
   );
   expect(lightCode).toBe("rgb(244, 245, 247)");
-  await expect(page.locator(".mermaid")).toHaveCSS("background-color", "rgb(255, 255, 255)");
-
   await page.evaluate(() => window.pwTheme.set("dark"));
   const darkCode = await page.locator(".terminal").evaluate((node) =>
     getComputedStyle(node).backgroundColor,

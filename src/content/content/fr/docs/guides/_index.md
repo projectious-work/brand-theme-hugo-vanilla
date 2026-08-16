@@ -5,7 +5,6 @@ overviewTitle = "Guide de rédaction de contenu"
 description = "Créer des pages, liens, blocs de code, diagrammes, enregistrements et notebooks."
 weight = 40
 icon = "book"
-math = true
 +++
 
 Ce guide constitue la référence pour les auteurs.
@@ -29,24 +28,15 @@ Web Server is available at http://localhost:1313/
 
 ## Diagrammes et mathématiques
 
-```mermaid
-flowchart LR
-  M[Markdown] --> H[Hugo]
-  H --> P[HTML et impression]
-```
-
-Avec `math = true`, KaTeX affiche \( t_{build} < 1s \).
+Utilisez un bloc `mermaid` pour un diagramme et activez `math = true` pour
+KaTeX. Consultez [Diagrammes et mathématiques](../features/diagrams-mathematics.md).
 
 ## Enregistrements de terminal
 
-[asciinema](https://asciinema.org/) enregistre le texte et le minutage d'une session
-de terminal. Le résultat reste net, copiable et léger.
-
-{{< asciinema src="/casts/theme-tour.cast" rows="8" cols="80" idleTimeLimit="1.5" >}}
+Intégrez un fichier `.cast` avec le shortcode `asciinema`. Consultez
+[Enregistrements de terminal](../features/terminal-recordings.md).
 
 ## Jupyter notebooks
 
-[Jupyter](https://jupyter.org/) associe texte, code exécutable et résultats. Le
-thème convertit les fichiers `.ipynb` en Markdown avant le build Hugo.
-
-{{< notebook "theme-demo" >}}
+Intégrez un notebook converti avec le shortcode `notebook`. Consultez
+[Jupyter notebooks](../features/jupyter-notebooks.md).
