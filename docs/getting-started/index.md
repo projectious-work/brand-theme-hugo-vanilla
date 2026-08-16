@@ -52,7 +52,7 @@ Add the module import to the new site's `hugo.toml`:
 Fetch and pin a released version:
 
 ```sh
-hugo mod get github.com/projectious-work/brand-theme-hugo-vanilla@v0.3.1
+hugo mod get github.com/projectious-work/brand-theme-hugo-vanilla@v0.3.2
 hugo mod tidy
 ```
 
