@@ -345,8 +345,8 @@ test("design-system component and token contracts are implemented", async ({ pag
     };
   });
   expect(components).toEqual({
-    hero: { background: "rgb(14, 23, 32)", radius: "13px" },
-    heroTitle: "rgb(255, 255, 255)",
+    hero: { background: "rgb(248, 249, 251)", radius: "13px" },
+    heroTitle: "rgb(20, 36, 56)",
     card: { padding: "16px 24px", radius: "9px" },
     button: { minHeight: "44px", radius: "6px",
       family: '"Plus Jakarta Sans", system-ui, sans-serif' },

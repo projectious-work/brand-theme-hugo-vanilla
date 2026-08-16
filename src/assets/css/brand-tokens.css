@@ -219,11 +219,11 @@
   --fixed-overlay-text: var(--fixed-code-control-text);
   --header-bg: rgba(248,249,251,0.88);
   --logo-accent: #e05232;
-  --hero-bg: #0e1720;
-  --hero-fg: #c5daf0;
-  --hero-title: #ffffff;
-  --hero-eyebrow: #ea7558;
-  --hero-body: #97a8b8;
+  --hero-bg: var(--color-bg);
+  --hero-fg: var(--color-text-primary);
+  --hero-title: var(--midnight-12);
+  --hero-eyebrow: var(--orange-11);
+  --hero-body: var(--color-text-secondary);
   --on-solid-success: #ffffff;
   --on-solid-warning: #ffffff;
   --on-solid-danger: #ffffff;
@@ -410,6 +410,9 @@ html[data-theme="light"] {
   --border-strong: #bec2c8;
   --tag-bg:#dae2ec; --tag-text:#1d3352;
   --tag-bg-accent:#fde0d5; --tag-text-accent:#c04424;
+  --hero-bg:var(--color-bg); --hero-fg:var(--color-text-primary);
+  --hero-title:var(--midnight-12); --hero-eyebrow:var(--orange-11);
+  --hero-body:var(--color-text-secondary);
 }
 
 [data-theme="dark"] {
