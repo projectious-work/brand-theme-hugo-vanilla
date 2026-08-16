@@ -46,6 +46,11 @@ fi
 "$ROOT_DIR/scripts/verify.sh"
 "$ROOT_DIR/scripts/build.sh" "$BUILD_DIR"
 
+while IFS= read -r version; do
+  [[ -z "$version" || "$version" == \#* ]] && continue
+  "$ROOT_DIR/scripts/archive-docs-version.sh" "$version" "$BUILD_DIR/$version"
+done < "$ROOT_DIR/scripts/docs-archives.txt"
+
 ARTIFACT_SHA="$(find "$BUILD_DIR" -type f -print0 \
   | sort -z | xargs -0 sha256sum | sha256sum | cut -d' ' -f1)"
 

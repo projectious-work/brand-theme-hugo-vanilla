@@ -132,6 +132,9 @@ enableGitInfo = true
     label = "v0.3.2"
     url = "/"
     note = "latest"
+  [[params.versions]]
+    label = "v0.3.1"
+    url = "v0.3.1/"
   # Only list versions that are actually published — the menu must never
   # advertise a known 404. Entries may be site-relative ("v0.2/") or absolute
   # ("https://docs.example.com/v0.2/"); both resolve through url.html, so a
