@@ -1,7 +1,7 @@
 +++
 title = "Recherche"
 description = "Index généré, recherche d'en-tête et palette de commandes."
-weight = 10
+weight = 60
 icon = "search"
 +++
 

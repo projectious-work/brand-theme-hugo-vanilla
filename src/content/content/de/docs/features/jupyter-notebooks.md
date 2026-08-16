@@ -1,7 +1,7 @@
 +++
 title = "Jupyter Notebooks"
 description = "Reproduzierbar konvertierte Notebook-Ausgaben veröffentlichen."
-weight = 58
+weight = 80
 icon = "notebook"
 +++
 

@@ -14,7 +14,7 @@ tags = ["referenz"]
 ## Karten
 
 {{< cards >}}
-  {{< card title="Konfiguration" subtitle="Parameter für Website und Seiten." link="configuration.md" icon="versions" >}}
+  {{< card title="Konfiguration" subtitle="Parameter für Website und Seiten." link="configuration/_index.md" icon="versions" >}}
   {{< card title="Features" subtitle="Alle Funktionen des Themes." link="features/_index.md" icon="star" >}}
 {{< /cards >}}
 

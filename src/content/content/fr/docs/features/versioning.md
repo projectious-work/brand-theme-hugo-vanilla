@@ -1,7 +1,7 @@
 +++
 title = "Documentation versionnée"
 description = "Publier des builds distincts et les relier par le menu de versions."
-weight = 30
+weight = 10
 icon = "versions"
 +++
 

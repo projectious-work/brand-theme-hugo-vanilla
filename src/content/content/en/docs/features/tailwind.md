@@ -1,7 +1,7 @@
 +++
 title = "Tailwind and design tokens"
 description = "Use the theme's Tailwind integration and stable projectious.work design tokens."
-weight = 70
+weight = 40
 icon = "file-code"
 +++
 

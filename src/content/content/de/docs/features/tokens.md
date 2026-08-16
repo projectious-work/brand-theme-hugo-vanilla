@@ -1,7 +1,7 @@
 +++
 title = "Tokens und öffentliche API"
 description = "Stabile semantische CSS-Tokens und Tailwind-Namensräume aus dem Theme-Quelltext."
-weight = 75
+weight = 20
 icon = "versions"
 layout = "tokens"
 +++

@@ -7,9 +7,12 @@
 {{ define "main" }}
 {{ $layer := resources.Get "css/theme-layer.css" }}
 {{ $tokens := resources.Get "css/brand-tokens.css" }}
-<div class="shell">
-  <main id="main">
+<div class="docs">
+  {{ partial "sidebar.html" . }}
+  <main id="main" class="docs__main">
     {{ partial "breadcrumbs.html" . }}
+    {{ partial "version-banner.html" . }}
+    {{ partial "page-tools.html" . }}
     <article class="prose">
       <h1>{{ .Title }}</h1>
       {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
@@ -62,5 +65,14 @@
     </article>
     {{ partial "page-footer.html" . }}
   </main>
+  <aside class="toc">
+    <div class="toc__label">{{ i18n "onThisPage" }}</div>
+    <nav aria-label="{{ i18n "onThisPage" }}">
+      <ul>
+        <li><a href="#tailwind-namespaces">Tailwind namespaces</a></li>
+        <li><a href="#semantic-tokens">Semantic tokens</a></li>
+      </ul>
+    </nav>
+  </aside>
 </div>
 {{ end }}

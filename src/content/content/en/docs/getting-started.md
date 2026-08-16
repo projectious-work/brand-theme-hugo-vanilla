@@ -85,7 +85,7 @@ machine-specific `replace` line in a production site; remove it and run
 ## 4. Configure the feature outputs
 
 Copy the complete commented configuration from
-[Configuration](configuration.md#complete-copyable-configuration) into the
+[Configuration](configuration/site-wide.md#complete-copyable-configuration) into the
 site's root `hugo.toml`—the file created by `hugo new site`. The output-format
 blocks enable search, print views, page Markdown and `llms.txt`; the markup block
 enables class-based syntax highlighting, heading tables of contents and math.
@@ -137,7 +137,7 @@ menus, code colours and keyboard focus. A production build is `hugo --minify`.
 
 ## Next steps
 
-1. Read [Configuration](configuration.md) and set site identity and integrations.
+1. Read [Configuration](configuration/_index.md) and set site identity and integrations.
 2. Follow the [Content authoring guide](guides/_index.md).
 3. Review the [feature map](features/_index.md).
 4. Adopt the [maintenance workflow](maintenance.md) before the first release.

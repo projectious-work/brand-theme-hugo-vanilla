@@ -1,7 +1,7 @@
 +++
 title = "Bearbeiten und Feedback"
 description = "Quellseiten verlinken und optional Leserfeedback erfassen."
-weight = 65
+weight = 110
 icon = "pencil"
 +++
 

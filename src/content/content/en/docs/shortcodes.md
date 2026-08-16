@@ -106,25 +106,29 @@ Panel order follows tab order. Arrow keys move between tabs.
 ## Steps
 
 {{< steps >}}
-  {{< step title="Install Hugo" >}}
+  {{% step title="Install Hugo" %}}
 Use the minimum version listed in the theme's README.
-  {{< /step >}}
-  {{< step title="Configure the module" >}}
+  {{% /step %}}
+  {{% step title="Configure the module" %}}
 Add the theme import and required output formats.
-  {{< /step >}}
-  {{< step title="Run" >}}
+  {{% /step %}}
+  {{% step title="Run" %}}
 Start the local server and review the generated pages.
-  {{< /step >}}
+  {{% /step %}}
 {{< /steps >}}
+
+A step is not limited to plain text. Its body is Markdown and may contain lists,
+code, images, callouts, or nested shortcodes such as `cards`. Use `%` delimiters
+for `step` so Hugo renders that mixed body before the step template receives it.
 
 ```md
 {{</* steps */>}}
-  {{</* step title="Install Hugo" */>}}
+  {{%/* step title="Install Hugo" */%}}
 Use the supported version.
-  {{</* /step */>}}
-  {{</* step title="Configure the module" */>}}
+  {{%/* /step */%}}
+  {{%/* step title="Configure the module" */%}}
 Add the theme import.
-  {{</* /step */>}}
+  {{%/* /step */%}}
 {{</* /steps */>}}
 ```
 
@@ -262,9 +266,9 @@ Prefer Hugo-aware references so moving a target **fails the build** instead of
 silently publishing a broken link:
 
 ```md
-[Configuration](configuration.md)
+[Configuration](configuration/_index.md)
 [Guides](<guides/_index.md>)
-[Output formats](configuration.md#output-formats)
+[Output formats](configuration/site-wide.md#output-formats)
 [Linking guide](guides/_index.md#link-within-and-between-pages)
 ```
 

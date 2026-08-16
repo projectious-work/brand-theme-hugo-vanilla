@@ -1,7 +1,7 @@
 +++
 title = "Versionierte Dokumentation"
 description = "Getrennte Builds veröffentlichen und über das Versionsmenü verbinden."
-weight = 30
+weight = 10
 icon = "versions"
 +++
 

@@ -49,5 +49,5 @@ where plain Markdown has no suitable structure.
 {{< callout type="info" title="Ready to evaluate it?" >}}
 Follow **[Getting started](docs/getting-started.md)** for a local site, then review
 the **[complete feature map](docs/features/_index.md)** and
-**[configuration guide](docs/configuration.md)**.
+**[configuration guide](docs/configuration/_index.md)**.
 {{< /callout >}}

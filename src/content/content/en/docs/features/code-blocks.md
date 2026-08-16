@@ -1,7 +1,7 @@
 +++
 title = "Code blocks"
 description = "Configure syntax highlighting, filenames, line numbers, highlighted lines and linkable anchors."
-weight = 55
+weight = 130
 icon = "file-code"
 +++
 

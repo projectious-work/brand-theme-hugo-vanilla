@@ -39,5 +39,5 @@ Legen Sie `content/docs/_index.md` sowie eine Markdown-Seite mit `title`,
 hugo server --disableFastRender
 ```
 
-Weiter geht es mit [Konfiguration](configuration.md),
+Weiter geht es mit [Konfiguration](configuration/_index.md),
 [Features](features/_index.md) und dem [Autorenleitfaden](guides/_index.md).

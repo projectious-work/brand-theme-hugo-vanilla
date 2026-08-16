@@ -30,5 +30,5 @@ Copiez les blocs `[outputFormats]`, `[outputs]` et `[markup]` depuis la
 configuration d'exemple. Créez `content/docs/_index.md` et une première page, puis
 lancez `hugo server --disableFastRender`.
 
-Poursuivez avec [Configuration](configuration.md),
+Poursuivez avec [Configuration](configuration/_index.md),
 [Fonctionnalités](features/_index.md) et le [guide de rédaction](guides/_index.md).

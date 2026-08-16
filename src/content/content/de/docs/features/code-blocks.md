@@ -1,7 +1,7 @@
 +++
 title = "Codeblöcke"
 description = "Syntaxhervorhebung, Dateinamen, Zeilennummern und markierte Zeilen konfigurieren."
-weight = 55
+weight = 130
 icon = "file-code"
 +++
 

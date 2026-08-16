@@ -1,7 +1,7 @@
 +++
 title = "Jupyter notebooks"
 description = "Publier les résultats de notebooks convertis de façon reproductible."
-weight = 58
+weight = 80
 icon = "notebook"
 +++
 

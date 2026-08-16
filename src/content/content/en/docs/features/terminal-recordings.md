@@ -1,7 +1,7 @@
 +++
 title = "Terminal recordings"
 description = "Record and embed copyable terminal sessions with asciinema."
-weight = 57
+weight = 30
 icon = "player-play"
 +++
 

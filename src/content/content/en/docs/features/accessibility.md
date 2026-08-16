@@ -1,7 +1,7 @@
 +++
 title = "Accessibility"
 description = "Keyboard behavior, reader preferences and author responsibilities."
-weight = 40
+weight = 140
 icon = "accessible"
 +++
 
@@ -22,6 +22,10 @@ The accessibility menu stores preferences locally:
 
 These controls supplement operating-system preferences. They do not replace the
 browser's own zoom or accessibility tools.
+
+**High contrast** strengthens foreground roles and interactive boundaries. It
+does not underline links. **Underlined links** is an independent preference so
+readers can enable either treatment or combine both.
 
 To see **Strong focus ring**, enable it, then press `Tab` rather than clicking.
 Keyboard focus around the search field, menu buttons, links and form controls

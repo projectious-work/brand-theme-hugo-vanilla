@@ -1,7 +1,7 @@
 +++
 title = "Editing and feedback"
 description = "Connect pages to their source files and optionally collect useful reader votes."
-weight = 65
+weight = 110
 icon = "pencil"
 +++
 

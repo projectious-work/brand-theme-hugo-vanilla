@@ -614,7 +614,6 @@ html[data-contrast="high"] :focus-visible { outline: 3px solid var(--midnight-9)
 html[data-contrast="high"][data-theme="dark"] :focus-visible,
 html[data-contrast="high"] [data-theme="dark"] :focus-visible { outline-color: #ffffff; }
 html[data-contrast="high"] * { border-color: currentColor; }
-html[data-contrast="high"] a { text-decoration: underline; }
 
 /* ── Reduced motion (WCAG 2.3.3) ─────────────────────────────────────── */
 html[data-motion="reduced"] *, html[data-motion="reduced"] *::before, html[data-motion="reduced"] *::after {

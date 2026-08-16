@@ -1,7 +1,7 @@
 +++
 title = "Suche"
 description = "Generierter Suchindex, Kopfleisten-Suche und Befehlspalette."
-weight = 10
+weight = 60
 icon = "search"
 +++
 

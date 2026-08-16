@@ -1,7 +1,7 @@
 +++
 title = "Search"
 description = "How the generated search index, header search and command palette work."
-weight = 10
+weight = 60
 icon = "search"
 +++
 
@@ -20,7 +20,7 @@ headings, so a heading result links directly to its anchor.
 ## Configuration
 
 Copy the `SearchIndex` output format and add it to `outputs.home`, as shown in
-[Configuration](../configuration.md#output-formats). Create `content/search.md`
+[Configuration](../configuration/site-wide.md#output-formats). Create `content/search.md`
 with `layout = "search"`. Set `params.search = false` to remove the header field,
 index and search page integration.
 

@@ -1,7 +1,7 @@
 +++
 title = "Tailwind und Design-Tokens"
 description = "Tailwind-Integration und projectious.work Design-Tokens verwenden."
-weight = 70
+weight = 40
 icon = "file-code"
 +++
 

@@ -1,7 +1,7 @@
 +++
 title = "En-tête et navigation"
 description = "Configurer liens principaux, recherche, langues, versions et icônes."
-weight = 60
+weight = 100
 icon = "menu-2"
 +++
 

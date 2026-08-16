@@ -22,7 +22,7 @@ Ein Link zu einer Überschrift auf einer anderen Seite verwendet Dateiname und
 Fragment:
 
 ```md
-[Ausgabeformate](../configuration.md#ausgabeformate)
+[Ausgabeformate](../configuration/site-wide.md#ausgabeformate)
 ```
 
 Der Render-Hook löst Markdown-Dateien über Hugo-Seitenobjekte auf. Ein verschobenes
@@ -41,7 +41,7 @@ Web Server is available at http://localhost:1313/
 
 Verwenden Sie einen `mermaid`-Block für Diagramme und aktivieren Sie
 `math = true` für KaTeX. Beispiele und Konfiguration stehen unter
-[Diagramme und Mathematik](../features/diagrams-mathematics.md).
+[Diagramme](../features/diagrams.md) und [Mathematik](../features/mathematics.md).
 
 ## Terminal-Aufzeichnungen
 

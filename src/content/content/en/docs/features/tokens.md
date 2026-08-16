@@ -1,7 +1,7 @@
 +++
 title = "Tokens and public API"
 description = "Inspect the stable semantic CSS tokens and Tailwind namespaces generated from the theme source."
-weight = 75
+weight = 20
 icon = "versions"
 layout = "tokens"
 +++

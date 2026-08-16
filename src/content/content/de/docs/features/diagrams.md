@@ -1,9 +1,8 @@
 +++
-title = "Diagramme und Mathematik"
-description = "Mermaid-Diagramme und KaTeX-Formeln aus Markdown rendern."
-weight = 56
+title = "Diagramme"
+description = "Responsive Mermaid-Diagramme aus Markdown rendern."
+weight = 120
 icon = "chart-dots"
-math = true
 +++
 
 [Mermaid](https://mermaid.js.org/) erzeugt Diagramme aus Text. Ein
@@ -22,6 +21,3 @@ flowchart LR
   H --> P[HTML und Druck]
 ```
 ````
-
-Für KaTeX setzen Sie `math = true` im Frontmatter. Inline-Formeln verwenden
-`\\( ... \\)`; Blöcke werden von `$$` eingeschlossen.

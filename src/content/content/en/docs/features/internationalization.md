@@ -1,7 +1,7 @@
 +++
 title = "Internationalization"
 description = "Configure translated content, language navigation, metadata and RTL layout."
-weight = 50
+weight = 90
 icon = "language"
 +++
 

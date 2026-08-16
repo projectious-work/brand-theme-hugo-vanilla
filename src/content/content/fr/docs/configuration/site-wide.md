@@ -1,7 +1,7 @@
 +++
-title = "Configuration"
-description = "Comprendre les fichiers de configuration et activer les fonctionnalités utiles."
-weight = 20
+title = "Configuration globale du site"
+description = "Configurer Hugo, les sorties, les menus, les langues et le thème."
+weight = 10
 icon = "versions"
 +++
 

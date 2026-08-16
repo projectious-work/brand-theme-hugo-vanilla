@@ -1,7 +1,7 @@
 +++
 title = "Jupyter notebooks"
 description = "Convert and publish reproducible notebook output."
-weight = 58
+weight = 80
 icon = "notebook"
 +++
 
@@ -24,4 +24,4 @@ The pinned `nbconvert` environment makes conversion reproducible and keeps the
 tools outside the system Python installation. Embed the converted result with
 `{{</* notebook "theme-demo" */>}}`. The shortcode accepts a converted file; it
 cannot execute or contain an inline notebook. See
-[Notebook conversion](../configuration.md#notebook-conversion) for lookup paths.
+[Notebook conversion](../configuration/site-wide.md#notebook-conversion) for lookup paths.

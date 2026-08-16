@@ -13,7 +13,7 @@ Ce guide constitue la référence pour les auteurs.
 
 Utilisez `weight` pour l'ordre et un page bundle pour les ressources. Un fragment
 relie un titre de la page courante: `[Enregistrements](#enregistrements-de-terminal)`.
-Pour une autre page: `[Formats](../configuration.md#fichiers)`. Le hook de rendu
+Pour une autre page: `[Formats](../configuration/site-wide.md#fichiers)`. Le hook de rendu
 résout le fichier avec Hugo; déplacer la cible provoque une erreur de build plutôt
 que la publication silencieuse d'un lien cassé.
 
@@ -29,7 +29,8 @@ Web Server is available at http://localhost:1313/
 ## Diagrammes et mathématiques
 
 Utilisez un bloc `mermaid` pour un diagramme et activez `math = true` pour
-KaTeX. Consultez [Diagrammes et mathématiques](../features/diagrams-mathematics.md).
+KaTeX. Consultez [Diagrammes](../features/diagrams.md) et
+[Mathématiques](../features/mathematics.md).
 
 ## Enregistrements de terminal
 

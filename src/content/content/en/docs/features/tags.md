@@ -1,7 +1,7 @@
 +++
 title = "Tags"
 description = "Use Hugo taxonomies for related-content and release-note metadata."
-weight = 20
+weight = 50
 icon = "tag"
 +++
 

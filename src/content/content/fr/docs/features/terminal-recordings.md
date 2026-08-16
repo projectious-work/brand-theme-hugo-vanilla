@@ -1,7 +1,7 @@
 +++
 title = "Enregistrements de terminal"
 description = "Intégrer des sessions copiables avec asciinema."
-weight = 57
+weight = 30
 icon = "player-play"
 +++
 

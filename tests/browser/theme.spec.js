@@ -38,10 +38,9 @@ test("documentation page matches the approved theme", async ({ page }) => {
 test("pinned CDN media, math and diagrams render", async ({ page }, testInfo) => {
   test.skip(!testInfo.project.name.startsWith("desktop"));
 
-  await page.goto("docs/features/diagrams-mathematics/");
+  await page.goto("docs/features/diagrams/");
   await expect(page.locator('script[src*="mermaid@11.16.1/dist/mermaid.min.js"]'))
     .toHaveCount(1);
-  await expect(page.locator(".katex").first()).toBeVisible();
   await expect(page.locator(".mermaid svg")).toBeVisible();
   await expect(page.locator(".mermaid svg .node")).not.toHaveCount(0);
   const diagramBox = await page.locator(".mermaid svg").evaluate((svg) => {
@@ -63,6 +62,9 @@ test("pinned CDN media, math and diagrams render", async ({ page }, testInfo) =>
   expect(diagramBox.viewBox).not.toBe("-8 -8 16 16");
   await page.evaluate(() => window.pwTheme.set("dark"));
   await expect(page.locator(".mermaid svg")).toBeVisible();
+
+  await page.goto("docs/features/mathematics/");
+  await expect(page.locator(".katex").first()).toBeVisible();
 
   await page.goto("docs/features/jupyter-notebooks/");
   await expect(page.locator(".notebook[data-notebook='theme-demo']")).toBeVisible();
@@ -96,6 +98,14 @@ test("prose markers and adaptive technical panels follow colour mode", async ({ 
     };
   });
   expect(listStyles).toEqual({ ul: "disc", ol: "decimal" });
+
+  await page.goto("docs/shortcodes/");
+  const treeMarkers = await page.locator(".filetree").first().evaluate((tree) => ({
+    list: getComputedStyle(tree.querySelector("ul")).listStyleType,
+    marker: getComputedStyle(tree.querySelector("li"), "::marker").content,
+  }));
+  expect(treeMarkers.list).toBe("none");
+  expect(["none", '""']).toContain(treeMarkers.marker);
 
   await page.goto("docs/guides/");
   const lightCode = await page.locator(".terminal").evaluate((node) =>
@@ -435,6 +445,36 @@ test("strong focus is visibly distinct", async ({ page }, testInfo) => {
     return { width: computed.outlineWidth, offset: computed.outlineOffset };
   });
   expect(style).toEqual({ width: "3px", offset: "3px" });
+
+  await page.evaluate(() => window.pwTheme.setA11y("data-contrast", "high"));
+  const decoration = await page.locator("article.prose a").first().evaluate((node) =>
+    getComputedStyle(node).textDecorationLine,
+  );
+  expect(decoration).not.toContain("underline");
+});
+
+test("configuration hierarchy and generated feature overview stay complete", async ({ page }, testInfo) => {
+  await page.goto("docs/configuration/");
+  await expect(page.locator(".card__title")).toHaveText([
+    "Site-wide configuration", "Page configuration (front matter)",
+  ]);
+
+  await page.goto("docs/features/");
+  await expect(page.locator(".card__title")).toHaveText([
+    "Versioned documentation", "Tokens and public API", "Terminal recordings",
+    "Tailwind and design tokens", "Tags", "Search", "Mathematics",
+    "Jupyter notebooks", "Internationalization", "Header and navigation",
+    "Editing and feedback", "Diagrams", "Code blocks", "Accessibility",
+  ]);
+
+  await page.goto("docs/features/tokens/");
+  if (testInfo.project.name.startsWith("desktop")) {
+    await expect(page.locator(".sidebar")).toBeVisible();
+    await expect(page.locator('.toc a[href="#semantic-tokens"]')).toBeVisible();
+  } else {
+    await expect(page.locator(".sidebar")).toBeAttached();
+    await expect(page.locator('.toc a[href="#semantic-tokens"]')).toBeAttached();
+  }
 });
 
 test("German and French documentation are complete language sites", async ({ page }) => {

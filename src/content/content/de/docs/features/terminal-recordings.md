@@ -1,7 +1,7 @@
 +++
 title = "Terminal-Aufzeichnungen"
 description = "Kopierbare Terminalsitzungen mit asciinema einbetten."
-weight = 57
+weight = 30
 icon = "player-play"
 +++
 

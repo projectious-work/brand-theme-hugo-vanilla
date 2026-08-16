@@ -1,7 +1,7 @@
 +++
 title = "Barrierefreiheit"
 description = "Tastaturbedienung, Leserpräferenzen und Pflichten für Autoren."
-weight = 40
+weight = 140
 icon = "accessible"
 +++
 

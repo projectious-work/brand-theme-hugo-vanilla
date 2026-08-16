@@ -1,7 +1,7 @@
 +++
 title = "Tags"
 description = "Hugo-Taxonomien für Metadaten und thematische Verknüpfungen."
-weight = 20
+weight = 50
 icon = "tag"
 +++
 

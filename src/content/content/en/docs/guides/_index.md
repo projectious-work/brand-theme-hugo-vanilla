@@ -48,7 +48,7 @@ with a fragment:
 For another page, use the Markdown filename plus the heading fragment:
 
 ```md
-[Output formats](../configuration.md#output-formats)
+[Output formats](../configuration/site-wide.md#output-formats)
 [Search configuration](../features/search.md#configuration)
 ```
 
@@ -119,8 +119,9 @@ For line numbers, highlighted lines, anchors and site-wide defaults, see the
 ## Diagrams and mathematics
 
 Use a `mermaid` fence for a diagram and enable `math = true` when a page needs
-KaTeX. See [Diagrams and mathematics](../features/diagrams-mathematics.md) for
-live previews, raw Markdown, configuration, and colour-mode behaviour.
+KaTeX. See [Diagrams](../features/diagrams.md) and
+[Mathematics](../features/mathematics.md) for live previews, raw Markdown,
+configuration, and colour-mode behaviour.
 
 ## Terminal recordings
 

@@ -1,7 +1,7 @@
 +++
 title = "Jetons et API publique"
 description = "Jetons CSS sémantiques et espaces de noms Tailwind générés depuis le thème."
-weight = 75
+weight = 20
 icon = "versions"
 layout = "tokens"
 +++

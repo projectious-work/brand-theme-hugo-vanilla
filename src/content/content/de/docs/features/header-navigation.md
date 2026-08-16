@@ -1,7 +1,7 @@
 +++
 title = "Kopfleiste und Navigation"
 description = "Primäre Links, Suche, Sprach- und Versionsmenü konfigurieren."
-weight = 60
+weight = 100
 icon = "menu-2"
 +++
 

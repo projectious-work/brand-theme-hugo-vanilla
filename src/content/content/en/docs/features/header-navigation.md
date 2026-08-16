@@ -1,7 +1,7 @@
 +++
 title = "Header and navigation"
 description = "Configure primary links, repository actions, search and header controls."
-weight = 60
+weight = 100
 icon = "menu-2"
 +++
 
