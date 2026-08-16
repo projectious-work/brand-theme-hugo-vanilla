@@ -330,11 +330,6 @@ html:not([data-code="dark"]):not([data-theme="dark"]) .code *::selection{backgro
    the SVG background is forced transparent — Mermaid otherwise paints its own,
    which showed as a black rectangle in light mode. */
 .mermaid{margin:24px 0;padding:20px;text-align:center;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow-x:auto}
-/* Mermaid writes an inline max-width equal to its intrinsic layout width. That
-   leaves a small, left-aligned drawing in a much wider documentation panel.
-   The viewBox already preserves the diagram's aspect ratio, so let the SVG fill
-   the panel's content box and centre it. */
-.mermaid svg{display:block;width:100%!important;max-width:none!important;height:auto;margin-inline:auto;background:transparent!important}
 .cast{margin:24px 0;border:1px solid var(--color-border);border-radius:var(--radius-md);overflow:hidden;background:var(--terminal-surface)}
 html:not([data-code="dark"]):not([data-theme="dark"]) .cast{background:var(--terminal-light-surface)}
 

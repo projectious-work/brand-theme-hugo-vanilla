@@ -2,6 +2,21 @@
        Both entry points set the same flag: the mermaid shortcode and the fenced-code
        hook for a mermaid fence. */ -}}
 {{ if .Store.Get "needsMermaid" }}
+{{- /* Keep the generated-SVG override beside the conditional runtime. Tailwind's
+       development scanner may not retain selectors that only appear after
+       Mermaid executes, while the production build does. Mermaid writes an
+       intrinsic inline max-width; the viewBox safely scales that drawing to the
+       available content width. */ -}}
+<style>
+  .mermaid svg {
+    display: block;
+    width: 100% !important;
+    max-width: none !important;
+    height: auto;
+    margin-inline: auto;
+    background: transparent !important;
+  }
+</style>
 <script src="{{ partial "cdn-url.html" (dict "pkg" "mermaid" "file" "js") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}></script>
 <script>
 (async function () {
