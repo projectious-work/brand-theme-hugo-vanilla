@@ -6,8 +6,11 @@
 [Jupyter](https://jupyter.org/) associe texte, code et résultats. Le thème
 convertit les fichiers `.ipynb` en Markdown avant le build Hugo.
 
-L'exemple converti en direct et son code copiable sont présentés dans
-[Shortcodes](../shortcodes.md).
+{{< notebook "theme-demo" >}}
+
+```md
+{{</* notebook "theme-demo" */>}}
+```
 
 ```sh
 python3 -m venv .venv

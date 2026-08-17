@@ -4,7 +4,7 @@
 
 
 Le thème applique le système de marque projectious.work à Hugo. Il fournit des
-gabarits de documentation, blog et pages produit, sans analytique, framework
+gabarits de documentation, journal des modifications et pages produit, sans analytique, framework
 JavaScript ni CDN d'icônes imposé.
 
 

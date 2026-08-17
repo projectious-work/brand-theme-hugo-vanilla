@@ -1,6 +1,6 @@
 # projectious.work
 
-> Documentation, blog and marketing pages on the projectious.work brand system.
+> Documentation, release history and marketing pages on the projectious.work brand system.
 
 
 ## Documentation
@@ -21,14 +21,12 @@ Install, configure, author, extend and maintain the projectious.work Hugo theme.
 - [Tailwind and design tokens](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/tailwind/): Use the theme's Tailwind integration and stable projectious.work design tokens.
 - [Run state page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/run-state/): Observability states for empty, loading, successful and failed runs.
 - [Tags](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/tags/): Use Hugo taxonomies for related-content and release-note metadata.
-- [Shortcodes](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/shortcodes/): Every component the theme ships, with the Markdown that produces it.
 - [Article page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/article/): A focused long-form article with metadata and a reading rail.
 - [Developer guide](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/developer-guide/): Adapt the theme, swap bundled assets, run tests and contribute changes safely.
 - [Search](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/search/): How the generated search index, header search and command palette work.
 - [Changelog page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/changelog/): A chronological product history with compact semantic change labels.
 - [Maintenance and upgrades](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/maintenance/): Keep the theme, runtime pins, content and published documentation current.
 - [Mathematics](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/mathematics/): Render inline and display mathematics with KaTeX.
-- [Blog main page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/blog/): A featured story and responsive article-card collection.
 - [Dependencies and SBOM](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/dependencies/): Understand build tools, browser runtimes, bundled assets, versions and licences.
 - [Jupyter notebooks](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/jupyter-notebooks/): Convert and publish reproducible notebook output.
 - [Internationalization](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/internationalization/): Configure translated content, language navigation, metadata and RTL layout.
@@ -36,16 +34,28 @@ Install, configure, author, extend and maintain the projectious.work Hugo theme.
 - [Editing and feedback](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/editing-feedback/): Connect pages to their source files and optionally collect useful reader votes.
 - [Diagrams](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/diagrams/): Render responsive Mermaid diagrams from Markdown.
 - [Code blocks](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/code-blocks/): Configure syntax highlighting, filenames, line numbers, highlighted lines and linkable anchors.
+- [Buttons and badges](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/buttons-badges/): Add linked actions and compact status labels.
 - [Accessibility](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/accessibility/): Keyboard behavior, reader preferences and author responsibilities.
+- [Callouts](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/callouts/): Emphasize supporting, successful, cautionary or critical information.
+- [Cards](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/cards/): Present related choices, pages or resources as responsive cards.
+- [Collapsible details](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/collapsible-details/): Hide optional detail behind an accessible disclosure control.
+- [File trees](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/file-trees/): Explain project structure with nested folders and files.
+- [Icons](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/icons/): Use bundled fallback icons and the mounted Tabler icon library.
+- [Images](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/images/): Publish responsive figures, captions, dark variants and lightboxes.
+- [Links](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/links/): Create base-path-safe links within and between Hugo pages.
+- [Steps](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/steps/): Present ordered procedures with Markdown or structured components.
+- [Tabs](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/tabs/): Place equivalent alternatives in a keyboard-accessible tab set.
+- [Terminal output](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/terminal-output/): Show static command sessions with adaptive terminal styling.
+- [Terminology](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/terminology/): Keep recurring definitions consistent through a shared glossary.
 
-## Blog
+## Change log
 
-Release notes for the theme.
+Theme releases and the changes delivered in each version.
 
-- [v0.3.2 — public hooks for site-owned assets](https://projectious-work.github.io/brand-theme-hugo-vanilla/blog/release-v0-3-2/): Consuming sites can now append Hugo-piped CSS and JavaScript without replacing the theme's internal pipelines.
-- [v0.3.1 — revised design system and complete theme guidance](https://projectious-work.github.io/brand-theme-hugo-vanilla/blog/release-v0-3-1/): The finalized design system, reliable diagrams and comprehensive multilingual guidance arrive in this patch release.
-- [v0.3.0 — pinned runtimes, section-filtered search, command palette](https://projectious-work.github.io/brand-theme-hugo-vanilla/blog/release-v0-3-0/): Runtime assets are version-pinned, search indexes headings, and every page action sits in one row.
-- [v0.2.0 — navy dark mode and the accessibility layer](https://projectious-work.github.io/brand-theme-hugo-vanilla/blog/release-v0-2-0/): Dark mode moves onto the midnight scale, and every accessibility setting became opt-in.
+- [v0.3.2 — public hooks for site-owned assets](https://projectious-work.github.io/brand-theme-hugo-vanilla/changelog/release-v0-3-2/): Consuming sites can now append Hugo-piped CSS and JavaScript without replacing the theme's internal pipelines.
+- [v0.3.1 — revised design system and complete theme guidance](https://projectious-work.github.io/brand-theme-hugo-vanilla/changelog/release-v0-3-1/): The finalized design system, reliable diagrams and comprehensive multilingual guidance arrive in this patch release.
+- [v0.3.0 — pinned runtimes, section-filtered search, command palette](https://projectious-work.github.io/brand-theme-hugo-vanilla/changelog/release-v0-3-0/): Runtime assets are version-pinned, search indexes headings, and every page action sits in one row.
+- [v0.2.0 — navy dark mode and the accessibility layer](https://projectious-work.github.io/brand-theme-hugo-vanilla/changelog/release-v0-2-0/): Dark mode moves onto the midnight scale, and every accessibility setting became opt-in.
 
 ## Optional
 

@@ -19,8 +19,8 @@ Use Hugo menus in `hugo.toml`:
   weight = 10
 
 [[menus.main]]
-  name = "Blog"
-  pageRef = "/blog"
+  name = "Change log"
+  pageRef = "/changelog"
   weight = 20
 ```
 

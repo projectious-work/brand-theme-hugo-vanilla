@@ -6,8 +6,12 @@
 [asciinema](https://asciinema.org/) enregistre le texte et le minutage plutôt
 qu'une vidéo. Placez le fichier `.cast` dans le bundle ou sous `static/casts/`.
 
-Le lecteur en direct et son code copiable sont présentés dans
-[Shortcodes](../shortcodes.md).
+{{< asciinema src="/casts/theme-tour.cast" rows="8" cols="80" idleTimeLimit="1.5" >}}
+
+```md
+{{</* asciinema src="/casts/theme-tour.cast" rows="8" cols="80"
+     idleTimeLimit="1.5" */>}}
+```
 
 
 ---

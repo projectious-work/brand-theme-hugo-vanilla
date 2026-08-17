@@ -15,4 +15,3 @@ sidebar or table of contents.
 - [Run state page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/run-state/index.md) — Observability states for empty, loading, successful and failed runs.
 - [Article page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/article/index.md) — A focused long-form article with metadata and a reading rail.
 - [Changelog page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/changelog/index.md) — A chronological product history with compact semantic change labels.
-- [Blog main page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/blog/index.md) — A featured story and responsive article-card collection.

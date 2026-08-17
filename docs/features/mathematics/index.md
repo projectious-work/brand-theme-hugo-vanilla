@@ -23,6 +23,15 @@ T_{publish} = T_{build} + T_{verify} + T_{deploy}
 $$
 ```
 
+For generated expressions that are awkward to place directly in Markdown, the
+paired shortcode is equivalent:
+
+```md
+{{</* math display="block" */>}}
+T_{publish} = T_{build} + T_{verify} + T_{deploy}
+{{</* /math */>}}
+```
+
 See [Page configuration](../configuration/page-configuration.md) for the
 front-matter contract and [Dependencies](../dependencies.md) for the runtime pin.
 

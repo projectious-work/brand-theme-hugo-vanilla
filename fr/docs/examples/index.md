@@ -15,4 +15,3 @@ table des matières.
 - [État d’exécution](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/examples/run-state/index.md) — États vide, en cours, réussi et en erreur pour l’observabilité.
 - [Article](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/examples/article/index.md) — Un article long avec métadonnées et repères de lecture.
 - [Journal des modifications](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/examples/changelog/index.md) — Historique chronologique avec libellés de changement sémantiques.
-- [Accueil du blog](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/examples/blog/index.md) — Article vedette et collection adaptative de cartes éditoriales.

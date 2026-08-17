@@ -15,4 +15,3 @@ und Inhaltsverzeichnis.
 - [Ausführungsstatus](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/examples/run-state/index.md) — Zustände für leere, laufende, erfolgreiche und fehlerhafte Läufe.
 - [Artikelseite](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/examples/article/index.md) — Ein fokussierter Langtext mit Metadaten und Leseführung.
 - [Änderungsprotokoll](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/examples/changelog/index.md) — Chronologische Produkthistorie mit semantischen Änderungstypen.
-- [Blog-Startseite](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/examples/blog/index.md) — Hervorgehobener Beitrag und responsive Artikelkarten.
