@@ -2,6 +2,35 @@
 
 All notable changes to this project are documented in this file.
 
+## [v0.3.3] — 2026-08-17
+
+### Added
+
+- Added theme-native full-page administration, dashboard, settings, pricing,
+  run-state, article and change-log examples.
+- Added complete, localized Feature guides for every public content shortcode,
+  including rendered, copyable image, recording, notebook and structured-step
+  examples.
+- Added configurable persistent sidebar expansion with an accessible compact
+  expand-all/collapse-all control.
+
+### Changed
+
+- Consolidated the standalone Shortcodes reference into the authoritative
+  Features section in English, German and French.
+- Replaced the demonstration Blog with a chronological, localized Change log
+  backed by release-note content and appropriate structured-data semantics.
+- Published selected operational examples as full-screen application shells
+  with their own navigation and a return-to-examples bar.
+
+### Fixed
+
+- Preserved current-page navigation when switching between current and archived
+  documentation versions, and synchronized every version menu from one shared
+  release configuration.
+- Corrected localized legacy redirects so Hugo does not duplicate language
+  prefixes.
+
 ## [v0.3.2] — 2026-08-16
 
 ### Added
@@ -193,4 +222,5 @@ All notable changes to this project are documented in this file.
 [v0.2.4]: https://github.com/projectious-work/brand-theme-hugo-vanilla/releases/tag/v0.2.4
 [v0.3.1]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.0...v0.3.1
 [v0.3.2]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.1...v0.3.2
+[v0.3.3]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.2...v0.3.3
 [v0.3.0]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.2.4...v0.3.0
