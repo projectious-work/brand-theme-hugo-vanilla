@@ -1,7 +1,7 @@
 +++
 title = "v0.3.1 — revised design system and complete theme guidance"
 description = "The finalized design system, reliable diagrams and comprehensive multilingual guidance arrive in this patch release."
-date = 2026-08-16
+date = 2026-08-16T18:36:30+02:00
 author = "projectious.work"
 tags = ["release"]
 +++

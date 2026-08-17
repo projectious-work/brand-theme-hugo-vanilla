@@ -1,7 +1,7 @@
 +++
 title = "v0.3.1 — design révisé et documentation complète du thème"
 description = "Le design finalisé, des diagrammes fiables et une documentation multilingue complète arrivent dans cette version corrective."
-date = 2026-08-16
+date = 2026-08-16T18:36:30+02:00
 author = "projectious.work"
 tags = ["release"]
 +++
