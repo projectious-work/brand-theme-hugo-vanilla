@@ -56,6 +56,65 @@
     burger.setAttribute('aria-expanded', open ? 'false' : 'true');
   });
 
+  /* ── Persistent sidebar groups ──────────────────────────────────── */
+  if (sidebar) {
+    var sidebarGroups = Array.prototype.slice.call(
+      sidebar.querySelectorAll('details[data-sidebar-group]')
+    );
+    var groupsToggle = sidebar.querySelector('[data-sidebar-groups-toggle]');
+    var sidebarStateKey = sidebar.dataset.sidebarStateKey;
+    var restoringGroups = true;
+    var savedGroups = null;
+    try { savedGroups = JSON.parse(localStorage.getItem(sidebarStateKey)); }
+    catch (e) { savedGroups = null; }
+    if (Array.isArray(savedGroups)) {
+      sidebarGroups.forEach(function (group) {
+        group.open = savedGroups.indexOf(group.dataset.sidebarGroup) > -1;
+      });
+    }
+    restoringGroups = false;
+
+    function syncGroupsToggle() {
+      if (!groupsToggle) return;
+      var allOpen = sidebarGroups.length > 0 && sidebarGroups.every(
+        function (group) { return group.open; }
+      );
+      groupsToggle.setAttribute('aria-expanded', String(allOpen));
+      var label = allOpen
+        ? groupsToggle.dataset.collapseLabel
+        : groupsToggle.dataset.expandLabel;
+      groupsToggle.title = label;
+      groupsToggle.querySelector('[data-sidebar-groups-label]').textContent = label;
+    }
+    function saveSidebarGroups() {
+      if (restoringGroups || !sidebarStateKey) return;
+      var filterInput = sidebar.querySelector('[data-sidebar-filter]');
+      if (filterInput && filterInput.value) return;
+      var openGroups = sidebarGroups.filter(function (group) {
+        return group.open;
+      }).map(function (group) { return group.dataset.sidebarGroup; });
+      try { localStorage.setItem(sidebarStateKey, JSON.stringify(openGroups)); }
+      catch (e) {}
+      syncGroupsToggle();
+    }
+    sidebarGroups.forEach(function (group) {
+      group.addEventListener('toggle', saveSidebarGroups);
+    });
+    if (groupsToggle) groupsToggle.addEventListener('click', function () {
+      var filterInput = sidebar.querySelector('[data-sidebar-filter]');
+      if (filterInput && filterInput.value) {
+        filterInput.value = '';
+        filterInput.dispatchEvent(new Event('input'));
+      }
+      var open = groupsToggle.getAttribute('aria-expanded') !== 'true';
+      restoringGroups = true;
+      sidebarGroups.forEach(function (group) { group.open = open; });
+      restoringGroups = false;
+      saveSidebarGroups();
+    });
+    syncGroupsToggle();
+  }
+
   /* ── Tabs ────────────────────────────────────────────────────────── */
   d.querySelectorAll('.tabs').forEach(function (tabs) {
     var btns = Array.prototype.slice.call(tabs.querySelectorAll('.tabs__tab'));

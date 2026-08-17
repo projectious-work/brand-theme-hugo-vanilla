@@ -316,6 +316,7 @@ test("generated data, navigation and template contracts are valid", async ({ pag
   if (testInfo.project.name.startsWith("desktop")) {
     const guidesGroup = page.locator(".sidebar details").filter({ hasText: "Guides" });
     await expect(guidesGroup.locator("summary")).toHaveText("Guides");
+    await guidesGroup.locator("summary").click();
     await expect(guidesGroup.getByRole("link", { name: "Content authoring guide" })).toBeVisible();
     await expect(guidesGroup.getByRole("link", { name: "Template authoring guide" })).toBeVisible();
   }
@@ -388,6 +389,46 @@ test("sidebar, table of contents and all three colour modes keep their contracts
     theme: "dark", surface: "navy", page: "#132440", raised: "#1a2b3e",
     subtle: "#20354d", border: "#2e4b68", strong: "#4d7098", text: "#c5daf0",
   });
+});
+
+test("sidebar groups default closed and persist reader state", async ({ page }, testInfo) => {
+  test.skip(!testInfo.project.name.startsWith("desktop"));
+  await page.goto("docs/guides/template-authoring/");
+  const groups = page.locator(".sidebar details[data-sidebar-group]");
+  expect(await groups.count()).toBeGreaterThan(2);
+  await expect(page.locator(
+    ".sidebar details[data-sidebar-group][open]",
+  )).toHaveCount(0);
+
+  const toggle = page.locator("[data-sidebar-groups-toggle]");
+  await expect(toggle).toHaveText("Expand all");
+  await toggle.click();
+  await expect(toggle).toHaveText("Collapse all");
+  expect(await groups.evaluateAll((items) => items.every((item) => item.open)))
+    .toBeTruthy();
+
+  const guides = groups.filter({ hasText: "Guides" });
+  await guides.locator(":scope > summary").click();
+  const before = await groups.evaluateAll((items) => items.map((item) => ({
+    key: item.dataset.sidebarGroup,
+    open: item.open,
+  })));
+  await page.goto("docs/getting-started/");
+  const after = await page
+    .locator(".sidebar details[data-sidebar-group]")
+    .evaluateAll((items) => items.map((item) => ({
+      key: item.dataset.sidebarGroup,
+      open: item.open,
+    })));
+  expect(after).toEqual(before);
+
+  const restoredToggle = page.locator("[data-sidebar-groups-toggle]");
+  await restoredToggle.click();
+  await expect(restoredToggle).toHaveText("Collapse all");
+  await restoredToggle.click();
+  expect(await page.locator(".sidebar details[open]").count()).toBe(0);
+  await page.reload();
+  expect(await page.locator(".sidebar details[open]").count()).toBe(0);
 });
 
 test("design-system component and token contracts are implemented", async ({ page }, testInfo) => {

@@ -4,6 +4,10 @@ other = "Zum Inhalt springen"
 other = "Hauptnavigation"
 [docsNav]
 other = "Dokumentationsnavigation"
+[expandAll]
+other = "Alle öffnen"
+[collapseAll]
+other = "Alle schließen"
 [breadcrumbs]
 other = "Brotkrumen"
 [home]

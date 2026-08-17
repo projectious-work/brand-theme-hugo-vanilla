@@ -4,6 +4,10 @@ other = "Skip to content"
 other = "Main navigation"
 [docsNav]
 other = "Documentation navigation"
+[expandAll]
+other = "Expand all"
+[collapseAll]
+other = "Collapse all"
 [breadcrumbs]
 other = "Breadcrumbs"
 [home]

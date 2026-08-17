@@ -81,7 +81,10 @@ code, kbd, pre, samp { font-family: var(--font-code); }
 .docs{display:grid;grid-template-columns:var(--sidebar-w) minmax(0,1fr) var(--toc-w);gap:0;max-width:var(--rail-max);margin:0 auto}
 .docs--no-toc{grid-template-columns:var(--sidebar-w) minmax(0,1fr)}
 .sidebar{border-right:1px solid var(--color-border);padding:24px 12px 64px;align-self:start;position:sticky;top:var(--header-h);max-height:calc(100vh - var(--header-h));overflow-y:auto}
-.sidebar__group{font-size:calc(10px * var(--font-scale));font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-secondary);padding:4px 10px;margin:16px 0 4px}
+.sidebar__heading{display:flex;align-items:center;gap:6px;margin:16px 0 4px}
+.sidebar__group{flex:1;font-size:calc(10px * var(--font-scale));font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-secondary);padding:4px 10px}
+.sidebar__groups-toggle{border:0;background:transparent;color:var(--color-text-secondary);cursor:pointer;font:inherit;font-size:calc(10px * var(--font-scale));line-height:1.2;padding:4px 6px;border-radius:var(--radius-sm);white-space:nowrap}
+.sidebar__groups-toggle:hover{background:var(--midnight-2);color:var(--color-text-primary)}
 .sidebar a{display:block;padding:6px 10px;border-radius:var(--radius-md);font-size:calc(13.5px * var(--font-scale));color:var(--color-text-secondary);border-left:2px solid transparent}
 .sidebar a:hover{background:var(--midnight-2);color:var(--color-text-primary)}
 /* Accent label on the midnight-3 tint: orange-12 on light, orange-11 on dark —

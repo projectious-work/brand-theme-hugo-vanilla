@@ -4,6 +4,10 @@ other = "Aller au contenu"
 other = "Navigation principale"
 [docsNav]
 other = "Navigation de la documentation"
+[expandAll]
+other = "Tout ouvrir"
+[collapseAll]
+other = "Tout fermer"
 [breadcrumbs]
 other = "Fil d’Ariane"
 [home]
