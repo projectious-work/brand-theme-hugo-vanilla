@@ -4,7 +4,7 @@
 {{- $p := .page }}{{ $desc := .description }}{{ $img := .image -}}
 {{- $type := "WebPage" -}}
 {{- if $p.IsHome }}{{ $type = "WebSite" }}
-{{- else if eq $p.Section "blog" }}{{ $type = "BlogPosting" }}
+{{- else if eq $p.Section "changelog" }}{{ $type = "BlogPosting" }}
 {{- else if eq $p.Section "docs" }}{{ $type = "TechArticle" }}{{ end -}}
 {{- $data := dict
   "@context" "https://schema.org"

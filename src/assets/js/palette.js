@@ -150,7 +150,7 @@
 
   /* Global keys. "g" starts a two-key jump sequence. */
   var pending = null, timer = null;
-  var jumps = { h: '/', d: '/docs/', b: '/blog/' };
+  var jumps = { h: '/', d: '/docs/', c: '/changelog/' };
 
   d.addEventListener('keydown', function (e) {
     var typing = /input|textarea|select/i.test(d.activeElement.tagName) || d.activeElement.isContentEditable;

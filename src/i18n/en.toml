@@ -156,8 +156,12 @@ other = "Show these shortcuts"
 other = "Go to the home page"
 [shortcutDocs]
 other = "Go to the documentation"
-[shortcutBlog]
-other = "Go to the blog"
+[shortcutChangelog]
+other = "Go to the change log"
+[latest]
+other = "Latest"
+[readReleaseNotes]
+other = "Read release notes"
 [shortcutTheme]
 other = "Switch between light and dark"
 [shortcutClose]

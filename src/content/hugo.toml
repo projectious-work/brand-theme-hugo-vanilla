@@ -87,12 +87,12 @@ enableGitInfo = true
   pageRef = "/docs"
   weight = 10
 [[menus.main]]
-  name = "Blog"
-  pageRef = "/blog"
+  name = "Change log"
+  pageRef = "/changelog"
   weight = 20
 
 [params]
-  description = "Documentation, blog and marketing pages on the projectious.work brand system."
+  description = "Documentation, release history and marketing pages on the projectious.work brand system."
   github = "https://github.com/projectious-work/brand-theme-hugo-vanilla"
   # A single string is appended to the page's content-relative path. For a
   # multilingual site the theme adds the language directory automatically; pass a
@@ -117,7 +117,7 @@ enableGitInfo = true
   [params.announcement]
     id = "v032"
     text = "v0.3.2 is out — public hooks for site-owned styles and scripts."
-    href = "/blog/release-v0-3-2/"
+    href = "/changelog/release-v0-3-2/"
     label = "Read the notes"
 
   # Third-party runtime assets come from exact pinned CDN versions — see
@@ -158,11 +158,11 @@ enableGitInfo = true
     weight = 2
     title = "projectious.work"
     [languages.de.params]
-      description = "Dokumentation und Blog auf Basis des projectious.work Markensystems."
+      description = "Dokumentation und Versionshistorie auf Basis des projectious.work Markensystems."
   [languages.fr]
     label = "Français"
     contentDir = "content/fr"
     weight = 3
     title = "projectious.work"
     [languages.fr.params]
-      description = "Documentation et blog fondés sur le système de marque projectious.work."
+      description = "Documentation et historique des versions fondés sur le système de marque projectious.work."

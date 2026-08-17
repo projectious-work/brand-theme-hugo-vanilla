@@ -67,7 +67,7 @@ test("pinned CDN media, math and diagrams render", async ({ page }, testInfo) =>
   await page.goto("docs/features/mathematics/");
   await expect(page.locator(".katex").first()).toBeVisible();
 
-  await page.goto("docs/shortcodes/");
+  await page.goto("docs/features/jupyter-notebooks/");
   await expect(page.locator(".notebook[data-notebook='theme-demo']")).toBeVisible();
 
   await page.goto("docs/guides/");
@@ -79,10 +79,6 @@ test("pinned CDN media, math and diagrams render", async ({ page }, testInfo) =>
     "Build completed in 284 ms",
   ].join("\n"));
 
-  await page.goto("docs/shortcodes/");
-  await expect(page.locator('script[src*="mermaid@11.16.1/dist/mermaid.min.js"]'))
-    .toHaveCount(1);
-  await expect(page.locator(".mermaid svg")).toBeVisible();
 });
 
 test("prose markers and adaptive technical panels follow colour mode", async ({ page }, testInfo) => {
@@ -100,7 +96,7 @@ test("prose markers and adaptive technical panels follow colour mode", async ({ 
   });
   expect(listStyles).toEqual({ ul: "disc", ol: "decimal" });
 
-  await page.goto("docs/shortcodes/");
+  await page.goto("docs/features/file-trees/");
   const treeMarkers = await page.locator(".filetree").first().evaluate((tree) => ({
     list: getComputedStyle(tree.querySelector("ul")).listStyleType,
     marker: getComputedStyle(tree.querySelector("li"), "::marker").content,
@@ -268,9 +264,9 @@ test("every documentation code panel follows all colour modes", async (
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 
   for (const fixture of [
-    ["docs/shortcodes/", ".notebook pre:not(.mermaid)",
+    ["docs/features/jupyter-notebooks/", ".notebook pre:not(.mermaid)",
       "--code-panel-surface"],
-    ["docs/shortcodes/", ".cast", "--terminal-surface"],
+    ["docs/features/terminal-recordings/", ".cast", "--terminal-surface"],
   ]) {
     await page.goto(fixture[0]);
     await page.evaluate(() => window.pwTheme.set("system"));
@@ -431,21 +427,20 @@ test("sidebar groups default closed and persist reader state", async ({ page }, 
   expect(await page.locator(".sidebar details[open]").count()).toBe(0);
 });
 
-test("Examples precede Shortcodes and use the showcase layouts", async (
+test("Examples use the showcase layouts without a Shortcodes section", async (
   { page },
 ) => {
   await page.goto("docs/");
   const labels = await page.locator(
     ".sidebar > a, .sidebar > details > summary",
   ).allTextContents();
-  const shortcodes = labels.findIndex((label) => label.includes("Shortcodes"));
   const examples = labels.findIndex((label) => label.includes("Examples"));
-  expect(shortcodes).toBeGreaterThanOrEqual(0);
-  expect(shortcodes).toBe(examples + 1);
+  expect(examples).toBeGreaterThanOrEqual(0);
+  expect(labels.some((label) => label.includes("Shortcodes"))).toBeFalsy();
 
   await page.goto("docs/examples/");
   const cards = page.locator(".docs__main > .cards .card");
-  await expect(cards).toHaveCount(8);
+  await expect(cards).toHaveCount(7);
   const paths = await cards.evaluateAll((links) => links.map((link) => (
     new URL(link.href).pathname
   )));
@@ -457,7 +452,6 @@ test("Examples precede Shortcodes and use the showcase layouts", async (
     "/brand-theme-hugo-vanilla/docs/examples/run-state/",
     "/brand-theme-hugo-vanilla/docs/examples/article/",
     "/brand-theme-hugo-vanilla/docs/examples/changelog/",
-    "/brand-theme-hugo-vanilla/docs/examples/blog/",
   ]);
 
   for (const path of paths) {
@@ -488,7 +482,7 @@ test("Examples precede Shortcodes and use the showcase layouts", async (
 
 test("Steps accept cards as structured content", async ({ page }, testInfo) => {
   test.skip(!testInfo.project.name.startsWith("desktop"));
-  await page.goto("docs/shortcodes/");
+  await page.goto("docs/features/steps/");
   const choice = page.locator(".step", {
     hasText: "Choose a starting point",
   });
@@ -496,15 +490,18 @@ test("Steps accept cards as structured content", async ({ page }, testInfo) => {
   await expect(choice.locator("pre")).toHaveCount(0);
 });
 
-test("Shortcodes renders image, recording and notebook examples", async (
+test("Features renders image, recording and notebook examples", async (
   { page }, testInfo,
 ) => {
   test.skip(!testInfo.project.name.startsWith("desktop"));
-  await page.goto("docs/shortcodes/");
+  await page.goto("docs/features/images/");
   await expect(page.locator(
     'figure img[src$="/img/sunrise-brand.svg"]',
   )).toBeVisible();
-  await expect(page.locator(".cast > div")).toBeVisible();
+  await page.goto("docs/features/terminal-recordings/");
+  await expect(page.locator(".cast[data-cast]")).toBeVisible();
+  await expect(page.locator(".cast [data-cast-options]")).toHaveCount(1);
+  await page.goto("docs/features/jupyter-notebooks/");
   await expect(page.locator(".notebook[data-notebook='theme-demo']"))
     .toBeVisible();
 });
@@ -651,10 +648,13 @@ test("configuration hierarchy and generated feature overview stay complete", asy
 
   await page.goto("docs/features/");
   await expect(page.locator(".card__title")).toHaveText([
-    "Accessibility", "Code blocks", "Diagrams", "Editing and feedback",
-    "Header and navigation", "Internationalization", "Jupyter notebooks",
-    "Mathematics", "Search", "Tags", "Tailwind and design tokens",
-    "Terminal recordings", "Tokens and public API", "Versioned documentation",
+    "Accessibility", "Buttons and badges", "Callouts", "Cards", "Code blocks",
+    "Collapsible details", "Diagrams", "Editing and feedback", "File trees",
+    "Header and navigation", "Icons", "Images", "Internationalization",
+    "Jupyter notebooks", "Links", "Mathematics", "Search", "Steps", "Tabs",
+    "Tags", "Tailwind and design tokens", "Terminal output",
+    "Terminal recordings", "Terminology", "Tokens and public API",
+    "Versioned documentation",
   ]);
 
   await page.goto("docs/features/tokens/");
@@ -680,9 +680,9 @@ test("German and French documentation are complete language sites", async ({ pag
 });
 
 test("release notes are ordered newest first in every language", async ({ page }) => {
-  for (const path of ["blog/", "de/blog/", "fr/blog/"]) {
+  for (const path of ["changelog/", "de/changelog/", "fr/changelog/"]) {
     await page.goto(path);
-    const releases = await page.locator(".postlist h2").allTextContents();
+    const releases = await page.locator(".example-changelog h2").allTextContents();
     expect(releases.slice(0, 3).map((title) => title.trim().slice(0, 6)))
       .toEqual(["v0.3.2", "v0.3.1", "v0.3.0"]);
   }

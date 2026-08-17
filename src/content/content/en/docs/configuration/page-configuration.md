@@ -20,7 +20,7 @@ cards = true                   # Generate cards for child pages on a section.
 hidden = false                 # Include this child in generated cards.
 math = false                   # Load KaTeX only when this page needs it.
 private = false                # Include the page in search and sitemap.
-cover = "/img/api.png"         # Optional blog cover image.
+cover = "/img/api.png"         # Optional article cover image.
 coverAlt = "API response"      # Required alternative text for the cover.
 +++
 ```
@@ -39,7 +39,7 @@ coverAlt = "API response"      # Required alternative text for the cover.
 | `hidden` | boolean, `false` | Exclude a child from generated cards |
 | `math` | boolean, `false` | Load KaTeX on this page |
 | `private` | boolean, `false` | Exclude from search and sitemap when true |
-| `cover` | path, unset | Blog cover image |
+| `cover` | path, unset | Article cover image |
 | `coverAlt` | string, empty | Alternative text for the cover image |
 
 Use quotes for strings, plain integers for weights, and `true` or `false` for

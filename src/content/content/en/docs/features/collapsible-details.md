@@ -1,0 +1,19 @@
++++
+title = "Collapsible details"
+description = "Hide optional detail behind an accessible disclosure control."
+weight = 150
+icon = "chevron-down"
++++
+
+{{< details title="What does the search index contain?" >}}
+Titles, descriptions, breadcrumbs, tags, H2 and H3 headings, and page text.
+{{< /details >}}
+
+```md
+{{</* details title="What does the search index contain?" */>}}
+Titles, descriptions, breadcrumbs, tags, headings and page text.
+{{</* /details */>}}
+```
+
+Add `open="true"` to start expanded. Do not hide information that every reader
+must see before completing a task.

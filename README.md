@@ -1,7 +1,7 @@
 # brand-theme-hugo-vanilla — v0.3.2
 
 A Hugo theme implementing the **projectious.work** brand system for documentation,
-blog, taxonomy and marketing pages. Content authors write Markdown and shortcodes;
+change logs, taxonomy and marketing pages. Content authors write Markdown and shortcodes;
 the theme owns every piece of markup.
 
 Requires Hugo **0.128.0+**. Node is needed only for the Tailwind v4 step.
@@ -46,7 +46,7 @@ contents and math passthrough.
 | Multilingual + language selector | `i18n/`, `partials/lang-menu.html` |
 | Version selector | `params.versions`, `partials/version-menu.html` — keeps the reader's path across versions |
 | Structured data + social cards | `partials/schema.html` — TechArticle, BlogPosting, WebSite and breadcrumbs |
-| Blog, taxonomy, landing, 404 | `layouts/blog/`, `_default/terms.html`, `term.html`, `index.html`, `404.html` |
+| Change log, taxonomy, landing, 404 | `layouts/changelog/`, `_default/terms.html`, `term.html`, `index.html`, `404.html` |
 | Multilingual edit links + feedback | `partials/edit-link.html`, `feedback.html` |
 | Print a whole docs section | `Print` output format → `_default/list.print.html` + `assets/css/print.css` |
 | Jupyter notebooks | `scripts/notebooks.sh` (nbconvert) → `{{< notebook "name" >}}` |
@@ -57,15 +57,16 @@ contents and math passthrough.
 | Child-page card grids | `partials/child-cards.html` — generated from title, description, icon and weight |
 | RTL layout | Set the language direction to `rtl`; navigation and structural rails mirror automatically |
 
-## Shortcodes
+## Content components
 
 `callout` · `cards`/`card` · `tabs`/`tab` · `steps`/`step` · `details` ·
 `filetree`/`folder`/`file` · `icon` · `badge` · `button` · `terminal` · `term` ·
 `mermaid` · `math` · `asciinema` · `notebook`
 
-`src/content/content/en/docs/shortcodes.md` is the live gallery — every shortcode with
-the Markdown that produces it. Fenced code blocks get a filename bar, language
-label and copy button with no shortcode:
+The [Features](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/)
+section is the live gallery: every component has a rendered example, copyable
+Markdown and usage guidance. Fenced code blocks get a filename bar, language label
+and copy button with no shortcode:
 
     ```yaml {filename="pipeline.yaml"}
     name: onboarding-audit
@@ -77,13 +78,13 @@ one-word edit in Markdown.
 ## Structure
 
 ```
-src/archetypes/   new-content templates (default, docs, blog, release)
+src/archetypes/   new-content templates (default, docs, release)
 src/assets/css/   main.css (Tailwind entry) · brand-tokens · fonts · theme-layer · syntax · components
 src/assets/icons/ bundled fallback glyphs; the full Tabler set is mounted at build time
 src/assets/js/    theme.js · interactions.js · search.js · vendor/flexsearch
 src/data/         glossary.yaml · pinned CDN versions in cdn.yaml
 src/i18n/         en.toml · de.toml · fr.toml
-src/layouts/      _default · docs · blog · index · 404 · search index
+src/layouts/      _default · docs · changelog · index · 404 · search index
 src/static/       fonts (WOFF2, OFL) · logo
 src/content/      example site (module replace back to the repo root)
 ```
