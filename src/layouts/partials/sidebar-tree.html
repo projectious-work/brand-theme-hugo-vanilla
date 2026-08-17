@@ -1,15 +1,14 @@
-{{- /* Expands sections up to params.sidebarOpenDepth (default 1), plus every
-       ancestor of the current page regardless of depth. 0 collapses everything
-       that is not on the current path. */ -}}
+{{- /* Expands sections up to params.sidebarOpenDepth (default 0). JavaScript
+       restores the reader's persisted state when one exists. */ -}}
 {{ $current := .current }}{{ $level := .level }}
-{{ $depth := 1 }}{{ if isset site.Params "sidebaropendepth" }}{{ $depth = site.Params.sidebarOpenDepth }}{{ end }}
+{{ $depth := 0 }}{{ if isset site.Params "sidebaropendepth" }}{{ $depth = site.Params.sidebarOpenDepth }}{{ end }}
 {{ $pages := .page.Pages.ByWeight }}
 {{ if eq .page.Params.pageOrder "title-asc" }}{{ $pages = .page.Pages.ByTitle }}{{ else if eq .page.Params.pageOrder "title-desc" }}{{ $pages = .page.Pages.ByTitle.Reverse }}{{ end }}
 {{ range $pages }}
   {{ if partial "is-listed.html" . }}
   {{ if .IsSection }}
-    {{ $open := or (eq . $current) ($current.IsDescendant .) (lt $level $depth) }}
-    <details{{ if $open }} open{{ end }}>
+    {{ $open := lt $level $depth }}
+    <details data-sidebar-group="{{ .RelPermalink }}"{{ if $open }} open{{ end }}>
       <summary>{{ partial "icon.html" (dict "name" "chevron-right" "class" "ico--sm") }}<span>{{ .LinkTitle }}</span></summary>
       <div>
         <a href="{{ .RelPermalink }}"{{ if eq . $current }} aria-current="page"{{ end }}>{{ or .Params.overviewLabel .Params.overviewTitle site.Params.overviewLabel (i18n "overview") }}</a>

@@ -119,7 +119,7 @@ enableRobotsTXT = true                 # Ask Hugo to generate the theme's robots
   version = "v1.0"             # Current label in the version menu.
   codeTheme = "adaptive"       # Adapt code panels to light and dark modes.
   sidebarSections = ["docs"]   # Top-level sections that receive the docs rail.
-  sidebarOpenDepth = 1          # Initially expanded sidebar levels.
+  sidebarOpenDepth = 0          # Initially expanded sidebar levels.
 
   [[params.versions]] # One published documentation version.
     label = "v1.0"   # Menu label.
@@ -174,7 +174,7 @@ pages.
 | `versions` | array, empty | Linking published documentation trees | [Versioning](../features/versioning.md) |
 | `versionProbe` | boolean, `true` | Disabling same-page version probing globally | [Versioning](../features/versioning.md) |
 | `sidebarSections` | string array, `["docs"]` | Putting the sidebar on other sections | [Header and navigation](../features/header-navigation.md) |
-| `sidebarOpenDepth` | integer, `1` | Changing initially expanded levels | [Header and navigation](../features/header-navigation.md) |
+| `sidebarOpenDepth` | integer, `0` | Changing initially expanded levels | [Header and navigation](../features/header-navigation.md) |
 | `codeTheme` | `adaptive` or `dark`, `adaptive` | Forcing code and terminal panels dark | [Tailwind and design tokens](../features/tailwind.md) |
 | `darkSurface` | `navy`, unset | Making navy the initial dark surface | [Accessibility](../features/accessibility.md) |
 | `announcement` | table, unset | Showing a dismissible notice | [Header and navigation](../features/header-navigation.md) |

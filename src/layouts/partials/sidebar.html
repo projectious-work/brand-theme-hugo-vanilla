@@ -1,5 +1,6 @@
 {{ $root := .FirstSection }}
-<nav class="sidebar" aria-label="{{ i18n "docsNav" }}" data-open="false">
+<nav class="sidebar" aria-label="{{ i18n "docsNav" }}" data-open="false"
+  data-sidebar-state-key="pw:sidebar:{{ site.Home.RelPermalink }}">
   {{ if ne site.Params.sidebarFilter false }}
   <label class="sidebar__filter">
     {{ partial "icon.html" (dict "name" "search" "class" "ico--sm") }}
@@ -7,7 +8,15 @@
   </label>
   <div class="sidebar__empty" data-sidebar-empty hidden>{{ i18n "noResults" }}</div>
   {{ end }}
-  <div class="sidebar__group">{{ $root.LinkTitle }}</div>
+  <div class="sidebar__heading">
+    <div class="sidebar__group">{{ $root.LinkTitle }}</div>
+    <button class="sidebar__groups-toggle" type="button"
+      data-sidebar-groups-toggle aria-expanded="false"
+      data-expand-label="{{ i18n "expandAll" }}"
+      data-collapse-label="{{ i18n "collapseAll" }}">
+      <span data-sidebar-groups-label>{{ i18n "expandAll" }}</span>
+    </button>
+  </div>
   <a href="{{ $root.RelPermalink }}"{{ if eq $root . }} aria-current="page"{{ end }}>{{ or $root.Params.overviewLabel $root.Params.overviewTitle site.Params.overviewLabel (i18n "overview") }}</a>
   {{ partial "sidebar-tree.html" (dict "page" $root "current" . "level" 0) }}
 </nav>
