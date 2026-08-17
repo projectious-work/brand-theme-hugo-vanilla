@@ -98,14 +98,14 @@ print(f"{len(pages)} pages ready")
 ```toml {filename="hugo.toml"}
 [params]
   codeTheme = "adaptive"
-  sidebarOpenDepth = 1
+  sidebarOpenDepth = 0
 ```
 
 ````md
 ```toml {filename="hugo.toml"}
 [params]
   codeTheme = "adaptive"
-  sidebarOpenDepth = 1
+  sidebarOpenDepth = 0
 ```
 ````
 

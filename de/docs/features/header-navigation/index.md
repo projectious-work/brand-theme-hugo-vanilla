@@ -10,6 +10,15 @@ Weitere Symbole werden als SVG unter `assets/icons/` abgelegt und über
 `partials/icon.html` eingebunden. Links mit Symbol benötigen ein `aria-label` und
 eine ausreichend große Zielfläche.
 
+## Gruppen in der Seitenleiste
+
+Beim ersten Besuch sind alle Gruppen geschlossen. Unter `[params]` steuert
+`sidebarOpenDepth`, wie viele Ebenen anfänglich geöffnet sind; `0` ist der
+Standard, `1` öffnet die oberste Ebene. **Alle öffnen** beziehungsweise **Alle
+schließen** ändert den gesamten Baum. Einzelne Änderungen werden je Website und
+Sprache im lokalen Browserspeicher gesichert und bleiben beim Seitenwechsel
+erhalten. Die Suche öffnet Treffer nur vorübergehend.
+
 
 ---
 Quelle: https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/features/header-navigation/index.md
