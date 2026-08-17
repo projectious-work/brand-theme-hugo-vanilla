@@ -1,7 +1,7 @@
 +++
 title = "Shortcodes"
 description = "Every component the theme ships, with the Markdown that produces it."
-weight = 50
+weight = 55
 icon = "list"
 math = true
 tags = ["reference"]
@@ -307,8 +307,14 @@ automatically.
 
 Markdown images become figures automatically — the title becomes the caption:
 
+{{< image src="/img/sunrise-brand.svg"
+    alt="Orange sunrise over layered navy mountains"
+    caption="A brand-colour sunrise illustration" >}}
+
 ```md
-![Documentation navigation](navigation.png "Generated navigation on a documentation page")
+{{</* image src="/img/sunrise-brand.svg"
+     alt="Orange sunrise over layered navy mountains"
+     caption="A brand-colour sunrise illustration" */>}}
 ```
 
 Prefer a **page bundle**: put `navigation.png` next to the page's `index.md` and
@@ -365,20 +371,25 @@ Both `$…$`/`$$…$$` and `\(…\)`/`\[…\]` are recognised.
 
 ## Terminal recordings
 
+{{< asciinema src="/casts/theme-tour.cast" rows="8" cols="80" idleTimeLimit="1.5" >}}
+
 ```md
-{{</* asciinema src="/casts/deploy.cast" rows="18" idleTimeLimit="1.5" */>}}
+{{</* asciinema src="/casts/theme-tour.cast" rows="8" cols="80"
+     idleTimeLimit="1.5" */>}}
 ```
 
-Record with `asciinema rec deploy.cast` and keep the file in the page bundle, or
+Record with `asciinema rec theme-tour.cast` and keep the file in the page bundle, or
 under `static/casts/`. `cols`, `rows`, `speed`, `idleTimeLimit`, `autoplay` and
 `loop` are all supported — autoplay is off by default, per the brand rule on motion.
 
 ## Notebooks
 
+{{< notebook "theme-demo" >}}
+
 ```md
-{{</* notebook "analysis" */>}}
+{{</* notebook "theme-demo" */>}}
 ```
 
 Run `scripts/notebooks.sh` first. The shortcode looks for a page resource named
-`analysis.md` in the page bundle, then `content/_notebooks/analysis.md` — both exact,
+`theme-demo.md` in the page bundle, then `content/_notebooks/theme-demo.md` — both exact,
 so duplicate basenames are an error rather than a coin flip.

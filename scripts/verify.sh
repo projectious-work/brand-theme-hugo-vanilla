@@ -37,12 +37,12 @@ done
 rg -q 'katex@0\.18\.4' "$VERIFY_DIR/build-a/docs/features/mathematics/index.html"
 rg -q 'mermaid@11\.16\.1' "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
 rg -q 'asciinema-player@3\.17\.0' \
-  "$VERIFY_DIR/build-a/docs/features/terminal-recordings/index.html"
+  "$VERIFY_DIR/build-a/docs/shortcodes/index.html"
 rg -q '/brand-theme-hugo-vanilla/casts/theme-tour\.cast' \
-  "$VERIFY_DIR/build-a/docs/features/terminal-recordings/index.html"
+  "$VERIFY_DIR/build-a/docs/shortcodes/index.html"
 rg -q "'projectious-light'" "$ROOT_DIR/src/assets/js/asciinema.js"
 rg -q '/js/asciinema\.[a-f0-9]+\.js' \
-  "$VERIFY_DIR/build-a/docs/features/terminal-recordings/index.html"
+  "$VERIFY_DIR/build-a/docs/shortcodes/index.html"
 if rg -q 'ZgotmplZ' "$VERIFY_DIR/build-a/docs/features/tokens/index.html"; then
   echo "error: token swatches were rejected by Hugo contextual escaping" >&2
   exit 1

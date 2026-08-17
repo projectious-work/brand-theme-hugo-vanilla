@@ -1,7 +1,7 @@
 +++
 title = "Exemples"
 description = "Compositions complètes hors de la mise en page documentaire."
-weight = 55
+weight = 50
 icon = "layout-grid"
 pageOrder = "weight"
 +++
