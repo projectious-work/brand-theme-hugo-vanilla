@@ -67,6 +67,35 @@ flowchart LR
   C -->|verletzt| E[Abbruch und Meldung]
 {{< /mermaid >}}
 
+## Bilder
+
+{{< image src="/img/sunrise-brand.svg"
+    alt="Orangefarbener Sonnenaufgang über dunkelblauen Bergen"
+    caption="Eine Illustration in den Markenfarben" >}}
+
+```md
+{{</* image src="/img/sunrise-brand.svg"
+     alt="Orangefarbener Sonnenaufgang über dunkelblauen Bergen"
+     caption="Eine Illustration in den Markenfarben" */>}}
+```
+
+## Terminalaufzeichnungen
+
+{{< asciinema src="/casts/theme-tour.cast" rows="8" cols="80" idleTimeLimit="1.5" >}}
+
+```md
+{{</* asciinema src="/casts/theme-tour.cast" rows="8" cols="80"
+     idleTimeLimit="1.5" */>}}
+```
+
+## Notebooks
+
+{{< notebook "theme-demo" >}}
+
+```md
+{{</* notebook "theme-demo" */>}}
+```
+
 
 ---
 Quelle: https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/shortcodes/index.md

@@ -11,8 +11,8 @@ bevor Sie Inhalte mit dem Autorenleitfaden erstellen.
 - [Konfiguration](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/configuration/index.md) — Website-weite Einstellungen und Frontmatter einzelner Seiten.
 - [Features](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/features/index.md) — Vollständige Übersicht für Leser, Autoren und Maintainer.
 - [Leitfäden](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/guides/index.md) — Seiten, Links, Code, Diagramme, Aufzeichnungen und Notebook-Ausgaben erstellen.
-- [Shortcodes](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/shortcodes/index.md) — Alle Komponenten des Themes, mit dem Markdown, das sie erzeugt.
 - [Beispiele](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/examples/index.md) — Vollständige Theme-Seiten außerhalb des Dokumentationslayouts.
+- [Shortcodes](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/shortcodes/index.md) — Alle Komponenten des Themes, mit dem Markdown, das sie erzeugt.
 - [Entwicklerleitfaden](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/developer-guide/index.md) — Theme anpassen, gebündelte Assets tauschen und Änderungen testen.
 - [Wartung und Upgrades](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/maintenance/index.md) — Theme, Abhängigkeiten, Übersetzungen und veröffentlichte Versionen pflegen.
 - [Abhängigkeiten und SBOM](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/dependencies/index.md) — Build-Werkzeuge, Browserbibliotheken, Versionen und Lizenzen.

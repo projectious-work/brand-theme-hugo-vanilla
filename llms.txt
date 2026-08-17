@@ -20,8 +20,8 @@ Install, configure, author, extend and maintain the projectious.work Hugo theme.
 - [Pricing page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/pricing/): Three clear service tiers with one emphasized recommendation.
 - [Tailwind and design tokens](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/tailwind/): Use the theme's Tailwind integration and stable projectious.work design tokens.
 - [Run state page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/run-state/): Observability states for empty, loading, successful and failed runs.
-- [Shortcodes](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/shortcodes/): Every component the theme ships, with the Markdown that produces it.
 - [Tags](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/tags/): Use Hugo taxonomies for related-content and release-note metadata.
+- [Shortcodes](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/shortcodes/): Every component the theme ships, with the Markdown that produces it.
 - [Article page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/article/): A focused long-form article with metadata and a reading rail.
 - [Developer guide](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/developer-guide/): Adapt the theme, swap bundled assets, run tests and contribute changes safely.
 - [Search](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/search/): How the generated search index, header search and command palette work.

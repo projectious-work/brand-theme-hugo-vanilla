@@ -53,6 +53,35 @@ La liste complète des paramètres, y compris `icon`, `badge`, `button`, `term`,
 `image`, `asciinema` et `notebook`, se trouve dans le
 [guide de rédaction](guides/_index.md).
 
+## Images
+
+{{< image src="/img/sunrise-brand.svg"
+    alt="Lever de soleil orange sur des montagnes bleu nuit"
+    caption="Une illustration aux couleurs de la marque" >}}
+
+```md
+{{</* image src="/img/sunrise-brand.svg"
+     alt="Lever de soleil orange sur des montagnes bleu nuit"
+     caption="Une illustration aux couleurs de la marque" */>}}
+```
+
+## Enregistrements de terminal
+
+{{< asciinema src="/casts/theme-tour.cast" rows="8" cols="80" idleTimeLimit="1.5" >}}
+
+```md
+{{</* asciinema src="/casts/theme-tour.cast" rows="8" cols="80"
+     idleTimeLimit="1.5" */>}}
+```
+
+## Notebooks
+
+{{< notebook "theme-demo" >}}
+
+```md
+{{</* notebook "theme-demo" */>}}
+```
+
 
 ---
 Source: https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/shortcodes/index.md

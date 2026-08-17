@@ -7,7 +7,8 @@
 output in `.ipynb` JSON files. The theme converts them before Hugo builds, so the
 published page contains ordinary Markdown and images rather than executable code.
 
-{{< notebook "theme-demo" >}}
+The converted live example and its copyable source are shown in
+[Shortcodes: Notebooks](../shortcodes.md#notebooks).
 
 Create an isolated conversion environment and convert every notebook:
 
