@@ -14,6 +14,7 @@ upgrades.
 - [Features](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/index.md) — A complete map of reader, author and maintainer capabilities.
 - [Guides](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/guides/index.md) — Write pages, links, code, diagrams, recordings and notebook output with Hugo-friendly Markdown.
 - [Shortcodes](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/shortcodes/index.md) — Every component the theme ships, with the Markdown that produces it.
+- [Examples](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/index.md) — Complete theme-native page compositions beyond documentation layouts.
 - [Developer guide](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/developer-guide/index.md) — Adapt the theme, swap bundled assets, run tests and contribute changes safely.
 - [Maintenance and upgrades](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/maintenance/index.md) — Keep the theme, runtime pins, content and published documentation current.
 - [Dependencies and SBOM](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/dependencies/index.md) — Understand build tools, browser runtimes, bundled assets, versions and licences.

@@ -7,20 +7,28 @@
 
 Install, configure, author, extend and maintain the projectious.work Hugo theme.
 
+- [Admin page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/admin/): Member management, roles, status badges and a responsive data table.
 - [Getting started](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/getting-started/): Create a Hugo site from scratch, install the theme from a release or local checkout, configure its outputs and run it.
 - [Site-wide configuration](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/configuration/site-wide/): Configure Hugo, outputs, Markdown, menus, languages and theme parameters.
 - [Versioned documentation](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/versioning/): Publish separate documentation builds and connect them with the version menu.
+- [Dashboard page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/dashboard/): Operational metrics, activity trends and current pipeline state.
 - [Page configuration (front matter)](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/configuration/page-configuration/): Control navigation, cards, tables of contents and optional page capabilities.
 - [Template authoring guide](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/guides/template-authoring/): Move from Markdown authoring to your first upgrade-safe Hugo shortcode and layout, step by step.
 - [Tokens and public API](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/tokens/): Inspect the stable semantic CSS tokens and Tailwind namespaces generated from the theme source.
+- [Settings page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/settings/): Grouped form controls, validation, switches and save actions.
 - [Terminal recordings](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/terminal-recordings/): Record and embed copyable terminal sessions with asciinema.
+- [Pricing page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/pricing/): Three clear service tiers with one emphasized recommendation.
 - [Tailwind and design tokens](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/tailwind/): Use the theme's Tailwind integration and stable projectious.work design tokens.
+- [Run state page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/run-state/): Observability states for empty, loading, successful and failed runs.
 - [Shortcodes](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/shortcodes/): Every component the theme ships, with the Markdown that produces it.
 - [Tags](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/tags/): Use Hugo taxonomies for related-content and release-note metadata.
+- [Article page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/article/): A focused long-form article with metadata and a reading rail.
 - [Developer guide](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/developer-guide/): Adapt the theme, swap bundled assets, run tests and contribute changes safely.
 - [Search](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/search/): How the generated search index, header search and command palette work.
+- [Changelog page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/changelog/): A chronological product history with compact semantic change labels.
 - [Maintenance and upgrades](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/maintenance/): Keep the theme, runtime pins, content and published documentation current.
 - [Mathematics](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/mathematics/): Render inline and display mathematics with KaTeX.
+- [Blog main page](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/examples/blog/): A featured story and responsive article-card collection.
 - [Dependencies and SBOM](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/dependencies/): Understand build tools, browser runtimes, bundled assets, versions and licences.
 - [Jupyter notebooks](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/jupyter-notebooks/): Convert and publish reproducible notebook output.
 - [Internationalization](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/internationalization/): Configure translated content, language navigation, metadata and RTL layout.

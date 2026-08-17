@@ -113,9 +113,10 @@ Start the local server and review the generated pages.
   {{% /step %}}
 {{< /steps >}}
 
-A step is not limited to plain text. Its body is Markdown and may contain lists,
-code, images, callouts, or nested shortcodes such as `cards`. Use `%` delimiters
-for `step` so Hugo renders that mixed body before the step template receives it.
+A step is not limited to plain text. Its body may contain lists, code, images,
+callouts, or nested shortcodes. Use `%` delimiters when the body is Markdown. Use
+`<` delimiters when it contains another shortcode, so the nested component stays
+HTML instead of being escaped by an additional Markdown pass.
 
 ```md
 {{</* steps */>}}
@@ -129,6 +130,33 @@ Add the theme import.
 ```
 
 Numbering is CSS counters — steps renumber themselves when you reorder them.
+
+Cards can be the step body when a decision is easier to scan as choices:
+
+{{< steps >}}
+  {{< step title="Choose a starting point" >}}
+{{< cards cols="2" >}}
+  {{< card title="New site" subtitle="Start with the complete installation path." link="/docs/getting-started/" icon="rocket" >}}
+  {{< card title="Existing site" subtitle="Configure the module and adopt features incrementally." link="/docs/configuration/site-wide/" icon="settings" >}}
+{{< /cards >}}
+  {{< /step >}}
+  {{% step title="Verify the result" %}}
+Run the local build and review the site in every colour mode.
+  {{% /step %}}
+{{< /steps >}}
+
+```md
+{{</* steps */>}}
+  {{</* step title="Choose a starting point" */>}}
+{{</* cards cols="2" */>}}
+  {{</* card title="New site" subtitle="Follow the full installation path."
+      link="/docs/getting-started/" icon="rocket" */>}}
+  {{</* card title="Existing site" subtitle="Adopt features incrementally."
+      link="/docs/configuration/site-wide/" icon="settings" */>}}
+{{</* /cards */>}}
+  {{</* /step */>}}
+{{</* /steps */>}}
+```
 
 ## Collapsible details
 

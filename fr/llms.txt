@@ -10,17 +10,25 @@ Installer, configurer, utiliser, adapter et maintenir le thème.
 - [Bien démarrer](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/getting-started/): Installer le thème, ajouter la configuration Hugo requise et lancer le site localement.
 - [Configuration globale du site](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/configuration/site-wide/): Configurer Hugo, les sorties, les menus, les langues et le thème.
 - [Documentation versionnée](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/features/versioning/): Publier des builds distincts et les relier par le menu de versions.
+- [Page d’administration](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/examples/admin/): Membres, rôles, états et tableau de données adaptatif.
 - [Configuration de page (front matter)](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/configuration/page-configuration/): Contrôler la navigation et les fonctions propres à une page.
 - [Guide de création de templates](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/guides/template-authoring/): Créer des layouts et shortcodes Hugo maintenables avec les jetons du thème et Tailwind.
 - [Jetons et API publique](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/features/tokens/): Jetons CSS sémantiques et espaces de noms Tailwind générés depuis le thème.
+- [Tableau de bord](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/examples/dashboard/): Métriques, tendances d’activité et état des pipelines.
 - [Enregistrements de terminal](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/features/terminal-recordings/): Intégrer des sessions copiables avec asciinema.
+- [Paramètres](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/examples/settings/): Formulaires, validation, interrupteurs et actions d’enregistrement.
 - [Tailwind et jetons de design](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/features/tailwind/): Employer l'intégration Tailwind et les jetons projectious.work.
+- [Tarifs](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/examples/pricing/): Trois offres lisibles avec une recommandation mise en avant.
+- [État d’exécution](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/examples/run-state/): États vide, en cours, réussi et en erreur pour l’observabilité.
 - [Shortcodes](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/shortcodes/): Référence des composants structurés fournis par le thème.
 - [Tags](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/features/tags/): Taxonomies Hugo pour les métadonnées et les contenus associés.
+- [Article](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/examples/article/): Un article long avec métadonnées et repères de lecture.
 - [Guide développeur](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/developer-guide/): Adapter le thème, remplacer les ressources et tester les changements.
 - [Recherche](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/features/search/): Index généré, recherche d'en-tête et palette de commandes.
+- [Journal des modifications](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/examples/changelog/): Historique chronologique avec libellés de changement sémantiques.
 - [Maintenance et mises à niveau](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/maintenance/): Maintenir thème, dépendances, traductions et versions publiées.
 - [Mathématiques](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/features/mathematics/): Afficher des formules KaTeX en ligne et en bloc.
+- [Accueil du blog](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/examples/blog/): Article vedette et collection adaptative de cartes éditoriales.
 - [Dépendances et SBOM](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/dependencies/): Outils de build, bibliothèques navigateur, versions et licences.
 - [Jupyter notebooks](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/features/jupyter-notebooks/): Publier les résultats de notebooks convertis de façon reproductible.
 - [Internationalisation](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/features/internationalization/): Configurer contenus traduits, navigation, métadonnées et RTL.
