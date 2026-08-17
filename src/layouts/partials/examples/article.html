@@ -1,0 +1,14 @@
+<section class="example-stage example-article" aria-labelledby="example-title">
+  <article>
+    <header class="example-hero"><span class="overline">Architecture</span><h1 id="example-title">Provider independence in an agentic stack</h1><p>Keep AI vendor choices reversible without slowing delivery.</p><div class="example-byline">Marius Keller · 4 August 2026 · 12 min read</div></header>
+    <p class="lede">Teams often treat their model provider as a foundation decision. The provider is actually the layer most likely to change through pricing, capability and policy.</p>
+    <h2 id="switching-cost">The switching cost is architectural</h2><p>A contract can be changed quickly. A codebase that assumes one vendor’s request and response shape in forty places cannot. Route every call through one internal interface.</p>
+    <pre class="example-log"><code>interface ModelClient {
+  complete(request: CompletionRequest): Promise&lt;Result&gt;
+}</code></pre>
+    <div class="callout callout--info"><div class="callout__body">The interface—not the model—is the unit worth testing.</div></div>
+    <h2 id="cost">What this costs you</h2><p>An adapter layer adds a little deliberate work. It also gives evaluation, observability and policy enforcement one stable boundary.</p>
+    <h2 id="line">Where to draw the line</h2><p>Abstract capabilities your product actually uses. Do not attempt to normalize every provider feature before it creates value.</p>
+  </article>
+  <aside><span class="overline">On this page</span><a href="#switching-cost">The switching cost</a><a href="#cost">What this costs</a><a href="#line">Where to draw the line</a></aside>
+</section>

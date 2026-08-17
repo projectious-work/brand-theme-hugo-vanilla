@@ -8,6 +8,10 @@ other = "Dokumentationsnavigation"
 other = "Alle öffnen"
 [collapseAll]
 other = "Alle schließen"
+[backToExamples]
+other = "Zurück zu den Beispielen"
+[themeExample]
+other = "Theme-Beispiel"
 [breadcrumbs]
 other = "Brotkrumen"
 [home]

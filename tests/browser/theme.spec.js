@@ -401,9 +401,9 @@ test("sidebar groups default closed and persist reader state", async ({ page }, 
   )).toHaveCount(0);
 
   const toggle = page.locator("[data-sidebar-groups-toggle]");
-  await expect(toggle).toHaveText("Expand all");
+  await expect(toggle).toHaveAttribute("aria-label", "Expand all");
   await toggle.click();
-  await expect(toggle).toHaveText("Collapse all");
+  await expect(toggle).toHaveAttribute("aria-label", "Collapse all");
   expect(await groups.evaluateAll((items) => items.every((item) => item.open)))
     .toBeTruthy();
 
@@ -424,11 +424,62 @@ test("sidebar groups default closed and persist reader state", async ({ page }, 
 
   const restoredToggle = page.locator("[data-sidebar-groups-toggle]");
   await restoredToggle.click();
-  await expect(restoredToggle).toHaveText("Collapse all");
+  await expect(restoredToggle).toHaveAttribute("aria-label", "Collapse all");
   await restoredToggle.click();
   expect(await page.locator(".sidebar details[open]").count()).toBe(0);
   await page.reload();
   expect(await page.locator(".sidebar details[open]").count()).toBe(0);
+});
+
+test("examples are linked after Shortcodes and use the showcase layout", async (
+  { page }, testInfo,
+) => {
+  test.skip(!testInfo.project.name.startsWith("desktop"));
+  await page.goto("docs/");
+  const labels = await page.locator(
+    ".sidebar > a, .sidebar > details > summary",
+  ).allTextContents();
+  const shortcodes = labels.findIndex((label) => label.includes("Shortcodes"));
+  const examples = labels.findIndex((label) => label.includes("Examples"));
+  expect(shortcodes).toBeGreaterThanOrEqual(0);
+  expect(examples).toBe(shortcodes + 1);
+
+  await page.goto("docs/examples/");
+  const cards = page.locator(".docs__main > .cards .card");
+  await expect(cards).toHaveCount(8);
+  const paths = await cards.evaluateAll((links) => links.map((link) => (
+    new URL(link.href).pathname
+  )));
+  expect(paths).toEqual([
+    "/brand-theme-hugo-vanilla/docs/examples/admin/",
+    "/brand-theme-hugo-vanilla/docs/examples/dashboard/",
+    "/brand-theme-hugo-vanilla/docs/examples/settings/",
+    "/brand-theme-hugo-vanilla/docs/examples/pricing/",
+    "/brand-theme-hugo-vanilla/docs/examples/run-state/",
+    "/brand-theme-hugo-vanilla/docs/examples/article/",
+    "/brand-theme-hugo-vanilla/docs/examples/changelog/",
+    "/brand-theme-hugo-vanilla/docs/examples/blog/",
+  ]);
+
+  for (const path of paths) {
+    await page.goto(path);
+    await expect(page.locator("main.example-page")).toBeVisible();
+    await expect(page.locator(".example-stage")).toBeVisible();
+    await expect(page.locator(".docs, .sidebar, .toc")).toHaveCount(0);
+    await expect(page.locator(".example-page__bar a")).toHaveAttribute(
+      "href", "/brand-theme-hugo-vanilla/docs/examples/",
+    );
+  }
+});
+
+test("Steps accept cards as structured content", async ({ page }, testInfo) => {
+  test.skip(!testInfo.project.name.startsWith("desktop"));
+  await page.goto("docs/shortcodes/");
+  const choice = page.locator(".step", {
+    hasText: "Choose a starting point",
+  });
+  await expect(choice.locator(".cards .card")).toHaveCount(2);
+  await expect(choice.locator("pre")).toHaveCount(0);
 });
 
 test("design-system component and token contracts are implemented", async ({ page }, testInfo) => {

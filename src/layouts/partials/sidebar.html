@@ -13,8 +13,14 @@
     <button class="sidebar__groups-toggle" type="button"
       data-sidebar-groups-toggle aria-expanded="false"
       data-expand-label="{{ i18n "expandAll" }}"
-      data-collapse-label="{{ i18n "collapseAll" }}">
-      <span data-sidebar-groups-label>{{ i18n "expandAll" }}</span>
+      data-collapse-label="{{ i18n "collapseAll" }}"
+      aria-label="{{ i18n "expandAll" }}" title="{{ i18n "expandAll" }}">
+      <span class="sidebar__expand-icon">
+        {{ partial "icon.html" (dict "name" "fold-down" "class" "ico--sm") }}
+      </span>
+      <span class="sidebar__collapse-icon">
+        {{ partial "icon.html" (dict "name" "fold-up" "class" "ico--sm") }}
+      </span>
     </button>
   </div>
   <a href="{{ $root.RelPermalink }}"{{ if eq $root . }} aria-current="page"{{ end }}>{{ or $root.Params.overviewLabel $root.Params.overviewTitle site.Params.overviewLabel (i18n "overview") }}</a>

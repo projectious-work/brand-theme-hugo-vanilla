@@ -8,6 +8,10 @@ other = "Navigation de la documentation"
 other = "Tout ouvrir"
 [collapseAll]
 other = "Tout fermer"
+[backToExamples]
+other = "Retour aux exemples"
+[themeExample]
+other = "Exemple du thème"
 [breadcrumbs]
 other = "Fil d’Ariane"
 [home]

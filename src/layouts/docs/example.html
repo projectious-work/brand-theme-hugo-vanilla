@@ -1,0 +1,12 @@
+{{ define "main" }}
+<main id="main" class="example-page">
+  <div class="example-page__bar">
+    <a href="{{ .Parent.RelPermalink }}">
+      {{ partial "icon.html" (dict "name" "arrow-left" "class" "ico--sm") }}
+      {{ i18n "backToExamples" }}
+    </a>
+    <span>{{ i18n "themeExample" }}</span>
+  </div>
+  {{ partial (printf "examples/%s.html" .Params.example) . }}
+</main>
+{{ end }}

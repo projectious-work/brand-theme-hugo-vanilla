@@ -1,0 +1,35 @@
+<section class="example-stage" aria-labelledby="example-title">
+  <header class="example-hero example-hero--compact">
+    <div><span class="overline">Workspace · acme-corp</span><h1 id="example-title">Operations overview</h1></div>
+    <button class="btn btn--primary" type="button">New pipeline</button>
+  </header>
+  <div class="example-kpis">
+    <article><span>Active agents</span><strong>18</strong><small>+3 this week</small></article>
+    <article><span>Runs today</span><strong>142</strong><small>+11% vs yesterday</small></article>
+    <article><span>Success rate</span><strong>98.4%</strong><small>+0.6 points</small></article>
+    <article><span>Average audit</span><strong>4.2s</strong><small>0.8s faster</small></article>
+  </div>
+  <article class="example-panel">
+    <div class="example-panel__head"><h2>Runs per day</h2><span>Last 14 days</span></div>
+    <div class="example-bars" aria-label="Runs per day bar chart">
+      {{ range seq 14 }}<span style="--bar:{{ add 24 (mod (mul . 17) 68) }}%"></span>{{ end }}
+    </div>
+  </article>
+  <div class="example-split">
+    <article class="example-panel">
+      <div class="example-panel__head"><h2>Recent activity</h2><span>Live</span></div>
+      <ul class="example-rows">
+        <li><div><strong>Invoice reconciliation</strong><small>finance-agent</small></div><span class="example-status example-status--ok">Healthy</span></li>
+        <li><div><strong>Customer onboarding audit</strong><small>onboarding-v3</small></div><span class="example-status">Running</span></li>
+        <li><div><strong>Vendor risk scoring</strong><small>vendor-risk-v2</small></div><span class="example-status example-status--warn">Warning</span></li>
+      </ul>
+    </article>
+    <article class="example-panel">
+      <div class="example-panel__head"><h2>Run #244</h2><span class="example-status">Running</span></div>
+      <ol class="example-run-steps"><li>Validate config</li><li>Policy check</li><li>Deploy</li><li>Audit</li></ol>
+      <pre class="example-log"><code>✓ configuration validated
+✓ 12 policy rules passed
+● reviewing deployment artifacts…</code></pre>
+    </article>
+  </div>
+</section>

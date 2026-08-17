@@ -8,6 +8,10 @@ other = "Documentation navigation"
 other = "Expand all"
 [collapseAll]
 other = "Collapse all"
+[backToExamples]
+other = "Back to examples"
+[themeExample]
+other = "Theme example"
 [breadcrumbs]
 other = "Breadcrumbs"
 [home]

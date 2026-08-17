@@ -1,0 +1,21 @@
+<section class="example-stage example-stage--narrow" aria-labelledby="example-title">
+  <header class="example-hero">
+    <span class="overline">Workspace configuration</span>
+    <h1 id="example-title">Settings</h1>
+    <p>Identity, retention and automation defaults for this workspace.</p>
+  </header>
+  <form class="example-settings">
+    <fieldset class="example-panel"><legend>General</legend>
+      <label>Workspace name<input type="text" value="acme-corp"></label>
+      <label>Contact email<input type="email" value="ops@acme" aria-invalid="true"><small class="example-error">Enter a complete address, including the domain.</small></label>
+      <label>Default region<select><option>eu-central-1 · Frankfurt</option><option>eu-west-1 · Dublin</option></select></label>
+      <label>Retention window<input class="example-input--short" type="number" value="90"><small>Days of run history retained for audits.</small></label>
+    </fieldset>
+    <fieldset class="example-panel"><legend>Agent behavior</legend>
+      <label class="example-switch"><span><strong>Route auditor through self-hosted model</strong><small>Keep audit prompts inside your infrastructure.</small></span><input type="checkbox" checked></label>
+      <label class="example-switch"><span><strong>Retry failed stages automatically</strong><small>Policy failures always require review.</small></span><input type="checkbox"></label>
+      <label class="example-switch"><span><strong>Notify on policy failure</strong><small>Send alerts to the operations channel.</small></span><input type="checkbox" checked></label>
+    </fieldset>
+    <div class="example-actions"><button class="btn btn--secondary" type="reset">Discard</button><button class="btn btn--primary" type="button">Save changes</button></div>
+  </form>
+</section>

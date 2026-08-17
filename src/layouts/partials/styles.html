@@ -9,7 +9,7 @@
     {{- $out = . | css.TailwindCSS (dict "minify" hugo.IsProduction "inlineImports" true) -}}
   {{- end -}}
 {{- else -}}
-  {{- $out = slice (resources.Get "css/brand-tokens.css") (resources.Get "css/fonts.css") (resources.Get "css/components.css") | resources.Concat "css/theme.css" -}}
+  {{- $out = slice (resources.Get "css/brand-tokens.css") (resources.Get "css/fonts.css") (resources.Get "css/components.css") (resources.Get "css/examples.css") | resources.Concat "css/theme.css" -}}
   {{- if hugo.IsProduction }}{{ $out = $out | minify }}{{ end -}}
 {{- end -}}
 {{- with $out -}}
