@@ -4,7 +4,7 @@ description = "Der Dunkelmodus wechselt auf die Midnight-Skala, und alle Einstel
 date = 2026-07-02
 author = "projectious.work"
 tags = ["release"]
-aliases = ["/de/blog/release-v0-2-0/"]
+aliases = ["/blog/release-v0-2-0/"]
 +++
 
 ## Navy-Dunkelmodus

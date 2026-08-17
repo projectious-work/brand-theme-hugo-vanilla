@@ -4,7 +4,7 @@ description = "Les ressources sont versionnées précisément et la recherche in
 date = 2026-08-15
 author = "projectious.work"
 tags = ["release"]
-aliases = ["/fr/blog/release-v0-3-0/"]
+aliases = ["/blog/release-v0-3-0/"]
 +++
 
 KaTeX 0.18.4, Mermaid 11.16.1 et asciinema-player 3.17.0 utilisent des URL

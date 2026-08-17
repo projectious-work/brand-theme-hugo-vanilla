@@ -4,7 +4,7 @@ description = "Das finalisierte Designsystem, zuverlässige Diagramme und umfass
 date = 2026-08-16T18:36:30+02:00
 author = "projectious.work"
 tags = ["release"]
-aliases = ["/de/blog/release-v0-3-1/"]
+aliases = ["/blog/release-v0-3-1/"]
 +++
 
 v0.3.1 liefert die finalisierte Theme-Implementierung nach der ursprünglichen

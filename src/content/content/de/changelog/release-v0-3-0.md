@@ -4,7 +4,7 @@ description = "Laufzeit-Assets sind exakt versioniert, die Suche indexiert Über
 date = 2026-08-15
 author = "projectious.work"
 tags = ["release"]
-aliases = ["/de/blog/release-v0-3-0/"]
+aliases = ["/blog/release-v0-3-0/"]
 +++
 
 ## Reproduzierbare Laufzeit-Assets

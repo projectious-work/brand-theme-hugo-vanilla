@@ -4,7 +4,7 @@ description = "Vollständige Übersicht für Leser, Autoren und Maintainer."
 weight = 30
 icon = "star"
 pageOrder = "title-asc"
-aliases = ["/de/docs/shortcodes/"]
+aliases = ["/docs/shortcodes/"]
 +++
 
 Die folgenden Karten bieten eine vollständige Übersicht der Funktionen für

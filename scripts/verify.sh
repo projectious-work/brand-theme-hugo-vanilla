@@ -34,6 +34,21 @@ for required in index.html index.json docs/index.html search/index.html; do
   }
 done
 
+for alias in \
+  blog/index.html \
+  docs/shortcodes/index.html \
+  de/blog/index.html \
+  de/docs/shortcodes/index.html \
+  fr/blog/index.html \
+  fr/docs/shortcodes/index.html; do
+  [[ -s "$VERIFY_DIR/build-a/$alias" ]] || {
+    echo "error: missing compatibility redirect $alias" >&2
+    exit 1
+  }
+done
+[[ ! -e "$VERIFY_DIR/build-a/de/de" ]]
+[[ ! -e "$VERIFY_DIR/build-a/fr/fr" ]]
+
 rg -q 'katex@0\.18\.4' "$VERIFY_DIR/build-a/docs/features/mathematics/index.html"
 rg -q 'mermaid@11\.16\.1' "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
 rg -q 'asciinema-player@3\.17\.0' \
