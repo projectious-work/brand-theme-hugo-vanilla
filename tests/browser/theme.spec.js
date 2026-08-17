@@ -560,6 +560,15 @@ test("German and French documentation are complete language sites", async ({ pag
   }
 });
 
+test("release notes are ordered newest first in every language", async ({ page }) => {
+  for (const path of ["blog/", "de/blog/", "fr/blog/"]) {
+    await page.goto(path);
+    const releases = await page.locator(".postlist h2").allTextContents();
+    expect(releases.slice(0, 3).map((title) => title.trim().slice(0, 6)))
+      .toEqual(["v0.3.2", "v0.3.1", "v0.3.0"]);
+  }
+});
+
 test("mobile navigation opens and closes", async ({ page }, testInfo) => {
   test.skip(!testInfo.project.name.startsWith("mobile"));
   await page.goto("docs/getting-started/");

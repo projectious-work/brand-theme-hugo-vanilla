@@ -1,7 +1,7 @@
 +++
 title = "v0.3.2 — öffentliche Hooks für Website-Assets"
 description = "Nutzende Websites können eigenes CSS und JavaScript über Hugo Pipes ergänzen, ohne interne Theme-Pipelines zu ersetzen."
-date = 2026-08-16
+date = 2026-08-16T20:38:25+02:00
 author = "projectious.work"
 tags = ["release"]
 +++

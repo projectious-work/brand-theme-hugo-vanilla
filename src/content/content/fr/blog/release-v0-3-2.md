@@ -1,7 +1,7 @@
 +++
 title = "v0.3.2 — hooks publics pour les ressources du site"
 description = "Les sites peuvent désormais ajouter leur CSS et leur JavaScript via Hugo Pipes sans remplacer les pipelines internes du thème."
-date = 2026-08-16
+date = 2026-08-16T20:38:25+02:00
 author = "projectious.work"
 tags = ["release"]
 +++

@@ -1,7 +1,7 @@
 +++
 title = "v0.3.2 — public hooks for site-owned assets"
 description = "Consuming sites can now append Hugo-piped CSS and JavaScript without replacing the theme's internal pipelines."
-date = 2026-08-16
+date = 2026-08-16T20:38:25+02:00
 author = "projectious.work"
 tags = ["release"]
 +++

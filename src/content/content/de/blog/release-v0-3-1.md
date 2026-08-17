@@ -1,7 +1,7 @@
 +++
 title = "v0.3.1 — überarbeitetes Designsystem und vollständige Theme-Dokumentation"
 description = "Das finalisierte Designsystem, zuverlässige Diagramme und umfassende mehrsprachige Anleitungen erscheinen mit diesem Patch-Release."
-date = 2026-08-16
+date = 2026-08-16T18:36:30+02:00
 author = "projectious.work"
 tags = ["release"]
 +++
