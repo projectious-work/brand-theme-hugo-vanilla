@@ -1,10 +1,9 @@
-{{- /* schema.org JSON-LD. TechArticle for documentation, BlogPosting for posts,
-       WebSite plus a breadcrumb trail elsewhere. Kept minimal and truthful —
-       only fields the content actually provides. */ -}}
+{{- /* Minimal schema.org JSON-LD using only fields the content provides. */ -}}
 {{- $p := .page }}{{ $desc := .description }}{{ $img := .image -}}
 {{- $type := "WebPage" -}}
 {{- if $p.IsHome }}{{ $type = "WebSite" }}
-{{- else if eq $p.Section "changelog" }}{{ $type = "BlogPosting" }}
+{{- else if and (eq $p.Section "changelog") (eq $p.Kind "section") }}{{ $type = "CollectionPage" }}
+{{- else if eq $p.Section "changelog" }}{{ $type = "Article" }}
 {{- else if eq $p.Section "docs" }}{{ $type = "TechArticle" }}{{ end -}}
 {{- $data := dict
   "@context" "https://schema.org"

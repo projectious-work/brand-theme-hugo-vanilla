@@ -48,6 +48,14 @@ for alias in \
 done
 [[ ! -e "$VERIFY_DIR/build-a/de/de" ]]
 [[ ! -e "$VERIFY_DIR/build-a/fr/fr" ]]
+rg -q '"@type":"CollectionPage"' \
+  "$VERIFY_DIR/build-a/changelog/index.html"
+rg -q '"@type":"Article"' \
+  "$VERIFY_DIR/build-a/changelog/release-v0-3-2/index.html"
+if rg -q 'BlogPosting' "$VERIFY_DIR/build-a/changelog"; then
+  echo "error: change log output still contains blog schema" >&2
+  exit 1
+fi
 
 rg -q 'katex@0\.18\.4' "$VERIFY_DIR/build-a/docs/features/mathematics/index.html"
 rg -q 'mermaid@11\.16\.1' "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
