@@ -156,8 +156,12 @@ other = "Afficher les raccourcis"
 other = "Aller à l’accueil"
 [shortcutDocs]
 other = "Aller à la documentation"
-[shortcutBlog]
-other = "Aller au blog"
+[shortcutChangelog]
+other = "Aller au journal des modifications"
+[latest]
+other = "Actuel"
+[readReleaseNotes]
+other = "Lire les notes de version"
 [shortcutTheme]
 other = "Basculer entre clair et sombre"
 [shortcutClose]

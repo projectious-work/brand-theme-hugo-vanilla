@@ -8,8 +8,11 @@ icon = "notebook"
 [Jupyter Notebooks](https://jupyter.org/) verbinden Text, Code und Ausgaben. Das
 Theme konvertiert `.ipynb` vor dem Hugo-Build in Markdown.
 
-Das konvertierte Live-Beispiel und den kopierbaren Quelltext finden Sie unter
-[Shortcodes](../shortcodes.md).
+{{< notebook "theme-demo" >}}
+
+```md
+{{</* notebook "theme-demo" */>}}
+```
 
 ```sh
 python3 -m venv .venv

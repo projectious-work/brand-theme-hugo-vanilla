@@ -156,8 +156,12 @@ other = "Diese Kürzel anzeigen"
 other = "Zur Startseite"
 [shortcutDocs]
 other = "Zur Dokumentation"
-[shortcutBlog]
-other = "Zum Blog"
+[shortcutChangelog]
+other = "Zum Änderungsprotokoll"
+[latest]
+other = "Aktuell"
+[readReleaseNotes]
+other = "Versionshinweise lesen"
 [shortcutTheme]
 other = "Zwischen hell und dunkel wechseln"
 [shortcutClose]

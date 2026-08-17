@@ -1,0 +1,21 @@
++++
+title = "Images"
+description = "Publish responsive figures, captions, dark variants and lightboxes."
+weight = 165
+icon = "photo"
++++
+
+{{< image src="/img/sunrise-brand.svg"
+    alt="Orange sunrise over layered navy mountains"
+    caption="A brand-colour sunrise illustration" >}}
+
+```md
+{{</* image src="/img/sunrise-brand.svg"
+     alt="Orange sunrise over layered navy mountains"
+     caption="A brand-colour sunrise illustration" */>}}
+```
+
+Prefer a page bundle and reference a sibling image by filename. Hugo then knows
+its dimensions. `src-dark` supplies an explicit dark-mode variant. Ordinary
+Markdown images use the same figure and lightbox behavior; their title becomes
+the caption.
