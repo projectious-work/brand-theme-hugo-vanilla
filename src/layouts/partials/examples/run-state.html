@@ -1,0 +1,14 @@
+<section class="example-stage" aria-labelledby="example-title">
+  <header class="example-hero example-hero--compact"><div><span class="overline">Observability patterns</span><h1 id="example-title">Run states</h1></div><button class="btn btn--primary" type="button">Create pipeline</button></header>
+  <article class="example-panel example-empty">
+    {{ partial "icon.html" (dict "name" "route" "class" "ico--lg") }}
+    <h2>No pipelines yet</h2><p>Create a pipeline from a template or write the YAML yourself.</p>
+    <div><button class="btn btn--primary" type="button">Create pipeline</button><button class="btn btn--secondary" type="button">Read the guide</button></div>
+  </article>
+  <div class="example-state-grid">
+    <article class="example-panel example-empty"><span class="overline">Filtered empty</span><h2>No runs match “auditor-v2”</h2><p>Three filters are active.</p><button class="btn btn--secondary" type="button">Clear filters</button></article>
+    <article class="example-panel"><span class="overline">Scoped error</span><div class="example-alert"><strong>Could not load run 8fa21c</strong><p>The session expired while streaming logs. The run itself is unaffected.</p><button class="btn btn--secondary" type="button">Retry</button></div></article>
+    <article class="example-panel"><span class="overline">Known shape</span><div class="example-skeleton"><i></i><i></i><i></i><i></i><i></i><i></i></div></article>
+    <article class="example-panel example-loading"><span class="overline">Indeterminate work</span><div class="example-spinner"></div><p>Reconciling 4,812 invoices…</p></article>
+  </div>
+</section>

@@ -84,7 +84,7 @@
         ? groupsToggle.dataset.collapseLabel
         : groupsToggle.dataset.expandLabel;
       groupsToggle.title = label;
-      groupsToggle.querySelector('[data-sidebar-groups-label]').textContent = label;
+      groupsToggle.setAttribute('aria-label', label);
     }
     function saveSidebarGroups() {
       if (restoringGroups || !sidebarStateKey) return;
