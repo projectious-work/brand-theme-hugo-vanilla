@@ -683,8 +683,8 @@ test("release notes are ordered newest first in every language", async ({ page }
   for (const path of ["changelog/", "de/changelog/", "fr/changelog/"]) {
     await page.goto(path);
     const releases = await page.locator(".example-changelog h2").allTextContents();
-    expect(releases.slice(0, 3).map((title) => title.trim().slice(0, 6)))
-      .toEqual(["v0.3.2", "v0.3.1", "v0.3.0"]);
+    expect(releases.slice(0, 4).map((title) => title.trim().slice(0, 6)))
+      .toEqual(["v0.3.3", "v0.3.2", "v0.3.1", "v0.3.0"]);
   }
 });
 

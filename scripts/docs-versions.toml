@@ -1,8 +1,11 @@
 [params]
   [[params.versions]]
-    label = "v0.3.2"
+    label = "v0.3.3"
     url = "https://projectious-work.github.io/brand-theme-hugo-vanilla/"
     note = "latest"
+  [[params.versions]]
+    label = "v0.3.2"
+    url = "https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.2/"
   [[params.versions]]
     label = "v0.3.1"
     url = "https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.1/"
