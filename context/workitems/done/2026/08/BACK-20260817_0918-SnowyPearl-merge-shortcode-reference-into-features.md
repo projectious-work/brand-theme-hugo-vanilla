@@ -4,16 +4,17 @@ kind: WorkItem
 metadata:
   id: BACK-20260817_0918-SnowyPearl-merge-shortcode-reference-into-features
   created: '2026-08-17T09:18:23+00:00'
-  updated: '2026-08-17T09:51:54+00:00'
+  updated: '2026-08-17T09:54:28+00:00'
 spec:
   title: Merge shortcode reference into Features
-  state: review
+  state: done
   type: story
   priority: medium
   description: Make Features the authoritative capability documentation, migrate shortcode
     examples into feature pages, add missing feature pages, remove standalone Shortcodes,
     and update links and tests.
   started_at: '2026-08-17T09:18:29+00:00'
+  completed_at: '2026-08-17T09:54:28+00:00'
 ---
 
 ## Transition note (2026-08-17T09:18:29+00:00)
@@ -44,3 +45,8 @@ Live semantic validation found residual BlogPosting JSON-LD; replacing it with C
 ## Transition note (2026-08-17T09:51:54+00:00)
 
 Removed residual BlogPosting semantics, added schema regression checks, and passed ./scripts/verify.sh.
+
+
+## Transition note (2026-08-17T09:54:28+00:00)
+
+Merged through PRs #45, #46, and #47; deployed to GitHub Pages; local persistent Hugo watch service restarted on port 1312.
