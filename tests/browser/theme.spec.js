@@ -67,7 +67,7 @@ test("pinned CDN media, math and diagrams render", async ({ page }, testInfo) =>
   await page.goto("docs/features/mathematics/");
   await expect(page.locator(".katex").first()).toBeVisible();
 
-  await page.goto("docs/features/jupyter-notebooks/");
+  await page.goto("docs/shortcodes/");
   await expect(page.locator(".notebook[data-notebook='theme-demo']")).toBeVisible();
 
   await page.goto("docs/guides/");
@@ -268,9 +268,9 @@ test("every documentation code panel follows all colour modes", async (
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 
   for (const fixture of [
-    ["docs/features/jupyter-notebooks/", ".notebook pre:not(.mermaid)",
+    ["docs/shortcodes/", ".notebook pre:not(.mermaid)",
       "--code-panel-surface"],
-    ["docs/features/terminal-recordings/", ".cast", "--terminal-surface"],
+    ["docs/shortcodes/", ".cast", "--terminal-surface"],
   ]) {
     await page.goto(fixture[0]);
     await page.evaluate(() => window.pwTheme.set("system"));
@@ -431,10 +431,9 @@ test("sidebar groups default closed and persist reader state", async ({ page }, 
   expect(await page.locator(".sidebar details[open]").count()).toBe(0);
 });
 
-test("examples are linked after Shortcodes and use the showcase layout", async (
-  { page }, testInfo,
+test("Examples precede Shortcodes and use the showcase layouts", async (
+  { page },
 ) => {
-  test.skip(!testInfo.project.name.startsWith("desktop"));
   await page.goto("docs/");
   const labels = await page.locator(
     ".sidebar > a, .sidebar > details > summary",
@@ -442,7 +441,7 @@ test("examples are linked after Shortcodes and use the showcase layout", async (
   const shortcodes = labels.findIndex((label) => label.includes("Shortcodes"));
   const examples = labels.findIndex((label) => label.includes("Examples"));
   expect(shortcodes).toBeGreaterThanOrEqual(0);
-  expect(examples).toBe(shortcodes + 1);
+  expect(shortcodes).toBe(examples + 1);
 
   await page.goto("docs/examples/");
   const cards = page.locator(".docs__main > .cards .card");
@@ -470,6 +469,21 @@ test("examples are linked after Shortcodes and use the showcase layout", async (
       "href", "/brand-theme-hugo-vanilla/docs/examples/",
     );
   }
+
+  for (const name of ["admin", "dashboard", "run-state"]) {
+    await page.goto(`docs/examples/${name}/`);
+    await expect(page.locator(".example-app__sidebar")).toBeVisible();
+    await expect(page.locator(".example-app__navgroup [aria-current='page']"))
+      .toHaveCount(1);
+    const shell = await page.locator(".example-app").evaluate((node) => ({
+      width: node.getBoundingClientRect().width,
+      viewport: document.documentElement.clientWidth,
+    }));
+    expect(Math.abs(shell.width - shell.viewport)).toBeLessThan(2);
+  }
+
+  await page.goto("docs/examples/pricing/");
+  await expect(page.locator(".example-app__sidebar")).toHaveCount(0);
 });
 
 test("Steps accept cards as structured content", async ({ page }, testInfo) => {
@@ -480,6 +494,19 @@ test("Steps accept cards as structured content", async ({ page }, testInfo) => {
   });
   await expect(choice.locator(".cards .card")).toHaveCount(2);
   await expect(choice.locator("pre")).toHaveCount(0);
+});
+
+test("Shortcodes renders image, recording and notebook examples", async (
+  { page }, testInfo,
+) => {
+  test.skip(!testInfo.project.name.startsWith("desktop"));
+  await page.goto("docs/shortcodes/");
+  await expect(page.locator(
+    'figure img[src$="/img/sunrise-brand.svg"]',
+  )).toBeVisible();
+  await expect(page.locator(".cast > div")).toBeVisible();
+  await expect(page.locator(".notebook[data-notebook='theme-demo']"))
+    .toBeVisible();
 });
 
 test("design-system component and token contracts are implemented", async ({ page }, testInfo) => {

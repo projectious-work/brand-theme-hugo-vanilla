@@ -1,7 +1,7 @@
 +++
 title = "Beispiele"
 description = "Vollständige Theme-Seiten außerhalb des Dokumentationslayouts."
-weight = 55
+weight = 50
 icon = "layout-grid"
 pageOrder = "weight"
 +++

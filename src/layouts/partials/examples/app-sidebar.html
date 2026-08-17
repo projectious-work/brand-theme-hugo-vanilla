@@ -1,0 +1,39 @@
+{{- $current := .Params.example -}}
+{{- $dashboard := .Parent.GetPage "dashboard" -}}
+{{- $runs := .Parent.GetPage "run-state" -}}
+{{- $admin := .Parent.GetPage "admin" -}}
+{{- $settings := .Parent.GetPage "settings" -}}
+<aside class="example-app__sidebar" aria-label="Example application navigation">
+  <div class="example-app__brand">
+    <span class="example-app__brandmark" aria-hidden="true"></span>
+    <span>projectious ops</span>
+  </div>
+  <nav>
+    <div class="example-app__navgroup">
+      <span>Workspace</span>
+      <a href="{{ $dashboard.RelPermalink }}"{{ if eq $current "dashboard" }} aria-current="page"{{ end }}>
+        {{ partial "icon.html" (dict "name" "layout-dashboard" "class" "ico--sm") }}
+        <span>Overview</span>
+      </a>
+      <a href="{{ $runs.RelPermalink }}"{{ if eq $current "run-state" }} aria-current="page"{{ end }}>
+        {{ partial "icon.html" (dict "name" "activity" "class" "ico--sm") }}
+        <span>Runs</span>
+      </a>
+    </div>
+    <div class="example-app__navgroup">
+      <span>Manage</span>
+      <a href="{{ $admin.RelPermalink }}"{{ if eq $current "admin" }} aria-current="page"{{ end }}>
+        {{ partial "icon.html" (dict "name" "users" "class" "ico--sm") }}
+        <span>Members</span>
+      </a>
+      <a href="{{ $settings.RelPermalink }}">
+        {{ partial "icon.html" (dict "name" "settings" "class" "ico--sm") }}
+        <span>Settings</span>
+      </a>
+    </div>
+  </nav>
+  <div class="example-app__environment">
+    <span class="example-status example-status--ok">Production</span>
+    <strong>acme-corp</strong>
+  </div>
+</aside>

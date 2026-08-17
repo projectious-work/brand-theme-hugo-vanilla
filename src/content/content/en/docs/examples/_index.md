@@ -1,7 +1,7 @@
 +++
 title = "Examples"
 description = "Complete theme-native page compositions beyond documentation layouts."
-weight = 55
+weight = 50
 icon = "layout-grid"
 pageOrder = "weight"
 +++

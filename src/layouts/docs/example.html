@@ -7,6 +7,16 @@
     </a>
     <span>{{ i18n "themeExample" }}</span>
   </div>
-  {{ partial (printf "examples/%s.html" .Params.example) . }}
+  {{ $applicationExamples := slice "admin" "dashboard" "run-state" }}
+  {{ if in $applicationExamples .Params.example }}
+    <div class="example-app">
+      {{ partial "examples/app-sidebar.html" . }}
+      <div class="example-app__content">
+        {{ partial (printf "examples/%s.html" .Params.example) . }}
+      </div>
+    </div>
+  {{ else }}
+    {{ partial (printf "examples/%s.html" .Params.example) . }}
+  {{ end }}
 </main>
 {{ end }}
