@@ -4,7 +4,7 @@ description = "Les sites peuvent désormais ajouter leur CSS et leur JavaScript 
 date = 2026-08-16T20:38:25+02:00
 author = "projectious.work"
 tags = ["release"]
-aliases = ["/fr/blog/release-v0-3-2/"]
+aliases = ["/blog/release-v0-3-2/"]
 +++
 
 v0.3.2 ajoute deux points d'extension rétrocompatibles.

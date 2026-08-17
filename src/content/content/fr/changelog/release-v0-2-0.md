@@ -4,7 +4,7 @@ description = "Le thème ajoute plusieurs modes de couleur et des préférences 
 date = 2026-08-10
 author = "projectious.work"
 tags = ["release"]
-aliases = ["/fr/blog/release-v0-2-0/"]
+aliases = ["/blog/release-v0-2-0/"]
 +++
 
 Cette version introduit les modes clair, bleu nuit, sombre profond et système,

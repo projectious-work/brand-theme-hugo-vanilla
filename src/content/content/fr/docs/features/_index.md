@@ -4,7 +4,7 @@ description = "Vue complète des capacités destinées aux lecteurs, auteurs et 
 weight = 30
 icon = "star"
 pageOrder = "title-asc"
-aliases = ["/fr/docs/shortcodes/"]
+aliases = ["/docs/shortcodes/"]
 +++
 
 Les cartes ci-dessous offrent une vue complète des fonctionnalités destinées
