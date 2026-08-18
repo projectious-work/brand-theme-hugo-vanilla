@@ -75,7 +75,7 @@ bash -n "$ROOT_DIR/scripts/check-theme-update.sh"
 bash -n "$ROOT_DIR/scripts/archive-docs-version.sh"
 rg -q '^v0\.3\.2$' "$ROOT_DIR/scripts/docs-archives.txt"
 rg -q '^v0\.3\.1$' "$ROOT_DIR/scripts/docs-archives.txt"
-rg -q 'label = "v0\.3\.3"' "$ROOT_DIR/scripts/docs-versions.toml"
+rg -q 'label = "v0\.3\.4"' "$ROOT_DIR/scripts/docs-versions.toml"
 rg -q 'partial "hooks/styles-end.html" .' "$ROOT_DIR/src/layouts/partials/styles.html"
 rg -q 'partial "hooks/scripts-end.html" .' "$ROOT_DIR/src/layouts/partials/scripts.html"
 [[ -f "$ROOT_DIR/src/layouts/partials/hooks/styles-end.html" ]]
@@ -87,14 +87,14 @@ rg -q 'role=menuitemradio[^>]*>v0\.3\.1' "$VERIFY_DIR/build-a/index.html"
 rg -q '/brand-theme-hugo-vanilla/v0\.3\.2/css/' "$VERIFY_DIR/archive-v0.3.2/index.html"
 rg -q 'role=menuitemradio[^>]*aria-checked=true[^>]*>v0\.3\.2' \
   "$VERIFY_DIR/archive-v0.3.2/index.html"
-rg -q 'href=https://projectious-work.github.io/brand-theme-hugo-vanilla/[^>]*role=menuitemradio[^>]*>v0\.3\.3' \
+rg -q 'href=https://projectious-work.github.io/brand-theme-hugo-vanilla/[^>]*role=menuitemradio[^>]*>v0\.3\.4' \
   "$VERIFY_DIR/archive-v0.3.2/index.html"
 rg -q 'v0\.3\.1/[^>]*role=menuitemradio[^>]*>v0\.3\.1' \
   "$VERIFY_DIR/archive-v0.3.2/index.html"
 rg -q '/brand-theme-hugo-vanilla/v0\.3\.1/css/' "$VERIFY_DIR/archive-v0.3.1/index.html"
 rg -q 'role=menuitemradio[^>]*aria-checked=true[^>]*>v0\.3\.1' \
   "$VERIFY_DIR/archive-v0.3.1/index.html"
-rg -q 'href=https://projectious-work.github.io/brand-theme-hugo-vanilla/[^>]*role=menuitemradio[^>]*>v0\.3\.3' \
+rg -q 'href=https://projectious-work.github.io/brand-theme-hugo-vanilla/[^>]*role=menuitemradio[^>]*>v0\.3\.4' \
   "$VERIFY_DIR/archive-v0.3.1/index.html"
 rg -q 'v0\.3\.2/[^>]*role=menuitemradio[^>]*>v0\.3\.2' \
   "$VERIFY_DIR/archive-v0.3.1/index.html"
