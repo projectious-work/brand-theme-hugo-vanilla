@@ -4,6 +4,7 @@
 
 
 
+- [v0.3.4 — public data-driven composition APIs](https://projectious-work.github.io/brand-theme-hugo-vanilla/changelog/release-v0-3-4/index.md) — Consumers can compose badges, cards, tables and application shells from Hugo data through stable theme partials.
 - [v0.3.3 — consolidated features and versatile examples](https://projectious-work.github.io/brand-theme-hugo-vanilla/changelog/release-v0-3-3/index.md) — Feature documentation now covers every public shortcode, while new full-page examples demonstrate the theme beyond documentation sites.
 - [v0.3.2 — public hooks for site-owned assets](https://projectious-work.github.io/brand-theme-hugo-vanilla/changelog/release-v0-3-2/index.md) — Consuming sites can now append Hugo-piped CSS and JavaScript without replacing the theme's internal pipelines.
 - [v0.3.1 — revised design system and complete theme guidance](https://projectious-work.github.io/brand-theme-hugo-vanilla/changelog/release-v0-3-1/index.md) — The finalized design system, reliable diagrams and comprehensive multilingual guidance arrive in this patch release.

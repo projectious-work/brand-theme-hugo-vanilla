@@ -27,6 +27,7 @@ version-menu entry until that URL exists.
 ```toml
 [params]
   version = "v0.3"
+  versionMenuLabel = "Releases" # Optional independent control label.
 
   [[params.versions]]
     label = "v0.3"
@@ -37,6 +38,9 @@ version-menu entry until that URL exists.
     label = "v0.2"
     url = "v0.2/"
 ```
+
+`versionMenuLabel` changes only the trigger and menu heading. The footer and
+selected entry continue to use `version`.
 
 The menu normally appends the current page path so readers stay on the same topic.
 Set `params.versionProbe = false`, or `probe = false` on one entry, when versions

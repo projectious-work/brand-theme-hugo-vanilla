@@ -26,6 +26,7 @@ Every shortcode shipped by the theme is documented in the feature cards below.
 - [Tokens and public API](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/tokens/index.md) — Inspect the stable semantic CSS tokens and Tailwind namespaces generated from the theme source.
 - [Terminal recordings](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/terminal-recordings/index.md) — Record and embed copyable terminal sessions with asciinema.
 - [Tailwind and design tokens](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/tailwind/index.md) — Use the theme's Tailwind integration and stable projectious.work design tokens.
+- [Data-driven components](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/data-driven-components/index.md) — Compose badges, card collections, data tables and application shells from Hugo data.
 - [Tags](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/tags/index.md) — Use Hugo taxonomies for related-content and release-note metadata.
 - [Search](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/search/index.md) — How the generated search index, header search and command palette work.
 - [Mathematics](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/mathematics/index.md) — Render inline and display mathematics with KaTeX.

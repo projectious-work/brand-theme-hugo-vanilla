@@ -27,6 +27,20 @@ Use Hugo menus in `hugo.toml`:
 Prefer `pageRef` for site pages and `url` for external destinations. Ordering is by
 `weight`.
 
+Set `params.activeSection` on a menu entry when it owns an entire section. This
+prevents a direct shortcut and its parent section from both appearing active:
+
+```toml
+[[menus.main]]
+  name = "Documentation"
+  pageRef = "/docs"
+  [menus.main.params]
+    activeSection = "docs"
+```
+
+Below 30rem the wordmark collapses automatically while the linked brand mark and
+accessible name remain available.
+
 ## Sidebar groups
 
 Documentation section groups are collapsed on a reader's first visit. Configure

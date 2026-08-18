@@ -33,6 +33,16 @@ npm init -y
 npm install --save-dev @tailwindcss/cli@^4.1.0
 ```
 
+Allow Hugo to invoke Tailwind while retaining its standard executable policy:
+
+```toml {filename="hugo.toml"}
+[security.exec]
+  allow = ["^(dart-)?sass$", "^go$", "^git$", "^node$", "^postcss$", "^tailwindcss$"]
+```
+
+Hugo 0.165 and later reject `css.TailwindCSS` when `tailwindcss` is absent
+from this allowlist.
+
 `hugo new site` creates `hugo.toml`, `content/`, `layouts/`, `static/` and other
 standard Hugo directories. `hugo mod init` creates `go.mod`, which records the
 theme dependency.
