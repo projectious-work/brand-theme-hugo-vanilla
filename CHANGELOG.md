@@ -2,6 +2,28 @@
 
 All notable changes to this project are documented in this file.
 
+## [v0.3.4] — 2026-08-18
+
+### Added
+
+- Added stable public badge, structured card-list, data-table, and configurable
+  application-shell partials for data-driven consumer layouts ([#51], [#52]).
+- Added section-owned primary navigation, an independent version-menu label,
+  and frontmatter-driven changelog badges ([#51]).
+
+### Changed
+
+- Documented the Hugo 0.165+ Tailwind executable allowlist in Getting Started,
+  the complete configuration reference, and the executable example ([#51],
+  [#52]).
+- Made the header wordmark collapse automatically on compact mobile widths.
+
+### Fixed
+
+- Corrected pk-doctor supply-chain inventory so dependency-free Go modules and
+  workspace input snapshots do not produce false missing-lockfile errors.
+- Reconciled runtime migrations and canonicalized historical migration storage.
+
 ## [v0.3.3] — 2026-08-17
 
 ### Added
@@ -223,4 +245,7 @@ All notable changes to this project are documented in this file.
 [v0.3.1]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.0...v0.3.1
 [v0.3.2]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.1...v0.3.2
 [v0.3.3]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.2...v0.3.3
+[v0.3.4]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.3...v0.3.4
+[#51]: https://github.com/projectious-work/brand-theme-hugo-vanilla/issues/51
+[#52]: https://github.com/projectious-work/brand-theme-hugo-vanilla/issues/52
 [v0.3.0]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.2.4...v0.3.0
