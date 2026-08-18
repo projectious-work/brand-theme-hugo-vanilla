@@ -4,7 +4,7 @@ description = "Websites können Badges, Karten, Tabellen und Anwendungsshells ü
 date = 2026-08-18T15:40:00+02:00
 author = "projectious.work"
 tags = ["release"]
-aliases = ["/de/blog/release-v0-3-4/"]
+aliases = ["/blog/release-v0-3-4/"]
 +++
 
 v0.3.4 stellt stabile Partials für Badges, Kartenlisten, barrierefreie
