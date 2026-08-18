@@ -1,0 +1,12 @@
+{{- $items := .items | default (slice) -}}
+<div class="cards cards--stacked">
+  {{ range $items }}
+  <article class="card">
+    {{ with .eyebrow }}<div class="card__eyebrow">{{ . }}</div>{{ end }}
+    <h3 class="card__title">{{ .title }}</h3>
+    {{ with .description }}<p>{{ . }}</p>{{ end }}
+    {{ with .status }}{{ partial "badge.html" (dict "label" .label "variant" .variant) }}{{ end }}
+    {{ with .href }}<a href="{{ partial "url.html" . }}">{{ $.linkLabel | default "View" }} →</a>{{ end }}
+  </article>
+  {{ end }}
+</div>

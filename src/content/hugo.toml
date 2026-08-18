@@ -24,6 +24,9 @@ enableGitInfo = true
   [build.buildStats]
     enable = true
 
+[security.exec]
+  allow = ["^(dart-)?sass$", "^go$", "^git$", "^node$", "^postcss$", "^tailwindcss$"]
+
 [pagination]
   pagerSize = 8
 

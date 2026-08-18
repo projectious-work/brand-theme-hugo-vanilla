@@ -64,6 +64,9 @@ enableRobotsTXT = true                 # Ask Hugo to generate the theme's robots
 [build.buildStats] # Let Tailwind discover classes emitted by Hugo templates.
   enable = true
 
+[security.exec] # Permit only the build tools the site intentionally invokes.
+  allow = ["^(dart-)?sass$", "^go$", "^git$", "^node$", "^postcss$", "^tailwindcss$"]
+
 [outputFormats.SearchIndex] # Local full-text search data at /index.json.
   mediaType = "application/json" # JSON response type.
   baseName = "index"              # Output filename without extension.
@@ -171,6 +174,7 @@ pages.
 | `github` | URL, unset | Showing a repository header action | [Header and navigation](../features/header-navigation.md) |
 | `editURL` | URL or language map, unset | Showing Edit-this-page links | [Editing and feedback](../features/editing-feedback.md) |
 | `version` | string, unset | Labelling the current documentation | [Versioning](../features/versioning.md) |
+| `versionMenuLabel` | string, current version | Giving the version menu an independent label | [Versioning](../features/versioning.md) |
 | `versions` | array, empty | Linking published documentation trees | [Versioning](../features/versioning.md) |
 | `versionProbe` | boolean, `true` | Disabling same-page version probing globally | [Versioning](../features/versioning.md) |
 | `sidebarSections` | string array, `["docs"]` | Putting the sidebar on other sections | [Header and navigation](../features/header-navigation.md) |

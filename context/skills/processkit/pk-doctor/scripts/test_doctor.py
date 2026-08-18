@@ -2636,6 +2636,26 @@ with tempfile.TemporaryDirectory() as tmp:
 
 with tempfile.TemporaryDirectory() as tmp:
     root = Path(tmp)
+    (root / "go.mod").write_text(
+        "module example.com/dependency-free\n\ngo 1.22\n",
+        encoding="utf-8",
+    )
+    input_dir = root / "input" / "reference"
+    input_dir.mkdir(parents=True)
+    (input_dir / "package.json").write_text("{}\n", encoding="utf-8")
+    findings = _supply_chain_run({"repo_root": root, "since_files": None})
+    missing = [
+        item for item in findings
+        if item.id == "supply_chain.missing-lockfile"
+    ]
+    check(
+        "21d: dependency-free Go modules and input snapshots need no lock",
+        not missing,
+        [item.to_dict() for item in missing],
+    )
+
+with tempfile.TemporaryDirectory() as tmp:
+    root = Path(tmp)
     policy = root / ".processkit"
     policy.mkdir()
     (policy / "supply-chain-policy.yaml").write_text(

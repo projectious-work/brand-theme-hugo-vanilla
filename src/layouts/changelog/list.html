@@ -14,7 +14,8 @@
       <article>
         <time datetime="{{ .Date.Format "2006-01-02" }}">{{ time.Format ":date_medium" .Date }}</time>
         <div>
-          <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ if eq . $latest }} <span class="example-status example-status--accent">{{ i18n "latest" }}</span>{{ end }}</h2>
+          <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ if eq . $latest }} {{ partial "badge.html" (dict "label" (i18n "latest") "variant" "accent") }}{{ end }}</h2>
+          {{ with .Params.badges }}<div class="changelog__badges">{{ range . }}{{ partial "badge.html" . }} {{ end }}</div>{{ end }}
           <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 200 }}{{ end }}</p>
           <p><a href="{{ .RelPermalink }}">{{ i18n "readReleaseNotes" }} →</a></p>
         </div>

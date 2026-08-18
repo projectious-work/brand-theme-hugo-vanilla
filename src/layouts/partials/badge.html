@@ -1,0 +1,9 @@
+{{- $label := .label | default .text -}}
+{{- $variant := .variant | default "default" -}}
+{{- $class := "badge" -}}
+{{- if eq $variant "accent" }}{{ $class = printf "%s badge--accent" $class }}{{ end -}}
+{{- with .href -}}
+<a class="{{ $class }} badge--link" href="{{ partial "url.html" . }}">{{ $label }}</a>
+{{- else -}}
+<span class="{{ $class }}">{{ $label }}</span>
+{{- end -}}
