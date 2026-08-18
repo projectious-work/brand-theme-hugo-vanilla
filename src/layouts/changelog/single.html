@@ -10,6 +10,7 @@
         {{ with .Params.author }}<span>{{ . }}</span>{{ end }}
       </div>
       <h1>{{ .Title }}</h1>
+      {{ with .Params.badges }}<div class="changelog__badges">{{ range . }}{{ partial "badge.html" . }} {{ end }}</div>{{ end }}
       {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
       {{ .Content }}
     </article>

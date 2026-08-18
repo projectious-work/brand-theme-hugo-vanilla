@@ -2,7 +2,7 @@
 apiVersion: processkit.projectious.work/v1
 kind: Migration
 metadata:
-  id: MIG-LOCK-20260809T181819
+  id: MIG-20260809_1818-LockSnapshot
   created: 2026-08-09 18:18:19+00:00
   updated: '2026-08-12T17:22:43+00:00'
 spec:
@@ -22,7 +22,7 @@ spec:
       already backfilled and migration requires no additional code changes.
 ---
 
-# Migration MIG-LOCK-20260809T181819
+# Migration MIG-20260809_1818-LockSnapshot
 
 `aibox.lock` schema extended in v0.25.6 to record the previously
 applied addon-tool and harness selection (DEC-20260508_1515-SilentAsh,

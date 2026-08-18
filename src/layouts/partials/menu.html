@@ -1,6 +1,8 @@
 <nav class="header__nav" aria-label="{{ i18n "mainNav" }}">
   {{ $page := . }}
   {{ range site.Menus.main }}
-    <a href="{{ partial "menu-url.html" . }}"{{ if or ($page.IsMenuCurrent "main" .) ($page.HasMenuCurrent "main" .) }} aria-current="true"{{ end }}>{{ .Name }}</a>
+    {{ $ownsSection := and .Params.activeSection (eq $page.Section .Params.activeSection) }}
+    {{ $active := or $ownsSection (and (not .Params.activeSection) (or ($page.IsMenuCurrent "main" .) ($page.HasMenuCurrent "main" .))) }}
+    <a href="{{ partial "menu-url.html" . }}"{{ if $active }} aria-current="true"{{ end }}>{{ .Name }}</a>
   {{ end }}
 </nav>

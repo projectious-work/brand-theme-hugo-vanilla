@@ -53,6 +53,10 @@ _SKIP_DIRS = {
     ".pytest_cache",
     ".mypy_cache",
     "__pycache__",
+    # Workspace reference inputs are not applications owned by this repo.
+    # They may contain complete historical source trees without their
+    # generated dependency artifacts and must not affect repository health.
+    "input",
 }
 
 _KNOWN_MANIFESTS = {
@@ -211,6 +215,11 @@ def _collect_inventory(
         for manifest_name in rule["manifests"]:
             for manifest in manifest_index.get(manifest_name, []):
                 counts[family] = counts.get(family, 0) + 1
+                if (
+                    family == "Go"
+                    and not _go_module_needs_sum(manifest)
+                ):
+                    continue
                 if not any((manifest.parent / lock).exists() for lock in rule["lockfiles"]):
                     missing.append((manifest, family))
 
@@ -222,6 +231,44 @@ def _collect_inventory(
 
     dependency_present = bool(manifests or lockfiles)
     return counts, sorted(lockfiles), missing, dependency_present
+
+
+def _go_module_needs_sum(manifest: Path) -> bool:
+    """Return whether a Go module has non-local dependencies to checksum."""
+    try:
+        lines = manifest.read_text(encoding="utf-8").splitlines()
+    except OSError:
+        return True
+
+    required: set[str] = set()
+    local_replacements: set[str] = set()
+    in_require = False
+    for raw in lines:
+        line = raw.split("//", 1)[0].strip()
+        if not line:
+            continue
+        if line == "require (":
+            in_require = True
+            continue
+        if in_require and line == ")":
+            in_require = False
+            continue
+        if in_require:
+            required.add(line.split()[0])
+            continue
+        if line.startswith("require "):
+            fields = line.split()
+            if len(fields) >= 2:
+                required.add(fields[1])
+            continue
+        if line.startswith("replace ") and "=>" in line:
+            left, right = line[len("replace "):].split("=>", 1)
+            module = left.strip().split()[0]
+            target = right.strip().split()[0]
+            if target.startswith(("./", "../")):
+                local_replacements.add(module)
+
+    return bool(required - local_replacements)
 
 
 def _find_sbom_files(repo_root: Path) -> list[Path]:

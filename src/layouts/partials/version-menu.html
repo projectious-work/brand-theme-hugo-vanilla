@@ -9,14 +9,15 @@
        diverged. */ -}}
 {{ with site.Params.versions }}
 {{ $current := or site.Params.version (index . 0).label }}
+{{ $menuLabel := site.Params.versionMenuLabel | default $current }}
 {{ $probe := true }}{{ if isset site.Params "versionprobe" }}{{ $probe = site.Params.versionProbe }}{{ end }}
 {{ $here := strings.TrimPrefix (relLangURL "") $.RelPermalink }}
 <div class="menu">
   <button class="chipbtn target" type="button" data-menu-trigger aria-expanded="false" aria-haspopup="true">
-    {{ partial "icon.html" (dict "name" "versions" "class" "ico--sm") }}<span>{{ $current }}</span>
+    {{ partial "icon.html" (dict "name" "versions" "class" "ico--sm") }}<span>{{ $menuLabel }}</span>
   </button>
   <div class="menu__panel" role="menu">
-    <div class="menu__label">{{ i18n "version" }}</div>
+    <div class="menu__label">{{ $menuLabel }}</div>
     {{ range . }}
       {{ $href := partial "url.html" .url }}
       {{ if and $probe (ne .label $current) (ne (.probe | default true) false) $here }}
