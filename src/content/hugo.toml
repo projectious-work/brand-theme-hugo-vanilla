@@ -104,7 +104,7 @@ enableGitInfo = true
     default = "https://github.com/projectious-work/brand-theme-hugo-vanilla/edit/main/src/content/content/en/"
     de = "https://github.com/projectious-work/brand-theme-hugo-vanilla/edit/main/src/content/content/de/"
     fr = "https://github.com/projectious-work/brand-theme-hugo-vanilla/edit/main/src/content/content/fr/"
-  version = "v0.3.3"
+  version = "v0.3.4"
   darkSurface = "navy"   # navy dark mode; remove for the default terminal-surface dark
   codeTheme = "adaptive" # default; use "dark" for intentionally always-dark panels
   sidebarOpenDepth = 0   # collapsed initially; readers' choices then persist
@@ -118,9 +118,9 @@ enableGitInfo = true
   # math = true               # loads KaTeX on every page
 
   [params.announcement]
-    id = "v033"
-    text = "v0.3.3 is out — consolidated feature guides and versatile page examples."
-    href = "/changelog/release-v0-3-3/"
+    id = "v034"
+    text = "v0.3.4 is out — stable composition APIs for data-driven sites."
+    href = "/changelog/release-v0-3-4/"
     label = "Read the notes"
 
   # Third-party runtime assets come from exact pinned CDN versions — see
@@ -132,9 +132,12 @@ enableGitInfo = true
     tailwind = true
 
   [[params.versions]]
-    label = "v0.3.3"
+    label = "v0.3.4"
     url = "/"
     note = "latest"
+  [[params.versions]]
+    label = "v0.3.3"
+    url = "v0.3.3/"
   [[params.versions]]
     label = "v0.3.2"
     url = "v0.3.2/"
