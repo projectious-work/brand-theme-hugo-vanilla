@@ -649,7 +649,8 @@ test("configuration hierarchy and generated feature overview stay complete", asy
   await page.goto("docs/features/");
   await expect(page.locator(".card__title")).toHaveText([
     "Accessibility", "Buttons and badges", "Callouts", "Cards", "Code blocks",
-    "Collapsible details", "Diagrams", "Editing and feedback", "File trees",
+    "Collapsible details", "Data-driven components", "Diagrams",
+    "Editing and feedback", "File trees",
     "Header and navigation", "Icons", "Images", "Internationalization",
     "Jupyter notebooks", "Links", "Mathematics", "Search", "Steps", "Tabs",
     "Tags", "Tailwind and design tokens", "Terminal output",
@@ -684,7 +685,7 @@ test("release notes are ordered newest first in every language", async ({ page }
     await page.goto(path);
     const releases = await page.locator(".example-changelog h2").allTextContents();
     expect(releases.slice(0, 4).map((title) => title.trim().slice(0, 6)))
-      .toEqual(["v0.3.3", "v0.3.2", "v0.3.1", "v0.3.0"]);
+      .toEqual(["v0.3.4", "v0.3.3", "v0.3.2", "v0.3.1"]);
   }
 });
 
