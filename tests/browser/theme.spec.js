@@ -36,6 +36,40 @@ test("documentation page matches the approved theme", async ({ page }) => {
   });
 });
 
+test("dark surfaces keep selection readable and the header opaque", async ({ page }) => {
+  await page.goto("docs/getting-started/");
+
+  const resolvedChrome = () => page.locator(".prose p").first().evaluate((node) => {
+    const selection = getComputedStyle(node, "::selection");
+    const header = getComputedStyle(document.querySelector(".header"));
+    return {
+      selection: {
+        background: selection.backgroundColor,
+        color: selection.color,
+      },
+      header: header.backgroundColor,
+    };
+  });
+
+  await page.evaluate(() => {
+    document.documentElement.removeAttribute("data-surface");
+    window.pwTheme.set("dark");
+  });
+  const deepDark = await resolvedChrome();
+  expect(deepDark.selection).toEqual({
+    background: "rgb(32, 53, 77)",
+    color: "rgb(197, 218, 240)",
+  });
+  expect(contrast(deepDark.selection.color, deepDark.selection.background))
+    .toBeGreaterThanOrEqual(4.5);
+  expect(deepDark.header).toBe("rgb(19, 30, 43)");
+
+  await page.evaluate(() => document.documentElement.dataset.surface = "navy");
+  const navyDark = await resolvedChrome();
+  expect(navyDark.selection).toEqual(deepDark.selection);
+  expect(navyDark.header).toBe("rgb(26, 43, 62)");
+});
+
 test("pinned CDN media, math and diagrams render", async ({ page }, testInfo) => {
   test.skip(!testInfo.project.name.startsWith("desktop"));
 
