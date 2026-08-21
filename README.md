@@ -1,4 +1,4 @@
-# brand-theme-hugo-vanilla — v0.3.4
+# brand-theme-hugo-vanilla — v0.3.5
 
 A Hugo theme implementing the **projectious.work** brand system for documentation,
 change logs, taxonomy and marketing pages. Content authors write Markdown and shortcodes;
