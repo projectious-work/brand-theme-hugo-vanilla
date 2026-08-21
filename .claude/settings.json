@@ -16,7 +16,7 @@
         "_aibox_attention_managed": true,
         "hooks": [
           {
-            "command": "aibox-agent-signal question --harness claude",
+            "command": "aibox-agent-signal question --harness claude --hook-input",
             "type": "command"
           }
         ],
@@ -28,7 +28,7 @@
         "_aibox_attention_managed": true,
         "hooks": [
           {
-            "command": "aibox-agent-signal question --harness claude",
+            "command": "aibox-agent-signal question --harness claude --hook-input",
             "type": "command"
           }
         ],
@@ -57,6 +57,16 @@
           }
         ],
         "matcher": ""
+      },
+      {
+        "_aibox_attention_managed": true,
+        "hooks": [
+          {
+            "command": "aibox-agent-signal idle --harness claude --hook-input",
+            "type": "command"
+          }
+        ],
+        "matcher": ""
       }
     ],
     "Stop": [
@@ -64,7 +74,7 @@
         "_aibox_attention_managed": true,
         "hooks": [
           {
-            "command": "aibox-agent-signal done --harness claude",
+            "command": "aibox-agent-signal done --harness claude --hook-input",
             "type": "command"
           }
         ],
@@ -76,7 +86,7 @@
         "_aibox_attention_managed": true,
         "hooks": [
           {
-            "command": "aibox-agent-signal error --harness claude",
+            "command": "aibox-agent-signal error --harness claude --hook-input",
             "type": "command"
           }
         ],
@@ -98,7 +108,7 @@
         "_aibox_attention_managed": true,
         "hooks": [
           {
-            "command": "aibox-agent-signal working --harness claude",
+            "command": "aibox-agent-signal working --harness claude --hook-input",
             "type": "command"
           }
         ],
