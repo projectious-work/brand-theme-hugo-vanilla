@@ -2,6 +2,21 @@
 
 All notable changes to this project are documented in this file.
 
+## [v0.3.5] — 2026-08-21
+
+### Changed
+
+- Updated the local development baseline to aibox 0.34.1 and processkit
+  0.28.8, including reproducible dependency lockfiles and reconciled runtime
+  state.
+
+### Fixed
+
+- Replaced the unreadable brown-and-dark text selection in deep-dark and
+  navy-dark modes with a high-contrast navy-and-light pairing ([#59]).
+- Made the sticky header fully opaque so scrolling content no longer appears
+  underneath navigation controls ([#59]).
+
 ## [v0.3.4] — 2026-08-18
 
 ### Added
@@ -246,6 +261,8 @@ All notable changes to this project are documented in this file.
 [v0.3.2]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.1...v0.3.2
 [v0.3.3]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.2...v0.3.3
 [v0.3.4]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.3...v0.3.4
+[v0.3.5]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.4...v0.3.5
 [#51]: https://github.com/projectious-work/brand-theme-hugo-vanilla/issues/51
 [#52]: https://github.com/projectious-work/brand-theme-hugo-vanilla/issues/52
+[#59]: https://github.com/projectious-work/brand-theme-hugo-vanilla/pull/59
 [v0.3.0]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.2.4...v0.3.0
