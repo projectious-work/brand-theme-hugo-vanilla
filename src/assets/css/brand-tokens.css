@@ -226,7 +226,9 @@
   --fixed-notebook-image-bg: #ffffff;
   --fixed-overlay-solid: var(--fixed-reduced-transparency-bg);
   --fixed-overlay-text: var(--fixed-code-control-text);
-  --header-bg: rgba(248,249,251,0.88);
+  --header-bg: #f8f9fb;
+  --selection-background: var(--terminal-light-selection-background);
+  --selection-text: var(--terminal-light-selection-text);
   --logo-accent: #e05232;
   --hero-bg: var(--color-bg);
   --hero-fg: var(--color-text-primary);
@@ -386,7 +388,9 @@
     --rim-3:inset 0 1px 0 rgba(255,255,255,0.14);
     --on-solid-success:#0e1720; --on-solid-warning:#0e1720;
     --on-solid-danger:#0e1720; --on-solid-info:#0e1720;
-    --header-bg:rgba(19,30,43,0.88); --logo-accent:#ea7558;
+    --header-bg:var(--color-surface); --logo-accent:#ea7558;
+    --selection-background:var(--terminal-selection-background);
+    --selection-text:var(--terminal-selection-text);
     --hero-bg:var(--color-surface); --hero-fg:var(--color-text-primary);
     --hero-title:var(--midnight-12); --hero-eyebrow:var(--orange-11);
     --hero-body:var(--color-text-secondary);
@@ -422,6 +426,9 @@ html[data-theme="light"] {
   --hero-bg:var(--color-bg); --hero-fg:var(--color-text-primary);
   --hero-title:var(--midnight-12); --hero-eyebrow:var(--orange-11);
   --hero-body:var(--color-text-secondary);
+  --header-bg:#f8f9fb;
+  --selection-background:var(--terminal-light-selection-background);
+  --selection-text:var(--terminal-light-selection-text);
 }
 
 [data-theme="dark"] {
@@ -458,7 +465,9 @@ html[data-theme="light"] {
   --rim-3:inset 0 1px 0 rgba(255,255,255,0.14);
   --on-solid-success:#0e1720; --on-solid-warning:#0e1720;
   --on-solid-danger:#0e1720; --on-solid-info:#0e1720;
-  --header-bg:rgba(19,30,43,0.88); --logo-accent:#ea7558;
+  --header-bg:var(--color-surface); --logo-accent:#ea7558;
+  --selection-background:var(--terminal-selection-background);
+  --selection-text:var(--terminal-selection-text);
   --hero-bg:var(--color-surface); --hero-fg:var(--color-text-primary);
   --hero-title:var(--midnight-12); --hero-eyebrow:var(--orange-11);
   --hero-body:var(--color-text-secondary);
@@ -519,7 +528,7 @@ pre code { background: transparent; padding: 0; color: inherit; }
 
 hr { border: 0; height: 1px; background: var(--color-border); margin: var(--space-5) 0; }
 
-::selection { background: var(--orange-3); color: var(--color-primary-dark); }
+::selection { background: var(--selection-background); color: var(--selection-text); }
 
 /* Focus ring — 2px at midnight-9, 15% alpha.
    NOTE: this default measures ~1.2:1 and does not meet WCAG 1.4.11 (3:1).
