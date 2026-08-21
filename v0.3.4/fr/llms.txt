@@ -1,0 +1,67 @@
+# projectious.work
+
+> Documentation et historique des versions fondés sur le système de marque projectious.work.
+
+Version: v0.3.4
+
+
+## Documentation
+
+Installer, configurer, utiliser, adapter et maintenir le thème.
+
+- [Bien démarrer](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/getting-started/): Installer le thème, ajouter la configuration Hugo requise et lancer le site localement.
+- [Configuration globale du site](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/configuration/site-wide/): Configurer Hugo, les sorties, les menus, les langues et le thème.
+- [Documentation versionnée](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/versioning/): Publier des builds distincts et les relier par le menu de versions.
+- [Page d’administration](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/examples/admin/): Membres, rôles, états et tableau de données adaptatif.
+- [Configuration de page (front matter)](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/configuration/page-configuration/): Contrôler la navigation et les fonctions propres à une page.
+- [Guide de création de templates](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/guides/template-authoring/): Créer des layouts et shortcodes Hugo maintenables avec les jetons du thème et Tailwind.
+- [Jetons et API publique](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/tokens/): Jetons CSS sémantiques et espaces de noms Tailwind générés depuis le thème.
+- [Tableau de bord](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/examples/dashboard/): Métriques, tendances d’activité et état des pipelines.
+- [Enregistrements de terminal](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/terminal-recordings/): Intégrer des sessions copiables avec asciinema.
+- [Paramètres](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/examples/settings/): Formulaires, validation, interrupteurs et actions d’enregistrement.
+- [Tailwind et jetons de design](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/tailwind/): Employer l'intégration Tailwind et les jetons projectious.work.
+- [Tarifs](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/examples/pricing/): Trois offres lisibles avec une recommandation mise en avant.
+- [État d’exécution](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/examples/run-state/): États vide, en cours, réussi et en erreur pour l’observabilité.
+- [Tags](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/tags/): Taxonomies Hugo pour les métadonnées et les contenus associés.
+- [Article](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/examples/article/): Un article long avec métadonnées et repères de lecture.
+- [Guide développeur](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/developer-guide/): Adapter le thème, remplacer les ressources et tester les changements.
+- [Recherche](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/search/): Index généré, recherche d'en-tête et palette de commandes.
+- [Journal des modifications](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/examples/changelog/): Historique chronologique avec libellés de changement sémantiques.
+- [Maintenance et mises à niveau](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/maintenance/): Maintenir thème, dépendances, traductions et versions publiées.
+- [Mathématiques](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/mathematics/): Afficher des formules KaTeX en ligne et en bloc.
+- [Dépendances et SBOM](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/dependencies/): Outils de build, bibliothèques navigateur, versions et licences.
+- [Jupyter notebooks](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/jupyter-notebooks/): Publier les résultats de notebooks convertis de façon reproductible.
+- [Internationalisation](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/internationalization/): Configurer contenus traduits, navigation, métadonnées et RTL.
+- [En-tête et navigation](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/header-navigation/): Configurer liens principaux, recherche, langues, versions et icônes.
+- [Modification et retours](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/editing-feedback/): Relier les pages à leurs sources et recueillir éventuellement l'avis des lecteurs.
+- [Diagrammes](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/diagrams/): Afficher des diagrammes Mermaid responsives depuis Markdown.
+- [Blocs de code](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/code-blocks/): Configurer la coloration, les noms de fichier, les numéros et les lignes mises en évidence.
+- [Accessibilité](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/accessibility/): Clavier, préférences de lecture et responsabilités des auteurs.
+- [Arborescences de fichiers](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/file-trees/): Expliquer une structure de projet avec dossiers et fichiers imbriqués.
+- [Boutons et badges](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/buttons-badges/): Ajouter des actions liées et des libellés d'état compacts.
+- [Cartes](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/cards/): Présenter des pages, ressources ou choix associés.
+- [Détails repliables](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/collapsible-details/): Masquer une information facultative derrière un contrôle accessible.
+- [Encadrés](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/callouts/): Mettre en évidence une information complémentaire ou critique.
+- [Étapes](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/steps/): Présenter des procédures avec du Markdown ou des composants.
+- [Icônes](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/icons/): Utiliser les icônes de secours et la bibliothèque Tabler montée.
+- [Images](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/images/): Publier figures, légendes, variantes sombres et visionneuses.
+- [Liens](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/links/): Créer des liens sûrs pour le chemin de base entre pages Hugo.
+- [Onglets](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/tabs/): Regrouper des alternatives équivalentes accessibles au clavier.
+- [Sortie de terminal](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/terminal-output/): Afficher une session statique avec un style de terminal adaptatif.
+- [Terminologie](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/docs/features/terminology/): Définir les termes récurrents dans un glossaire partagé.
+
+## Journal des modifications
+
+Versions du thème et modifications livrées avec chacune.
+
+- [v0.3.4 — API publiques pour les composants pilotés par les données](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/changelog/release-v0-3-4/): Les sites peuvent composer badges, cartes, tableaux et shells applicatifs depuis les données Hugo avec des partials stables.
+- [v0.3.3 — fonctionnalités regroupées et exemples polyvalents](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/changelog/release-v0-3-3/): La documentation couvre désormais tous les shortcodes publics et de nouveaux exemples pleine page illustrent des usages au-delà de la documentation.
+- [v0.3.2 — hooks publics pour les ressources du site](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/changelog/release-v0-3-2/): Les sites peuvent désormais ajouter leur CSS et leur JavaScript via Hugo Pipes sans remplacer les pipelines internes du thème.
+- [v0.3.1 — design révisé et documentation complète du thème](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/changelog/release-v0-3-1/): Le design finalisé, des diagrammes fiables et une documentation multilingue complète arrivent dans cette version corrective.
+- [v0.3.0 — runtimes épinglés, recherche filtrée et palette de commandes](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/changelog/release-v0-3-0/): Les ressources sont versionnées précisément et la recherche indexe les titres.
+- [v0.2.0 — mode sombre bleu nuit et accessibilité](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/changelog/release-v0-2-0/): Le thème ajoute plusieurs modes de couleur et des préférences de lecture persistantes.
+
+## Facultatif
+
+- [À propos](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/about/)
+- [Recherche](https://projectious-work.github.io/brand-theme-hugo-vanilla/v0.3.4/fr/search/)
