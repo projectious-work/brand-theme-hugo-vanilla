@@ -70,6 +70,20 @@ test("dark surfaces keep selection readable and the header opaque", async ({ pag
   expect(navyDark.header).toBe("rgb(26, 43, 62)");
 });
 
+test("explicit light resets every dark brand token", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.goto("docs/getting-started/");
+  await page.evaluate(() => window.pwTheme.set("light"));
+  const tokens = await page.locator("html").evaluate((node) => {
+    const style = getComputedStyle(node);
+    return {
+      header: style.getPropertyValue("--header-bg").trim(),
+      logo: style.getPropertyValue("--logo-accent").trim(),
+    };
+  });
+  expect(tokens).toEqual({ header: "#f8f9fb", logo: "#e05232" });
+});
+
 test("pinned CDN media, math and diagrams render", async ({ page }, testInfo) => {
   test.skip(!testInfo.project.name.startsWith("desktop"));
 
@@ -720,6 +734,7 @@ test("release notes are ordered newest first in every language", async ({ page }
     const releases = await page.locator(".example-changelog h2").allTextContents();
     expect(releases.slice(0, 5).map((title) => title.trim().slice(0, 6)))
       .toEqual(["v0.3.5", "v0.3.4", "v0.3.3", "v0.3.2", "v0.3.1"]);
+    await expect(page.locator(".timeline")).toBeVisible();
   }
 });
 

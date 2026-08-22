@@ -1,27 +1,11 @@
-{{- /* Terminal recording player, pinned in data/cdn.yaml. src is a page resource
-       when the page is a bundle, otherwise a path under static/.
-
-       Options are emitted as JSON and the player is created by asciinema.js, which
-       also recreates it on a colour-mode change — the palette is a create-time
-       argument, so a mode switch needs a rebuild, not a restyle. */ -}}
 {{- $src := .Get "src" | default (.Get 0) -}}
-{{- with .Page.Resources.GetMatch $src }}{{ $src = .RelPermalink }}{{ else }}{{ $src = partial "url.html" $src }}{{ end -}}
-{{- if not (.Page.Store.Get "castLoaded") }}{{ .Page.Store.Set "castLoaded" true -}}
-<link rel="stylesheet" href="{{ partial "cdn-url.html" (dict "pkg" "asciinema" "file" "css") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}>
-<script src="{{ partial "cdn-url.html" (dict "pkg" "asciinema" "file" "js") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}></script>
-{{ partial "script.html" (dict "src" "asciinema.js" "defer" true) }}
-{{ end -}}
-{{- $opts := dict
-  "src" $src
+{{- partial "asciinema.html" (dict
+  "page" .Page "src" $src "id" (printf "cast-%d" .Ordinal)
   "cols" (int (.Get "cols" | default 100))
   "rows" (int (.Get "rows" | default 22))
   "idleTimeLimit" (float (.Get "idleTimeLimit" | default 2))
   "speed" (float (.Get "speed" | default 1))
-  "autoPlay" (eq (.Get "autoplay") "true")
-  "loop" (eq (.Get "loop") "true")
-  "poster" (.Get "poster" | default "npt:0:01")
-  "title" (.Get "title" | default "")
-  "terminalFontFamily" "'IBM Plex Mono', ui-monospace, monospace" -}}
-<div class="cast" data-cast id="cast-{{ .Ordinal }}"{{ with .Get "title" }} aria-label="{{ . }}"{{ end }}>
-  <script type="application/json" data-cast-options>{{ $opts | jsonify | safeJS }}</script>
-</div>
+  "autoplay" (eq (.Get "autoplay") "true") "loop" (eq (.Get "loop") "true")
+  "poster" (.Get "poster" | default "npt:0:01") "title" (.Get "title" | default "")
+  "controls" (.Get "controls" | default "auto") "fit" (.Get "fit" | default "width")
+  "theme" (.Get "theme" | default "auto")) -}}

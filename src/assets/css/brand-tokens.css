@@ -427,6 +427,7 @@ html[data-theme="light"] {
   --hero-title:var(--midnight-12); --hero-eyebrow:var(--orange-11);
   --hero-body:var(--color-text-secondary);
   --header-bg:#f8f9fb;
+  --logo-accent:#e05232;
   --selection-background:var(--terminal-light-selection-background);
   --selection-text:var(--terminal-light-selection-text);
 }

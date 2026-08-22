@@ -1,0 +1,21 @@
+{{- /* Public timeline partial. Pass `items` as Pages or dictionaries with
+       date/eyebrow, title, description, badges/status, and href. */ -}}
+{{- $items := .items | default . -}}
+{{- $class := .class | default "timeline" -}}
+<div class="{{ $class }}">
+  {{ range $items }}
+  {{- $href := .href | default .RelPermalink -}}
+  {{- $title := .title | default .LinkTitle -}}
+  {{- $description := .description | default .Description -}}
+  {{- $date := .date | default .Date -}}
+  {{- $eyebrow := .eyebrow -}}
+  <article>
+    {{ with $date }}<time datetime="{{ time.Format "2006-01-02" . }}">{{ time.Format ":date_medium" . }}</time>{{ else }}<time>{{ $eyebrow }}</time>{{ end }}
+    <div>
+      <h2>{{ with $href }}<a href="{{ . }}">{{ $title }}</a>{{ else }}{{ $title }}{{ end }}</h2>
+      {{ with .badges | default .status }}<div class="changelog__badges">{{ range . }}{{ partial "badge.html" . }} {{ end }}</div>{{ end }}
+      {{ with $description }}<p>{{ . }}</p>{{ end }}
+    </div>
+  </article>
+  {{ end }}
+</div>

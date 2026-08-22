@@ -2,8 +2,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} &middot; {{ site.Title }}{{ end }}</title>
 {{ partial "seo.html" . }}
-<link rel="icon" href="{{ "logo/favicon-32.png" | relURL }}" sizes="32x32">
-<link rel="apple-touch-icon" href="{{ "logo/apple-touch-icon-180.png" | relURL }}">
+{{- $brand := site.Params.brand | default dict -}}
+{{- $favicon := $brand.favicon32 | default "logo/favicon-32.png" -}}
+{{- $appleTouchIcon := $brand.appleTouchIcon | default "logo/apple-touch-icon-180.png" -}}
+<link rel="icon" href="{{ $favicon | relURL }}" sizes="32x32">
+<link rel="apple-touch-icon" href="{{ $appleTouchIcon | relURL }}">
 {{ partial "styles.html" . }}
 {{- /* Blocking, in <head>, so the stored colour mode applies before first paint.
        Fingerprinted like every other asset — it was the one script left on a

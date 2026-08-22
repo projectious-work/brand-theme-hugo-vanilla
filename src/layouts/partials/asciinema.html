@@ -1,0 +1,21 @@
+{{- /* Public data-driven asciinema player. Pass page plus src and any player
+       options. The shortcode delegates here so both APIs stay identical. */ -}}
+{{- $page := .page -}}
+{{- $src := .src -}}
+{{- with $page.Resources.GetMatch $src }}{{ $src = .RelPermalink }}{{ else }}{{ $src = partial "url.html" $src }}{{ end -}}
+{{- if not ($page.Store.Get "castLoaded") }}{{ $page.Store.Set "castLoaded" true -}}
+<link rel="stylesheet" href="{{ partial "cdn-url.html" (dict "pkg" "asciinema" "file" "css") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}>
+<script src="{{ partial "cdn-url.html" (dict "pkg" "asciinema" "file" "js") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}></script>
+{{ partial "script.html" (dict "src" "asciinema.js" "defer" true) }}
+{{ end -}}
+{{- $opts := dict
+  "src" $src "cols" (.cols | default 100) "rows" (.rows | default 22)
+  "idleTimeLimit" (.idleTimeLimit | default 2) "speed" (.speed | default 1)
+  "autoPlay" (.autoplay | default false) "loop" (.loop | default false)
+  "poster" (.poster | default "npt:0:01") "title" (.title | default "")
+  "controls" (.controls | default "auto") "fit" (.fit | default "width")
+  "theme" (.theme | default "auto")
+  "terminalFontFamily" "'IBM Plex Mono', ui-monospace, monospace" -}}
+<div class="cast" data-cast id="{{ .id | default "cast" }}"{{ with .title }} aria-label="{{ . }}"{{ end }}>
+  <script type="application/json" data-cast-options>{{ $opts | jsonify | safeJS }}</script>
+</div>
