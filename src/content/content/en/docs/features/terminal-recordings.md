@@ -19,7 +19,17 @@ file in a page bundle or under `static/casts/`.
      idleTimeLimit="1.5" */>}}
 ```
 
-`cols`, `rows`, `speed`, `idleTimeLimit`, `autoplay` and `loop` are supported.
+`cols`, `rows`, `speed`, `idleTimeLimit`, `autoplay`, `loop`, `controls`, `fit`
+and `theme` are supported. `theme="auto"` follows the site's light/dark mode;
+pass an asciinema palette name to keep a recording on a fixed palette.
+
+Data-driven layouts can use the same player without copying shortcode markup:
+
+```go-html-template
+{{ partial "asciinema.html" (dict
+  "page" . "src" .Params.cast "id" "release-demo"
+  "controls" "auto" "fit" "width" "theme" "auto") }}
+```
 
 Autoplay is off by default. The player version is pinned in `data/cdn.yaml`; see
 [Dependencies](../dependencies.md) for CDN and self-hosting options.

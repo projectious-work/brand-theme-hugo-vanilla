@@ -31,8 +31,9 @@
         cols: o.cols, rows: o.rows,
         idleTimeLimit: o.idleTimeLimit, speed: o.speed,
         autoPlay: o.autoPlay, loop: o.loop, poster: o.poster,
+        controls: o.controls, fit: o.fit,
         terminalFontFamily: o.terminalFontFamily,
-        theme: paletteFor(isDark())
+        theme: o.theme === 'auto' ? paletteFor(isDark()) : o.theme
       };
       if (o.title) { opts.title = o.title; }
       return AsciinemaPlayer.create(o.src, target, opts);
@@ -42,6 +43,7 @@
     if (!player || typeof player.dispose !== 'function') return;
 
     d.addEventListener('pw:mode', function () {
+      if (o.theme !== 'auto') return;
       var wanted = paletteFor(isDark());
       if (target.dataset.palette === wanted) return;
       target.dataset.palette = wanted;
@@ -49,7 +51,7 @@
       target.innerHTML = '';
       player = build();
     });
-    target.dataset.palette = paletteFor(isDark());
+    target.dataset.palette = o.theme === 'auto' ? paletteFor(isDark()) : o.theme;
   }
 
   casts.forEach(mount);

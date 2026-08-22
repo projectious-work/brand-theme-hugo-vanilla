@@ -9,19 +9,14 @@
     {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
     {{ $paginator := .Paginate .Pages.ByDate.Reverse }}
     {{ $latest := index $paginator.Pages 0 }}
-    <div class="example-changelog">
-      {{ range $paginator.Pages }}
-      <article>
-        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ time.Format ":date_medium" .Date }}</time>
-        <div>
-          <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ if eq . $latest }} {{ partial "badge.html" (dict "label" (i18n "latest") "variant" "accent") }}{{ end }}</h2>
-          {{ with .Params.badges }}<div class="changelog__badges">{{ range . }}{{ partial "badge.html" . }} {{ end }}</div>{{ end }}
-          <p>{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 200 }}{{ end }}</p>
-          <p><a href="{{ .RelPermalink }}">{{ i18n "readReleaseNotes" }} →</a></p>
-        </div>
-      </article>
-      {{ end }}
-    </div>
+    {{ $items := slice }}
+    {{ range $paginator.Pages }}
+      {{ $badges := .Params.badges | default slice }}
+      {{ if eq . $latest }}{{ $badges = $badges | append (dict "label" (i18n "latest") "variant" "accent") }}{{ end }}
+      {{ $description := .Description | default (.Summary | plainify | truncate 200) }}
+      {{ $items = $items | append (dict "date" .Date "title" .LinkTitle "href" .RelPermalink "description" $description "badges" $badges) }}
+    {{ end }}
+    {{ partial "timeline.html" (dict "items" $items "class" "timeline example-changelog") }}
     {{ template "_internal/pagination.html" . }}
   </main>
 </div>

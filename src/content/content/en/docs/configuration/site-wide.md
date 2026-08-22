@@ -124,6 +124,14 @@ enableRobotsTXT = true                 # Ask Hugo to generate the theme's robots
   sidebarSections = ["docs"]   # Top-level sections that receive the docs rail.
   sidebarOpenDepth = 0          # Initially expanded sidebar levels.
 
+  [params.brand] # Optional product identity; every key has this default.
+    home = "/"
+    wordmark = "projectious.work"
+    markLight = "logo/icon-light.svg"
+    markDark = "logo/icon-dark.svg"
+    favicon32 = "logo/favicon-32.png"
+    appleTouchIcon = "logo/apple-touch-icon-180.png"
+
   [[params.versions]] # One published documentation version.
     label = "v1.0"   # Menu label.
     url = "/"        # Deployment-relative root for this version.
@@ -172,6 +180,7 @@ pages.
 |---|---|---|---|
 | `description` | string, empty | Setting site metadata | [Header and navigation](../features/header-navigation.md) |
 | `github` | URL, unset | Showing a repository header action | [Header and navigation](../features/header-navigation.md) |
+| `brand` | table, projectious.work defaults | Replacing wordmark, marks and favicons without template overrides | [Header and navigation](../features/header-navigation.md) |
 | `editURL` | URL or language map, unset | Showing Edit-this-page links | [Editing and feedback](../features/editing-feedback.md) |
 | `version` | string, unset | Labelling the current documentation | [Versioning](../features/versioning.md) |
 | `versionMenuLabel` | string, current version | Giving the version menu an independent label | [Versioning](../features/versioning.md) |
