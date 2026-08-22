@@ -2,6 +2,23 @@
 
 All notable changes to this project are documented in this file.
 
+## [v0.3.6] — 2026-08-22
+
+### Added
+
+- Added configurable wordmark, light/dark mark, favicon, and Apple touch icon
+  parameters with backward-compatible projectious.work defaults ([#62]).
+- Added a reusable timeline partial for page collections and structured roadmap
+  or phase data ([#58]).
+- Added a public data-driven asciinema partial with controls, fit, and explicit
+  palette options, shared by the existing shortcode ([#58]).
+
+### Fixed
+
+- Reset the logo accent when explicit light mode overrides a dark operating
+  system preference, with regression coverage for both header brand tokens
+  ([#62]).
+
 ## [v0.3.5] — 2026-08-21
 
 ### Changed
@@ -262,7 +279,10 @@ All notable changes to this project are documented in this file.
 [v0.3.3]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.2...v0.3.3
 [v0.3.4]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.3...v0.3.4
 [v0.3.5]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.4...v0.3.5
+[v0.3.6]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.5...v0.3.6
 [#51]: https://github.com/projectious-work/brand-theme-hugo-vanilla/issues/51
 [#52]: https://github.com/projectious-work/brand-theme-hugo-vanilla/issues/52
 [#59]: https://github.com/projectious-work/brand-theme-hugo-vanilla/pull/59
+[#58]: https://github.com/projectious-work/brand-theme-hugo-vanilla/issues/58
+[#62]: https://github.com/projectious-work/brand-theme-hugo-vanilla/issues/62
 [v0.3.0]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.2.4...v0.3.0

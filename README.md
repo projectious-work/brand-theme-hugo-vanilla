@@ -1,4 +1,4 @@
-# brand-theme-hugo-vanilla — v0.3.5
+# brand-theme-hugo-vanilla — v0.3.6
 
 A Hugo theme implementing the **projectious.work** brand system for documentation,
 change logs, taxonomy and marketing pages. Content authors write Markdown and shortcodes;
@@ -45,6 +45,9 @@ contents and math passthrough.
 | Search page | `content/search.md` with `layout = "search"` |
 | Multilingual + language selector | `i18n/`, `partials/lang-menu.html` |
 | Version selector | `params.versions`, `partials/version-menu.html` — keeps the reader's path across versions |
+| Configurable branding | `params.brand` — replace the wordmark, light/dark marks and favicons without shadowing theme partials |
+| Reusable timelines | `partials/timeline.html` — render page collections or structured phase/roadmap data |
+| Data-driven recordings | `partials/asciinema.html` — compose galleries with controls, fit and palette options |
 | Structured data + social cards | `partials/schema.html` — TechArticle, BlogPosting, WebSite and breadcrumbs |
 | Change log, taxonomy, landing, 404 | `layouts/changelog/`, `_default/terms.html`, `term.html`, `index.html`, `404.html` |
 | Multilingual edit links + feedback | `partials/edit-link.html`, `feedback.html` |
