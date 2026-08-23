@@ -4,6 +4,7 @@
 
 
 
+- [v0.3.6 — konfigurierbares Branding und wiederverwendbare Komposition](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/changelog/release-v0-3-6/index.md) — Produktidentität, Zeitleisten und Terminal-Aufzeichnungen lassen sich ohne kopierte Theme-Templates konfigurieren.
 - [v0.3.5 — lesbare Auswahl und solide Navigation](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/changelog/release-v0-3-5/index.md) — Dunkle Oberflächen verwenden barrierefreie Auswahlfarben, und der fixierte Header bleibt klar vom scrollenden Inhalt getrennt.
 - [v0.3.4 — öffentliche APIs für datengetriebene Komponenten](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/changelog/release-v0-3-4/index.md) — Websites können Badges, Karten, Tabellen und Anwendungsshells über stabile Theme-Partials aus Hugo-Daten aufbauen.
 - [v0.3.3 — gebündelte Funktionen und vielseitige Beispiele](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/changelog/release-v0-3-3/index.md) — Die Funktionsdokumentation deckt jetzt alle öffentlichen Shortcodes ab; neue Vollseitenbeispiele zeigen den Einsatz außerhalb von Dokumentationsseiten.
