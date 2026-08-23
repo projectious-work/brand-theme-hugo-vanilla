@@ -1,7 +1,7 @@
 +++
 title = "v0.3.6 — konfigurierbares Branding und wiederverwendbare Komposition"
 description = "Produktidentität, Zeitleisten und Terminal-Aufzeichnungen lassen sich ohne kopierte Theme-Templates konfigurieren."
-date = 2026-08-22T22:00:00+02:00
+date = 2026-08-22T19:00:00+02:00
 author = "projectious.work"
 tags = ["release", "templates"]
 aliases = ["/blog/release-v0-3-6/"]

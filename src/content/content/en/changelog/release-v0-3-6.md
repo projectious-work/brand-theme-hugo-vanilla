@@ -1,7 +1,7 @@
 +++
 title = "v0.3.6 — configurable branding and reusable composition"
 description = "Consumers can configure product identity and reuse timeline and terminal-recording composition APIs without copying theme markup."
-date = 2026-08-22T22:00:00+02:00
+date = 2026-08-22T19:00:00+02:00
 author = "projectious.work"
 tags = ["release", "templates"]
 aliases = ["/blog/release-v0-3-6/"]
