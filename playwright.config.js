@@ -16,6 +16,9 @@ module.exports = defineConfig({
     locale: "en-US",
     screenshot: "only-on-failure",
     trace: "retain-on-failure",
+    launchOptions: {
+      executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || undefined,
+    },
   },
   webServer: {
     command: "./scripts/serve.sh",

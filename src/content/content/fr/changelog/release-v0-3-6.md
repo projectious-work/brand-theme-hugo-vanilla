@@ -1,7 +1,7 @@
 +++
 title = "v0.3.6 — identité configurable et composition réutilisable"
 description = "L’identité produit, les chronologies et les enregistrements de terminal se configurent sans copier les modèles du thème."
-date = 2026-08-22T22:00:00+02:00
+date = 2026-08-22T19:00:00+02:00
 author = "projectious.work"
 tags = ["release", "modèles"]
 aliases = ["/blog/release-v0-3-6/"]
