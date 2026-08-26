@@ -2,10 +2,10 @@
   "boundingBox": [-1.5, 5, 6, -1.5],
   "axis": true,
   "elements": [
-    {"id": "a", "type": "point", "parents": [0, 0], "attributes": {"name": "A"}},
-    {"id": "b", "type": "point", "parents": [4, 0], "attributes": {"name": "B"}},
-    {"id": "c", "type": "point", "parents": [1.4, 3], "attributes": {"name": "C"}},
-    {"type": "polygon", "parents": ["a", "b", "c"], "attributes": {"fillOpacity": 0.12}},
-    {"type": "circumcircle", "parents": ["a", "b", "c"], "attributes": {"strokeColor": "#d76832"}}
+    {"id": "a", "type": "point", "parents": [0, 0], "attributes": {"name": "A", "size": 5, "fillColor": "#ffffff", "strokeColor": "#174a72", "strokeWidth": 3}},
+    {"id": "b", "type": "point", "parents": [4, 0], "attributes": {"name": "B", "size": 5, "fillColor": "#ffffff", "strokeColor": "#174a72", "strokeWidth": 3}},
+    {"id": "c", "type": "point", "parents": [1.4, 3], "attributes": {"name": "C", "size": 5, "fillColor": "#ffffff", "strokeColor": "#174a72", "strokeWidth": 3}},
+    {"type": "polygon", "parents": ["a", "b", "c"], "attributes": {"fillColor": "#70a9d1", "fillOpacity": 0.22, "borders": {"strokeColor": "#174a72", "strokeWidth": 3}}},
+    {"type": "circumcircle", "parents": ["a", "b", "c"], "attributes": {"strokeColor": "#d0522a", "strokeWidth": 4, "fillOpacity": 0}}
   ]
 }

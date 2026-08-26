@@ -1,33 +1,107 @@
-direction: right
+direction: down
+
+classes: {
+  zone: {
+    style: {
+      fill: "#f7f9fc"
+      stroke: "#7890aa"
+      stroke-dash: 4
+    }
+  }
+  network-device: {
+    shape: hexagon
+    style: {
+      fill: "#e7f2ff"
+      stroke: "#2f6f9f"
+    }
+  }
+  endpoint: {
+    shape: rectangle
+    style: {
+      fill: "#ffffff"
+      stroke: "#567089"
+    }
+  }
+}
 
 internet: Internet {
   shape: cloud
+  style.fill: "#dceeff"
 }
 
-edge: Edge network {
-  router: Border router
-  firewall: Firewall
-  router -> firewall
-}
-
-core: Core network {
-  switch-a: Core switch A
-  switch-b: Core switch B
-  switch-a <-> switch-b: redundant link
-}
-
-services: Service network {
-  web: Web tier
-  api: API tier
-  database: PostgreSQL {
-    shape: cylinder
+edge: Internet edge {
+  class: zone
+  isp: ISP router\n203.0.113.1 {
+    class: network-device
   }
-  web -> api
-  api -> database
+  firewall: Perimeter firewall\nWAN 203.0.113.2\nLAN 10.20.0.1 {
+    shape: hexagon
+    style.fill: "#ffe7dc"
+    style.stroke: "#b34f2a"
+  }
+  isp -> firewall: 1 Gbit/s fibre
 }
 
-internet -> edge.router
-edge.firewall -> core.switch-a
-edge.firewall -> core.switch-b
-core.switch-a -> services.web
-core.switch-b -> services.web
+campus: Main campus · 10.20.0.0/16 {
+  class: zone
+  core: Core network {
+    class: zone
+    primary: Core switch A\n10.20.0.2 {
+      class: network-device
+    }
+    standby: Core switch B\n10.20.0.3 {
+      class: network-device
+    }
+    primary <-> standby: redundant 10 Gbit/s trunk
+  }
+  dmz: DMZ · 10.20.20.0/27 {
+    class: zone
+    web: Web server\n10.20.20.8 {
+      class: endpoint
+    }
+    mail: Mail server\n10.20.20.9 {
+      class: endpoint
+    }
+  }
+  users: User VLANs {
+    class: zone
+    engineering: Engineering\nVLAN 20 · 10.20.20.0/24 {
+      class: network-device
+    }
+    business: Business\nVLAN 30 · 10.20.30.0/24 {
+      class: network-device
+    }
+    eng-pc: Workstation ENG-01\n10.20.20.41 · DHCP {
+      class: endpoint
+    }
+    bus-pc: Workstation BUS-01\n10.20.30.41 · DHCP {
+      class: endpoint
+    }
+    engineering -> eng-pc: access port
+    business -> bus-pc: access port
+  }
+}
+
+branch: Branch office · 10.40.0.0/16 {
+  class: zone
+  router: Branch router\n10.40.0.1 {
+    class: network-device
+  }
+  switch: Access switch\n10.40.10.2 {
+    class: network-device
+  }
+  client: Branch workstation\n10.40.10.51 · DHCP {
+    class: endpoint
+  }
+  router -> switch: 1 Gbit/s trunk
+  switch -> client: VLAN 10
+}
+
+internet -> edge.isp: public uplink
+edge.firewall -> campus.core.primary: inside · 10.20.0.0/16
+edge.firewall -> campus.core.standby
+campus.core.primary -> campus.dmz.web: HTTPS · TCP 443
+campus.core.standby -> campus.dmz.mail: SMTP · TCP 25
+campus.core.primary -> campus.users.engineering: 802.1Q trunk
+campus.core.standby -> campus.users.business: 802.1Q trunk
+campus.core.primary -> branch.router: site-to-site VPN\n10.255.0.0/30

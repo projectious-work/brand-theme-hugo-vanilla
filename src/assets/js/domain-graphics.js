@@ -1,7 +1,19 @@
 (() => {
+  function sourceText(element) {
+    const source = element.textContent;
+    try {
+      const decoded = JSON.parse(source);
+      return typeof decoded === "string" ? decoded : source;
+    } catch {
+      return source;
+    }
+  }
+
   function renderJSXGraph(figure) {
     const host = figure.querySelector(".jxgbox");
-    const config = JSON.parse(figure.querySelector(".domain-graphic__source").textContent);
+    const config = JSON.parse(sourceText(
+      figure.querySelector(".domain-graphic__source"),
+    ));
     const board = JXG.JSXGraph.initBoard(host.id, {
       boundingbox: config.boundingBox || [-5, 5, 5, -5],
       axis: config.axis ?? true,
@@ -44,6 +56,7 @@
   if (window.WaveDrom) {
     document.querySelectorAll('[data-wavedrom] script[type="WaveDrom"]')
       .forEach((source, index) => {
+        source.textContent = sourceText(source);
         source.id = `InputJSON_${index}`;
         const display = document.createElement("div");
         display.id = `WaveDrom_Display_${index}`;
@@ -58,7 +71,9 @@
   }
   document.querySelectorAll("[data-smiles]").forEach(renderSmiles);
   document.querySelectorAll("[data-pseudocode]").forEach((figure) => {
-    pseudocode.renderElement(figure.querySelector(".domain-graphic__source"), {
+    const source = figure.querySelector(".domain-graphic__source");
+    source.textContent = sourceText(source);
+    pseudocode.renderElement(source, {
       lineNumber: true,
     });
   });
