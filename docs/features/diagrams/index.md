@@ -358,18 +358,22 @@ api -> db: query
 
 #### Network topology
 
-Nesting keeps edge, core and service networks understandable while redundant
-links remain explicit. This rendering is loaded from
+This deliberately compact campus example borrows the useful visual grammar of
+larger operational diagrams: traffic flows top-down, boundaries group the edge,
+campus zones and branch, device shapes distinguish network equipment from
+hosts, and labels carry example addresses, VLANs, protocols and link capacity.
+Redundant paths remain explicit without reproducing every access device. The
+rendering is loaded from
 `assets/graphics/network-topology.d2` and compiled as part of the Hugo build.
 
 {{< diagram renderer="d2" src="graphics/network-topology.d2"
-    alt="Internet traffic crosses an edge router and firewall, redundant core switches, and a three-tier service network"
-    caption="A nested network topology with redundant core paths." >}}
+    alt="Top-down campus topology from the Internet through an edge firewall and redundant core switches to a DMZ, user VLANs and a VPN-connected branch"
+    caption="A grouped campus topology with device symbols, example IP addresses, VLANs and annotated links." >}}
 
 ```md
 {{</* diagram renderer="d2" src="graphics/network-topology.d2"
-    alt="Internet, edge, core and service networks"
-    caption="A nested network topology." */>}}
+    alt="Internet, campus network zones and a VPN-connected branch"
+    caption="A grouped top-down network topology." */>}}
 ```
 
 {{< source-code src="graphics/network-topology.d2" lang="d2" >}}
@@ -456,6 +460,8 @@ and their attributes are passed to JSXGraph.
     title="Interactive circumcircle construction"
     caption="Drag A, B or C; JSXGraph recomputes the triangle and circumcircle." >}}{{< /jsxgraph >}}
 
+{{< source-code src="graphics/math-construction.json" lang="json" >}}
+
 ```md
 {{</* jsxgraph src="graphics/math-construction.json"
     title="Interactive circumcircle construction"
@@ -474,6 +480,8 @@ clocks, signals, buses and register fields.
 {{< wavedrom src="graphics/clock-bus.json5" title="Clock and request bus timing"
     caption="Clock, request, payload and acknowledgement signals." >}}{{< /wavedrom >}}
 
+{{< source-code src="graphics/clock-bus.json5" lang="json" >}}
+
 ```md
 {{</* wavedrom src="graphics/clock-bus.json5"
     title="Clock and request bus timing" */>}}{{</* /wavedrom */>}}
@@ -489,6 +497,10 @@ the document as an assistive fallback.
 
 {{< smiles value="CC(=O)OC1=CC=CC=C1C(=O)O" title="Aspirin structure"
     caption="Aspirin rendered from its SMILES representation." >}}{{< /smiles >}}
+
+```text
+CC(=O)OC1=CC=CC=C1C(=O)O
+```
 
 ```md
 {{</* smiles value="CC(=O)OC1=CC=CC=C1C(=O)O"
@@ -506,6 +518,8 @@ KaTeX. The result remains selectable and responds to the page typography.
 
 {{< pseudocode src="graphics/binary-search.pseudo"
     caption="Binary search typeset from a reusable source file." >}}{{< /pseudocode >}}
+
+{{< source-code src="graphics/binary-search.pseudo" lang="latex" >}}
 
 ```md
 {{</* pseudocode src="graphics/binary-search.pseudo"

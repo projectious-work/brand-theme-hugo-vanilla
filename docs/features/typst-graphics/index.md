@@ -5,7 +5,13 @@
 
 The theme's `typst` renderer compiles ordinary
 [Typst](https://typst.app/docs/) source to responsive SVG during the site
-build and inserts that SVG inline in the page. [CeTZ](https://typst.app/universe/package/cetz/) is an authoring library
+build and inserts that SVG inline in the page. Typst outlines glyphs in its SVG
+output, however: the figure is vector artwork, but text inside the artwork is
+not browser-selectable `<text>`. Captions and the complete source shown beside
+each example remain selectable semantic HTML. Do not choose this renderer when
+selectable labels inside the finished figure are a requirement; use D2,
+Graphviz, Plot or another renderer that emits SVG text instead.
+[CeTZ](https://typst.app/universe/package/cetz/) is an authoring library
 for precise vector drawings inside Typst; it is inspired by TikZ and
 Processing, but it is not a TikZ compatibility layer.
 
