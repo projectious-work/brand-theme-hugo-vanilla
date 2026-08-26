@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 270" role="img" aria-labelledby="title desc">
+  <title id="title">Graphviz release workflow</title><desc id="desc">Draft flows to review, which can be approved to published or revised back to draft.</desc>
+  <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#d76832"/></marker></defs>
+  <rect width="760" height="270" rx="18" fill="#f7f9fc"/>
+  <g font-family="Inter,system-ui,sans-serif" text-anchor="middle">
+    <g fill="#fff" stroke="#536a82" stroke-width="2"><ellipse cx="120" cy="135" rx="78" ry="42"/><ellipse cx="380" cy="135" rx="78" ry="42"/><ellipse cx="640" cy="135" rx="82" ry="42"/></g>
+    <g fill="#142438" font-size="16" font-weight="650"><text x="120" y="141">draft</text><text x="380" y="141">review</text><text x="640" y="141">published</text></g>
+    <g fill="none" stroke="#d76832" stroke-width="3" marker-end="url(#a)"><path d="M198 135h96"/><path d="M458 135h92"/><path d="M340 99C290 34 146 45 130 84"/></g>
+    <g fill="#536a82" font-size="12"><text x="250" y="122">submit</text><text x="510" y="122">approve</text><text x="235" y="55">revise</text></g>
+  </g>
+</svg>

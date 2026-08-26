@@ -26,7 +26,7 @@ Every shortcode shipped by the theme is documented in the feature cards below.
 - [Tokens and public API](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/tokens/index.md) — Inspect the stable semantic CSS tokens and Tailwind namespaces generated from the theme source.
 - [Terminal recordings](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/terminal-recordings/index.md) — Record and embed copyable terminal sessions with asciinema.
 - [Tailwind and design tokens](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/tailwind/index.md) — Use the theme's Tailwind integration and stable projectious.work design tokens.
-- [Data-driven components](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/data-driven-components/index.md) — Compose badges, card collections, data tables and application shells from Hugo data.
+- [Data-driven components](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/data-driven-components/index.md) — Compose badges, card collections and data tables from Hugo data.
 - [Tags](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/tags/index.md) — Use Hugo taxonomies for related-content and release-note metadata.
 - [Search](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/search/index.md) — How the generated search index, header search and command palette work.
 - [Mathematics](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/mathematics/index.md) — Render inline and display mathematics with KaTeX.
@@ -34,7 +34,8 @@ Every shortcode shipped by the theme is documented in the feature cards below.
 - [Internationalization](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/internationalization/index.md) — Configure translated content, language navigation, metadata and RTL layout.
 - [Header and navigation](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/header-navigation/index.md) — Configure primary links, repository actions, search and header controls.
 - [Editing and feedback](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/editing-feedback/index.md) — Connect pages to their source files and optionally collect useful reader votes.
-- [Diagrams](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/diagrams/index.md) — Render responsive Mermaid diagrams from Markdown.
+- [Diagrams and Charts](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/diagrams/index.md) — Create responsive diagrams, data-driven charts and generated vector figures.
+- [Typst Graphics and CeTZ](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/typst-graphics/index.md) — Render mathematical, technical and domain-specific Typst graphics as responsive SVG.
 - [Code blocks](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/code-blocks/index.md) — Configure syntax highlighting, filenames, line numbers, highlighted lines and linkable anchors.
 - [Buttons and badges](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/buttons-badges/index.md) — Add linked actions and compact status labels.
 - [Accessibility](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/accessibility/index.md) — Keyboard behavior, reader preferences and author responsibilities.

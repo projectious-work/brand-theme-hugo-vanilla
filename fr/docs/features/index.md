@@ -26,7 +26,7 @@ dans les cartes de fonctionnalités ci-dessous.
 - [Internationalisation](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/features/internationalization/index.md) — Configurer contenus traduits, navigation, métadonnées et RTL.
 - [En-tête et navigation](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/features/header-navigation/index.md) — Configurer liens principaux, recherche, langues, versions et icônes.
 - [Modification et retours](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/features/editing-feedback/index.md) — Relier les pages à leurs sources et recueillir éventuellement l'avis des lecteurs.
-- [Diagrammes](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/features/diagrams/index.md) — Afficher des diagrammes Mermaid responsives depuis Markdown.
+- [Diagrammes et graphiques](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/features/diagrams/index.md) — Créer des diagrammes responsives, des graphiques issus de données et des figures vectorielles ou bitmap soignées.
 - [Blocs de code](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/features/code-blocks/index.md) — Configurer la coloration, les noms de fichier, les numéros et les lignes mises en évidence.
 - [Accessibilité](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/features/accessibility/index.md) — Clavier, préférences de lecture et responsabilités des auteurs.
 - [Arborescences de fichiers](https://projectious-work.github.io/brand-theme-hugo-vanilla/fr/docs/features/file-trees/index.md) — Expliquer une structure de projet avec dossiers et fichiers imbriqués.

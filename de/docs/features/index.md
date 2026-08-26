@@ -26,7 +26,7 @@ in den Feature-Karten unten dokumentiert.
 - [Internationalisierung](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/features/internationalization/index.md) — Übersetzte Inhalte, Navigation, Metadaten und RTL konfigurieren.
 - [Kopfleiste und Navigation](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/features/header-navigation/index.md) — Primäre Links, Suche, Sprach- und Versionsmenü konfigurieren.
 - [Bearbeiten und Feedback](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/features/editing-feedback/index.md) — Quellseiten verlinken und optional Leserfeedback erfassen.
-- [Diagramme](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/features/diagrams/index.md) — Responsive Mermaid-Diagramme aus Markdown rendern.
+- [Diagramme und Charts](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/features/diagrams/index.md) — Responsive Diagramme, datenbasierte Charts sowie hochwertige Vektor- und Bitmap-Grafiken erstellen.
 - [Codeblöcke](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/features/code-blocks/index.md) — Syntaxhervorhebung, Dateinamen, Zeilennummern und markierte Zeilen konfigurieren.
 - [Barrierefreiheit](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/features/accessibility/index.md) — Tastaturbedienung, Leserpräferenzen und Pflichten für Autoren.
 - [Aufklappbare Details](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/docs/features/collapsible-details/index.md) — Optionale Informationen zugänglich ein- und ausblenden.

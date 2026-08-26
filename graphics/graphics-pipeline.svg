@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 360" role="img" aria-labelledby="title desc">
+  <title id="title">Build-time graphics pipeline</title>
+  <desc id="desc">Four source formats flow through specialist renderers into an SVG figure published by Hugo.</desc>
+  <defs>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f7f9fc"/><stop offset="1" stop-color="#e8eef5"/></linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="#d76832"/></marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#142438" flood-opacity=".12"/></filter>
+  </defs>
+  <rect width="920" height="360" rx="24" fill="#f3f6fa"/>
+  <g font-family="Inter,system-ui,sans-serif">
+    <text x="48" y="52" fill="#142438" font-size="22" font-weight="700">Source-controlled graphics</text>
+    <text x="48" y="78" fill="#536a82" font-size="14">Choose the language that fits the content; publish one web-native format.</text>
+    <g fill="url(#panel)" stroke="#c8d3df" filter="url(#shadow)"><rect x="48" y="112" width="150" height="54" rx="12"/><rect x="48" y="180" width="150" height="54" rx="12"/><rect x="48" y="248" width="150" height="54" rx="12"/><rect x="294" y="146" width="196" height="122" rx="16"/><rect x="586" y="146" width="130" height="122" rx="16"/><rect x="790" y="146" width="82" height="122" rx="16"/></g>
+    <g fill="#263f5b" font-family="ui-monospace,monospace" font-size="15" font-weight="600"><text x="123" y="145" text-anchor="middle">.d2 / .dot</text><text x="123" y="213" text-anchor="middle">.typ / .mmd</text><text x="123" y="281" text-anchor="middle">.csv / .json</text></g>
+    <text x="392" y="190" text-anchor="middle" fill="#142438" font-size="18" font-weight="700">Specialist renderer</text><text x="392" y="218" text-anchor="middle" fill="#536a82" font-size="14">D2 · Graphviz · Typst</text><text x="392" y="240" text-anchor="middle" fill="#536a82" font-size="14">Mermaid · Hugo chart</text>
+    <text x="651" y="197" text-anchor="middle" fill="#d76832" font-family="ui-monospace,monospace" font-size="30" font-weight="700">SVG</text><text x="651" y="226" text-anchor="middle" fill="#536a82" font-size="13">accessible</text><text x="651" y="246" text-anchor="middle" fill="#536a82" font-size="13">responsive</text>
+    <text x="831" y="197" text-anchor="middle" fill="#142438" font-size="18" font-weight="700">Hugo</text><text x="831" y="226" text-anchor="middle" fill="#536a82" font-size="13">HTML</text><text x="831" y="246" text-anchor="middle" fill="#536a82" font-size="13">print</text>
+    <g fill="none" stroke="#d76832" stroke-width="3" marker-end="url(#arrow)"><path d="M198 139c47 0 47 41 96 41"/><path d="M198 207h96"/><path d="M198 275c47 0 47-41 96-41"/><path d="M490 207h88"/><path d="M716 207h66"/></g>
+  </g>
+</svg>

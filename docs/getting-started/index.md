@@ -3,13 +3,16 @@
 > Create a Hugo site from scratch, install the theme from a release or local checkout, configure its outputs and run it.
 
 
-This is a from-scratch walkthrough for a new site. Existing Hugo sites can begin
-at [Choose how to install the theme](#choose-how-to-install-the-theme).
+This is a from-scratch walkthrough for a new site. Complete
+[Installation](installation.md) first; this page concentrates on creating and
+configuring the initial documentation rather than repeating platform-specific
+tool installation.
 
 ## 1. Install the tools
 
-Install Hugo 0.128.0 or newer, Go, Node.js/npm and Git. Confirm them before
-creating files:
+Install Hugo 0.128.0 or newer, Go, Node.js/npm and Git. Install D2, Graphviz or
+Typst only when the site uses their generated-SVG features. Confirm the core
+tools before creating files:
 
 ```sh
 hugo version
@@ -19,8 +22,11 @@ npm --version
 git --version
 ```
 
-The example is verified with Hugo 0.164.0. Use Hugo Extended because the CSS
+The example is verified with Hugo 0.165.0. Use Hugo Extended because the CSS
 pipeline invokes Tailwind through Hugo Pipes.
+
+See [Installation](installation.md#optional-graphics-tools) for renderer
+commands, browser-only dependencies and offline builds.
 
 ## 2. Create an empty site
 

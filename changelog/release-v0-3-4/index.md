@@ -1,6 +1,6 @@
 # v0.3.4 — public data-driven composition APIs
 
-> Consumers can compose badges, cards, tables and application shells from Hugo data through stable theme partials.
+> Consumers can compose badges, cards and tables from Hugo data through stable theme partials.
 
 
 v0.3.4 turns the reference components requested by real consuming projects
@@ -8,9 +8,9 @@ into stable theme interfaces.
 
 ## Data-driven composition
 
-Public partials now render badges, card collections, accessible tables, and a
-configurable application shell from Hugo data. The existing badge shortcode
-delegates to the same public implementation.
+Public partials now render badges, card collections and accessible tables from
+Hugo data. The existing badge shortcode delegates to the same public
+implementation.
 
 ## Consumer navigation
 
