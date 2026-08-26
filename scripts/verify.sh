@@ -183,6 +183,8 @@ rg -q '^v0\.3\.6$' "$ROOT_DIR/scripts/docs-archives.txt"
 rg -q '^v0\.3\.2$' "$ROOT_DIR/scripts/docs-archives.txt"
 rg -q '^v0\.3\.1$' "$ROOT_DIR/scripts/docs-archives.txt"
 rg -q 'label = "v0\.4\.0"' "$ROOT_DIR/scripts/docs-versions.toml"
+rg -q 'projectious<span class=sep>&#183;</span><span class=accent>theme</span>' \
+  "$VERIFY_DIR/build-a/index.html"
 rg -q 'partial "hooks/styles-end.html" .' "$ROOT_DIR/src/layouts/partials/styles.html"
 rg -q 'partial "hooks/scripts-end.html" .' "$ROOT_DIR/src/layouts/partials/scripts.html"
 [[ -f "$ROOT_DIR/src/layouts/partials/hooks/styles-end.html" ]]

@@ -6,5 +6,8 @@
 <a class="header__brand" href="{{ partial "url.html" $home }}">
   <img class="header__mark header__mark--light" src="{{ $markLight | relURL }}" alt="" width="26" height="26">
   <img class="header__mark header__mark--dark" src="{{ $markDark | relURL }}" alt="" width="26" height="26">
-  {{ if eq $wordmark "projectious.work" }}<span>projectious<span class="sep">&middot;</span><span class="accent">work</span></span>{{ else }}<span>{{ $wordmark }}</span>{{ end }}
+  {{ if or (eq $wordmark "projectious.work") (eq $wordmark "projectious.theme") }}
+    {{- $suffix := strings.TrimPrefix "projectious." $wordmark -}}
+    <span>projectious<span class="sep">&middot;</span><span class="accent">{{ $suffix }}</span></span>
+  {{ else }}<span>{{ $wordmark }}</span>{{ end }}
 </a>
