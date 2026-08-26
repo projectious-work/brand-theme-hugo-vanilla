@@ -129,7 +129,7 @@ enableRobotsTXT = true                 # Ask Hugo to generate the theme's robots
     wordmark = "projectious.work"
     markLight = "logo/icon-light.svg"
     markDark = "logo/icon-dark.svg"
-    favicon32 = "logo/icon-dark.svg" # light mark for browser-tab contrast
+    favicon32 = "logo/icon-light.svg" # high-contrast mark for light browser chrome
     appleTouchIcon = "logo/apple-touch-icon-180.png"
 
   [[params.versions]] # One published documentation version.
@@ -137,6 +137,10 @@ enableRobotsTXT = true                 # Ask Hugo to generate the theme's robots
     url = "/"        # Deployment-relative root for this version.
     note = "latest"  # Optional status annotation.
 ```
+
+The packaged defaults use the latest `mark-5a` logo. Every supplied colour and
+monochrome variant is also shipped under `logo/theme/`, so a site can select a
+different approved mark without copying or modifying the theme.
 
 ## Required output formats
 
