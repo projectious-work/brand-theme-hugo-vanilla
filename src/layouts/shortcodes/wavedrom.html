@@ -1,0 +1,7 @@
+{{- $source := partial "text-source.html" (dict "page" .Page "src" (.Get "src") "url" (.Get "url") "content" .Inner) -}}
+{{- .Page.Store.Set "needsWaveDrom" true -}}
+<figure class="domain-graphic wavedrom" data-wavedrom
+  aria-label="{{ .Get "title" | default "Digital timing diagram" }}">
+  <script type="WaveDrom">{{ $source | safeHTML }}</script>
+  {{ with .Get "caption" }}<figcaption>{{ . | $.Page.RenderString }}</figcaption>{{ end }}
+</figure>

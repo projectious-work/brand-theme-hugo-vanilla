@@ -1,0 +1,3 @@
+{{- if .Store.Get "needsDataTable" -}}
+{{ partial "script.html" (dict "src" "data-table.js" "defer" true) }}
+{{- end -}}

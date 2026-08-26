@@ -1,0 +1,20 @@
+\begin{algorithm}
+\caption{Binary search}
+\begin{algorithmic}
+\PROCEDURE{Search}{$A, x$}
+  \STATE $low \gets 1$
+  \STATE $high \gets \mathrm{length}(A)$
+  \WHILE{$low \leq high$}
+    \STATE $mid \gets \lfloor(low + high) / 2\rfloor$
+    \IF{$A[mid] = x$}
+      \RETURN $mid$
+    \ELSIF{$A[mid] < x$}
+      \STATE $low \gets mid + 1$
+    \ELSE
+      \STATE $high \gets mid - 1$
+    \ENDIF
+  \ENDWHILE
+  \RETURN not found
+\ENDPROCEDURE
+\end{algorithmic}
+\end{algorithm}

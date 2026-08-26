@@ -1,0 +1,6 @@
+{{- $source := partial "text-source.html" (dict "page" .Page "src" (.Get "src") "url" (.Get "url") "content" .Inner) -}}
+{{- .Page.Store.Set "needsPseudocode" true -}}
+<figure class="domain-graphic algorithm" data-pseudocode>
+  <pre class="domain-graphic__source">{{ $source }}</pre>
+  {{ with .Get "caption" }}<figcaption>{{ . | $.Page.RenderString }}</figcaption>{{ end }}
+</figure>

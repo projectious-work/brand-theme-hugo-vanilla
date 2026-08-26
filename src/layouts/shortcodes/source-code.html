@@ -1,0 +1,11 @@
+{{- $src := .Get "src" -}}
+{{- $lang := .Get "lang" | default (strings.TrimPrefix "." (path.Ext $src)) -}}
+{{- $resource := or (.Page.Resources.GetMatch $src) (resources.Get $src) -}}
+{{- if not $resource }}{{ errorf "Unable to load source-code resource %q" $src }}{{ end -}}
+<div class="code">
+  <div class="code__bar">
+    <span class="code__name">{{ $src }}</span>
+    <button class="code__copy" type="button" data-copied="{{ i18n "copied" }}">{{ partial "icon.html" (dict "name" "copy" "class" "ico--sm") }}<span>{{ i18n "copyCode" }}</span></button>
+  </div>
+  {{ transform.Highlight $resource.Content $lang "" }}
+</div>

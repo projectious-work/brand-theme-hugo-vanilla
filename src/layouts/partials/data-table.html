@@ -1,13 +1,106 @@
 {{- $rows := .rows | default (slice) -}}
 {{- $columns := .columns | default (slice) -}}
 {{- $label := .label | default (i18n "table") -}}
-<div class="tablewrap" tabindex="0" role="region" aria-label="{{ $label }}">
-  <table>
-    <thead><tr>{{ range $columns }}<th scope="col">{{ .label }}</th>{{ end }}</tr></thead>
+{{- $search := .search | default false -}}
+{{- $sort := .sort | default false -}}
+{{- $filter := .filter | default false -}}
+{{- $interactive := or $search $sort $filter -}}
+{{- $id := "data-table" -}}
+{{- with .page -}}
+  {{- $count := add (.Store.Get "dataTableCount" | default 0) 1 -}}
+  {{- .Store.Set "dataTableCount" $count -}}
+  {{- $id = printf "data-table-%d" $count -}}
+  {{- if $interactive }}{{ .Store.Set "needsDataTable" true }}{{ end -}}
+{{- end -}}
+<div class="data-table{{ if $interactive }} data-table--interactive{{ end }}"
+     id="{{ $id }}" data-data-table>
+  {{ if $interactive }}
+  <div class="data-table__controls" data-table-controls hidden>
+    {{ if $search }}
+    <label class="data-table__search">Search
+      <input type="search" data-table-search autocomplete="off"
+             aria-controls="{{ $id }}-table">
+    </label>
+    {{ end }}
+    {{ if $filter }}{{ range $columns }}{{ $column := . }}{{ with .filter }}
+      {{- $filterType := printf "%v" . -}}
+      <fieldset class="data-table__filter" data-table-filter="{{ $filterType }}"
+                data-column="{{ $column.key }}">
+        <legend>{{ $column.label }}</legend>
+        {{ if eq $filterType "range" }}
+          <input type="number" data-filter-min aria-label="Minimum {{ $column.label }}"
+                 placeholder="Min">
+          <input type="number" data-filter-max aria-label="Maximum {{ $column.label }}"
+                 placeholder="Max">
+        {{ else if eq $filterType "date-range" }}
+          <input type="date" data-filter-min aria-label="Earliest {{ $column.label }}">
+          <input type="date" data-filter-max aria-label="Latest {{ $column.label }}">
+        {{ else if eq $filterType "boolean" }}
+          <select data-filter-value aria-label="Filter by {{ $column.label }}">
+            <option value="">All</option><option value="true">Yes</option>
+            <option value="false">No</option>
+          </select>
+        {{ else if eq $filterType "select" }}
+          <select data-filter-value data-filter-options aria-label="Filter by {{ $column.label }}">
+            <option value="">All</option>
+          </select>
+        {{ else }}
+          <input type="search" data-filter-value aria-label="Filter by {{ $column.label }}">
+        {{ end }}
+      </fieldset>
+    {{ end }}{{ end }}{{ end }}
+    <button class="btn btn--secondary data-table__clear" type="button"
+            data-table-clear>Clear</button>
+    <output class="data-table__count" data-table-count aria-live="polite"></output>
+  </div>
+  {{ end }}
+  <div class="tablewrap" tabindex="0" role="region" aria-label="{{ $label }}">
+  <table id="{{ $id }}-table">
+    <thead><tr>{{ range $columns }}
+      {{- $sortable := and $sort (or (not (isset . "sortable")) .sortable) -}}
+      <th scope="col"{{ with .align }} class="table-cell--{{ . }}"{{ end }}
+          data-column="{{ .key }}" data-type="{{ .type | default "string" }}"
+          data-searchable="{{ if eq .searchable false }}false{{ else }}true{{ end }}">
+        {{ if $sortable }}<span data-sort-label>{{ .label }}</span><button hidden
+          type="button" class="data-table__sort" data-table-sort
+          aria-label="Sort by {{ .label }}">{{ .label }}<span aria-hidden="true"></span></button>
+        {{ else }}{{ .label }}{{ end }}
+      </th>
+    {{ end }}</tr></thead>
     <tbody>
-      {{ range $rows }}{{ $row := . }}
-      <tr>{{ range $columns }}<td>{{ index $row .key }}</td>{{ end }}</tr>
+      {{ range $rowIndex, $row := $rows }}
+      <tr data-original-index="{{ $rowIndex }}">{{ range $columns }}
+        {{- $value := index $row .key -}}
+        {{- $type := .type | default "string" -}}
+        {{- $display := printf "%v" $value -}}
+        {{- if eq $type "int" -}}
+          {{- $number := int $value -}}
+          {{- $display = cond (isset . "format") (printf .format $number) (printf "%d" $number) -}}
+        {{- else if eq $type "float" -}}
+          {{- $number := float $value -}}
+          {{- $display = cond (isset . "format") (printf .format $number) (printf "%v" $number) -}}
+        {{- else if eq $type "bool" -}}
+          {{- $truthy := in (slice "true" "1" "yes" "on") (lower (printf "%v" $value)) -}}
+          {{- $display = cond $truthy (.trueLabel | default "Yes") (.falseLabel | default "No") -}}
+        {{- else if eq $type "date" -}}
+          {{- $display = time.Format (.format | default ":date_medium") $value -}}
+        {{- else if and (eq $type "string") (isset . "format") -}}
+          {{- $display = printf .format $value -}}
+        {{- end -}}
+        <td data-column="{{ .key }}" data-type="{{ $type }}"
+            data-value="{{ printf "%v" $value }}"{{ with .align }}
+            class="table-cell--{{ . }}"{{ end }}>
+          {{- if eq $type "url" -}}
+            <a href="{{ partial "url.html" $value }}">{{ .linkLabel | default $display }}</a>
+          {{- else if eq $type "status" -}}
+            {{- $variant := "default" -}}
+            {{- with .variants }}{{ with index . (lower $display) }}{{ $variant = . }}{{ end }}{{ end -}}
+            {{- partial "badge.html" (dict "label" $display "variant" $variant) -}}
+          {{- else -}}{{ $display }}{{- end -}}
+        </td>
+      {{ end }}</tr>
       {{ end }}
     </tbody>
   </table>
+  </div>
 </div>

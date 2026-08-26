@@ -1,0 +1,14 @@
+{{- $hash := crypto.SHA256 .source -}}
+{{- $path := printf "static/_generated/graphics/%s.svg" $hash -}}
+{{- $svg := os.ReadFile $path -}}
+{{- if not $svg }}{{ errorf "Generated %s SVG %q is missing; run the project graphics build before Hugo" .backend $path }}{{ end -}}
+<figure class="graphic graphic--generated" data-graphic-backend="{{ .backend }}">
+  <div class="graphic__media graphic__media--inline" role="img"
+    aria-label="{{ .alt | default (printf "%s diagram" (upper .backend)) }}">{{ $svg | safeHTML }}</div>
+  {{- if or .caption .showSource -}}
+  <figcaption>
+    {{- with .caption }}<span>{{ . | $.page.RenderString }}</span>{{ end -}}
+    {{- if .showSource }}<span class="graphic__source">{{ upper .backend }} source rendered at build time</span>{{ end -}}
+  </figcaption>
+  {{- end -}}
+</figure>

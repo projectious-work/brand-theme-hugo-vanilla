@@ -152,6 +152,9 @@ h2:hover .heading-anchor,h3:hover .heading-anchor,h4:hover .heading-anchor{opaci
 .figure{margin:24px 0}
 .figure img{max-width:100%;height:auto;border-radius:var(--radius-lg);border:1px solid var(--color-border)}
 .figure figcaption{margin-top:8px;font-size:calc(13px * var(--font-scale));line-height:1.5;color:var(--color-text-secondary)}
+.graphic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-4);margin:24px 0}
+.graphic-grid>.graphic{margin:0;min-width:0}
+@media (max-width:800px){.graphic-grid{grid-template-columns:1fr}}
 .imgswap{display:block}
 .imgswap__dark{display:none}
 [data-theme="dark"] .imgswap__light{display:none}
@@ -165,6 +168,16 @@ h2:hover .heading-anchor,h3:hover .heading-anchor,h4:hover .heading-anchor{opaci
 .tablewrap{overflow-x:auto;margin:20px 0;border-radius:var(--radius-md)}
 .tablewrap:focus-visible{outline:2px solid var(--midnight-9);outline-offset:2px}
 .tablewrap table{margin:0}
+.data-table__controls{display:flex;align-items:end;flex-wrap:wrap;gap:var(--space-3);margin:20px 0 10px;padding:var(--space-3);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--elevated-0)}
+.data-table__controls label,.data-table__filter{display:grid;gap:4px;margin:0;color:var(--color-text-secondary);font-size:calc(12px * var(--font-scale));font-weight:600}
+.data-table__filter{grid-template-columns:repeat(2,minmax(80px,1fr));padding:0;border:0}
+.data-table__filter legend{grid-column:1/-1;padding:0}
+.data-table__controls input,.data-table__controls select{min-height:36px;padding:6px 9px;border:1px solid var(--color-border);border-radius:var(--radius-sm);background:var(--color-surface);color:var(--color-text-primary);font:inherit;font-weight:400}
+.data-table__count{margin-left:auto;color:var(--color-text-secondary);font-size:calc(12px * var(--font-scale))}
+.data-table__sort{display:inline-flex;align-items:center;gap:6px;padding:0;border:0;background:transparent;color:inherit;font:inherit;font-weight:inherit;cursor:pointer}
+th[aria-sort="ascending"] .data-table__sort span::after{content:"↑"}
+th[aria-sort="descending"] .data-table__sort span::after{content:"↓"}
+.table-cell--left{text-align:left}.table-cell--center{text-align:center}.table-cell--right{text-align:right}
 
 /* ── Code blocks ────────────────────────────────────────────────────── */
 .code{margin:0 0 20px;border:1px solid var(--code-panel-border);border-radius:var(--radius-md);overflow:hidden;background:var(--code-panel-surface);box-shadow:inset 0 1px 0 var(--tint-code-header-dark)}
@@ -295,6 +308,8 @@ html:not([data-code="dark"]):not([data-theme="dark"]) .code *::selection{backgro
 .card__icon{color:var(--color-accent);margin-bottom:10px}
 .card__title{font-family:var(--font-heading);font-weight:600;font-size:calc(15px * var(--font-scale));color:var(--color-text-primary);margin:0 0 4px}
 .card__text{font-size:calc(13.5px * var(--font-scale));line-height:1.55;color:var(--color-text-secondary);margin:0}
+.card__link{display:block;width:fit-content;margin-left:auto;text-align:right}
+.prose>.badge+.code{margin-top:var(--space-4)}
 
 /* ── Tabs ───────────────────────────────────────────────────────────── */
 .tabs{margin:20px 0}
@@ -349,6 +364,29 @@ html:not([data-code="dark"]):not([data-theme="dark"]) .code *::selection{backgro
    the SVG background is forced transparent — Mermaid otherwise paints its own,
    which showed as a black rectangle in light mode. */
 .mermaid{margin:24px 0;padding:20px;text-align:center;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg);overflow-x:auto}
+.graphic,.chart{margin:24px 0}
+.graphic__media,.graphic__inline,.chart__viewport{display:block;width:100%;box-sizing:border-box;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)}
+.graphic__media{height:auto}
+.graphic__inline{padding:20px;overflow-x:auto;text-align:center}
+.graphic__inline svg{display:block;width:100%;height:auto;max-height:70vh;margin:auto}
+.graphic figcaption,.chart figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;margin-top:8px;font-size:calc(13px * var(--font-scale));line-height:1.5;color:var(--color-text-secondary)}
+.graphic__source{white-space:nowrap;font-family:var(--font-code);font-size:calc(12px * var(--font-scale))}
+.chart__viewport{padding:12px;overflow-x:auto}
+.chart svg{display:block;width:100%;height:auto;min-width:520px;font-family:var(--font-body)}
+.chart__grid line{stroke:var(--color-border);stroke-width:1}
+.chart__grid text,.chart__labels text{fill:var(--color-text-secondary);font-size:12px}
+.chart__axis{stroke:var(--color-text-secondary);stroke-width:1.25}
+.chart__series rect{fill:var(--color-accent-solid)}
+.chart__series rect:nth-child(even){fill:var(--midnight-8)}
+.chart__line{fill:none;stroke:var(--color-accent-solid);stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+.chart__points circle{fill:var(--color-surface);stroke:var(--color-accent-solid);stroke-width:4}
+.chart__axis-label{fill:var(--color-text-primary)!important;font-family:var(--font-heading);font-size:13px!important;font-weight:600}
+[data-theme="dark"] .chart__series rect:nth-child(even){fill:var(--midnight-6)}
+[data-theme="dark"] .chart__points circle{fill:var(--surface-1)}
+.plot{margin:24px 0}
+.plot__viewport{box-sizing:border-box;width:100%;padding:12px;overflow-x:auto;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:var(--color-surface)}
+.plot__viewport>svg{display:block;max-width:100%;height:auto;margin:auto;font-family:var(--font-body)}
+.plot figcaption{margin-top:8px;font-size:calc(13px * var(--font-scale));line-height:1.5;color:var(--color-text-secondary)}
 .cast{margin:24px 0;border:1px solid var(--color-border);border-radius:var(--radius-md);overflow:hidden;background:var(--terminal-surface)}
 html:not([data-code="dark"]):not([data-theme="dark"]) .cast{background:var(--terminal-light-surface)}
 
@@ -674,4 +712,31 @@ html[data-focus="strong"] [data-theme="dark"] :focus-visible {
     --midnight-5: #2e4b68;
     --tag-bg: #20354d;
   }
+}
+/* Domain graphics share one responsive, print-friendly presentation contract. */
+.graphic__media--inline,
+.domain-graphic__viewport {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.graphic__media--inline > svg,
+.wavedrom > svg,
+.molecule > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
+}
+
+.domain-graphic .jxgbox {
+  min-height: 28rem;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.algorithm .domain-graphic__source {
+  overflow-x: auto;
+  color: var(--color-text-primary);
 }

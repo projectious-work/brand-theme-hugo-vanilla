@@ -4,9 +4,15 @@ A Hugo theme implementing the **projectious.work** brand system for documentatio
 change logs, taxonomy and marketing pages. Content authors write Markdown and shortcodes;
 the theme owns every piece of markup.
 
-Requires Hugo **0.128.0+**. Node is needed only for the Tailwind v4 step.
+Requires Hugo Extended **0.128.0+**, Go and Git. Node.js/npm drives Tailwind and
+the integrated graphics pre-build. D2, Graphviz and Typst are optional and are
+needed only when uncached content uses their renderers.
 
 ## Install
+
+The structured [Installation guide](src/content/content/en/docs/installation.md)
+covers prerequisites, released-module and local-checkout installation,
+capability-based graphics tools, offline builds, verification and removal.
 
 ```toml
 [module]
@@ -64,7 +70,9 @@ contents and math passthrough.
 
 `callout` · `cards`/`card` · `tabs`/`tab` · `steps`/`step` · `details` ·
 `filetree`/`folder`/`file` · `icon` · `badge` · `button` · `terminal` · `term` ·
-`mermaid` · `math` · `asciinema` · `notebook`
+`mermaid` · `diagram` · `chart` · `plot` · `jsxgraph` · `wavedrom` · `smiles` ·
+`pseudocode` · `graphic` · `data-badges` ·
+`card-list` · `data-table` · `math` · `asciinema` · `notebook`
 
 The [Features](https://projectious-work.github.io/brand-theme-hugo-vanilla/docs/features/)
 section is the live gallery: every component has a rendered example, copyable
@@ -94,8 +102,10 @@ src/content/      example site (module replace back to the repo root)
 
 ## Third-party runtime assets
 
-KaTeX 0.18.4, Mermaid 11.16.1 and asciinema-player 3.17.0 load from
-exact version URLs declared in `src/data/cdn.yaml`. Set
+KaTeX 0.18.4, Mermaid 11.16.1, D3 7.9.0, Observable Plot 0.6.17,
+JSXGraph 1.13.2, WaveDrom 3.6.2, SMILES Drawer 2.4.1, pseudocode.js 2.4.1
+and asciinema-player 3.17.0 load from exact version URLs declared in
+`src/data/cdn.yaml`. Set
 `params.selfHostAssets = true` and mirror those files under
 `static/vendor/<package>/` for deployments that prohibit public CDNs. Nothing
 is downloaded or locally bundled by the theme build.
@@ -105,7 +115,10 @@ multi-file runtimes that fetch sibling assets, so hashing only an entry file
 would not provide complete integrity. Theme-owned CSS and JavaScript are
 fingerprinted with integrity metadata by Hugo Pipes.
 
-The bundled icon and font assets do not make third-party requests.
+The bundled icon and font assets do not make third-party requests. Generated
+D2, Graphviz and Typst SVG is inserted inline so selectable text and SVG
+semantics remain in the page; browser renderers produce inline SVG or semantic
+HTML from inline source, a local file or an explicitly supplied URL.
 
 See [TESTING.md](TESTING.md) for the upstream assertion checklist and known
 version-matrix gap. [CONTRACT-feedback.md](CONTRACT-feedback.md) defines the

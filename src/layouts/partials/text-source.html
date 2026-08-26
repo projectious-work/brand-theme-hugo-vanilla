@@ -1,0 +1,18 @@
+{{- /* Resolve plain-text renderer input from one explicit source. */ -}}
+{{- $source := .content -}}
+{{- $src := .src -}}
+{{- $url := .url -}}
+{{- $resource := false -}}
+{{- if and $src $url }}{{ errorf "Choose src or url, not both" }}{{ end -}}
+{{- if $url -}}
+  {{- with try (resources.GetRemote $url) -}}
+    {{- with .Err }}{{ errorf "Unable to load remote source %q: %s" $url . }}{{ end -}}
+    {{- with .Value }}{{ $resource = . }}{{ end -}}
+  {{- end -}}
+{{- else if $src -}}
+  {{- $resource = or (.page.Resources.GetMatch $src) (resources.Get $src) -}}
+  {{- if not $resource }}{{ errorf "Unable to load source %q" $src }}{{ end -}}
+{{- end -}}
+{{- with $resource }}{{ $source = .Content }}{{ end -}}
+{{- if not (strings.TrimSpace $source) }}{{ errorf "Renderer needs inline content, src, or url" }}{{ end -}}
+{{- return $source -}}

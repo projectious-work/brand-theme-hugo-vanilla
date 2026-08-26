@@ -1,0 +1,17 @@
+{{- $data := partial "data-source.html" (dict
+  "page" .Page "src" (.Get "src") "url" (.Get "url")
+  "format" (.Get "format") "content" .Inner) -}}
+{{- with .Get "key" }}{{ $data = index $data . }}{{ end -}}
+{{- .Page.Store.Set "needsPlot" true -}}
+{{- $kind := lower (.Get "type" | default "bar") -}}
+{{- if not (in (slice "bar" "line" "area" "scatter" "histogram" "heatmap" "box") $kind) -}}
+  {{- errorf "plot type %q must be bar, line, area, scatter, histogram, heatmap, or box" $kind -}}
+{{- end -}}
+<figure class="plot" data-plot data-type="{{ $kind }}"
+  data-x="{{ .Get "x" }}" data-y="{{ .Get "y" }}"
+  data-color="{{ .Get "color" }}" data-title="{{ .Get "title" }}"
+  data-x-label="{{ .Get "x-label" }}" data-y-label="{{ .Get "y-label" }}">
+  <div class="plot__viewport" role="img" aria-label="{{ .Get "title" | default "Interactive chart" }}"></div>
+  <script type="application/json" class="plot__data">{{ $data | jsonify | safeJS }}</script>
+  {{ with .Get "caption" }}<figcaption>{{ . | $.Page.RenderString }}</figcaption>{{ end }}
+</figure>

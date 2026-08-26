@@ -14,7 +14,11 @@ command -v hugo >/dev/null 2>&1 || {
   exit 1
 }
 
-exec env PATH="$ROOT_DIR/node_modules/.bin:$PATH" hugo server \
+node "$ROOT_DIR/scripts/render-graphics.mjs" --watch &
+GRAPHICS_PID=$!
+trap 'kill "$GRAPHICS_PID" 2>/dev/null || true' EXIT INT TERM
+
+env PATH="$ROOT_DIR/node_modules/.bin:$PATH" hugo server \
   --source "$SITE_DIR" \
   --cacheDir "$ROOT_DIR/.deploy/cache" \
   --bind 0.0.0.0 \

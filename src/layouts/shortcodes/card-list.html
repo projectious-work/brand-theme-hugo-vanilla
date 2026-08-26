@@ -1,0 +1,6 @@
+{{- $data := partial "data-source.html" (dict
+  "page" .Page "src" (.Get "src") "url" (.Get "url")
+  "format" (.Get "format") "content" .Inner) -}}
+{{- with .Get "key" }}{{ $data = index $data . }}{{ end -}}
+{{- partial "card-list.html" (dict
+  "items" $data "linkLabel" (.Get "link-label")) -}}

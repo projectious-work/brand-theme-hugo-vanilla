@@ -1,0 +1,5 @@
+- label: Stable
+  variant: accent
+- label: Accessible
+- label: Build-time data
+  href: /docs/features/data-driven-components/

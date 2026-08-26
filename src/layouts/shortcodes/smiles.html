@@ -1,0 +1,8 @@
+{{- $source := partial "text-source.html" (dict "page" .Page "src" (.Get "src") "url" (.Get "url") "content" (.Get "value" | default .Inner)) -}}
+{{- .Page.Store.Set "needsSmiles" true -}}
+<figure class="domain-graphic molecule" data-smiles="{{ strings.TrimSpace $source }}">
+  <svg class="domain-graphic__viewport" role="img"
+    aria-label="{{ .Get "title" | default "Chemical structure" }}"></svg>
+  <span class="sr-only">SMILES: {{ strings.TrimSpace $source }}</span>
+  {{ with .Get "caption" }}<figcaption>{{ . | $.Page.RenderString }}</figcaption>{{ end }}
+</figure>

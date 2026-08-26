@@ -1,0 +1,20 @@
+{{- if .Store.Get "needsJSXGraph" -}}
+<link rel="stylesheet" href="{{ partial "cdn-url.html" (dict "pkg" "jsxgraph" "file" "css") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}>
+<script src="{{ partial "cdn-url.html" (dict "pkg" "jsxgraph" "file" "js") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}></script>
+{{- end -}}
+{{- if .Store.Get "needsWaveDrom" -}}
+<script src="{{ partial "cdn-url.html" (dict "pkg" "wavedrom" "file" "skin") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}></script>
+<script src="{{ partial "cdn-url.html" (dict "pkg" "wavedrom" "file" "js") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}></script>
+{{- end -}}
+{{- if .Store.Get "needsSmiles" -}}
+<script src="{{ partial "cdn-url.html" (dict "pkg" "smilesDrawer" "file" "js") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}></script>
+{{- end -}}
+{{- if .Store.Get "needsPseudocode" -}}
+<link rel="stylesheet" href="{{ partial "cdn-url.html" (dict "pkg" "pseudocode" "file" "css") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}>
+<link rel="stylesheet" href="{{ partial "cdn-url.html" (dict "pkg" "katex" "file" "css") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}>
+<script src="{{ partial "cdn-url.html" (dict "pkg" "katex" "file" "js") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}></script>
+<script src="{{ partial "cdn-url.html" (dict "pkg" "pseudocode" "file" "js") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}></script>
+{{- end -}}
+{{- if or (.Store.Get "needsJSXGraph") (.Store.Get "needsWaveDrom") (.Store.Get "needsSmiles") (.Store.Get "needsPseudocode") -}}
+{{ partial "script.html" (dict "src" "domain-graphics.js" "defer" true) }}
+{{- end -}}

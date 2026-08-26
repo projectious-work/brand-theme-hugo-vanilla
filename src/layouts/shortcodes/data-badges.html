@@ -1,0 +1,7 @@
+{{- $data := partial "data-source.html" (dict
+  "page" .Page "src" (.Get "src") "url" (.Get "url")
+  "format" (.Get "format") "content" .Inner) -}}
+{{- with .Get "key" }}{{ $data = index $data . }}{{ end -}}
+<div class="changelog__badges data-badges">
+  {{- range $data }}{{ partial "badge.html" . }} {{ end -}}
+</div>

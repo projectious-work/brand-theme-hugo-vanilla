@@ -16,6 +16,17 @@ rg -q 'version: "0\.18\.4"' "$ROOT_DIR/src/data/cdn.yaml"
 rg -q 'katex@0\.18\.4/dist' "$ROOT_DIR/src/data/cdn.yaml"
 rg -q 'version: "11\.16\.1"' "$ROOT_DIR/src/data/cdn.yaml"
 rg -q 'mermaid@11\.16\.1/dist' "$ROOT_DIR/src/data/cdn.yaml"
+rg -q 'version: "7\.9\.0"' "$ROOT_DIR/src/data/cdn.yaml"
+rg -q 'd3@7\.9\.0/dist' "$ROOT_DIR/src/data/cdn.yaml"
+rg -q 'version: "0\.6\.17"' "$ROOT_DIR/src/data/cdn.yaml"
+rg -q '@observablehq/plot@0\.6\.17/dist' "$ROOT_DIR/src/data/cdn.yaml"
+rg -q 'version: "1\.13\.2"' "$ROOT_DIR/src/data/cdn.yaml"
+rg -q 'jsxgraph@1\.13\.2/distrib' "$ROOT_DIR/src/data/cdn.yaml"
+rg -q 'version: "3\.6\.2"' "$ROOT_DIR/src/data/cdn.yaml"
+rg -q 'wavedrom@3\.6\.2' "$ROOT_DIR/src/data/cdn.yaml"
+test "$(rg -c 'version: "2\.4\.1"' "$ROOT_DIR/src/data/cdn.yaml")" -eq 2
+rg -q 'smiles-drawer@2\.4\.1/dist' "$ROOT_DIR/src/data/cdn.yaml"
+rg -q 'pseudocode@2\.4\.1/build' "$ROOT_DIR/src/data/cdn.yaml"
 rg -q 'version: "3\.17\.0"' "$ROOT_DIR/src/data/cdn.yaml"
 rg -q 'asciinema-player@3\.17\.0/dist' "$ROOT_DIR/src/data/cdn.yaml"
 if rg -n 'static/vendor|scripts/vendor\.sh|@latest|mermaid@11/dist' \
@@ -62,6 +73,88 @@ fi
 
 rg -q 'katex@0\.18\.4' "$VERIFY_DIR/build-a/docs/features/mathematics/index.html"
 rg -q 'mermaid@11\.16\.1' "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
+[[ -s "$VERIFY_DIR/build-a/docs/installation/index.html" ]]
+rg -q 'Optional graphics tools' "$VERIFY_DIR/build-a/docs/installation/index.html"
+rg -q 'logo/icon-dark\.svg' "$VERIFY_DIR/build-a/index.html"
+rg -q 'class="chart chart--bar"' \
+  "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
+rg -q 'class="chart chart--line"' \
+  "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
+rg -q 'class="chart chart--dot"' \
+  "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
+rg -q 'aria-labelledby="chart-[0-9]+-title chart-[0-9]+-desc"' \
+  "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
+rg -q 'graphics/request-flow\.mmd' \
+  "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
+rg -q 'id=trusted-inline-svg' \
+  "$VERIFY_DIR/build-a/docs/features/images/index.html"
+rg -q 'class=graphic' "$VERIFY_DIR/build-a/docs/features/images/index.html"
+rg -q 'id=bitmap-images' "$VERIFY_DIR/build-a/docs/features/images/index.html"
+rg -q 'href=#charts-from-csv' \
+  "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
+rg -q 'class=plot data-plot data-type=heatmap' \
+  "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
+rg -q 'd3@7\.9\.0/dist/d3\.min\.js' \
+  "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
+rg -q '@observablehq/plot@0\.6\.17/dist/plot\.umd\.min\.js' \
+  "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
+for backend in d2 dot; do
+  rg -q "data-graphic-backend=$backend" \
+    "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
+done
+test "$(rg -o 'data-graphic-backend=d2' \
+  "$VERIFY_DIR/build-a/docs/features/diagrams/index.html" | wc -l)" -eq 3
+test "$(rg -o 'graphic__media graphic__media--inline' \
+  "$VERIFY_DIR/build-a/docs/features/diagrams/index.html" | wc -l)" -eq 4
+if rg -q 'graphic--generated[^<]*<img' \
+  "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"; then
+  echo "error: generated diagrams must be inline SVG, not img documents" >&2
+  exit 1
+fi
+for source in network-topology aws-nested-infrastructure; do
+  rg -q "graphics/$source\.d2" \
+    "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
+done
+for pin in \
+  'jsxgraph@1.13.2' 'wavedrom@3.6.2' \
+  'smiles-drawer@2.4.1' 'pseudocode@2.4.1'; do
+  rg -q "$pin" "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
+done
+test "$(rg -o 'data-graphic-backend=typst' \
+  "$VERIFY_DIR/build-a/docs/features/typst-graphics/index.html" | wc -l)" -eq 13
+for example in \
+  karls-picture neural-network cetz-geometry primaviz-bars \
+  alchemist-molecule timeliney-plan finite-automaton fletcher-flow \
+  lovelace-search physica-notation staunton-position genotypst-tree \
+  circuiteria-block; do
+  rg -q "graphics/$example\.typ" \
+    "$VERIFY_DIR/build-a/docs/features/typst-graphics/index.html"
+done
+while read -r generated; do
+  [[ -s "$VERIFY_DIR/build-a/$generated" ]] || {
+    echo "error: missing generated graphic $generated" >&2
+    exit 1
+  }
+done < <(rg --no-filename -o '_generated/graphics/[a-f0-9]+\.svg' \
+  "$VERIFY_DIR/build-a/docs/features/diagrams/index.html" \
+  "$VERIFY_DIR/build-a/docs/features/typst-graphics/index.html" | sort -u)
+rg -q 'class="changelog__badges data-badges"' \
+  "$VERIFY_DIR/build-a/docs/features/data-driven-components/index.html"
+rg -q 'class="cards cards--stacked"' \
+  "$VERIFY_DIR/build-a/docs/features/data-driven-components/index.html"
+rg -q 'aria-label="Theme releases"' \
+  "$VERIFY_DIR/build-a/docs/features/data-driven-components/index.html"
+rg -q 'class="data-table data-table--interactive"' \
+  "$VERIFY_DIR/build-a/docs/features/data-driven-components/index.html"
+rg -q '>16 Aug 2026<' \
+  "$VERIFY_DIR/build-a/docs/features/data-driven-components/index.html"
+rg -q 'data-value=2\.46[^>]*>2\.5 MB<' \
+  "$VERIFY_DIR/build-a/docs/features/data-driven-components/index.html"
+rg -q '/js/data-table\.' \
+  "$VERIFY_DIR/build-a/docs/features/data-driven-components/index.html"
+node --check "$ROOT_DIR/src/assets/js/data-table.js"
+node --check "$ROOT_DIR/src/assets/js/domain-graphics.js"
+node --check "$ROOT_DIR/scripts/render-graphics.mjs"
 rg -q 'asciinema-player@3\.17\.0' \
   "$VERIFY_DIR/build-a/docs/features/terminal-recordings/index.html"
 rg -q '/brand-theme-hugo-vanilla/casts/theme-tour\.cast' \

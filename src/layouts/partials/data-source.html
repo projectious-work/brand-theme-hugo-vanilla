@@ -1,0 +1,34 @@
+{{- /* Load structured data from exactly one Hugo-native source.
+     src: page/global asset; url: build-time remote resource; content: inline.
+     CSV is returned as a slice of maps keyed by its header row. */ -}}
+{{- $page := .page -}}
+{{- $src := .src -}}
+{{- $url := .url -}}
+{{- $content := .content -}}
+{{- $format := lower (.format | default "") -}}
+{{- $resource := false -}}
+{{- $origin := "inline content" -}}
+{{- if $url -}}
+  {{- $origin = $url -}}
+  {{- with try (resources.GetRemote $url) -}}
+    {{- with .Err }}{{ errorf "Unable to load remote data %q: %s" $url . }}{{ end -}}
+    {{- with .Value }}{{ $resource = . }}{{ end -}}
+  {{- end -}}
+{{- else if $src -}}
+  {{- $origin = $src -}}
+  {{- $resource = or ($page.Resources.GetMatch $src) (resources.Get $src) -}}
+  {{- if not $resource }}{{ errorf "Unable to load data resource %q" $src }}{{ end -}}
+{{- end -}}
+{{- if $resource }}{{ $content = $resource.Content }}{{ end -}}
+{{- if not $content }}{{ errorf "Data source %q is empty" $origin }}{{ end -}}
+{{- if not $format -}}
+  {{- $candidate := $src | default $url -}}
+  {{- $format = strings.TrimPrefix "." (lower (path.Ext $candidate)) -}}
+{{- end -}}
+{{- if not (in (slice "csv" "json" "toml" "yaml" "yml" "xml") $format) -}}
+  {{- errorf "Data source %q needs format=csv|json|toml|yaml|xml" $origin -}}
+{{- end -}}
+{{- if eq $format "yml" }}{{ $format = "yaml" }}{{ end -}}
+{{- $options := dict "format" $format -}}
+{{- if eq $format "csv" }}{{ $options = merge $options (dict "targetType" "map") }}{{ end -}}
+{{- return (transform.Unmarshal $options $content) -}}

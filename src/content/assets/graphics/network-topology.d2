@@ -1,0 +1,33 @@
+direction: right
+
+internet: Internet {
+  shape: cloud
+}
+
+edge: Edge network {
+  router: Border router
+  firewall: Firewall
+  router -> firewall
+}
+
+core: Core network {
+  switch-a: Core switch A
+  switch-b: Core switch B
+  switch-a <-> switch-b: redundant link
+}
+
+services: Service network {
+  web: Web tier
+  api: API tier
+  database: PostgreSQL {
+    shape: cylinder
+  }
+  web -> api
+  api -> database
+}
+
+internet -> edge.router
+edge.firewall -> core.switch-a
+edge.firewall -> core.switch-b
+core.switch-a -> services.web
+core.switch-b -> services.web

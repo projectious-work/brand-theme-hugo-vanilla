@@ -14,5 +14,8 @@
   {{- /* Last, so every shortcode and render hook on the page has already had a
          chance to raise the flag. */ -}}
   {{ partial "mermaid-loader.html" . }}
+  {{ partial "plot-loader.html" . }}
+  {{ partial "data-table-loader.html" . }}
+  {{ partial "domain-graphics-loader.html" . }}
 </body>
 </html>

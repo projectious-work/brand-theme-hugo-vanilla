@@ -129,7 +129,7 @@ enableRobotsTXT = true                 # Ask Hugo to generate the theme's robots
     wordmark = "projectious.work"
     markLight = "logo/icon-light.svg"
     markDark = "logo/icon-dark.svg"
-    favicon32 = "logo/favicon-32.png"
+    favicon32 = "logo/icon-dark.svg" # light mark for browser-tab contrast
     appleTouchIcon = "logo/apple-touch-icon-180.png"
 
   [[params.versions]] # One published documentation version.

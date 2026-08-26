@@ -1,0 +1,72 @@
+{{- if .Store.Get "needsPlot" -}}
+<script src="{{ partial "cdn-url.html" (dict "pkg" "d3" "file" "js") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}></script>
+<script src="{{ partial "cdn-url.html" (dict "pkg" "observablePlot" "file" "js") }}"{{ if not site.Params.selfHostAssets }} crossorigin="anonymous"{{ end }}></script>
+<script>
+(function () {
+  const figures = document.querySelectorAll("[data-plot]");
+  const token = (name, fallback) =>
+    getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+      || fallback;
+
+  function marks(figure, data, accent) {
+    const type = figure.dataset.type;
+    const x = figure.dataset.x;
+    const y = figure.dataset.y;
+    const color = figure.dataset.color;
+    const fill = color || accent;
+    const tip = true;
+    if (type === "bar") return [Plot.barY(data, { x, y, fill, tip })];
+    if (type === "line") return [
+      Plot.lineY(data, { x, y, stroke: fill, strokeWidth: 3, tip }),
+      Plot.dot(data, { x, y, fill, r: 4, tip }),
+    ];
+    if (type === "area") return [
+      Plot.areaY(data, { x, y, fill, fillOpacity: 0.22, tip }),
+      Plot.lineY(data, { x, y, stroke: fill, strokeWidth: 2 }),
+    ];
+    if (type === "scatter") return [
+      Plot.dot(data, { x, y, fill, stroke: "currentColor", r: 5, tip }),
+    ];
+    if (type === "histogram") return [
+      Plot.rectY(data, Plot.binX({ y: "count" }, { x, fill, tip })),
+      Plot.ruleY([0]),
+    ];
+    if (type === "heatmap") return [
+      Plot.cell(data, { x, y, fill: color || "value", inset: 1, tip }),
+    ];
+    return [Plot.boxY(data, { x, y, fill, tip })];
+  }
+
+  function render(figure) {
+    const viewport = figure.querySelector(".plot__viewport");
+    const raw = JSON.parse(figure.querySelector(".plot__data").textContent);
+    const data = raw.map ? raw.map(d3.autoType) : raw;
+    const accent = token("--color-accent-solid", "#d76832");
+    const text = token("--color-text-primary", "#142438");
+    const border = token("--color-border", "#cdd0d5");
+    const chart = Plot.plot({
+      width: Math.max(520, viewport.clientWidth || 720),
+      height: 380,
+      marginLeft: 58,
+      marginBottom: 52,
+      grid: true,
+      style: { background: "transparent", color: text },
+      ariaLabel: figure.dataset.title || "Interactive chart",
+      x: { label: figure.dataset.xLabel || figure.dataset.x || null },
+      y: { label: figure.dataset.yLabel || figure.dataset.y || null },
+      color: { legend: Boolean(figure.dataset.color), range: [accent, border] },
+      marks: marks(figure, data, accent),
+    });
+    viewport.replaceChildren(chart);
+  }
+
+  figures.forEach(render);
+  let timer;
+  addEventListener("resize", () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => figures.forEach(render), 120);
+  });
+  document.addEventListener("pw:mode", () => figures.forEach(render));
+}());
+</script>
+{{- end -}}
