@@ -97,6 +97,8 @@ enableGitInfo = true
 [params]
   description = "Documentation, release history and marketing pages on the projectious.work brand system."
   github = "https://github.com/projectious-work/brand-theme-hugo-vanilla"
+  [params.brand]
+    wordmark = "projectious.theme"
   # A single string is appended to the page's content-relative path. For a
   # multilingual site the theme adds the language directory automatically; pass a
   # map keyed by language code when the repo layout differs per language.
