@@ -52,6 +52,7 @@ Theme installieren, konfigurieren, verwenden, erweitern und aktualisieren.
 
 Theme-Versionen und die jeweils ausgelieferten Änderungen.
 
+- [v0.4.0 — datengesteuerte Komponenten und integrierte Grafiken](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/changelog/release-v0-4-0/): Datenkomponenten und Diagramme aus Inline-Quellen, lokalen Dateien oder freigegebenen URLs sowie ein neues Erscheinungsbild.
 - [v0.3.6 — konfigurierbares Branding und wiederverwendbare Komposition](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/changelog/release-v0-3-6/): Produktidentität, Zeitleisten und Terminal-Aufzeichnungen lassen sich ohne kopierte Theme-Templates konfigurieren.
 - [v0.3.5 — lesbare Auswahl und solide Navigation](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/changelog/release-v0-3-5/): Dunkle Oberflächen verwenden barrierefreie Auswahlfarben, und der fixierte Header bleibt klar vom scrollenden Inhalt getrennt.
 - [v0.3.4 — öffentliche APIs für datengetriebene Komponenten](https://projectious-work.github.io/brand-theme-hugo-vanilla/de/changelog/release-v0-3-4/): Websites können Badges, Karten, Tabellen und Anwendungsshells über stabile Theme-Partials aus Hugo-Daten aufbauen.

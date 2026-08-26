@@ -1,0 +1,6 @@
+{"version": 2, "width": 80, "height": 8, "timestamp": 1786780800, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
+[0.2, "o", "$ hugo server --disableFastRender\r\n"]
+[0.8, "o", "Watching for changes in content and layouts\r\n"]
+[1.4, "o", "Built in 284 ms\r\n"]
+[2.0, "o", "Web Server is available at http://localhost:1313/\r\n"]
+[2.7, "o", "Press Ctrl+C to stop\r\n"]

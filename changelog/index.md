@@ -4,6 +4,7 @@
 
 
 
+- [v0.4.0 — data-driven components and integrated graphics](https://projectious-work.github.io/brand-theme-hugo-vanilla/changelog/release-v0-4-0/index.md) — Author rich data components and diagrams from inline source, local files or approved URLs, with a refreshed project identity.
 - [v0.3.6 — configurable branding and reusable composition](https://projectious-work.github.io/brand-theme-hugo-vanilla/changelog/release-v0-3-6/index.md) — Consumers can configure product identity and reuse timeline and terminal-recording composition APIs without copying theme markup.
 - [v0.3.5 — readable dark selections and solid navigation](https://projectious-work.github.io/brand-theme-hugo-vanilla/changelog/release-v0-3-5/index.md) — Dark surfaces now use accessible selection colors, and the sticky header remains visually separate from scrolling content.
 - [v0.3.4 — public data-driven composition APIs](https://projectious-work.github.io/brand-theme-hugo-vanilla/changelog/release-v0-3-4/index.md) — Consumers can compose badges, cards and tables from Hugo data through stable theme partials.
