@@ -1,0 +1,10 @@
+team,latency,throughput
+Core,82,510
+Core,91,470
+Core,76,540
+Edge,48,610
+Edge,55,590
+Edge,43,650
+Data,118,390
+Data,105,420
+Data,127,360

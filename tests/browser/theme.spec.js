@@ -90,9 +90,10 @@ test("pinned CDN media, math and diagrams render", async ({ page }, testInfo) =>
   await page.goto("docs/features/diagrams/");
   await expect(page.locator('script[src*="mermaid@11.16.1/dist/mermaid.min.js"]'))
     .toHaveCount(1);
-  await expect(page.locator(".mermaid svg")).toBeVisible();
+  await expect(page.locator(".mermaid svg")).toHaveCount(2);
+  await expect(page.locator(".mermaid svg").first()).toBeVisible();
   await expect(page.locator(".mermaid svg .node")).not.toHaveCount(0);
-  const diagramBox = await page.locator(".mermaid svg").evaluate((svg) => {
+  const diagramBox = await page.locator(".mermaid svg").first().evaluate((svg) => {
     const box = svg.getBoundingClientRect();
     const panel = svg.parentElement.getBoundingClientRect();
     return {
@@ -109,8 +110,46 @@ test("pinned CDN media, math and diagrams render", async ({ page }, testInfo) =>
   expect(Math.abs(diagramBox.width - diagramBox.availableWidth)).toBeLessThan(2);
   expect(Math.abs(diagramBox.leftInset - diagramBox.rightInset)).toBeLessThan(2);
   expect(diagramBox.viewBox).not.toBe("-8 -8 16 16");
+  await expect(page.locator(".chart--bar svg")).toBeVisible();
+  await expect(page.locator(".chart--bar .chart__series rect")).toHaveCount(4);
+  await expect(page.locator(".chart--line .chart__line")).toBeVisible();
+  await expect(page.locator(".chart--line .chart__points circle")).toHaveCount(4);
+  await expect(page.locator(".chart--dot .chart__points circle")).toHaveCount(4);
+  await expect(page.locator('script[src*="d3@7.9.0/dist/d3.min.js"]'))
+    .toHaveCount(1);
+  await expect(page.locator(
+    'script[src*="@observablehq/plot@0.6.17/dist/plot.umd.min.js"]',
+  )).toHaveCount(1);
+  await expect(page.locator(".plot__viewport > :is(svg, figure)")).toHaveCount(7);
+  await expect(page.locator(
+    ".plot[data-type='heatmap'] svg[aria-label='Requests by time slot']",
+  )).toBeVisible();
+  await expect(page.locator(".graphic--generated img")).toHaveCount(0);
+  await expect(page.locator(".graphic--generated .graphic__media--inline > svg"))
+    .toHaveCount(4);
+  await expect(page.locator("[data-graphic-backend='d2'] svg text").first())
+    .toBeVisible();
+  await expect(page.locator(".toc a[href='#charts-from-csv']")).toBeVisible();
+  await expect(page.locator('script[src*="jsxgraph@1.13.2"]')).toHaveCount(1);
+  await expect(page.locator("[data-jsxgraph] svg")).toBeVisible();
+  await expect(page.locator('script[src*="wavedrom@3.6.2/wavedrom.min.js"]'))
+    .toHaveCount(1);
+  await expect(page.locator("[data-wavedrom] svg")).toBeVisible();
+  await expect(page.locator('script[src*="smiles-drawer@2.4.1"]')).toHaveCount(1);
+  await expect(page.locator("[data-smiles] svg")).toBeVisible();
+  expect(await page.locator("[data-smiles] svg g").count()).toBeGreaterThan(1);
+  await expect(page.locator('script[src*="pseudocode@2.4.1"]')).toHaveCount(1);
+  await expect(page.locator("[data-pseudocode] .ps-root")).toBeVisible();
+  const chartBox = await page.locator(".chart--bar svg").evaluate((svg) => {
+    const box = svg.getBoundingClientRect();
+    const panel = svg.parentElement.getBoundingClientRect();
+    return { width: box.width, panelWidth: panel.width };
+  });
+  expect(chartBox.width).toBeGreaterThan(500);
+  expect(chartBox.width).toBeLessThanOrEqual(chartBox.panelWidth);
   await page.evaluate(() => window.pwTheme.set("dark"));
-  await expect(page.locator(".mermaid svg")).toBeVisible();
+  await expect(page.locator(".mermaid svg").first()).toBeVisible();
+  await expect(page.locator(".chart--bar svg")).toBeVisible();
 
   await page.goto("docs/features/mathematics/");
   await expect(page.locator(".katex").first()).toBeVisible();
@@ -546,6 +585,78 @@ test("Features renders image, recording and notebook examples", async (
   await expect(page.locator(
     'figure img[src$="/img/sunrise-brand.svg"]',
   )).toBeVisible();
+  await expect(page.locator(
+    'figure img[src$="/img/documentation-desktop.png"]',
+  )).toBeVisible();
+  await page.goto("docs/features/data-driven-components/");
+  const badgeGap = await page.locator(".prose > .badge + .code").evaluate(
+    (code) => parseFloat(getComputedStyle(code).marginTop),
+  );
+  expect(badgeGap).toBeGreaterThanOrEqual(16);
+  await expect(page.locator(".data-badges .badge")).toHaveCount(3);
+  await expect(page.locator(".cards--stacked .card")).toHaveCount(2);
+  await expect(page.locator(".tablewrap[aria-label='Theme releases'] tbody tr"))
+    .toHaveCount(3);
+  const enhancedTable = page.locator(".data-table--interactive");
+  await expect(enhancedTable.locator("[data-table-controls]")).toBeVisible();
+  await expect(enhancedTable.locator("tbody tr").first()).toContainText(
+    "16 Aug 2026",
+  );
+  await expect(enhancedTable.locator("tbody tr").first()).toContainText(
+    "2.5 MB",
+  );
+  await enhancedTable.locator("[data-table-search]").fill("v0.3.5");
+  await expect(enhancedTable.locator("tbody tr:visible")).toHaveCount(1);
+  await expect(enhancedTable.locator("[data-table-count]")).toHaveText(
+    "1 of 3 rows",
+  );
+  await enhancedTable.locator("[data-table-clear]").click();
+  await enhancedTable.locator('th[data-column="downloads"] [data-table-sort]')
+    .click();
+  await expect(enhancedTable.locator('tbody tr [data-column="downloads"]')
+    .first()).toHaveAttribute("data-value", "9341");
+  await enhancedTable.locator('th[data-column="downloads"] [data-table-sort]')
+    .click();
+  await expect(enhancedTable.locator('tbody tr [data-column="downloads"]')
+    .first()).toHaveAttribute("data-value", "18420");
+  await enhancedTable.locator(
+    '[data-table-filter="select"][data-column="status"] select',
+  ).selectOption("archived");
+  await expect(enhancedTable.locator("tbody tr:visible")).toHaveCount(1);
+  await expect(enhancedTable.locator("tbody tr:visible")).toContainText(
+    "Archived",
+  );
+  await enhancedTable.locator("[data-table-clear]").click();
+  await enhancedTable.locator(
+    '[data-table-filter="range"][data-column="downloads"] [data-filter-min]',
+  ).fill("10000");
+  await expect(enhancedTable.locator("tbody tr:visible")).toHaveCount(2);
+  await enhancedTable.locator("[data-table-clear]").click();
+  await enhancedTable.locator(
+    '[data-table-filter="date-range"][data-column="date"] [data-filter-min]',
+  ).fill("2026-08-01");
+  await expect(enhancedTable.locator("tbody tr:visible")).toHaveCount(2);
+  await enhancedTable.locator("[data-table-clear]").click();
+  await enhancedTable.locator(
+    '[data-table-filter="boolean"][data-column="featured"] select',
+  ).selectOption("false");
+  await expect(enhancedTable.locator("tbody tr:visible")).toHaveCount(2);
+  await enhancedTable.locator("[data-table-clear]").click();
+  await enhancedTable.locator(
+    '[data-table-filter="text"][data-column="version"] input',
+  ).fill("0.3.4");
+  await expect(enhancedTable.locator("tbody tr:visible")).toHaveCount(1);
+  await enhancedTable.locator("[data-table-clear]").click();
+  await expect(page.locator(".cards--stacked .card__link")).toHaveCount(2);
+  const cardLinkAlignment = await page.locator(".cards--stacked .card").evaluateAll(
+    (cards) => cards.every((card) => {
+      const link = card.querySelector(".card__link");
+      if (!link) return false;
+      const style = getComputedStyle(link);
+      return style.textAlign === "right" && parseFloat(style.marginLeft) > 0;
+    }),
+  );
+  expect(cardLinkAlignment).toBe(true);
   await page.goto("docs/features/terminal-recordings/");
   await expect(page.locator(".cast[data-cast]")).toBeVisible();
   await expect(page.locator(".cast [data-cast-options]")).toHaveCount(1);
@@ -697,13 +808,13 @@ test("configuration hierarchy and generated feature overview stay complete", asy
   await page.goto("docs/features/");
   await expect(page.locator(".card__title")).toHaveText([
     "Accessibility", "Buttons and badges", "Callouts", "Cards", "Code blocks",
-    "Collapsible details", "Data-driven components", "Diagrams",
+    "Collapsible details", "Data-driven components", "Diagrams and Charts",
     "Editing and feedback", "File trees",
     "Header and navigation", "Icons", "Images", "Internationalization",
     "Jupyter notebooks", "Links", "Mathematics", "Search", "Steps", "Tabs",
     "Tags", "Tailwind and design tokens", "Terminal output",
     "Terminal recordings", "Terminology", "Tokens and public API",
-    "Versioned documentation",
+    "Typst Graphics and CeTZ", "Versioned documentation",
   ]);
 
   await page.goto("docs/features/tokens/");

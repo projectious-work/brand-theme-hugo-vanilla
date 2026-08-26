@@ -1,0 +1,22 @@
+{{- $data := partial "data-source.html" (dict
+  "page" .Page "src" (.Get "src") "url" (.Get "url")
+  "format" (.Get "format") "content" .Inner) -}}
+{{- with .Get "key" }}{{ $data = index $data . }}{{ end -}}
+{{- $columns := slice -}}
+{{- with .Get "columns-src" -}}
+  {{- $columns = partial "data-source.html" (dict
+    "page" $.Page "src" . "format" ($.Get "columns-format")) -}}
+{{- else -}}
+  {{- range split (.Get "columns") "," -}}
+    {{- $parts := split . ":" -}}
+    {{- $key := index $parts 0 }}{{ $label := $key | humanize -}}
+    {{- if gt (len $parts) 1 }}{{ $label = index $parts 1 }}{{ end -}}
+    {{- $columns = $columns | append (dict "key" $key "label" $label) -}}
+  {{- end -}}
+{{- end -}}
+{{- $search := eq (printf "%v" (.Get "search")) "true" -}}
+{{- $sort := eq (printf "%v" (.Get "sort")) "true" -}}
+{{- $filter := eq (printf "%v" (.Get "filter")) "true" -}}
+{{- partial "data-table.html" (dict
+  "page" .Page "rows" $data "columns" $columns "label" (.Get "label")
+  "search" $search "sort" $sort "filter" $filter) -}}

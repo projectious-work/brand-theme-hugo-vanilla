@@ -1,2 +1,15 @@
 {{- .Page.Store.Set "needsMermaid" true -}}
-<pre class="mermaid">{{ .Inner }}</pre>
+{{- $source := .Inner -}}
+{{- $src := .Get "src" -}}{{ $url := .Get "url" -}}{{ $resource := false -}}
+{{- if $url -}}
+  {{- with try (resources.GetRemote $url) -}}
+    {{- with .Err }}{{ errorf "Unable to load remote Mermaid source %q: %s" $url . }}{{ end -}}
+    {{- with .Value }}{{ $resource = . }}{{ end -}}
+  {{- end -}}
+{{- else if $src -}}
+  {{- $resource = or (.Page.Resources.GetMatch $src) (resources.Get $src) -}}
+  {{- if not $resource }}{{ errorf "Unable to load Mermaid source %q" $src }}{{ end -}}
+{{- end -}}
+{{- with $resource }}{{ $source = .Content }}{{ end -}}
+{{- if not (strings.TrimSpace $source) }}{{ errorf "mermaid shortcode needs inline content, src, or url" }}{{ end -}}
+<pre class="mermaid">{{ $source }}</pre>

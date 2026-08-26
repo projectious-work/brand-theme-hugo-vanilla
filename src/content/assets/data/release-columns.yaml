@@ -1,0 +1,45 @@
+- key: version
+  label: Version
+  type: string
+  sortable: true
+  filter: text
+- key: date
+  label: Released
+  type: date
+  format: 02 Jan 2006
+  sortable: true
+  filter: date-range
+- key: status
+  label: Status
+  type: status
+  sortable: true
+  filter: select
+  variants:
+    stable: accent
+- key: downloads
+  label: Downloads
+  type: int
+  format: "%d"
+  align: right
+  sortable: true
+  filter: range
+- key: size_mb
+  label: Size
+  type: float
+  format: "%.1f MB"
+  align: right
+  sortable: true
+- key: featured
+  label: Featured
+  type: bool
+  trueLabel: Yes
+  falseLabel: No
+  align: center
+  sortable: true
+  filter: boolean
+- key: notes
+  label: Notes
+  type: url
+  linkLabel: Read notes
+  align: right
+  searchable: false

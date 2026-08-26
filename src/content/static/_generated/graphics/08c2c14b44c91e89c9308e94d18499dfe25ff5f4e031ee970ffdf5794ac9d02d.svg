@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 590" role="img" aria-labelledby="title desc">
+  <title id="title">Karl's trigonometric unit-circle picture</title>
+  <desc id="desc">A coordinate grid and unit circle show sine, cosine and tangent for a thirty-degree angle.</desc>
+  <rect width="620" height="590" fill="#fff"/>
+  <g stroke="#d5d9de" stroke-width="1">
+    <path d="M28 68v494M113 68v494M198 68v494M283 68v494M368 68v494M453 68v494M538 68v494"/>
+    <path d="M28 68h510M28 153h510M28 238h510M28 323h510M28 408h510M28 493h510M28 562h510"/>
+  </g>
+  <g fill="none" stroke="#111" stroke-width="1.4">
+    <circle cx="283" cy="323" r="170"/>
+    <path d="M28 323h535"/><path d="m563 323-20-10 6 10-6 10z" fill="#111"/>
+    <path d="M283 562V42"/><path d="m283 42-10 20 10-6 10 6z" fill="#111"/>
+    <path d="M283 323 430 238"/>
+  </g>
+  <path d="M283 323h147v-85" fill="none" stroke="#ef2b2d" stroke-width="3"/>
+  <path d="M283 323h147" fill="none" stroke="#1478e5" stroke-width="3"/>
+  <path d="M453 323v-98" fill="none" stroke="#f07a22" stroke-width="3"/>
+  <path d="M283 323h48a48 48 0 0 0-6.5-24z" fill="#c9f2ca" stroke="#298f43"/>
+  <g font-family="Georgia,serif" font-size="20" fill="#111">
+    <text x="570" y="331" font-style="italic">x</text><text x="274" y="32" font-style="italic">y</text>
+    <text x="101" y="346">−1</text><text x="185" y="346">−½</text><text x="445" y="346">1</text>
+    <text x="260" y="160">1</text><text x="258" y="239">½</text><text x="250" y="416">−½</text><text x="248" y="500">−1</text>
+    <text x="313" y="315" fill="#2ca34a">α</text>
+    <text x="333" y="340" fill="#1478e5">cos α</text>
+    <text x="406" y="286" fill="#ef2b2d">sin α</text>
+    <text x="458" y="232" fill="#f07a22">tan α =</text>
+    <text x="542" y="215" fill="#ef2b2d">sin α</text><path d="M538 220h54" stroke="#111"/>
+    <text x="539" y="243" fill="#1478e5">cos α</text>
+  </g>
+</svg>

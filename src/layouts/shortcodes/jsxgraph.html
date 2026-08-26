@@ -1,0 +1,9 @@
+{{- $source := partial "text-source.html" (dict "page" .Page "src" (.Get "src") "url" (.Get "url") "content" .Inner) -}}
+{{- .Page.Store.Set "needsJSXGraph" true -}}
+{{- $id := printf "jsxgraph-%d" .Ordinal -}}
+<figure class="domain-graphic jsxgraph" data-jsxgraph>
+  <div id="{{ $id }}" class="jxgbox domain-graphic__viewport" role="img"
+    aria-label="{{ .Get "title" | default "Interactive mathematical construction" }}"></div>
+  <script type="application/json" class="domain-graphic__source">{{ $source | safeHTML }}</script>
+  {{ with .Get "caption" }}<figcaption>{{ . | $.Page.RenderString }}</figcaption>{{ end }}
+</figure>

@@ -1,0 +1,79 @@
+{{- $src := .Get "src" | default (.Get 0) -}}
+{{- if not $src }}{{ errorf "chart shortcode requires a CSV src on %s" .Page.File.Path }}{{ end -}}
+{{- $resource := or (.Page.Resources.GetMatch $src) (resources.Get $src) -}}
+{{- if not $resource }}{{ errorf "chart data %q was not found as a page or global asset resource" $src }}{{ end -}}
+{{- $rows := transform.Unmarshal (dict "delimiter" ",") $resource.Content -}}
+{{- if lt (len $rows) 2 }}{{ errorf "chart data %q needs a header and at least one row" $src }}{{ end -}}
+{{- $data := after 1 $rows -}}
+{{- $kind := lower (.Get "type" | default "bar") -}}
+{{- if not (in (slice "bar" "line" "dot") $kind) }}{{ errorf "chart type %q must be bar, line, or dot" $kind }}{{ end -}}
+{{- $title := .Get "title" | default "Chart" -}}
+{{- $caption := .Get "caption" -}}
+{{- $xLabel := .Get "x-label" -}}
+{{- $yLabel := .Get "y-label" -}}
+{{- $width := 720.0 }}{{ $height := 380.0 -}}
+{{- $left := 72.0 }}{{ $right := 24.0 }}{{ $top := 42.0 }}{{ $bottom := 72.0 -}}
+{{- $plotW := sub $width (add $left $right) }}{{ $plotH := sub $height (add $top $bottom) -}}
+{{- $maxScratch := newScratch }}{{ $maxScratch.Set "value" 0.0 -}}
+{{- range $data -}}
+  {{- $value := float (index . 1) -}}
+  {{- if gt $value ($maxScratch.Get "value") }}{{ $maxScratch.Set "value" $value }}{{ end -}}
+{{- end -}}
+{{- $max := float ($maxScratch.Get "value") -}}
+{{- if le $max 0.0 }}{{ errorf "chart data %q must contain a positive numeric value in column two" $src }}{{ end -}}
+{{- $count := len $data }}{{ $slot := div $plotW (float $count) -}}
+{{- $id := printf "chart-%d" .Ordinal -}}
+{{- $summary := newScratch }}{{ $summary.Set "value" "" -}}
+{{- range $index, $row := $data -}}
+  {{- $separator := cond (eq $index 0) "" "; " -}}
+  {{- $summary.Set "value" (printf "%s%s%s: %s" ($summary.Get "value") $separator (index $row 0) (index $row 1)) -}}
+{{- end -}}
+<figure class="chart chart--{{ $kind }}">
+  <div class="chart__viewport">
+    <svg viewBox="0 0 720 380" role="img" aria-labelledby="{{ $id }}-title {{ $id }}-desc">
+      <title id="{{ $id }}-title">{{ $title }}</title>
+      <desc id="{{ $id }}-desc">{{ $kind | title }} chart. {{ $summary.Get "value" }}.</desc>
+      <g class="chart__grid">
+        {{- range seq 0 4 }}
+          {{- $ratio := div (float .) 4.0 }}{{ $y := sub (add $top $plotH) (mul $ratio $plotH) -}}
+          <line x1="{{ $left }}" y1="{{ $y }}" x2="{{ add $left $plotW }}" y2="{{ $y }}" />
+          <text x="{{ sub $left 12 }}" y="{{ add $y 4 }}" text-anchor="end">{{ printf "%.0f" (mul $ratio $max) }}</text>
+        {{- end }}
+      </g>
+      <line class="chart__axis" x1="{{ $left }}" y1="{{ add $top $plotH }}" x2="{{ add $left $plotW }}" y2="{{ add $top $plotH }}" />
+      {{- if eq $kind "bar" -}}
+        <g class="chart__series">
+        {{- range $index, $row := $data -}}
+          {{- $value := float (index $row 1) }}{{ $barH := mul (div $value $max) $plotH -}}
+          {{- $x := add $left (add (mul (float $index) $slot) (mul $slot 0.18)) -}}
+          <rect x="{{ $x }}" y="{{ sub (add $top $plotH) $barH }}" width="{{ mul $slot 0.64 }}" height="{{ $barH }}" rx="5"><title>{{ index $row 0 }}: {{ index $row 1 }}</title></rect>
+        {{- end }}
+        </g>
+      {{- else -}}
+        {{- $points := newScratch }}{{ $points.Set "value" "" -}}
+        {{- range $index, $row := $data -}}
+          {{- $value := float (index $row 1) }}{{ $x := add $left (add (mul (float $index) $slot) (div $slot 2.0)) -}}
+          {{- $y := sub (add $top $plotH) (mul (div $value $max) $plotH) -}}
+          {{- $points.Set "value" (printf "%s%.2f,%.2f " ($points.Get "value") $x $y) -}}
+        {{- end -}}
+        {{- if eq $kind "line" }}<polyline class="chart__line" points="{{ $points.Get "value" }}" />{{ end -}}
+        <g class="chart__points">
+        {{- range $index, $row := $data -}}
+          {{- $value := float (index $row 1) }}{{ $x := add $left (add (mul (float $index) $slot) (div $slot 2.0)) -}}
+          {{- $y := sub (add $top $plotH) (mul (div $value $max) $plotH) -}}
+          <circle cx="{{ $x }}" cy="{{ $y }}" r="6"><title>{{ index $row 0 }}: {{ index $row 1 }}</title></circle>
+        {{- end }}
+        </g>
+      {{- end -}}
+      <g class="chart__labels">
+      {{- range $index, $row := $data -}}
+        {{- $x := add $left (add (mul (float $index) $slot) (div $slot 2.0)) -}}
+        <text x="{{ $x }}" y="{{ add (add $top $plotH) 24 }}" text-anchor="middle">{{ index $row 0 }}</text>
+      {{- end }}
+      {{- with $xLabel }}<text class="chart__axis-label" x="{{ add $left (div $plotW 2.0) }}" y="366" text-anchor="middle">{{ . }}</text>{{ end -}}
+      {{- with $yLabel }}<text class="chart__axis-label" transform="translate(18 {{ add $top (div $plotH 2.0) }}) rotate(-90)" text-anchor="middle">{{ . }}</text>{{ end -}}
+      </g>
+    </svg>
+  </div>
+  {{ with $caption }}<figcaption>{{ . | $.Page.RenderString }}</figcaption>{{ end }}
+</figure>

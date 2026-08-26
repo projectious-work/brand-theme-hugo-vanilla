@@ -1,0 +1,25 @@
+{{- $src := .Get "src" -}}
+{{- $alt := .Get "alt" -}}
+{{- $caption := .Get "caption" -}}
+{{- $resource := or (.Page.Resources.GetMatch $src) (resources.Get $src) -}}
+{{- if not $resource }}{{ errorf "Unable to load Typst example source %q" $src }}{{ end -}}
+{{- partial "diagram-figure.html" (dict
+  "page" .Page "source" $resource.Content "backend" "typst"
+  "alt" $alt "caption" $caption "showSource" false) -}}
+<h4>Complete Typst source</h4>
+<div class="code">
+  <div class="code__bar">
+    <span class="code__name">{{ $src }}</span>
+    <button class="code__copy" type="button" data-copied="{{ i18n "copied" }}">{{ partial "icon.html" (dict "name" "copy" "class" "ico--sm") }}<span>{{ i18n "copyCode" }}</span></button>
+  </div>
+  {{ transform.Highlight $resource.Content "typst" "" }}
+</div>
+<h4>Markdown inclusion</h4>
+{{- $markdown := printf "{{< diagram renderer=\"typst\" src=\"%s\"\n    alt=\"%s\" caption=\"%s\" >}}" $src $alt $caption -}}
+<div class="code">
+  <div class="code__bar">
+    <span class="code__name">Markdown</span>
+    <button class="code__copy" type="button" data-copied="{{ i18n "copied" }}">{{ partial "icon.html" (dict "name" "copy" "class" "ico--sm") }}<span>{{ i18n "copyCode" }}</span></button>
+  </div>
+  {{ transform.Highlight $markdown "md" "" }}
+</div>

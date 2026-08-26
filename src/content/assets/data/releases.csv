@@ -1,0 +1,4 @@
+version,date,status,downloads,size_mb,featured,notes
+v0.3.6,2026-08-16,Stable,18420,2.46,true,/changelog/release-v0-3-6/
+v0.3.5,2026-08-03,Supported,12705,2.31,false,/changelog/release-v0-3-5/
+v0.3.4,2026-07-14,Archived,9341,2.18,false,/changelog/release-v0-3-4/

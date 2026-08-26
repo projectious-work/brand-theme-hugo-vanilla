@@ -22,6 +22,8 @@ command -v hugo >/dev/null 2>&1 || {
   exit 1
 }
 
+node "$ROOT_DIR/scripts/render-graphics.mjs"
+
 build_site() {
   PATH="$ROOT_DIR/node_modules/.bin:$PATH" hugo \
     --source "$SITE_DIR" \

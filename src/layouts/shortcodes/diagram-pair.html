@@ -1,0 +1,13 @@
+{{- $backend := lower (.Get "renderer" | default "typst") -}}
+{{- if not (in (slice "d2" "dot" "typst") $backend) }}{{ errorf "diagram-pair renderer must be d2, dot, or typst" }}{{ end -}}
+<div class="graphic-grid">
+  {{- range slice "a" "b" -}}
+    {{- $src := $.Get (printf "src-%s" .) -}}
+    {{- $resource := or ($.Page.Resources.GetMatch $src) (resources.Get $src) -}}
+    {{- if not $resource }}{{ errorf "Unable to load diagram-pair source %q" $src }}{{ end -}}
+    {{- partial "diagram-figure.html" (dict
+      "page" $.Page "source" $resource.Content "backend" $backend
+      "alt" ($.Get (printf "alt-%s" .))
+      "caption" ($.Get (printf "caption-%s" .)) "showSource" false) -}}
+  {{- end -}}
+</div>

@@ -1,0 +1,48 @@
+{{- $src := .Get "src" | default (.Get 0) -}}
+{{- if not $src }}{{ errorf "graphic shortcode requires src on %s" .Page.File.Path }}{{ end -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $caption := .Get "caption" -}}
+{{- $source := .Get "source" -}}
+{{- $darkSrc := .Get "src-dark" -}}
+{{- $inline := eq (.Get "inline" | default "false") "true" -}}
+{{- $resource := or (.Page.Resources.GetMatch $src) (resources.Get $src) -}}
+{{- $url := $src | relURL -}}
+{{- with $resource }}{{ $url = .RelPermalink }}{{ end -}}
+{{- $darkResource := false -}}
+{{- $darkURL := "" -}}
+{{- with $darkSrc -}}
+  {{- $darkResource = or ($.Page.Resources.GetMatch .) (resources.Get .) -}}
+  {{- $darkURL = . | relURL -}}
+  {{- with $darkResource }}{{ $darkURL = .RelPermalink }}{{ end -}}
+{{- end -}}
+{{- $sourceURL := "" -}}
+{{- with $source -}}
+  {{- $sourceResource := or ($.Page.Resources.GetMatch .) (resources.Get .) -}}
+  {{- $sourceURL = . | relURL -}}
+  {{- with $sourceResource }}{{ $sourceURL = .RelPermalink }}{{ end -}}
+{{- end -}}
+{{- $ext := lower (path.Ext $src) -}}
+{{- if and $inline (ne $ext ".svg") -}}
+  {{- errorf "graphic inline=true only supports SVG resources: %s" $src -}}
+{{- end -}}
+{{- if and $inline (not $resource) -}}
+  {{- errorf "graphic inline=true requires %q to be a page or global asset resource" $src -}}
+{{- end -}}
+<figure class="graphic{{ with .Get "class" }} {{ . }}{{ end }}"{{ with .Get "backend" }} data-graphic-backend="{{ . }}"{{ end }}>
+  {{- if $inline -}}
+  <div class="graphic__inline" role="img"{{ with $alt }} aria-label="{{ . }}"{{ end }}>{{ $resource.Content | safeHTML }}</div>
+  {{- else if $darkSrc -}}
+  <span class="imgswap graphic__media">
+    <img class="imgswap__light" src="{{ $url }}" alt="{{ $alt }}" loading="lazy" decoding="async"{{ with .Get "width" }} width="{{ . }}"{{ end }}{{ with .Get "height" }} height="{{ . }}"{{ end }}>
+    <img class="imgswap__dark" src="{{ $darkURL }}" alt="{{ $alt }}" loading="lazy" decoding="async"{{ with .Get "width" }} width="{{ . }}"{{ end }}{{ with .Get "height" }} height="{{ . }}"{{ end }}>
+  </span>
+  {{- else -}}
+  <img class="graphic__media" src="{{ $url }}" alt="{{ $alt }}" loading="lazy" decoding="async"{{ with .Get "width" }} width="{{ . }}"{{ end }}{{ with .Get "height" }} height="{{ . }}"{{ end }}>
+  {{- end -}}
+  {{- if or $caption $source -}}
+  <figcaption>
+    {{- with $caption }}<span>{{ . | $.Page.RenderString }}</span>{{ end -}}
+    {{- with $sourceURL }} <a class="graphic__source" href="{{ . }}">View source</a>{{ end -}}
+  </figcaption>
+  {{- end -}}
+</figure>

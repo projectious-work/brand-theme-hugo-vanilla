@@ -3,6 +3,11 @@
 {{- /* Same flag the shortcode sets, so one loader serves both entry points. */ -}}
 {{- .Page.Store.Set "needsMermaid" true -}}
 <pre class="mermaid">{{ .Inner }}</pre>
+{{- else if in (slice "d2" "dot" "typst") $lang -}}
+{{- partial "diagram-figure.html" (dict
+  "page" .Page "source" .Inner "backend" $lang
+  "alt" .Attributes.alt "caption" .Attributes.caption
+  "showSource" true) -}}
 {{- else -}}
 {{- /* transform.HighlightCodeBlock passes the fence's options through to Chroma,
        so {linenos=table, hl_lines="3-5", lineNoStart=10} all work. */ -}}

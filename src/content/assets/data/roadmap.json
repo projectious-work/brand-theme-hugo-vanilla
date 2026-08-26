@@ -1,0 +1,18 @@
+{
+  "phases": [
+    {
+      "eyebrow": "Now",
+      "title": "Graphics foundations",
+      "description": "Accessible SVG, bitmap figures and CSV charts.",
+      "status": { "label": "Ready", "variant": "accent" },
+      "href": "/docs/features/diagrams/"
+    },
+    {
+      "eyebrow": "Next",
+      "title": "Interactive exploration",
+      "description": "Composable plots for richer datasets.",
+      "status": { "label": "Planned" },
+      "href": "/docs/features/diagrams/"
+    }
+  ]
+}
