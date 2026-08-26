@@ -132,14 +132,26 @@ test("pinned CDN media, math and diagrams render", async ({ page }, testInfo) =>
   await expect(page.locator(".toc a[href='#charts-from-csv']")).toBeVisible();
   await expect(page.locator('script[src*="jsxgraph@1.13.2"]')).toHaveCount(1);
   await expect(page.locator("[data-jsxgraph] svg")).toBeVisible();
+  expect(await page.locator("[data-jsxgraph] svg circle, [data-jsxgraph] svg ellipse")
+    .count()).toBeGreaterThan(4);
+  await expect(page.locator(".highlight code").filter({ hasText: '"boundingBox"' }))
+    .toBeVisible();
   await expect(page.locator('script[src*="wavedrom@3.6.2/wavedrom.min.js"]'))
     .toHaveCount(1);
   await expect(page.locator("[data-wavedrom] svg")).toBeVisible();
+  await expect(page.locator(".highlight code").filter({ hasText: 'name: "clk"' }))
+    .toBeVisible();
   await expect(page.locator('script[src*="smiles-drawer@2.4.1"]')).toHaveCount(1);
   await expect(page.locator("[data-smiles] svg")).toBeVisible();
   expect(await page.locator("[data-smiles] svg g").count()).toBeGreaterThan(1);
+  await expect(page.locator(".highlight code.language-text").filter({
+    hasText: "CC(=O)OC1=CC=CC=C1C(=O)O",
+  })).toBeVisible();
   await expect(page.locator('script[src*="pseudocode@2.4.1"]')).toHaveCount(1);
   await expect(page.locator("[data-pseudocode] .ps-root")).toBeVisible();
+  await expect(page.locator(".highlight code").filter({
+    hasText: "\\begin{algorithm}",
+  })).toBeVisible();
   const chartBox = await page.locator(".chart--bar svg").evaluate((svg) => {
     const box = svg.getBoundingClientRect();
     const panel = svg.parentElement.getBoundingClientRect();

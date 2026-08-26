@@ -115,6 +115,11 @@ for source in network-topology aws-nested-infrastructure; do
   rg -q "graphics/$source\.d2" \
     "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
 done
+grep -q 'site-to-site VPN' "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
+grep -q '&#34;boundingBox&#34;' "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
+grep -q 'name:.*&#34;clk&#34;' "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
+grep -q 'CC(=O)OC1=CC=CC=C1C(=O)O' "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
+grep -q '\\begin{algorithm}' "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
 for pin in \
   'jsxgraph@1.13.2' 'wavedrom@3.6.2' \
   'smiles-drawer@2.4.1' 'pseudocode@2.4.1'; do
