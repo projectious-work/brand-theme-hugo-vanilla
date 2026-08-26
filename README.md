@@ -1,4 +1,4 @@
-# brand-theme-hugo-vanilla — v0.3.6
+# brand-theme-hugo-vanilla — v0.4.0
 
 A Hugo theme implementing the **projectious.work** brand system for documentation,
 change logs, taxonomy and marketing pages. Content authors write Markdown and shortcodes;
@@ -115,10 +115,11 @@ multi-file runtimes that fetch sibling assets, so hashing only an entry file
 would not provide complete integrity. Theme-owned CSS and JavaScript are
 fingerprinted with integrity metadata by Hugo Pipes.
 
-The bundled icon and font assets do not make third-party requests. Generated
-D2, Graphviz and Typst SVG is inserted inline so selectable text and SVG
-semantics remain in the page; browser renderers produce inline SVG or semantic
-HTML from inline source, a local file or an explicitly supplied URL.
+The bundled icon and font assets do not make third-party requests. Generated D2
+and Graphviz SVG is inserted inline so selectable text and SVG semantics remain
+in the page. Typst SVG is also inlined, but Typst outlines its glyphs as paths.
+Browser renderers produce inline SVG or semantic HTML from inline source, a
+local file or an explicitly supplied URL.
 
 See [TESTING.md](TESTING.md) for the upstream assertion checklist and known
 version-matrix gap. [CONTRACT-feedback.md](CONTRACT-feedback.md) defines the

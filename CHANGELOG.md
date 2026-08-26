@@ -2,6 +2,44 @@
 
 All notable changes to this project are documented in this file.
 
+## [v0.4.0] — 2026-08-26
+
+### Added
+
+- Added build-integrated D2, Graphviz and Typst/CeTZ graphics plus browser
+  renderers for Observable Plot, JSXGraph, WaveDrom, SMILES and pseudocode.js,
+  with inline, local-file and approved-URL authoring paths ([#70], [#72]).
+- Added searchable, sortable and filterable data tables with alignment and
+  type-aware formatting, alongside file- and URL-backed badges and card lists
+  ([#70]).
+- Added network-topology, provider-style infrastructure and Typst package
+  galleries with complete rendered and source examples ([#70], [#72]).
+- Added a structured Installation guide covering the theme, its prerequisites,
+  optional graphics tools, offline operation and verification ([#70]).
+- Added a complete configurable logo suite with light, dark and monochrome
+  variants plus refreshed browser and touch icons ([#73]).
+
+### Changed
+
+- Inlined generated graphics in the page: D2 and Graphviz retain selectable SVG
+  text, while the documentation now explicitly identifies Typst's outlined
+  glyph behavior ([#70], [#72]).
+- Expanded the diagrams, images and data-driven component documentation with
+  complete source, data and rendered examples ([#70], [#72]).
+
+### Removed
+
+- Removed the application-shell partial and feature documentation so embedded
+  components do not duplicate a consuming site's page chrome ([#70]).
+
+### Fixed
+
+- Fixed file-backed JSXGraph source decoding and restored the missing plotted
+  lines; exposed the underlying JSXGraph, WaveDrom, SMILES and pseudocode source
+  alongside every rendering ([#72]).
+- Right-aligned data-card actions and improved spacing between rendered examples
+  and their source listings ([#70]).
+
 ## [v0.3.6] — 2026-08-22
 
 ### Added
@@ -280,9 +318,13 @@ All notable changes to this project are documented in this file.
 [v0.3.4]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.3...v0.3.4
 [v0.3.5]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.4...v0.3.5
 [v0.3.6]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.5...v0.3.6
+[v0.4.0]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.3.6...v0.4.0
 [#51]: https://github.com/projectious-work/brand-theme-hugo-vanilla/issues/51
 [#52]: https://github.com/projectious-work/brand-theme-hugo-vanilla/issues/52
 [#59]: https://github.com/projectious-work/brand-theme-hugo-vanilla/pull/59
 [#58]: https://github.com/projectious-work/brand-theme-hugo-vanilla/issues/58
 [#62]: https://github.com/projectious-work/brand-theme-hugo-vanilla/issues/62
+[#70]: https://github.com/projectious-work/brand-theme-hugo-vanilla/pull/70
+[#72]: https://github.com/projectious-work/brand-theme-hugo-vanilla/pull/72
+[#73]: https://github.com/projectious-work/brand-theme-hugo-vanilla/pull/73
 [v0.3.0]: https://github.com/projectious-work/brand-theme-hugo-vanilla/compare/v0.2.4...v0.3.0

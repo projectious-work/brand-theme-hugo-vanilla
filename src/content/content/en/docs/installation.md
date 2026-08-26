@@ -56,7 +56,7 @@ Add the theme to `hugo.toml`:
 Pin a release and commit both module files:
 
 ```sh
-hugo mod get github.com/projectious-work/brand-theme-hugo-vanilla@v0.3.6
+hugo mod get github.com/projectious-work/brand-theme-hugo-vanilla@v0.4.0
 hugo mod tidy
 ```
 
@@ -126,7 +126,7 @@ complete output configuration.
 Review release notes before updating:
 
 ```sh
-hugo mod get github.com/projectious-work/brand-theme-hugo-vanilla@v0.3.6
+hugo mod get github.com/projectious-work/brand-theme-hugo-vanilla@v0.4.0
 hugo mod tidy
 ```
 

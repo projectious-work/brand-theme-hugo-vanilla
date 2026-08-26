@@ -608,25 +608,25 @@ test("Features renders image, recording and notebook examples", async (
   await expect(page.locator(".data-badges .badge")).toHaveCount(3);
   await expect(page.locator(".cards--stacked .card")).toHaveCount(2);
   await expect(page.locator(".tablewrap[aria-label='Theme releases'] tbody tr"))
-    .toHaveCount(3);
+    .toHaveCount(4);
   const enhancedTable = page.locator(".data-table--interactive");
   await expect(enhancedTable.locator("[data-table-controls]")).toBeVisible();
   await expect(enhancedTable.locator("tbody tr").first()).toContainText(
-    "16 Aug 2026",
+    "26 Aug 2026",
   );
   await expect(enhancedTable.locator("tbody tr").first()).toContainText(
-    "2.5 MB",
+    "2.6 MB",
   );
   await enhancedTable.locator("[data-table-search]").fill("v0.3.5");
   await expect(enhancedTable.locator("tbody tr:visible")).toHaveCount(1);
   await expect(enhancedTable.locator("[data-table-count]")).toHaveText(
-    "1 of 3 rows",
+    "1 of 4 rows",
   );
   await enhancedTable.locator("[data-table-clear]").click();
   await enhancedTable.locator('th[data-column="downloads"] [data-table-sort]')
     .click();
   await expect(enhancedTable.locator('tbody tr [data-column="downloads"]')
-    .first()).toHaveAttribute("data-value", "9341");
+    .first()).toHaveAttribute("data-value", "0");
   await enhancedTable.locator('th[data-column="downloads"] [data-table-sort]')
     .click();
   await expect(enhancedTable.locator('tbody tr [data-column="downloads"]')
@@ -634,10 +634,9 @@ test("Features renders image, recording and notebook examples", async (
   await enhancedTable.locator(
     '[data-table-filter="select"][data-column="status"] select',
   ).selectOption("archived");
-  await expect(enhancedTable.locator("tbody tr:visible")).toHaveCount(1);
-  await expect(enhancedTable.locator("tbody tr:visible")).toContainText(
-    "Archived",
-  );
+  await expect(enhancedTable.locator("tbody tr:visible")).toHaveCount(2);
+  await expect(enhancedTable.locator("tbody tr:visible"))
+    .toHaveText([/Archived/, /Archived/]);
   await enhancedTable.locator("[data-table-clear]").click();
   await enhancedTable.locator(
     '[data-table-filter="range"][data-column="downloads"] [data-filter-min]',
@@ -647,12 +646,12 @@ test("Features renders image, recording and notebook examples", async (
   await enhancedTable.locator(
     '[data-table-filter="date-range"][data-column="date"] [data-filter-min]',
   ).fill("2026-08-01");
-  await expect(enhancedTable.locator("tbody tr:visible")).toHaveCount(2);
+  await expect(enhancedTable.locator("tbody tr:visible")).toHaveCount(3);
   await enhancedTable.locator("[data-table-clear]").click();
   await enhancedTable.locator(
     '[data-table-filter="boolean"][data-column="featured"] select',
   ).selectOption("false");
-  await expect(enhancedTable.locator("tbody tr:visible")).toHaveCount(2);
+  await expect(enhancedTable.locator("tbody tr:visible")).toHaveCount(3);
   await enhancedTable.locator("[data-table-clear]").click();
   await enhancedTable.locator(
     '[data-table-filter="text"][data-column="version"] input',
@@ -855,8 +854,11 @@ test("release notes are ordered newest first in every language", async ({ page }
   for (const path of ["changelog/", "de/changelog/", "fr/changelog/"]) {
     await page.goto(path);
     const releases = await page.locator(".example-changelog h2").allTextContents();
-    expect(releases.slice(0, 6).map((title) => title.trim().slice(0, 6)))
-      .toEqual(["v0.3.6", "v0.3.5", "v0.3.4", "v0.3.3", "v0.3.2", "v0.3.1"]);
+    expect(releases.slice(0, 7).map((title) => title.trim().slice(0, 6)))
+      .toEqual([
+        "v0.4.0", "v0.3.6", "v0.3.5", "v0.3.4", "v0.3.3", "v0.3.2",
+        "v0.3.1",
+      ]);
     await expect(page.locator(".timeline")).toBeVisible();
   }
 });
