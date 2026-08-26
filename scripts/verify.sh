@@ -75,7 +75,11 @@ rg -q 'katex@0\.18\.4' "$VERIFY_DIR/build-a/docs/features/mathematics/index.html
 rg -q 'mermaid@11\.16\.1' "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
 [[ -s "$VERIFY_DIR/build-a/docs/installation/index.html" ]]
 rg -q 'Optional graphics tools' "$VERIFY_DIR/build-a/docs/installation/index.html"
-rg -q 'logo/icon-dark\.svg' "$VERIFY_DIR/build-a/index.html"
+rg -q 'logo/icon-light\.svg' "$VERIFY_DIR/build-a/index.html"
+for logo in icon-light.svg icon-dark.svg favicon-32.png apple-touch-icon-180.png; do
+  test -s "$VERIFY_DIR/build-a/logo/$logo"
+done
+test "$(find "$VERIFY_DIR/build-a/logo/theme" -type f -name '*.svg' | wc -l)" -eq 54
 rg -q 'class="chart chart--bar"' \
   "$VERIFY_DIR/build-a/docs/features/diagrams/index.html"
 rg -q 'class="chart chart--line"' \
